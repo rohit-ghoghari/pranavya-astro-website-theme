@@ -1,0 +1,85 @@
+---
+interface Props {
+    intensityLevel: string;
+    intensityBadgeClass: string;
+    category: string;
+    overview: Array<{ label: string; value: string }>;
+    benefits: string[];
+}
+
+const {
+    intensityLevel,
+    intensityBadgeClass,
+    category,
+    overview,
+    benefits,
+} = Astro.props;
+---
+
+<div
+    class="flex flex-col 2xl:p-9 1xl:p-8.5 xl:p-7 lg:p-5.5 p-4 bg-whitesmoke-100 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4">
+    <div>
+        <h5
+            class="uppercase text-primary 1xl:pb-5 1xl:mb-5 lg:pb-4 lg:mb-4 sm:pb-3 sm:mb-3 pb-2.5 mb-2.5 border-b border-primary/50">
+            Intensity Level
+        </h5>
+    </div>
+    <div class="classes-details">
+        <span class:list={["badge-dot", intensityBadgeClass]}></span>
+        <p>Intensity : {intensityLevel}</p>
+    </div>
+</div>
+
+<div
+    class="flex flex-col 2xl:p-9 1xl:p-8.5 xl:p-7 lg:p-5.5 p-4 bg-whitesmoke-100 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4">
+    <div>
+        <h5
+            class="uppercase text-primary 1xl:pb-5 1xl:mb-5 lg:pb-4 lg:mb-4 sm:pb-3 sm:mb-3 pb-2.5 mb-2.5 border-b border-primary/50">
+            Category
+        </h5>
+    </div>
+    <div class="classes-details">
+        <p>{category}</p>
+    </div>
+</div>
+
+<div
+    class="flex flex-col 2xl:p-9 1xl:p-8.5 xl:p-7 lg:p-5.5 p-4 bg-whitesmoke-100 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4">
+    <div>
+        <h5
+            class="uppercase text-primary 1xl:pb-5 1xl:mb-5 lg:pb-4 lg:mb-4 sm:pb-3 sm:mb-3 pb-2.5 mb-2.5 border-b border-primary/50">
+            Class Overview
+        </h5>
+    </div>
+    <div class="flex flex-items-center 2xl:gap-13.5 1xl:gap-8 xl:gap-7 lg:gap-5.5 gap-4.5">
+        <ul class="font-medium text-primary lg:space-y-2.5 space-y-2 p">
+            {overview.map((item: any) => (
+                <li class="flex items-start">
+                    <div
+                        class="size-[5px] bg-primary rounded-full overflow-hidden 2xl:mt-4 1xl:mt-[13px] lg:mt-3 lt:mt-[11px] sm:mt-2.5 mt-2 shrink-0 mr-3">
+                    </div>
+                    <span
+                        class="block 2xl:w-[150px] 1xl:w-33.5 lg:w-29 sm:w-27 w-23 shrink-0">{item.label}</span>
+                    <span class="text-thunder-100 font-normal">{item.value}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+</div>
+
+<div
+    class="flex flex-col 2xl:p-9 1xl:p-8.5 xl:p-7 lg:p-5.5 p-4 bg-whitesmoke-100 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4">
+    <div>
+        <h5
+            class="uppercase text-primary 1xl:pb-5 1xl:mb-5 lg:pb-4 lg:mb-4 sm:pb-3 sm:mb-3 pb-2.5 mb-2.5 border-b border-primary/50">
+            Class Benefits
+        </h5>
+    </div>
+    <ul class="list-disc pl-4 lg:space-y-2.5 space-y-2">
+        {benefits.map((benefit: string) => (
+            <li>
+                <p>{benefit}</p>
+            </li>
+        ))}
+    </ul>
+</div>

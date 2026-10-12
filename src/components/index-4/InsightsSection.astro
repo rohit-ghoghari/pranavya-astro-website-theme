@@ -1,0 +1,229 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+
+interface BlogPost {
+    image: string;
+    imageAlt: string;
+    title: string;
+    description: string;
+    date: string;
+    link: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    posts?: BlogPost[];
+    viewAllText?: string;
+    viewAllLink?: string;
+}
+
+const {
+    eyebrow = "Insights & Inspiration",
+    title = "Your journey elevated.",
+    description = "Dive into powerful stories, practical tips, and ancient wisdom reimagined for today. Whether you're a beginner on the mat or a seasoned yogi, our blog offers something to guide your journey.",
+
+    posts = [
+        {
+            image: "/blog-3_1.webp",
+            imageAlt: "Personalized Yoga",
+            title: "Evening Flow for Better Sleep",
+            description:
+                "Unwind with calming flows to ease body and mind.",
+            date: "July 15, 2025",
+            link: blogHref("Evening Flow for Better Sleep"),
+        },
+        {
+            image: "/blog-3_2.webp",
+            imageAlt: "Personalized Yoga",
+            title: "Morning Yoga Flow You Can Do Anywhere",
+            description:
+                "A refreshing sequence perfect for busy mornings or travel.",
+            date: "July 15, 2025",
+            link: blogHref("Morning Yoga Flow You Can Do Anywhere"),
+        },
+        {
+            image: "/blog-3_3.webp",
+            imageAlt: "Personalized Yoga",
+            title: "How to Build a Daily Yoga Routine",
+            description:
+                "Create a consistent, energizing practice that fits your lifestyle.",
+            date: "July 15, 2025",
+            link: blogHref("How to Build a Daily Yoga Routine"),
+        },
+    ],
+
+    viewAllText = "View All Blogs",
+    viewAllLink = "/blogs/blogOne/",
+} = Astro.props;
+---
+
+<section
+    class="relative bg-whitesmoke-100 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-9 overflow-hidden"
+>
+    <div class="container">
+
+        <div
+            class="text-center 2xl:max-w-[63%] xl:max-w-[70%] lt:max-w-[80%] max-w-full w-full mx-auto 1xl:mb-10 lt:mb-8 md:mb-7 mb-6.5"
+        >
+            <h3
+                class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center"
+            >
+                {eyebrow}
+            </h3>
+
+            <h2
+                class="text-primary uppercase 1xl:mb-5 mb-3 text-center"
+            >
+                {title}
+            </h2>
+
+            <p>
+                {description}
+            </p>
+        </div>
+
+
+        <div
+            class="grid lt:grid-cols-3 sm:grid-cols-2 grid-cols-1 1xl:gap-6 xl:gap-5 lt:gap-4 md:gap-6 gap-5"
+        >
+
+            {
+                posts.map((post) => (
+                    <div
+                        class="bg-white rounded-sm overflow-hidden h-auto"
+                        data-aos="fade-up"
+                    >
+
+                        <div
+                            class="relative overflow-hidden 2xl:h-[323px] 1xl:h-[270px] xl:h-[230px] lg:h-[205px] sm:h-[185px] h-[165px]"
+                        >
+                            <img
+                                loading="lazy"
+                                src={post.image}
+                                alt={post.imageAlt}
+                                class="w-full h-full object-cover"
+                                decoding="async"
+                            />
+                        </div>
+
+
+                        <div
+                            class="1xl:py-[30px] xl:py-5 sm:py-4 sm:px-5 p-4 text-left h-auto"
+                        >
+
+                            <a href={post.link}>
+                                <h5
+                                    class="uppercase text-primary hover:text-black 1xl:mb-3.5 mb-2.5 xl:max-w-[87%] lt:max-w-full md:max-w-[97%] w-full"
+                                >
+                                    {post.title}
+                                </h5>
+                            </a>
+
+
+                            <p
+                                class="1xl:mb-6 xl:mb-5 mb-4 xl:max-w-[95%] w-full"
+                            >
+                                {post.description}
+                            </p>
+
+
+                            <div
+                                class="flex items-center justify-between w-full flex-wrap"
+                            >
+
+                                <div
+                                    class="flex items-center lg:gap-3 gap-2"
+                                >
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 30 30"
+                                        fill="none"
+                                        class="2xl:w-8 2xl:h-8 1xl:w-7.5 1xl:h-7.5 xl:w-7 xl:h-7 lg:w-6.5 lg:h-6.5 md:w-6 md:h-6 sm:w-5.5 sm:h-5.5 w-4.5 h-4.5 object-contain"
+                                    >
+                                        <mask
+                                            id="mask0_3146_16460"
+                                            style="mask-type:alpha"
+                                            maskUnits="userSpaceOnUse"
+                                            x="0"
+                                            y="0"
+                                            width="30"
+                                            height="30"
+                                        >
+                                            <rect
+                                                width="29.87"
+                                                height="29.87"
+                                                fill="url(#pattern0_3146_16460)"
+                                            ></rect>
+                                        </mask>
+
+                                        <g mask="url(#mask0_3146_16460)">
+                                            <rect
+                                                x="0.132812"
+                                                width="29.87"
+                                                height="29.87"
+                                                fill="#673E2C"
+                                            ></rect>
+                                        </g>
+
+                                        <defs>
+                                            <pattern
+                                                id="pattern0_3146_16460"
+                                                patternContentUnits="objectBoundingBox"
+                                                width="1"
+                                                height="1"
+                                            >
+                                                <use
+                                                    xlink:href="#image0_3146_16460"
+                                                    transform="scale(0.0078125)"
+                                                ></use>
+                                            </pattern>
+
+                                            <image
+                                                id="image0_3146_16460"
+                                                width="128"
+                                                height="128"
+                                                preserveAspectRatio="none"
+                                                xlink:href="data:image/png;base64,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"
+                                            ></image>
+                                        </defs>
+                                    </svg>
+
+                                    <p class="uppercase p2">
+                                        {post.date}
+                                    </p>
+
+                                </div>
+
+
+                                <a
+                                    href={post.link}
+                                    class="btn btn-secondary md:text-13 text-[10px] xl:py-2 xl:px-5 py-1.5 md:px-4.5 px-4"
+                                >
+                                    Read More
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                ))
+            }
+
+        </div>
+
+
+        <a
+            href={viewAllLink}
+            class="btn btn-secondary 2xl:mt-[50px] 1xl:mt-11 md:mt-9 mt-7 mx-auto"
+        >
+            {viewAllText}
+        </a>
+
+    </div>
+</section>

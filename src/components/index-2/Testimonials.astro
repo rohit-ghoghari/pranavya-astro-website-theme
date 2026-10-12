@@ -1,0 +1,238 @@
+---
+interface Testimonial {
+    image: string;
+    imageAlt: string;
+    title: string;
+    content: string;
+    name: string;
+    duration: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    testimonials?: Testimonial[];
+}
+
+const {
+    eyebrow = "Voices of Transformation",
+    title = "Real Stories, Real Transformations",
+    description = `At Pranavya Yoga, our community finds strength, peace, and
+clarity. Here’s what they’re saying:`,
+
+    testimonials = [
+        {
+            image: "/home-2-testimonial-1.webp",
+            imageAlt: "Testimonial",
+            title: "“A True Sanctuary for the Soul”",
+            content: `"When I first walked into Pranavya Yoga, I was
+overwhelmed with stress and burnout. I had tried various
+fitness studios before, but this space immediately felt
+different—gentler, more welcoming, and deeply spiritual.
+The instructors didn’t just teach poses."`,
+            name: "Anjali S.",
+            duration: "2 Years with Pranavya",
+        },
+        {
+            image: "/home-2-testimonial-2.webp",
+            imageAlt: "Testimonial",
+            title: "“A True Sanctuary for the Soul”",
+            content: `"When I first walked into Pranavya Yoga, I was
+overwhelmed with stress and burnout. I had tried various
+fitness studios before, but this space immediately felt
+different—gentler, more welcoming, and deeply spiritual.
+The instructors didn’t just teach poses."`,
+            name: "Anjali S.",
+            duration: "2 Years with Pranavya",
+        },
+        {
+            image: "/testimonials-1.webp",
+            imageAlt: "Testimonial",
+            title: "“A True Sanctuary for the Soul”",
+            content: `"When I first walked into Pranavya Yoga, I was
+overwhelmed with stress and burnout. I had tried various
+fitness studios before, but this space immediately felt
+different—gentler, more welcoming, and deeply spiritual.
+The instructors didn’t just teach poses."`,
+            name: "Anjali S.",
+            duration: "2 Years with Pranavya",
+        },
+        {
+            image: "/instagram_style_1_img_2.webp",
+            imageAlt: "Testimonial",
+            title: "“A True Sanctuary for the Soul”",
+            content: `"When I first walked into Pranavya Yoga, I was
+overwhelmed with stress and burnout. I had tried various
+fitness studios before, but this space immediately felt
+different—gentler, more welcoming, and deeply spiritual.
+The instructors didn’t just teach poses."`,
+            name: "Anjali S.",
+            duration: "2 Years with Pranavya",
+        },
+        {
+            image: "/home-2-testimonial-3.webp",
+            imageAlt: "Testimonial",
+            title: "“A True Sanctuary for the Soul”",
+            content: `"When I first walked into Pranavya Yoga, I was
+overwhelmed with stress and burnout. I had tried various
+fitness studios before, but this space immediately felt
+different—gentler, more welcoming, and deeply spiritual.
+The instructors didn’t just teach poses."`,
+            name: "Anjali S.",
+            duration: "2 Years with Pranavya",
+        },
+    ],
+} = Astro.props;
+---
+
+<section class="overflow-hidden 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <!-- Heading -->
+    <div class="container">
+        <div class="flex flex-col items-center justify-center 1xl:mb-[50px] sm:mb-11 mb-5">
+            <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center">
+                {eyebrow}
+            </h3>
+
+            <h2 class="text-primary uppercase 1xl:mb-5 mb-3 text-center">
+                {title}
+            </h2>
+
+            <p class="2xl:w-[51%] xl:w-[56%] lg:w-[67%] lt:w-[75%] w-full text-center">
+                {description}
+            </p>
+        </div>
+    </div>
+
+    <!-- Slider Wrapper -->
+    <div class="relative md:px-0 px-4">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="70"
+            height="57"
+            viewBox="0 0 70 57"
+            fill="none"
+            class="absolute 1xl:right-88 xl:right-60 lg:right-52 lt:right-32 right-16 left-auto lt:top-4 top-0 xl:h-[57px] lg:h-[52px] lt:h-[42px] h-[38px]"
+        >
+            <path
+                d="M56.86 29.127C64.71 29.127 70 34.7855 70 43.1697C70 50.7145 63.92 57 55.685 57C46.665 57 40 49.4553 40 37.9309C40 11.7368 58.43 1.25918 70 0V11.5244C62.155 12.9908 53.335 21.1625 52.94 30.1789C53.335 29.9716 54.9 29.127 56.86 29.127ZM16.865 29.127C24.705 29.127 30 34.7855 30 43.1697C30 50.7145 23.92 57 15.685 57C6.665 57 0 49.4553 0 37.9309C0 11.7368 18.43 1.25918 30 0V11.5244C22.155 12.9908 13.335 21.1625 12.94 30.1789C13.335 29.9716 14.9 29.127 16.865 29.127Z"
+                fill="#673E2C"
+                fill-opacity="0.22"
+            />
+        </svg>
+
+        <div class="swiper testimonial-slider">
+            <div class="swiper-wrapper">
+
+                {
+                    testimonials.map((testimonial) => (
+                        <div class="swiper-slide testimonial-slide h-auto!">
+                            <div class="flex sm:flex-row flex-col items-center justify-between lg:gap-9 sm:gap-7 gap-5 testimonial-box sm:h-full h-auto">
+
+                                <div class="2xl:w-[49%] 1xl:w-[42%] sm:w-[44%] w-full testimonial-img">
+                                    <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src={testimonial.image}
+                                        alt={testimonial.imageAlt}
+                                    />
+                                </div>
+
+                                <div class="2xl:w-[51%] 1xl:w-[58%] sm:w-[56%] w-full testimonial-content flex-col items-start justify-end h-full sm:pt-4 xl:pb-[68px] lg:pb-[50px] sm:pb-[30px]">
+                                    <div>
+
+                                        <h3 class="text-primary italic font-medium font-primary 2xl:mb-11 1xl:mb-8 lg:mb-6 md:mb-4 sm:mb-2 mb-4">
+                                            {testimonial.title}
+                                        </h3>
+
+                                        <p class="2xl:mb-12 1xl:mb-10 lg:mb-8 md:mb-6 mb-4">
+                                            {testimonial.content}
+                                        </p>
+
+                                        <h3 class="text-primary font-secondary uppercase md:mb-[6px] mb-1.5">
+                                            {testimonial.name}
+                                        </h3>
+
+                                        <p>
+                                            - {testimonial.duration}
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    ))
+                }
+
+            </div>
+
+            <div class="2xl:w-[123px] xl:w-[105px] lt:w-[95px] md:w-[85px] w-[80px] absolute top-auto lt:left-[78%] md:left-[83%] sm:left-[88%] left-auto right-0 1xl:bottom-[14%] xl:bottom-[18%] lg:bottom-[15%] sm:bottom-[13%] bottom-[2%] flex items-center justify-between sm:-translate-x-1/2 z-1">
+
+                <div class="slider-custom-arrow swiper-button-prev">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="18"
+                        viewBox="0 0 22 18"
+                        fill="none"
+                        class="swiper-navigation-icon"
+                    >
+                        <path
+                            d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+
+                <div class="slider-custom-arrow swiper-button-next">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="18"
+                        viewBox="0 0 22 18"
+                        fill="none"
+                        class="swiper-navigation-icon"
+                    >
+                        <path
+                            d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation } from "swiper/modules";
+
+    import "swiper/css";
+    import "swiper/css/navigation";
+
+    const slider = document.querySelector(".testimonial-slider");
+
+    if (slider) {
+        new Swiper(slider as HTMLElement, {
+            modules: [Navigation],
+
+            slidesPerView: 1,
+
+            spaceBetween: 110,
+
+            navigation: {
+                nextEl: slider.querySelector(".swiper-button-next") as HTMLElement,
+                prevEl: slider.querySelector(".swiper-button-prev") as HTMLElement,
+            },
+        });
+    }
+</script>

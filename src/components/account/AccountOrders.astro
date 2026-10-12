@@ -1,0 +1,293 @@
+---
+import { ordersList, cancelReasons } from "../../data/account";
+---
+
+<div id="orders" class="schedule-panel overflow-visible! hidden">
+    <div id="ordersList">
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h3 class="uppercase text-primary 2xl:mb-6 1xl:mb-5 sm:mb-4 mb-2.5">Your Orders</h3>
+                <p class="font-medium 1xl:mb-8 xl:mb-6 md:mb-5 mb-4">
+                    View Your Order History, manage and Download invoices.
+                </p>
+            </div>
+        </div>
+        <div class="dashboard">
+            <table class="w-full border-collapse block md:table md:border-2 border-[#673E2C33]">
+                <thead class="hidden md:table-header-group bg-whitesmoke-100">
+                    <tr>
+                        <th class="w-[12.5%]">Order ID</th>
+                        <th class="w-[28%]">Product</th>
+                        <th class="w-[12%]">Date</th>
+                        <th class="w-[16%]">Amount</th>
+                        <th class="w-[16%]">Status</th>
+                        <th class="w-[16%]">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="block md:table-row-group space-y-5">
+                    {ordersList.map((order) => (
+                        <tr>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Order ID</h5>
+                                <p class="md:text-center text-right">{order.id}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Product</h5>
+                                <p class="md:text-center text-right">{order.product}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Date</h5>
+                                <p class="md:text-center text-right">{order.date}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Amount</h5>
+                                <p class="md:text-center text-right">{order.amount}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Status</h5>
+                                <p class="md:text-center text-right">{order.status}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Action</h5>
+                                <a href="javascript:void(0)" class="view-order p text-thunder-100 hover:text-primary underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-secondary 1xl:mt-12.5 lt:mt-10 sm:mt-8 mt-6 ml-auto mr-0">
+            Download Invoice</button>
+    </div>
+    <div id="orderDetails" class="hidden 2xl:space-y-10 1xl:space-y-9 xl:space-y-8 sm:space-y-6 space-y-5">
+        <div>
+            <div class="flex items-center justify-between w-full 2xl:mb-10 xl:mb-8 md:mb-5.5 mb-4">
+                <div>
+                    <h3 class="uppercase text-primary">Your Order</h3>
+                </div>
+                <button class="back-to-orders btn btn-secondary">← Back</button>
+            </div>
+            <div class="order-detail">
+                <table class="border-collapse md:border-2 border border-[#EBEBEB]! w-full">
+                    <thead>
+                        <tr>
+                            <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Order Number</th>
+                            <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Placed on</th>
+                            <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Total</th>
+                            <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                <p class="text-left font-medium md:hidden block">Order Number</p>
+                                <p class="md:text-center text-right">#1045</p>
+                            </td>
+                            <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                <p class="text-left font-medium md:hidden block">Placed on</p>
+                                <p class="md:text-center text-right">25 Nov</p>
+                            </td>
+                            <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                <p class="text-left font-medium md:hidden block">Total</p>
+                                <p class="md:text-center text-right">$138.00</p>
+                            </td>
+                            <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                <p class="text-left font-medium md:hidden block">Status</p>
+                                <p class="md:text-center text-right">Delivered</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="flex lt:flex-row flex-col items-normal bg-whitesmoke-200 sm:border border-[#EBEBEB] lt:divide-x divide-[#EBEBEB] sm:gap-0 gap-4">
+            <div class="lt:w-1/2 w-full space-y-5 flex flex-col">
+                <div class="2xl:space-y-10 1xl:space-y-9 xl:space-y-8 sm:space-y-6 space-y-5 h-full">
+                    <div class="2xl:p-7.5 xl:p-6.5 md:p-5.5 sm:p-4.5 border-b border-[#EBEBEB]">
+                        <div class="w-full 2xl:gap-7.5 xl:gap-6.5 sm:gap-5.5 gap-3.5 h-full flex items-stretch sm:flex-row flex-col overflow-hidden">
+                            <div class="lt:w-[47%] sm:w-[38%] w-full">
+                                <div class="h-full relative flex items-stretch justify-center overflow-hidden">
+                                    <a href="/shop/manduka-pro-yoga-mat/" class="w-full overflow-hidden bg-[#E0E0E0] p-2 lt:h-auto sm:h-[150px] h-[250px]">
+                                        <img src="/product-1.webp" alt="Yoga Mat" class="lg:w-[90%] w-full m-auto h-full object-contain" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="lt:w-[53%] sm:w-[62%] w-full h-auto flex items-start justify-center flex-col lg:py-3 sm:py-2 pb-3 px-4 my-auto">
+                                <p class="font-medium 2xl:mb-4 xl:mb-3 mb-2 text-primary">Manduka PRO Yoga Mat 6mm</p>
+                                <p class="2xl:mb-3 xl:mb-2 mb-1"><span class="font-medium">Color:</span> Sky Blue</p>
+                                <p class="2xl:mb-3 xl:mb-2 mb-1"><span class="font-medium">Size:</span> 71&quot;</p>
+                                <p><span class="font-medium">Qty:</span> 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="2xl:px-7.5 xl:px-6.5 md:px-5.5 sm:px-4.5">
+                        <p class="font-medium text-black-100 lg:pb-4 pb-2 2xl:px-7.5 xl:px-6.5 md:px-5.5 px-4.5">Price</p>
+                        <div class="border-y border-primary/20 lg:py-2 py-1">
+                            <div class="grid grid-cols-2 2xl:px-7.5 xl:px-6.5 md:px-5.5 sm:px-4.5 px-3.5 gap-10">
+                                <p class="lg:py-2 py-1 text-left">Item Price:</p>
+                                <p class="lg:py-2 py-1 text-right">$138.00</p>
+                            </div>
+                            <div class="grid grid-cols-2 2xl:px-7.5 xl:px-6.5 md:px-5.5 sm:px-4.5 px-3.5 gap-10">
+                                <p class="lg:py-2 py-1 text-left">Shipping:</p>
+                                <p class="lg:py-2 py-1 text-right">Free</p>
+                            </div>
+                            <div class="grid grid-cols-2 2xl:px-7.5 xl:px-6.5 md:px-5.5 sm:px-4.5 px-3.5 gap-10">
+                                <p class="lg:py-2 py-1 text-left">Tax (5%):</p>
+                                <p class="lg:py-2 py-1 text-right">$138.00</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 2xl:px-7.5 xl:px-6.5 md:px-5.5 sm:px-4.5 px-3.5 gap-10 bg-white border-b border-primary/20">
+                            <p class="font-medium text-[#1A1A1A] py-2.5 text-left">Total</p>
+                            <p class="font-medium text-[#1A1A1A] py-2.5 text-right">$138.00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between sm:gap-4 gap-2.5 sm:px-4 px-3.5 2xl:pb-12.5 1xl:pb-10.5 lg:pb-9 lt:pb-7 pb-0 flex-wrap">
+                    <button class="btn btn-secondary" id="cancelOrderBtn">Cancel Order</button>
+                    <button class="btn btn-secondary">Download Invoice</button>
+                </div>
+            </div>
+            <div class="lt:w-1/2 w-full 2xl:space-y-10 1xl:space-y-9 xl:space-y-8 sm:space-y-6 space-y-5 2xl:p-7.5 xl:p-6.5 sm:p-5.5 py-4">
+                <div class="border border-primary/20 rounded-sm overflow-hidden">
+                    <div class="xl:p-3.5 sm:p-2.5 p-3.5 border-b border-primary/20 rounded-sm">
+                        <p class="font-medium text-primary">Payment Method</p>
+                    </div>
+                    <div class="p-3.5 bg-white">
+                        <p class="mb-2.5"><span class="font-fourth">VISA</span> ****4433</p>
+                        <p class="font-medium">Paid On O1 Dec At 10:56 Am</p>
+                    </div>
+                </div>
+                <div class="border border-primary/20 rounded-sm overflow-hidden">
+                    <div class="xl:p-3.5 sm:p-2.5 p-3.5 border-b border-primary/20 rounded-sm">
+                        <p class="font-medium text-primary">Delivery Address</p>
+                    </div>
+                    <div class="p-3.5 bg-white">
+                        <p><span class="font-medium text-black">Street Address:</span> 204, Greenwoods Residency, Andheri West</p>
+                        <p><span class="font-medium text-black">City:</span> Mumbai</p>
+                        <p><span class="font-medium text-black">State:</span> Maharashtra</p>
+                        <p><span class="font-medium text-black">Country:</span> India</p>
+                        <p><span class="font-medium text-black">Pin Code:</span> 400053</p>
+                    </div>
+                </div>
+                <div class="sm:p-0 px-3.5">
+                    <div class="flex items-start 2xl:gap-5 lg:gap-4 gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="1xl:p-1 sm:p-[3px] p-0.5 1xl:size-12.5 lg:size-11.5 sm:size-10.5 size-9 rounded-full border-2 border-primary shrink-0">
+                                <div class="1xl:p-2 sm:p-[7px] p-1.5 rounded-full w-full h-full bg-primary shrink-0">
+                                    <div class="rounded-full bg-white sm:p-1 p-[3px] flex items-center justify-center w-full h-full shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="12" viewBox="0 0 19 12" fill="none" class="h-full w-4">
+                                            <path d="M1 4.5L6 10L18 1" stroke="#673E2C" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="2xl:min-h-24 1xl:min-h-21 xl:min-h-18 lg:min-h-16 md:min-h-14 sm:min-h-11 min-h-9 w-px flex-1 border-l-2 border-dashed border-primary my-1"></div>
+                        </div>
+                        <div class="lg:pt-1.5 pt-1">
+                            <p class="font-medium text-primary">Delivered -03 December At 10:56 Am </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start 2xl:gap-5 lg:gap-4 gap-3">
+                        <div class="flex flex-col items-center">
+                            <div class="1xl:p-1 sm:p-[3px] p-0.5 1xl:size-12.5 lg:size-11.5 sm:size-10.5 size-9 rounded-full border-2 border-primary shrink-0">
+                                <div class="1xl:p-2 sm:p-[7px] p-1.5 rounded-full w-full h-full bg-primary shrink-0">
+                                    <div class="rounded-full bg-white sm:p-1 p-[3px] flex items-center justify-center w-full h-full shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="12" viewBox="0 0 19 12" fill="none" class="h-full w-4">
+                                            <path d="M1 4.5L6 10L18 1" stroke="#673E2C" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="2xl:min-h-24 1xl:min-h-21 xl:min-h-18 lg:min-h-16 md:min-h-14 sm:min-h-11 min-h-9 w-px flex-1 border-l-2 border-dashed border-primary my-1"></div>
+                        </div>
+                        <div class="lg:pt-1.5 pt-1">
+                            <p class="font-medium text-primary">Out of Delivery</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start 2xl:gap-5 lg:gap-4 gap-3">
+                        <div class="1xl:p-1 sm:p-[3px] p-0.5 1xl:size-12.5 lg:size-11.5 sm:size-10.5 size-9 rounded-full border-2 border-primary shrink-0">
+                            <div class="1xl:p-2 sm:p-[7px] p-1.5 rounded-full w-full h-full bg-primary shrink-0">
+                                <div class="rounded-full bg-white sm:p-1 p-[3px] flex items-center justify-center w-full h-full shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="12" viewBox="0 0 19 12" fill="none" class="h-full w-4">
+                                        <path d="M1 4.5L6 10L18 1" stroke="#673E2C" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:pt-1.5 pt-1">
+                            <p class="font-medium text-primary">Packed of shipping hub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Cancel Order Popup -->
+    <div id="cancelPopup" class="hidden absolute inset-0 min-h-screen w-full z-60 bg-black/50 backdrop-blur-sm justify-center overflow-y-auto py-5">
+        <div class="w-full flex flex-col justify-center h-fit sm:max-w-[76.2%] max-w-[90%]">
+            <button id="closePopup" class="relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 md:mb-6 sm:mb-5 mb-3" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full text-center bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-10 lg:p-9 lt:p-7 sm:p-5 p-4 2xl:space-y-10 1xl:space-y-8.5 xl:space-y-8 sm:space-y-6 space-y-5">
+                    <div>
+                        <h3 class="uppercase text-primary 2xl:mb-6 xl:mb-5 md:mb-4 mb-3.5 text-left">Cancel Order</h3>
+                        <p class="font-medium text-left 1xl:mb-4 xl:mb-3.5 mb-2">Are you sure you want to cancel this order?</p>
+                        <p class="font-medium text-left">Once canceled, you will not be able to undo this action.</p>
+                    </div>
+                    <div>
+                        <div class="lt:max-w-[65%] max-w-full w-full relative pointer-events-auto md:space-y-6 space-y-5">
+                            <div class="relative dropdown pointer-events-auto dashboard">
+                                <label class="block p lg:mb-2.5 mb-2 text-left">Reason Selection*</label>
+                                <button type="button" class="dropdown-btn">
+                                    <p class="dropdown-text text-thunder-100/50 font-normal">Select Reason</p>
+                                    <svg class="dropdown-arrow size-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                    </svg>
+                                </button>
+                                <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                    <ul class="dropdown-list list-disc 1xl:pl-12.5! xl:pl-10! pl-9!">
+                                        {cancelReasons.map((reason) => (
+                                            <li class="dropdown-item"><p>{reason}</p></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="relative dropdown pointer-events-auto">
+                                <label class="block p lg:mb-2.5 mb-2 text-left">Add Notes ( Optional )</label>
+                                <textarea placeholder="Note" class="block p placeholder:font-normal rounded-3xl border border-primary/20 w-full 1xl:px-7.5 xl:px-5 px-4 xl:py-3 md:py-2.5 py-2 min-h-[108px]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="list-disc text-left p font-medium space-y-3 2xl:mb-8 xl:mb-7 mb-5 pl-4.5">
+                            <li>Refund will be credited back to your original payment method within 5–7 business days.</li>
+                            <li>Shipping charges (if any) will not be refunded.</li>
+                        </ul>
+                        <div class="flex flex-wrap items-center sm:justify-end justify-start sm:gap-6 gap-3">
+                            <button id="confirmCancel" class="btn btn-secondary">Confirm Cancelation</button>
+                            <button id="keepOrder" class="btn btn-secondary">Keep Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="hidden fixed inset-0 z-50 py-3 justify-center bg-black/50 backdrop-blur-sm">
+        <div class="relative text-center 1xl:max-w-[850px] xl:max-w-[670px] md:max-w-[600px] max-w-[490px] mx-3 w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="bg-white rounded-sm 1xl:px-10 px-4 1xl:py-25 sm:px-8 xl:py-21 md:py-16 sm:py-12 py-6 relative text-center flex items-center flex-col">
+                <div class="sm:mb-4 mb-3 1xl:size-[193px] xl:size-[150px] md:size-[135px] sm:size-[110px] size-[90px]">
+                    <img src="/booking-success-icon.svg" class="w-full h-full" alt="Success" />
+                </div>
+                <h2 class="uppercase text-black 1xl:mb-5 mb-3">Order Cancelled</h2>
+                <p class="1xl:max-w-4/5 xl:max-w-[85%]">Your order has been successfully cancelled. A confirmation email has been sent to your registered email address.</p>
+            </div>
+        </div>
+    </div>
+</div>

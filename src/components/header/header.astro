@@ -1,0 +1,44 @@
+---
+import WishlistSidebar from './WishlistSidebar.astro';
+import CartSidebar from './CartSidebar.astro';
+import HeaderLogo from './HeaderLogo.astro';
+import MobileMenu from './MobileMenu.astro';
+import HeaderActions from './HeaderActions.astro';
+---
+
+<!-- ====== Header ====== -->
+<div class="bg_body_box fixed inset-0 w-full h-full backdrop-blur-xl bg-primary/35 z-50"></div>
+
+<header class="header-1 fixed md:top-5 top-4 left-0 right-0 z-50">
+
+    <!-- WISHLIST SIDEBAR -->
+    <WishlistSidebar />
+
+    <!-- CART SIDEBAR -->
+    <CartSidebar />
+
+    <div class="container max-w-[1832px] w-full">
+        <div
+            class="all-header border border-border-100 backdrop-blur-sm shadow-md rounded-full bg-black/10 1xl:px-11 md:px-5 px-4">
+
+            <div class="flex items-center gap-4 justify-between nav">
+
+                <!-- Logo -->
+                <HeaderLogo />
+
+                <!-- Mobile / Desktop Navigation -->
+                <MobileMenu />
+
+                <!-- Right icons -->
+                <HeaderActions />
+
+            </div>
+        </div>
+    </div>
+
+</header>
+<!-- ====== Header ====== -->
+
+<script>
+    import "./headerNav";
+</script>

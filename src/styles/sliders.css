@@ -1,0 +1,254 @@
+@layer base {
+  /* Marquee track */
+  .marquee-track {
+    @apply flex w-max 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-6 md:gap-5 sm:gap-4 gap-2.5;
+  }
+
+  /* Marquee inner */
+  .marquee {
+    @apply inline-flex items-center whitespace-nowrap;
+  }
+
+  /* Star icon */
+  .marquee-star {
+    @apply inline-flex items-center justify-center leading-none text-32;
+  }
+
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
+  .schedule-tab {
+    @apply 2xl:text-24 1xl:text-20 lt:text-18 md:text-17 sm:text-16 text-14 2xl:leading-[30px] 1xl:leading-[28px] leading-[26px] font-secondary font-normal bg-white;
+  }
+
+  .class-tab.active {
+    @apply bg-primary rounded;
+  }
+  .class-tab.active .tab-inner a,
+  .class-tab.active .tab-inner h3 {
+    @apply text-white!;
+  }
+  .class-tab.active .tab-inner span {
+    @apply text-white/8!;
+  }
+
+  /* =============== INDEX-2.HTML ============== */
+
+  .hero-slide {
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* thumbnail size */
+  .thumb {
+    @apply relative overflow-hidden 2xl:w-[340px] 2xl:h-[205px] 1xl:w-[315px] 1xl:h-[195px] lt:w-[275px] lt:h-[175px] w-[210px] h-[150px] cursor-pointer border-2 border-transparent shrink-0;
+  }
+  .thumb.active {
+    @apply border-white;
+  }
+  /* stop native image dragging */
+  .thumb img {
+    pointer-events: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+  }
+
+  #thumbViewport {
+    user-select: none;
+    cursor: grab;
+  }
+
+  #thumbViewport.dragging {
+    cursor: grabbing;
+  }
+
+  .thumb::after {
+    @apply absolute inset-0 pointer-events-none;
+    content: '';
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / 70%) 30%,
+      rgb(0 0 0 / 35%) 50%,
+      rgb(0 0 0 / 0%) 70%
+    );
+  }
+
+  /* DEFAULT (DESKTOP) */
+  :root {
+    --thumb-visible: 2.6;
+    --thumb-width: 340px;
+    --thumb-gap: 16px;
+    --thumb-viewport-width: calc(
+      (var(--thumb-width) * var(--thumb-visible)) +
+        (var(--thumb-gap) * (var(--thumb-visible) - 1))
+    );
+  }
+
+  /* TABLET */
+  @media (max-width: 1780px) {
+    :root {
+      --thumb-visible: 2.3;
+      --thumb-width: 315px;
+    }
+  }
+  /* TABLET */
+  @media (max-width: 1500px) {
+    :root {
+      --thumb-visible: 1.9;
+      --thumb-width: 275px;
+    }
+  }
+  /* TABLET */
+  @media (max-width: 991px) {
+    :root {
+      --thumb-visible: 1.6;
+      --thumb-width: 210px;
+    }
+  }
+
+  /* ===============index-2.html================== */
+  .header-2.header-wrapper-scrolled {
+    @apply shadow-xl;
+  }
+  .header-2 .mega-panel .mega-menu {
+    @apply sm:max-w-full w-full;
+  }
+  .header-2 .header-container-scrolled {
+    @apply sm:px-4!;
+  }
+  .schedule-2 .schedule-panel table tr th {
+    @apply 2xl:text-25 1xl:text-20 lt:text-18 md:text-17 text-16 2xl:leading-[35px] 1xl:leading-[30px] lg:leading-[28px] leading-[26px] font-normal font-secondary
+    text-center text-primary block md:table-cell border border-[#673E2C33] 2xl:p-7 1xl:p-6 xl:p-4.5 lt:p-4 p-3 uppercase;
+  }
+  .schedule-2 .schedule-panel table thead tr {
+    @apply border border-[#673E2C33] md:border-none block md:table-row absolute -top-full md:relative;
+  }
+  .schedule-2 .schedule-panel table tbody tr {
+    @apply border border-[#673E2C33] md:border-none block md:table-row divide-y md:divide-y-0 hover:bg-whitesmoke-100;
+  }
+  .schedule-2 .schedule-panel table tbody tr td {
+    @apply flex md:justify-center items-center justify-between md:table-cell 2xl:p-7 1xl:p-6 xl:p-4.5 lt:p-4 p-3 text-center group-hover:text-primary border border-[#673E2C33];
+  }
+  #schedule .schedule-tab,
+  #schedule .select-arrow option {
+    @apply bg-whitesmoke-100 rounded-sm overflow-hidden 2xl:px-[55px] 1xl:px-[52px] xl:px-10 lt:px-4 px-2 2xl:py-5 1xl:py-[18px] xl:py-4 lg:py-[14px] lt:py-3 py-2 w-full;
+  }
+
+  .testimonial-slider .testimonial-slide.swiper-slide-active {
+    @apply lt:border-l-14 sm:border-l-8 border-primary;
+  }
+  /* hide content by default */
+  .testimonial-content {
+    @apply hidden;
+  }
+  /* show content only for active slide */
+  .testimonial-slider .swiper-slide-active .testimonial-content {
+    @apply flex;
+  }
+  /* Overlay on ALL slides */
+  .testimonial-slider .swiper-slide-prev .testimonial-img,
+  .testimonial-slider .swiper-slide-next .testimonial-img {
+    @apply after:content-[''] after:absolute after:inset-0 after:bg-[#673E2CB2] after:transition-opacity after:duration-300 after:mb-0 after:mt-auto;
+  }
+  .swiper-slide-active .testimonial-img {
+    @apply after:opacity-0;
+  }
+  .testimonial-slider .swiper-slide .testimonial-img {
+    @apply justify-start flex relative;
+  }
+  .testimonial-slider .swiper-slide .testimonial-img img {
+    @apply absolute top-0 left-0 w-full h-full object-cover;
+  }
+  .testimonial-slider .swiper-slide-active .testimonial-img {
+    @apply 2xl:h-[610px] 1xl:h-[530px] xl:h-[500px] lg:h-[480px] lt:h-[420px] md:h-[380px] sm:h-[350px] h-[320px];
+  }
+  .testimonial-slider .swiper-slide-prev .testimonial-img,
+  .testimonial-slider .swiper-slide-next .testimonial-img {
+    @apply justify-end sm:h-[85%] h-[320px] w-[37%]! mb-0 mt-auto overflow-hidden;
+  }
+  .swiper-slide-prev .swiper-slide .testimonial-content {
+    @apply hidden;
+  }
+  .testimonial-slider .swiper-slide-prev .testimonial-img {
+    @apply ml-auto;
+  }
+  .swiper-slide-prev .swiper-slide .testimonial-content,
+  .swiper-slide-next .swiper-slide .testimonial-content {
+    @apply hidden w-0!;
+  }
+
+}
+
+/* index-3.html */
+.home-3-hero .swiper-wrapper .swiper-slide.swiper-slide-active {
+  @apply scale-100! opacity-100;
+}
+.home-3-hero .swiper-wrapper .swiper-slide .class-card {
+  @apply 2xl:p-[22px] xl:p-5 sm:p-4 p-[10px];
+}
+.home-3-hero .swiper-wrapper .swiper-slide .class-card .card-title {
+  @apply font-primary italic 2xl:text-35 1xl:text-28 lg:text-23 lt:text-20 sm:text-18 text-16 2xl:leading-[45px] 1xl:leading-[42px] xl:leading-[40px] lg:leading-[36px] lt:leading-[32px] sm:leading-[28px] leading-[24px];
+}
+.home-3-hero .swiper-wrapper .swiper-slide-active .class-card .title-arrow {
+  @apply 2xl:w-[30px] 1xl:w-[26px] xl:w-6 lg:w-[22px] sm:w-5 w-[13px] h-full;
+}
+.home-3-hero .swiper-wrapper .swiper-slide .class-card .img-wrapper {
+  @apply 2xl:w-[53px] 2xl:h-[53px] xl:w-[50px] xl:h-[50px] sm:w-[44px] sm:h-[44px] w-8 h-8 rounded-full border border-white;
+}
+.home-3-hero .swiper-wrapper .swiper-slide {
+  @apply scale-86! m-auto opacity-40;
+}
+.home-3-hero .swiper-wrapper .swiper-slide-next .class-card .title-arrow,
+.home-3-hero .swiper-wrapper .swiper-slide-prev .class-card .title-arrow {
+  @apply 2xl:w-[25px] 1xl:w-[23px] xl:w-[20px] w-[18px] h-full;
+}
+.home-3-hero .swiper-wrapper .swiper-slide .class-card .card-desc {
+  @apply 2xl:text-20 1xl:text-18 md:text-16 sm:text-15 text-13 2xl:leading-[34px] 1xl:leading-[30px] lg:leading-[28px] lt:leading-[26px] sm:leading-[24px] leading-[20px] font-primary m-0;
+}
+.schedule-panel {
+  overflow-x: auto;
+}
+
+.schedule-3 .schedule-panel table thead tr {
+  @apply table-row;
+}
+.schedule-3 table {
+  @apply border-separate w-full lg:border-spacing-3 lt:border-spacing-2 border-spacing-1.5 lt:mx-auto sm:min-w-[950px] min-w-[840px];
+}
+.schedule-3 .schedule-panel table th,
+.schedule-4 .schedule-panel table th {
+  @apply uppercase text-primary bg-whitesmoke-100 2xl:text-25 1xl:text-20 lt:text-18 md:text-17 text-16 2xl:leading-[35px] 1xl:leading-[30px] lg:leading-[28px] leading-[26px] font-normal font-secondary text-center 2xl:p-7 1xl:p-6 xl:p-4.5 lt:p-4 sm:p-3.5 p-3;
+}
+
+.schedule-3 .schedule-panel table tbody tr td {
+  @apply hover:bg-[#673E2C33] hover:border-[#673E2C33];
+}
+
+.schedule-3 .schedule-panel table td {
+  @apply text-center align-middle 2xl:p-7 1xl:p-6 xl:p-4.5 lt:p-4 sm:p-3.5 p-3 bg-whitesmoke-100;
+}
+.schedule-4 table tr td {
+  @apply text-center align-middle 1xl:p-[9px] xl:p-[7px] p-1.5 pt-0! bg-whitesmoke-100 w-full flex items-center justify-center;
+}
+.schedule-4 table thead tr td,
+.schedule-4 table tr:first-child td {
+  @apply 1xl:p-[9px]! xl:p-[7px]! p-1.5!;
+}
+.schedule-4 table {
+  @apply border-separate w-full xl:border-spacing-x-3 lt:border-spacing-x-2 border-spacing-x-1.5 lt:mx-auto max-lt:min-w-[1295px] max-sm:min-w-[1000px];
+}
+.schedule-4 table tr {
+  @apply flex 1xl:gap-[11px] xl:gap-[9px] md:gap-2 gap-1.5 w-full;
+}
+

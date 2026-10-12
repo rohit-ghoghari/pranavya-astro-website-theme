@@ -1,0 +1,286 @@
+---
+interface Props {
+  backgroundImage?: string;
+  backgroundAlt?: string;
+  sideImage?: string;
+  sideImageAlt?: string;
+
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+
+  buttonText?: string;
+  buttonHref?: string;
+
+  redeemableTitle?: string;
+  redeemableItems?: string[];
+
+  termsText?: string;
+
+  giftCardCode?: string;
+  copyIcon?: string;
+}
+
+const {
+  backgroundImage = "/gift-card-banner-1.webp",
+  backgroundAlt = "Find Your Flow",
+
+  sideImage = "/gift-card-side-1.webp",
+  sideImageAlt = "gift card",
+
+  eyebrow = "Gift Cards",
+  title = "wellness. Gift flexibility.",
+  description = `Give the gift of balance — yoga sessions, wellness gear, or class passes for
+every level.Perfect for birthdays, celebrations, or a simple “thinking of you.”`,
+
+  buttonText = "BUY GIFT CARDS",
+  buttonHref = "/giftCard/",
+
+  redeemableTitle = "Redeemable for:",
+
+  redeemableItems = [
+    "Studio & Online Classes",
+    "Private Sessions",
+    "Wellness Merchandise",
+    "Retreats & Workshops",
+  ],
+
+  termsText = "Non-refundable. Terms apply.",
+
+  giftCardCode = "TM-5827-YG",
+  copyIcon = "/copy.svg",
+} = Astro.props;
+---
+
+<section
+  class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+>
+  <div class="container">
+    <div class="w-full relative">
+      <img
+        loading="lazy"
+        src={backgroundImage}
+        alt={backgroundAlt}
+        class="w-full h-full object-cover absolute top-0 left-0 pointer-events-none"
+      />
+
+      <div class="w-full h-full relative">
+        <div
+          class="flex lt:flex-row flex-col items-stretch 1xl:gap-12 lt:gap-9.5 sm:gap-5.5 gap-4.5"
+        >
+          <div class="lt:h-auto lt:w-[36%] w-full sm:h-[420px] h-full">
+            <img
+              loading="lazy"
+              src={sideImage}
+              alt={sideImageAlt}
+              class="w-full h-full object-cover"
+              decoding="async"
+            />
+          </div>
+
+          <div
+            class="lt:w-[64%] w-full sm:p-6 p-4 1xl:pt-12.5 lt:pt-8.5 pt-0 lt:pl-0"
+          >
+            <div
+              class="text-center 2xl:max-w-[86%] 1xl:max-w-[95%] max-w-full w-full mx-auto"
+            >
+              <h3
+                class="font-primary italic font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5 text-center"
+              >
+                {eyebrow}
+              </h3>
+
+              <h2 class="text-primary uppercase 1xl:mb-4 mb-3 text-center">
+                {title}
+              </h2>
+
+              <p class="text-center 1xl:mb-10 xl:mb-8 mb-6">
+                {description}
+              </p>
+
+              <a href={buttonHref} class="btn btn-secondary mx-auto">
+                {buttonText}
+              </a>
+            </div>
+
+            <div
+              class="flex sm:flex-row flex-col sm:items-end items-center sm:justify-between w-full sm:mt-0 mt-5 sm:gap-0 gap-3"
+            >
+              <div>
+                <div class="flex items-center gap-1.5 mb-2">
+                  <div class="1xl:size-9 xl:size-8 lg:size-7.5 size-6.5">
+                    <img
+                      loading="lazy"
+                      src="/gift-box.svg"
+                      alt="box-open"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <p class="font-medium">
+                    {redeemableTitle}
+                  </p>
+                </div>
+
+                <ul class="list-disc pl-5 space-y-1 text-primary">
+                  {
+                    redeemableItems.map((item) => (
+                      <li>
+                        <p>{item}</p>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div>
+                <p>{termsText}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full flex items-center justify-end 1xl:mt-7.5 lg:mt-6 sm:mt-5 mt-4 1xl:gap-5 lg:gap-4 sm:gap-3 gap-2.5"
+    >
+      <p class="font-medium">
+        Gift Card Code: <span class="text-primary">{giftCardCode}</span>
+      </p>
+
+      <button
+        type="button"
+        class="gift-card-copy"
+        aria-label="Copy gift card code"
+        data-copy-code={giftCardCode}
+      >
+        <img
+          loading="lazy"
+          src={copyIcon}
+          alt="copy"
+          class="lg:w-6 lg:h-6 sm:w-5 sm:h-5 w-4.5 h-4.5"
+        />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+    const copyTextToClipboard = async (text: string): Promise<boolean> => {
+        // Modern Clipboard API
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch {
+                // Continue to fallback
+            }
+        }
+
+        // Fallback for browsers/environments where Clipboard API
+        // is unavailable.
+        try {
+            const textarea = document.createElement("textarea");
+
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            textarea.style.top = "-9999px";
+            textarea.setAttribute("readonly", "");
+
+            document.body.appendChild(textarea);
+
+            textarea.focus();
+            textarea.select();
+            textarea.setSelectionRange(0, textarea.value.length);
+
+            const doc = document as any;
+            const copied = typeof doc.execCommand === "function" ? doc.execCommand("copy") : false;
+
+            textarea.remove();
+
+            return Boolean(copied);
+        } catch {
+            return false;
+        }
+    };
+
+    const initGiftCardCopy = () => {
+        const copyButtons =
+            document.querySelectorAll<HTMLButtonElement>(".gift-card-copy");
+
+        copyButtons.forEach((button) => {
+            // Prevent duplicate listeners when Astro performs
+            // client-side page transitions.
+            if (button.dataset.copyInitialized === "true") {
+                return;
+            }
+
+            button.dataset.copyInitialized = "true";
+
+            button.addEventListener("click", async () => {
+                const code = button.dataset.copyCode;
+
+                if (!code) {
+                    return;
+                }
+
+                const originalLabel =
+                    button.getAttribute("aria-label") ||
+                    "Copy gift card code";
+
+                const copied = await copyTextToClipboard(code);
+
+                if (!copied) {
+                    button.setAttribute(
+                        "aria-label",
+                        "Unable to copy gift card code"
+                    );
+
+                    setTimeout(() => {
+                        button.setAttribute(
+                            "aria-label",
+                            originalLabel
+                        );
+                    }, 2000);
+
+                    return;
+                }
+
+                // Successful copy
+                button.setAttribute(
+                    "aria-label",
+                    "Gift card code copied"
+                );
+
+                // Temporary visual confirmation
+                const copiedMessage = document.createElement("span");
+
+                copiedMessage.textContent = "Copied!";
+                copiedMessage.className =
+                    "gift-card-copied absolute bottom-full right-0 mb-2 whitespace-nowrap rounded bg-primary px-3 py-1.5 text-xs text-white";
+
+                const parent = button.parentElement;
+
+                if (parent) {
+                    parent.classList.add("relative");
+                    parent.appendChild(copiedMessage);
+                }
+
+                setTimeout(() => {
+                    copiedMessage.remove();
+
+                    button.setAttribute(
+                        "aria-label",
+                        originalLabel
+                    );
+                }, 1500);
+            });
+        });
+    };
+
+    document.addEventListener("astro:page-load", initGiftCardCopy);
+
+    initGiftCardCopy();
+</script>

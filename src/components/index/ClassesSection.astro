@@ -1,0 +1,313 @@
+---
+interface ClassItem {
+    id: string;
+    title: string;
+    icon: string;
+    image: string;
+    description: string;
+    href: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    heading?: string;
+    description?: string;
+    flowerImage?: string;
+    classes?: ClassItem[];
+    exploreHref?: string;
+    exploreText?: string;
+}
+
+const {
+    eyebrow = "Our Classes",
+    heading = "Move, Breathe, Thrive",
+    description = `Welcome to Pranavya Yoga’s curated class offerings, where
+ancient practice meets modern flow. Our sessions are designed to
+inspire, energize, and center`,
+    flowerImage = "/flower-shape.svg",
+    classes = [
+        {
+            id: "01",
+            title: "HATHA YOGA",
+            icon: "/hatha-yoga.svg",
+            image: "/hatha-yoga.webp",
+            description:
+                "Perfect for beginners and anyone looking to build a strong foundation.",
+            href: "/classes/hatha-yoga/",
+        },
+        {
+            id: "02",
+            title: "PRANAYAMA YOGA",
+            icon: "/pranayama-yoga.svg",
+            image: "/pranayama-yoga.webp",
+            description:
+                "A mindful practice focused on breath, control, and inner balance.",
+            href: "/classes/vinyasa-flow/",
+        },
+        {
+            id: "03",
+            title: "YIN YOGA",
+            icon: "/yin-yoga.svg",
+            image: "/yin-yoga.webp",
+            description:
+                "A slow and restorative practice designed to release tension and deepen flexibility.",
+            href: "/classes/yin-restore/",
+        },
+        {
+            id: "04",
+            title: "VINYASA FLOW YOGA",
+            icon: "/vinyasa-flow-yoga.svg",
+            image: "/vinyasa-flow-yoga.webp",
+            description:
+                "A dynamic flowing practice connecting breath with movement.",
+            href: "/classes/vinyasa-flow/",
+        },
+    ],
+    exploreHref = "/classes/classOne/",
+    exploreText = "explore More class",
+} = Astro.props;
+
+const activeClass = classes[0];
+---
+
+<section class="overflow-hidden relative bg-whitesmoke-100 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-10">
+    <div class="container">
+
+        <!-- Intro -->
+        <div class="flex justify-between items-start">
+            <div class="max-w-[1029px]">
+                <h3 class="text-thunder-100 font-primary italic font-medium 2xl:mb-7.5 1xl:mb-6 md:mb-4 sm:mb-3 mb-2.5">
+                    {eyebrow}
+                </h3>
+
+                <h2 class="text-primary font-normal uppercase 1xl:mb-5 mb-3">
+                    {heading}
+                </h2>
+
+                <p>{description}</p>
+            </div>
+
+            <div class="pointer-events-none opacity-20 hidden md:block">
+                <img
+                    loading="lazy"
+                    src={flowerImage}
+                    alt="flower"
+                    class="w-full h-full object-contain"
+                />
+            </div>
+        </div>
+
+        <div class="flex lt:flex-row flex-col 1xl:gap-8.5 sm:gap-6 gap-5">
+
+            <!-- Left: Feature card -->
+            <div class="2xl:w-[64%] 1xl:w-[63%] lt:w-[62%] w-full flex lg:flex-row sm:flex-row-reverse flex-col 1xl:gap-8.5 sm:gap-6 gap-5">
+
+                <div class="2xl:max-w-[459px] 1xl:max-w-[430px] max-w-[353px] w-full order-3 lg:order-1 flex flex-col items-start justify-between">
+
+                    <div class="pointer-events-none opacity-40 hidden lt:block 1xl:w-43 w-37 lg:mb-15 mb-13">
+                        <img
+                            loading="lazy"
+                            src={flowerImage}
+                            alt="flower"
+                            class="w-full h-full object-contain"
+                        />
+                    </div>
+
+                    <div class="bg-white 1xl:p-6 sm:p-5 p-4 relative overflow-hidden">
+
+                        <div class="flex justify-between items-start">
+                            <div class="2xl:size-15 md:size-13 sm:size-11 size-10 flex items-center justify-center my-auto">
+                                <img
+                                    id="slide-icon"
+                                    loading="lazy"
+                                    class="slide-icon w-full h-full object-contain"
+                                    src={activeClass?.icon ?? ""}
+                                    alt={activeClass?.title ?? "Yoga class"}
+                                />
+                            </div>
+
+                            <div
+                                id="slide-id"
+                                class="font-third text-primary/8 font-medium 2xl:text-70 1xl:text-55 lg:text-48 md:text-44 sm:text-36 text-30 2xl:leading-[92px] 1xl:leading-[80px] md:leading-[70px] leading-[60px] slide-id"
+                            >
+                                {activeClass?.id ?? ""}
+                            </div>
+                        </div>
+
+                        <h3
+                            id="slide-title"
+                            class="font-secondary text-primary slide-title lg:mt-4 mt-2"
+                        >
+                            {activeClass?.title ?? ""}
+                        </h3>
+
+                        <p
+                            id="slide-desc"
+                            class="mt-3 text-thunder-100 slide-desc"
+                        >
+                            {activeClass?.description ?? ""}
+                        </p>
+
+                        <div class="md:mt-6 mt-4">
+                            <a
+                                id="slide-button"
+                                href={activeClass?.href ?? "/classes/"}
+                                class="btn btn-secondary slide-button"
+                            >
+                                View more
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Center: Image -->
+                <div class="2xl:max-w-[605px] 1xl:max-w-[465px] max-w-[395px] w-full order-2 lg:order-2">
+                    <div class="rounded overflow-hidden relative before:block before:content-[''] lt:before:pt-[110%] md:before:pt-[88%] sm:before:pt-[100%] before:pt-[105%]">
+                        <img
+                            id="slide-img"
+                            loading="lazy"
+                            decoding="async"
+                            class="slide-img w-full h-full absolute top-0 left-0 object-cover"
+                            src={activeClass?.image ?? ""}
+                            alt={activeClass?.title ?? "Yoga class"}
+                        />
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right: List -->
+            <div class="order-1 lg:order-3 2xl:w-[36%] 1xl:w-[37%] lt:w-[38%] w-full">
+                <div class="h-full">
+                    <div class="lg:space-y-10 space-y-5">
+
+                        {classes.map((item, index) => (
+                            <div class="class-tab-wrapper">
+                                <button
+                                    type="button"
+                                    class={`class-tab w-full block group cursor-pointer${index === 0 ? " active" : ""}`}
+                                    data-slide={index}
+                                    aria-pressed={index === 0 ? "true" : "false"}
+                                >
+                                    <div class="tab-inner relative overflow-hidden flex items-center justify-between gap-3 1xl:px-5 px-3 group-hover:rounded text-white border-b border-primary/15">
+
+                                        <div class="pointer-events-none absolute top-0 left-0 w-0 h-full group-hover:bg-primary group-hover:w-full transition-all duration-700"></div>
+
+                                        <div class="relative flex items-center 2xl:gap-5 1xl:gap-4 sm:gap-3 gap-2.5">
+
+                                            <span class="font-primary text-primary/8 font-medium 2xl:text-70 1xl:text-55 lg:text-48 md:text-40 sm:text-36 text-30 2xl:leading-[92px] 1xl:leading-20 lg:leading-[70px] md:leading-[54px] sm:leading-12 leading-[42px] group-hover:text-white/8">
+                                                {item.id}
+                                            </span>
+
+                                            <h3 class="text-left uppercase text-primary group-hover:text-white transition">
+                                                {item.title}
+                                            </h3>
+
+                                        </div>
+
+                                        <span class="relative text-primary transition-colors duration-300 group-hover:delay-600 group-hover:text-white">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="29"
+                                                height="29"
+                                                viewBox="0 0 29 29"
+                                                fill="none"
+                                                class="2xl:w-[30px] 2xl:h-[30px] lg:w-6 lg:h-6 md:w-5 md:h-5 sm:w-4.5 sm:h-4.5 w-3.5 h-3.5"
+                                            >
+                                                <path
+                                                    d="M1.24999 27.4326L27.4129 1.26963M27.4129 1.26963L27.4326 25.9987M27.4129 1.26963L2.68385 1.24999"
+                                                    stroke="currentColor"
+                                                    stroke-width="2.5"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </button>
+
+                                <!-- Separate navigation link -->
+                                <a
+                                    href={item.href}
+                                    class="sr-only"
+                                    aria-label={`View ${item.title}`}
+                                >
+                                    View {item.title}
+                                </a>
+                            </div>
+                        ))}
+
+                    </div>
+
+                    <div class="lg:mt-10 mt-5">
+                        <a href={exploreHref} class="btn btn-secondary">
+                            {exploreText}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script define:vars={{ classes }}>
+    const initClassSlider = () => {
+        document.querySelectorAll(".class-tab-wrapper").forEach((wrapper) => {
+            const tab = wrapper.querySelector(".class-tab");
+
+            if (!tab || tab.dataset.initialized === "true") return;
+
+            tab.dataset.initialized = "true";
+
+            tab.addEventListener("click", () => {
+                const index = Number(tab.dataset.slide);
+                const item = classes[index];
+
+                if (!item) return;
+
+                const section = tab.closest("section");
+                if (!section) return;
+
+                const image = section.querySelector("#slide-img");
+                const icon = section.querySelector("#slide-icon");
+                const id = section.querySelector("#slide-id");
+                const title = section.querySelector("#slide-title");
+                const description = section.querySelector("#slide-desc");
+                const viewButton = section.querySelector("#slide-button");
+
+                if (
+                    !image ||
+                    !icon ||
+                    !id ||
+                    !title ||
+                    !description ||
+                    !viewButton
+                ) {
+                    return;
+                }
+
+                section.querySelectorAll(".class-tab").forEach((otherTab) => {
+                    const isActive = otherTab === tab;
+
+                    otherTab.classList.toggle("active", isActive);
+                    otherTab.setAttribute("aria-pressed", String(isActive));
+                });
+
+                image.src = item.image;
+                image.alt = item.title;
+
+                icon.src = item.icon;
+                icon.alt = item.title;
+
+                id.textContent = item.id;
+                title.textContent = item.title;
+                description.textContent = item.description;
+                viewButton.href = item.href;
+            });
+        });
+    };
+
+    initClassSlider();
+</script>

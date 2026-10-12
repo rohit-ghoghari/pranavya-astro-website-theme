@@ -1,0 +1,169 @@
+---
+interface Props {
+    products: Array<{
+        name: string;
+        image: string;
+        href: string;
+        price: string;
+        total: string;
+        color?: string;
+    }>;
+    giftCard: {
+        name: string;
+        image: string;
+        href: string;
+        code: string;
+        price: string;
+        total: string;
+    };
+    totals: string[][];
+}
+
+const { products, giftCard, totals } = Astro.props;
+---
+
+<div class="lt:w-1/2 w-full 2xl:space-y-12.5 1xl:space-y-11 md:space-y-7 space-y-4">
+    <table class="cart-detail order-view w-full bg-white border-collapse">
+        <thead>
+            <tr class="mb-10">
+                <th class="text-left py-2.5 px-5 p2 font-medium 1xl:w-[8%] xl:w-[15%] w-[10%]">
+                    <span>Product</span>
+                </th>
+                <th class="text-left py-2.5 px-5 p2 font-medium 1xl:w-[62%] xl:w-[60%] w-[71%]"></th>
+                <th class="text-left py-2.5 px-5 p2 font-medium 1xl:w-[20%] xl:w-[15%] w-[12%]">
+                    <span>Price</span>
+                </th>
+                <th class="text-left py-2.5 px-5 p2 font-medium xl:w-[10%] w-[7%]">
+                    <span>Total</span>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="md:border border-[#EDEDED]">
+            {products.map((product) => (
+                <tr class="w-full">
+                    <td>
+                        <div class="flex items-center justify-between w-full gap-3">
+                            <p class="font-medium md:hidden block">Product</p>
+                            <a
+                                href={product.href}
+                                class="1xl:w-30 xl:w-27 lg:w-25 sm:w-24 w-20 xl:h-25 lg:h-23 sm:h-22 h-18 bg-[#E0E0E0] p-2 rounded-sm flex items-center justify-center shrink-0"
+                            >
+                                <img
+                                    loading="lazy"
+                                    src={product.image}
+                                    alt={product.name}
+                                    class="w-full h-full object-contain"
+                                />
+                            </a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <p class="font-medium md:hidden block">Name</p>
+                        <div>
+                            <a href={product.href}>
+                                <p class="font-medium">{product.name}</p>
+                            </a>
+                            {product.color && (
+                                <div class="flex items-center md:justify-start justify-end gap-2 mt-0.5">
+                                    <p class="p2 texrt-thunder-100/80">Color:</p>
+                                    <span
+                                        class="inline-block xl:size-5 size-4 rounded-full"
+                                        style={`background-color: ${product.color}`}
+                                    ></span>
+                                </div>
+                            )}
+                        </div>
+                    </td>
+
+                    <td>
+                        <p class="font-medium md:hidden block">Price</p>
+                        <p class="p2 text-thunder-100/80">{product.price}</p>
+                    </td>
+
+                    <td>
+                        <p class="font-medium md:hidden block">Total</p>
+                        <p class="p2 text-thunder-100/80">{product.total}</p>
+                    </td>
+                </tr>
+            ))}
+
+            <tr>
+                <td class="1xl:pt-6! md:pt-4! md:pb-0! align-top md:border-t border-primary/20" colspan="4">
+                    <p class="font-medium text-[#1A1A1A]">Exclusive Access</p>
+                </td>
+            </tr>
+
+            <tr class="gift-card">
+                <td>
+                    <div class="flex items-center justify-between w-full gap-3">
+                        <p class="font-medium md:hidden block">Product</p>
+                        <a
+                            href={giftCard.href}
+                            class="1xl:w-30 xl:w-27 lg:w-25 sm:w-24 w-20 xl:h-25 lg:h-23 sm:h-22 h-18 bg-[#E0E0E0] sm:p-4 p-3 rounded-sm flex items-center justify-center shrink-0"
+                        >
+                            <img
+                                loading="lazy"
+                                src={giftCard.image}
+                                alt={giftCard.name}
+                                class="w-full h-full object-contain"
+                            />
+                        </a>
+                    </div>
+                </td>
+
+                <td>
+                    <p class="font-medium md:hidden block">Name</p>
+                    <div>
+                        <a href={giftCard.href}>
+                            <p class="font-medium">{giftCard.name}</p>
+                        </a>
+                        <p class="p2 text-thunder-100/80 mt-0.5">
+                            Code: ({giftCard.code})
+                        </p>
+                    </div>
+                </td>
+
+                <td>
+                    <p class="font-medium md:hidden block">Price</p>
+                    <p class="p2 text-thunder-100/80">{giftCard.price}</p>
+                </td>
+
+                <td>
+                    <p class="font-medium md:hidden block">Total</p>
+                    <p class="p2 text-thunder-100/80">{giftCard.total}</p>
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot class="border border-[#EDEDED] sm:mt-5 mt-3.5">
+            <tr class="w-full">
+                <td colspan="4" class="text-right w-full">
+                    <div class="flex items-center justify-between w-full">
+                        <p class="font-medium">{totals[0][0]}</p>
+                        <p class="font-medium">{totals[0][1]}</p>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="w-full">
+                <td colspan="4" class="px-5 text-right w-full">
+                    <div class="flex items-center justify-between w-full">
+                        <p class="font-medium">{totals[1][0]}</p>
+                        <p>{totals[1][1]}</p>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="border-t border-gray-200">
+                <td colspan="4" class="w-full">
+                    <div class="flex items-center justify-between w-full">
+                        <p class="font-medium">{totals[2][0]}</p>
+                        <p class="font-medium">{totals[2][1]}</p>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,304 @@
+---
+import ProductDetailGallery from "./ProductDetailGallery.astro";
+import ProductDetailTabs from "./ProductDetailTabs.astro";
+import ProductDetailRelated from "./ProductDetailRelated.astro";
+import "../../styles/productDetail.css";
+
+interface Props {
+    data: any;
+    relatedProducts: Array<{
+        id: string;
+        title: string;
+        price: string;
+        image: string;
+        url: string;
+        colors?: Array<{ value: string; default?: boolean }>;
+    }>;
+}
+
+const { data, relatedProducts: relatedProductCards } = Astro.props;
+
+const {
+    title,
+    sku,
+    skuDisplay,
+    description,
+    descriptionParagraphs,
+    descriptionHeading,
+    price,
+    rating,
+    reviewCount,
+    reviewText,
+    images,
+    colors,
+    sizes,
+    features,
+    specifications,
+    careInstructions,
+    careInstructionsIntro,
+    shippingInfo,
+    whatsIncluded,
+    whatsIncludedHeading,
+    productOptionsHeading,
+    addToCartText,
+    wishlistText,
+    discoverMoreHeading,
+    tabDescriptionHeading,
+    tabSpecificationsHeading,
+    tabCareInstructionsHeading,
+    tabShippingHeading,
+} = data;
+
+const fullStars = Math.floor(rating || 4);
+const emptyStars = 5 - fullStars;
+
+const computedSku = skuDisplay || (() => {
+    if (!sku) return "";
+    const colorName = colors && colors.length > 0 ? colors[0]?.name : "";
+    const sizeName = sizes && sizes.length > 0 ? sizes[0]?.name : "";
+    if (colorName && sizeName) {
+        return `${sku} – ${colorName} / ${sizeName.trim()}`;
+    }
+    if (colorName) {
+        return `${sku} – ${colorName}`;
+    }
+    if (sizeName) {
+        return `${sku} – ${sizeName.trim()}`;
+    }
+    return sku;
+})();
+
+const hasOptions = (colors && colors.length > 0) || (sizes && sizes.length > 0);
+---
+
+<main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+<!-- ====== Start Product Detail Section ====== -->
+<section
+    class="2xl:mt-[100px] 1xl:mt-20 xl:mt-17 lg:mt-14 md:mt-12 sm:mt-11 mt-10 2xl:mb-[120px] 1xl:mb-[100px] xl:mb-20 lg:mb-16 md:mb-12 sm:mb-11 mb-10 relative">
+    <div class="container">
+        <!-- Decorative Flower -->
+        <div
+            class="pointer-events-none absolute top-0 bottom-auto left-auto right-0 w-[12.5%] xl:-mt-12 -mt-8 hidden lt:block opacity-30">
+            <img loading="lazy" decoding="async" src="/flower-shape.svg" alt="decor"
+                class="w-full h-full object-contain" />
+        </div>
+        <div class="flex lt:flex-row flex-col items-center 1xl:gap-17.5 xl:gap-14 lg:gap-10 gap-8">
+            <!-- Product Gallery -->
+            <ProductDetailGallery images={images} title={title} />
+
+            <!-- Product Info -->
+            <div class="1xl:w-[68.5%] lg:w-[67%] lt:w-[65%] w-full divide-y divide-primary/10">
+                <!-- Title, Price, Rating -->
+                <div class="1xl:space-y-5 xl:space-y-4 lt:space-y-3 space-y-4">
+                    <h3 class="text-primary uppercase">{title}</h3>
+                    <h4 class="font-primary font-medium">{price}</h4>
+                    <div class="flex items-center flex-wrap 1xl:gap-5 gap-4 1xl:mb-5 xl:mb-4 mb-3">
+                        <div class="flex items-center 1xl:gap-2.5 gap-2">
+                            {Array.from({ length: fullStars }).map(() => (
+                                <svg width="29" height="25" viewBox="0 0 29 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="1xl:size-6.5 size-6">
+                                    <path
+                                        d="M14.1797 0.5C14.6495 0.500102 15.067 0.727603 15.25 1.12305L15.251 1.125L18.3828 7.82617L18.5059 8.09082L18.7969 8.11328L26.8008 8.72949H26.8037C27.3382 8.76818 27.68 9.08116 27.8047 9.42773C27.9269 9.76757 27.8541 10.1699 27.4746 10.4678L21.3936 15.2461L21.1367 15.4473L21.2178 15.7637L23.041 22.8564C23.1443 23.2599 22.9683 23.6353 22.6123 23.8701C22.2534 24.1068 21.7514 24.1655 21.2969 23.916L14.4199 20.1445L14.1797 20.0127L13.9395 20.1445L7.0625 23.9014H7.06152C6.60712 24.1506 6.10584 24.0911 5.74707 23.8545C5.39092 23.6196 5.21484 23.2445 5.31836 22.8408L5.31738 22.8398L7.14062 15.749L7.22168 15.4326L6.96484 15.2314L0.883789 10.4521L0.755859 10.3359C0.489497 10.0549 0.447803 9.71044 0.554688 9.41309C0.679428 9.06643 1.021 8.75341 1.55566 8.71484H1.55762L9.56152 8.09863L9.85254 8.07617L9.97559 7.81152L13.1074 1.125L13.1084 1.12305C13.2915 0.727514 13.7097 0.5 14.1797 0.5Z"
+                                        fill="url(#paint0_radial_3549_66891)" stroke="#FFC107" />
+                                    <defs>
+                                        <radialGradient id="paint0_radial_3549_66891" cx="0" cy="0" r="1"
+                                            gradientUnits="userSpaceOnUse"
+                                            gradientTransform="translate(14.1794 12.2888) scale(14.1794 12.2888)">
+                                            <stop stop-color="#FFEEB4" />
+                                            <stop offset="1" stop-color="#FFCD24" />
+                                        </radialGradient>
+                                    </defs>
+                                </svg>
+                            ))}
+                            {Array.from({ length: emptyStars }).map(() => (
+                                <svg width="30" height="28" viewBox="0 0 30 28" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="1xl:size-6.5 size-6">
+                                    <g clip-path="url(#clip0_3549_66896)">
+                                        <path
+                                            d="M14.2304 1.90527C14.7002 1.90538 15.1177 2.13288 15.3007 2.52832L15.3017 2.53027L18.4335 9.23145L18.5566 9.49609L18.8476 9.51855L26.8515 10.1348H26.8544C27.3889 10.1735 27.7307 10.4864 27.8554 10.833C27.9776 11.1728 27.9048 11.5751 27.5253 11.873L21.4443 16.6514L21.1874 16.8525L21.2685 17.1689L23.0917 24.2617C23.195 24.6652 23.019 25.0406 22.663 25.2754C22.3041 25.5121 21.8021 25.5708 21.3476 25.3213L14.4706 21.5498L14.2304 21.418L13.9902 21.5498L7.11321 25.3066H7.11224C6.65783 25.5559 6.15655 25.4963 5.79778 25.2598C5.44163 25.0249 5.26555 24.6498 5.36907 24.2461L5.3681 24.2451L7.19134 17.1543L7.27239 16.8379L7.01556 16.6367L0.934502 11.8574L0.806572 11.7412C0.54021 11.4601 0.498515 11.1157 0.6054 10.8184C0.73014 10.4717 1.07171 10.1587 1.60638 10.1201H1.60833L9.61224 9.50391L9.90325 9.48145L10.0263 9.2168L13.1581 2.53027L13.1591 2.52832C13.3422 2.13279 13.7605 1.90527 14.2304 1.90527Z"
+                                            stroke="#FFC107" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_3549_66896">
+                                            <rect width="29.1928" height="27.5247" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            ))}
+                        </div>
+                        <div>
+                            <p class="font-medium">{reviewText || `${rating} (${reviewCount}+ Verified Reviews)`}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SKU & Description -->
+                <div class="1xl:pt-5 pt-4">
+                    {computedSku && (
+                        <ul class="list-disc p font-medium 1xl:mb-4 mb-3 pl-4.5">
+                            <li>{computedSku}</li>
+                        </ul>
+                    )}
+
+                    <p class="font-medium 1xl:mb-3 mb-2.5">{descriptionHeading || "Description"}</p>
+                    <p class="1xl:mb-5 mb-4">
+                        {description}
+                    </p>
+                </div>
+
+                <!-- Product Options & Actions -->
+                <div class="1xl:pt-5 pt-4">
+                    {hasOptions && (
+                        <>
+                            <p class="font-medium 1xl:mb-5.5 xl:mb-4.5 mb-4">{productOptionsHeading || "Product Options"}</p>
+                            <div class="flex items-center flex-wrap xl:gap-10 sm:gap-8 gap-3 mb-5">
+                                {colors && colors.length > 0 && (
+                                    <div class="flex items-center xl:gap-5 gap-3">
+                                        <p class="font-medium">Color:</p>
+                                        <div class="flex items-center 1xl:gap-5 xl:gap-4 lg:gap-3 gap-2">
+                                            {colors.map((color: any, index: number) => (
+                                                <label class="cursor-pointer">
+                                                    <input type="radio" name="color-set-main" class="peer hidden" checked={color.default || index === 2} />
+                                                    <span
+                                                        class="block rounded-full overflow-hidden 1xl:size-13 xl:size-11 lg:size-10 md:size-9 size-8 border border-primary/30 p-0 peer-checked:border-primary/30 peer-checked:p-0.5 hover:border-primary hover:p-1 transition-all ease-in-out">
+                                                        <span class="block w-full h-full rounded-full" style={`background-color: ${color.value}`}></span>
+                                                    </span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {sizes && sizes.length > 0 && (
+                                    <div class="flex items-center 1xl:gap-9 lg:gap-6.5 gap-4">
+                                        <p class="font-medium">Size:</p>
+                                        <div class="flex items-center xl:gap-5 gap-3">
+                                            {sizes.map((size: any, index: number) => (
+                                                <label class="cursor-pointer">
+                                                    <input type="radio" name="size-1" class="peer hidden" checked={index === 0} />
+                                                    <span
+                                                        class="active:border-primary focus:border-primary border border-transparent bg-primary/5 p py-px px-5.5 rounded-full block peer-checked:border-primary/30 peer-checked:p-0.5 transition-all ease-in-out">
+                                                        <p>{size.name}</p>
+                                                    </span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+
+                    <div class="flex items-stretch flex-wrap xl:gap-5 gap-4 mb-5">
+                        <!-- add to cart -->
+                        <a 
+                            href="#"
+                            id="addToCartBtn"
+                            data-product-id={data.slug}
+                            data-product-title={title}
+                            data-product-price={price.replace('$', '')}
+                            data-product-image={images.main}
+                            data-product-url={`/shop/${data.slug}`}
+                            class="btn btn-secondary"
+                        >
+                            {addToCartText || "aDD tO CART"}
+                        </a>
+
+                        <!-- quantity counter -->
+                        <div class="flex items-center justify-center">
+                            <div
+                                class="flex items-center justify-between 1xl:w-40 lg:w-35 w-30 h-full rounded-full border border-bronco-100 px-2.5">
+                                <!-- Minus -->
+                                <button type="button" id="decrease" class="text-[#6B3F2A] hover:opacity-70" aria-label="Decrease quantity">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41"
+                                        viewBox="0 0 41 41" fill="none" class="lg:size-10 size-8">
+                                        <path
+                                            d="M27.8332 19.4985C27.8332 19.4985 16.5523 19.4984 11.8536 19.4983"
+                                            stroke="#673E2C" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+
+                                <!-- Quantity -->
+                                <p id="quantity" class="text-black font-medium select-none">1</p>
+
+                                <!-- Plus -->
+                                <button type="button" id="increase" class="text-[#6B3F2A] hover:opacity-70" aria-label="Increase quantity">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41"
+                                        viewBox="0 0 41 41" fill="none" class="lg:size-10 size-8">
+                                        <path
+                                            d="M12.2266 19.4985C12.2266 19.4985 23.5075 19.4984 28.2063 19.4983"
+                                            stroke="#673E2C" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M20.215 27.4886C20.215 27.4886 20.2149 16.2076 20.2148 11.5089"
+                                            stroke="#673E2C" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- wish list -->
+                        <a 
+                            href="/wishlist/"
+                            id="addToWishlistBtn"
+                            data-product-id={data.slug}
+                            data-product-title={title}
+                            data-product-price={price}
+                            data-product-image={images.main}
+                            data-product-url={`/shop/${data.slug}`}
+                            data-product-description={description}
+                            class="btn btn-secondary flex items-center justify-center lg:gap-4 gap-2 sm:w-auto w-full"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14"
+                                class="lg:size-5.5 size-4">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M7.004 12.383L1.53 7.424c-2.975-2.975 1.398-8.688 5.474-4.066c4.076-4.622 8.43 1.11 5.475 4.066z"
+                                    stroke-width="1" />
+                            </svg>
+                            {wishlistText || "WISH LIST"}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- What's Included -->
+                {whatsIncluded && whatsIncluded.length > 0 && (
+                    <div>
+                        <h3 class="text-primary uppercase 1xl:mb-5 xl:mb-4 mb-3 1xl:pt-5 pt-4">{whatsIncludedHeading || "What’s Included"}</h3>
+                        <ul class="list-disc font-medium p pl-4.5">
+                            {whatsIncluded.map((item: string) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ====== End Product Detail Section ====== -->
+
+<ProductDetailTabs
+    description={description}
+    descriptionParagraphs={descriptionParagraphs}
+    features={features}
+    specifications={specifications}
+    careInstructionsIntro={careInstructionsIntro}
+    careInstructions={careInstructions}
+    shippingInfo={shippingInfo}
+    tabDescriptionHeading={tabDescriptionHeading}
+    tabSpecificationsHeading={tabSpecificationsHeading}
+    tabCareInstructionsHeading={tabCareInstructionsHeading}
+    tabShippingHeading={tabShippingHeading}
+/>
+
+<ProductDetailRelated
+    relatedProducts={relatedProductCards}
+    discoverMoreHeading={discoverMoreHeading}
+/>
+
+</main>
+
+<script src="./productDetailClient.ts"></script>

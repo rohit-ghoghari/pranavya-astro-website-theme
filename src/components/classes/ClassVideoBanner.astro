@@ -1,0 +1,49 @@
+---
+interface Props {
+    experienceTitle: string;
+    videoBanner: string;
+    videoBannerAlt?: string;
+    videoSrc: string;
+}
+
+const { experienceTitle, videoBanner, videoBannerAlt = "video banner", videoSrc } = Astro.props;
+---
+
+<div class="" data-aos="fade-up">
+    <h3
+        class="text-primary font-primary italic font-medium 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7.5 sm:mb-6 mb-4">
+        {experienceTitle}
+    </h3>
+
+    <div class="relative">
+        <div
+            class="2xl:h-[475px] 1xl:h-[460px] xl:h-[390px] lg:h-[365px] md:h-[330px] sm:h-[300px] h-[150px] w-full">
+            <img loading="lazy" decoding="async" src={videoBanner}
+                alt={videoBannerAlt} class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute top-0 h-full w-full pointer-events-auto">
+            <!-- Left play button -->
+            <div class="flex items-center justify-center relative m-auto w-full h-full">
+                <a href={videoSrc}
+                    class="video-popup group/video_popup pointer-events-all relative inline-flex items-center justify-center 2xl:w-25 2xl:h-25 1xl:w-24 1xl:h-24 xl:w-22 xl:h-22 lg:w-20 lg:h-20 md:w-18 md:h-18 sm:w-16 sm:h-16 w-13.5 h-13.5 rounded-full bg-white/50 md:p-[7px] p-1">
+                    <div
+                        class="absolute inset-0 animate-ping w-full h-full rounded-full bg-white/50">
+                    </div>
+                    <span
+                        class="relative w-full h-full rounded-full bg-white flex items-center justify-center md:p-[5px] p-[3px]">
+                        <span
+                            class="w-full h-full rounded-full bg-white flex items-center justify-center group-hover/video_popup:border-thunder-100 md:border-2 border border-primary transition-all decoration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24"
+                                class="2xl:size-9 1xl:size-8 xl:size-7.5 lg:size-6.5 sm:size-5.5 size-5 group-hover/video_popup:text-thunder-100 text-primary transition-all decoration-300">
+                                <path fill="currentColor"
+                                    d="M21.409 9.353a2.998 2.998 0 0 1 0 5.294L8.597 21.614C6.534 22.737 4 21.277 4 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"
+                                    stroke-width="0.5" stroke="currentColor" />
+                            </svg>
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,253 @@
+---
+const classes = [
+  {
+    number: "01",
+    image: "/home-3_class-1.webp",
+    title: "Hatha Yoga",
+    description: `A foundational practice focused on alignment,
+                                                breathwork, and gentle movement. Ideal for beginners
+                                                or anyone seeking a calm, steady flow.`,
+    href: "/schedule",
+  },
+  {
+    number: "02",
+    image: "/home-3_class-2.webp",
+    title: "Vinyasa Flow",
+    description: `An energizing sequence of poses that connects breath
+                                                to movement. Build heat, flexibility, and focus in
+                                                this dynamic class.`,
+    href: "/schedule",
+  },
+  {
+    number: "03",
+    image: "/home-3_class-3.webp",
+    title: "Restorative Yoga",
+    description: `A slow, nurturing practice where breath meets
+                                                stillness. This restorative class soothes the body,
+                                                quiets the mind, and invites deep rest.`,
+    href: "/schedule",
+  },
+  {
+    number: "04",
+    image: "/home-3_class-1.webp",
+    title: "Hatha Yoga",
+    description: `A foundational practice focused on alignment,
+                                                breathwork, and gentle movement. Ideal for beginners
+                                                or anyone seeking a calm, steady flow.`,
+    href: "/schedule",
+  },
+  {
+    number: "05",
+    image: "/home-3_class-2.webp",
+    title: "Vinyasa Flow",
+    description: `An energizing sequence of poses that connects breath
+                                                to movement. Build heat, flexibility, and focus in
+                                                this dynamic class.`,
+    href: "/schedule",
+  },
+];
+---
+
+<section
+  class="relative bg-whitesmoke-100 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-9 overflow-hidden"
+>
+  <div class="container relative">
+    <!-- Intro -->
+    <div
+      class="flex sm:flex-row flex-col justify-between items-center w-full sm:gap-8 gap-5 2xl:mb-[50px] 1xl:mb-11 xl:mb-[38px] sm:mb-8 mb-5"
+    >
+      <div>
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 2xl:mb-7.5 1xl:mb-6 md:mb-4 sm:mb-3 mb-2.5"
+        >
+          Classes Designed for Your Journey
+        </h3>
+
+        <h2 class="text-primary font-normal uppercase 1xl:mb-5 mb-3.5">
+          Find the Flow That Moves You
+        </h2>
+
+        <p class="text-thunder-100 lt:max-w-[75%] w-full">
+          Discover classes that meet you where you are—whether you're seeking
+          strength, stillness, or self-discovery.
+        </p>
+      </div>
+
+      <div
+        class="2xl:w-[123px] xl:w-[105px] lt:w-[95px] md:w-[85px] w-[80px] shrink-0 relative flex items-center justify-between right-0 z-1"
+      >
+        <button
+          type="button"
+          class="slider-custom-arrow swiper-button-prev"
+          aria-label="Previous classes"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="18"
+            viewBox="0 0 22 18"
+            fill="none"
+            class="swiper-navigation-icon"
+          >
+            <path
+              d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="slider-custom-arrow swiper-button-next"
+          aria-label="Next classes"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="18"
+            viewBox="0 0 22 18"
+            fill="none"
+            class="swiper-navigation-icon"
+          >
+            <path
+              d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <div class="swiper home-3_classes overflow-visible!">
+        <div class="swiper-wrapper">
+          {
+            classes.map((item) => (
+              <div class="swiper-slide h-auto!">
+                <div class="flex max-[426px]:flex-col items-stretch justify-between w-full h-full 1xl:gap-10 xl:gap-8 lg:gap-7 gap-5">
+                  <div class="rounded-sm overflow-hidden min-[426px]:w-[44%] w-full">
+                    <img
+                      loading="lazy"
+                      src={item.image}
+                      alt="classes"
+                      class="w-full h-full object-cover"
+                      decoding="async"
+                    />
+                  </div>
+
+                  <div class="min-[426px]:w-[56%] w-full">
+                    <div class="relative overflow-hidden flex flex-col justify-center h-full">
+                      <div class="w-fit font-third text-primary/8 font-bold 2xl:text-70 1xl:text-62 xl:text-55 lg:text-52 md:text-44 text-36 2xl:leading-[92px] 1xl:leading-[80px] lg:leading-[60px] md:leading-[55px] sm:leading-[50px] leading-[30px] ml-auto mr-0">
+                        {item.number}
+                      </div>
+
+                      <a href={item.href}>
+                        <h3 class="font-secondary text-primary hover:text-black 1xl:mt-4 lg:mt-[14px] sm:mt-2 mt-0.5 uppercase">
+                          {item.title}
+                        </h3>
+                      </a>
+
+                      <p class="1xl:mt-7 xl:mt-6 lg:mt-5 mt-3 text-thunder-100">
+                        {item.description}
+                      </p>
+
+                      <a
+                        href={item.href}
+                        class="xl:mt-7 lg:mt-5 mt-3 text-primary hover:text-thunder-100 decoration-primary underline decoration-1 underline-offset-2 p2 font-secondary flex items-center gap-1 uppercase"
+                      >
+                        View More
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="27"
+                          height="27"
+                          viewBox="0 0 27 27"
+                          fill="none"
+                        >
+                          <g clip-path="url(#clip0_3130_6904)">
+                            <path
+                              d="M8.37896 18.7836L19.207 7.95556M19.207 7.95556C19.4636 8.21217 19.62 8.56903 19.616 8.96328L19.5384 16.6458M19.207 7.95556C18.9504 7.69895 18.5935 7.54257 18.1993 7.54655L10.5168 7.62418"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+    import Swiper from "swiper";
+    import { Navigation } from "swiper/modules";
+
+    import "swiper/css";
+    import "swiper/css/navigation";
+
+    function initJourneySlider() {
+        const slider = document.querySelector<HTMLElement>(".home-3_classes");
+
+        if (!slider || slider.dataset.swiperInitialized === "true") return;
+
+        const section = slider.closest("section");
+
+        const prevButton =
+            section?.querySelector<HTMLButtonElement>(".swiper-button-prev");
+
+        const nextButton =
+            section?.querySelector<HTMLButtonElement>(".swiper-button-next");
+
+        if (!prevButton || !nextButton) return;
+
+        new Swiper(slider, {
+            modules: [Navigation],
+
+            slidesPerView: 1,
+            spaceBetween: 20,
+
+            navigation: {
+                prevEl: prevButton,
+                nextEl: nextButton,
+            },
+
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 24,
+                },
+
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+
+                1280: {
+                    slidesPerView: 2,
+                    spaceBetween: 32,
+                },
+            },
+        });
+
+        slider.dataset.swiperInitialized = "true";
+    }
+
+    document.addEventListener("astro:page-load", initJourneySlider);
+    initJourneySlider();
+</script>

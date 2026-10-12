@@ -1,7 +1,10 @@
 {
-  "name": "myapp",
+  "name": "pranavya-yoga-astro",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Pranavya Yoga — Mindful Movement & Holistic Studio Theme for Astro",
+  "author": "Pranavya Yoga",
+  "license": "SEE LICENSE IN LICENSES.md",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -9,12 +12,24 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "astro": "^7.3.5"
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.8",
+    "swiper": "^14.3.0",
+    "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "eslint": "^10.12.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1"
   }
 }

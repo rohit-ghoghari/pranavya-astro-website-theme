@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import PrivacyPolicyContent from "../components/common/PrivacyPolicyContent.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Privacy Policy — Pranavya Yoga"
+  description="Learn how Pranavya Yoga collects, uses, and safeguards your personal data, class bookings, and payment information."
+  canonical="/privacyPolicy/"
+>
+  
+  <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+    <PageHeading
+      title="Privacy Policy"
+      description="Privacy PolicyWhether you’re joining Pranavya Yoga for the first time or already part of our mindful community, this page explains how we collect, use, and protect your personal information"
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <PrivacyPolicyContent/>
+
+  </main>
+
+</Layout>

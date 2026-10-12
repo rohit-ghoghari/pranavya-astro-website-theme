@@ -1,0 +1,165 @@
+---
+interface Paragraph {
+  content: string;
+}
+
+interface Props {
+  introEyebrow?: string;
+  introTitle?: string;
+  introParagraphs?: Paragraph[];
+  introImage?: string;
+  introImageAlt?: string;
+
+  missionEyebrow?: string;
+  missionTitle?: string;
+  missionParagraphs?: Paragraph[];
+  missionImage?: string;
+  missionImageAlt?: string;
+}
+
+const {
+  introEyebrow = "Living the Yogic Way",
+  introTitle = "Ancient Roots. Modern Harmony.",
+  introParagraphs = [
+    {
+      content:
+        "At Pranavya Yoga, we honor the timeless wisdom of traditional yoga while embracing the rhythm of modern life. Our mission is to create a welcoming space where individuals from all walks of life can reconnect with their breath, body, and spirit. Rooted in ancient practices and guided by compassion, we offer thoughtful classes, personalized guidance, and a supportive community. Whether you're new to yoga or deepening your journey, Pranavya Yoga provides a path toward balance, clarity, and holistic well-being—both on and off the mat.",
+    },
+    {
+      content:
+        "Our experienced and compassionate teachers lead with intention, integrity, and care. Through curated classes, workshops, retreats, and one-on-one sessions, we invite you to explore your practice at your own pace, with encouragement and community by your side.",
+    },
+    {
+      content:
+        "More than just a yoga studio, Pranavya is a sanctuary. A space where tradition meets innovation, where your journey matters, and where the ancient science of yoga meets modern mindful living.",
+    },
+  ],
+  introImage = "/about-us_hero.webp",
+  introImageAlt = "Yoga",
+
+  missionEyebrow = "Our Mission",
+  missionTitle = "Making Yoga Free, Accessible & Meaningful",
+  missionParagraphs = [
+    {
+      content:
+        'At Pranavya, we believe in one powerful idea: <span class="font-medium">Yoga should be accessible to everyone.</span> What began as a small circle of dedicated teachers sharing their practice has grown into a welcoming global community, with free and affordable classes supporting practitioners of every level worldwide.',
+    },
+    {
+      content:
+        "Our mission is to stay grounded in yoga’s core principles <span class=\"font-medium\">accessibility, generosity, and authenticity</span> while providing a modern, easy-to-navigate platform for all levels of yoga practice.",
+    },
+  ],
+  missionImage = "/about-mission.webp",
+  missionImageAlt = "Yoga",
+} = Astro.props;
+---
+
+<section
+  class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+  data-aos="fade-up"
+>
+  <div class="container">
+    <!-- ========================= -->
+    <!-- INTRO / YOGIC WAY -->
+    <!-- ========================= -->
+    <div
+      class="flex justify-between lt:flex-row flex-col 2xl:gap-15 1xl:gap-13 lg:gap-10 md:gap-8 sm:gap-7.5 gap-5 md:items-stretch items-start"
+    >
+      <!-- Right: Content -->
+      <div class="w-full lt:max-w-[53.5%] xl:pb-10 lt:pb-7">
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 2xl:mb-7.5 1xl:mb-6 xl:mb-4 sm:mb-3 mb-2.5"
+        >
+          {introEyebrow}
+        </h3>
+
+        <h2 class="text-primary font-normal uppercase 1xl:mb-5 mb-3">
+          {introTitle}
+        </h2>
+
+        {
+          introParagraphs.map((paragraph, index) => (
+            <p
+              class={
+                index < introParagraphs.length - 1
+                  ? "1xl:mb-5 xl:mb-4 md:mb-3 mb-2.5"
+                  : ""
+              }
+              set:html={paragraph.content}
+            />
+          ))
+        }
+      </div>
+
+      <!-- Left: Image -->
+      <div
+        class="lt:sticky relative lt:top-20 top-0 w-full lt:max-w-[46.5%] rounded-sm overflow-hidden"
+      >
+        <div
+          class="overflow-hidden relative before:block before:content-[''] lt:before:pt-[98%] before:pt-[85%] h-full"
+        >
+          <img
+            loading="lazy"
+            decoding="async"
+            src={introImage}
+            alt={introImageAlt}
+            class="w-full h-full object-cover object-center absolute top-0 left-0"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- MISSION -->
+    <!-- ========================= -->
+    <div
+      class="1xl:mt-12.5 lg:mt-10.5 md:mt-8 sm:mt-6.5 mt-5 flex justify-between md:flex-row flex-col 2xl:gap-13 1xl:gap-11.5 xl:gap-10 lt:gap-8 md:gap-7 sm:gap-6 gap-5 md:items-center items-start"
+    >
+      <!-- Left: Image -->
+      <div
+        class="md:sticky relative md:top-20 top-0 w-full md:max-w-[48.3%]"
+      >
+        <div
+          class="overflow-hidden rounded-sm relative before:block before:content-[''] 1xl:before:pt-[65%] xl:before:pt-[70%] lg:before:pt-[80%] lt:before:pt-[90%] md:before:pt-[100%] before:pt-[60%] h-full"
+        >
+          <img
+            loading="lazy"
+            decoding="async"
+            src={missionImage}
+            alt={missionImageAlt}
+            class="w-full h-full object-cover object-center absolute top-0 left-0"
+          />
+
+          <div class="absolute top-0 left-0 w-full h-full bg-[#AD8F6126]"></div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="w-full md:max-w-[51.7%]">
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 2xl:mb-7.5 1xl:mb-6 md:mb-4 sm:mb-3 mb-2.5"
+        >
+          {missionEyebrow}
+        </h3>
+
+        <h3 class="text-primary font-normal uppercase 1xl:mb-5 mb-3">
+          {missionTitle}
+        </h3>
+
+        {
+          missionParagraphs.map((paragraph, index) => (
+            <p
+              class={
+                index < missionParagraphs.length - 1
+                  ? "1xl:mb-5 xl:mb-4 md:mb-3 mb-2.5"
+                  : ""
+              }
+              set:html={paragraph.content}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

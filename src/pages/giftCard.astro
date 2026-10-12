@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/common/PageHeading.astro";
+import GiftCards from "../components/giftCard/GiftCards.astro";
+import InstagramSection from "../components/index/InstagramSection.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Gift Cards — Pranavya Yoga"
+  description="Give the gift of calm, balance, and well-being. Pranavya Yoga gift cards can be used toward classes, memberships, workshops, and retreats—an ideal present for anyone who loves to practice."
+  canonical="/giftCard/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Gift Cards"
+      description="Give the gift of calm, balance, and well-being. Pranavya Yoga gift cards can be used toward classes, memberships, workshops, and retreats—an ideal present for anyone who loves to practice."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <GiftCards/>
+
+     <!-- Section 2 -->
+       <InstagramSection/>
+  </main>
+</Layout>

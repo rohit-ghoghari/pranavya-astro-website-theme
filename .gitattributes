@@ -1,0 +1,7 @@
+# Commercial Customer-Release Packaging Exclusions
+# Omits internal maintenance scripts and audits from export archives without deleting working files.
+update_mds.py export-ignore
+CORRECTION.md export-ignore
+.gitattributes export-ignore
+.releaseignore export-ignore
+package-release.sh export-ignore

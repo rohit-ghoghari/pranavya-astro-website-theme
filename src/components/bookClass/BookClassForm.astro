@@ -1,0 +1,109 @@
+---
+import type { DropdownOption } from "../../data/bookClass";
+import {
+    defaultGenderOptions,
+    defaultCountryOptions,
+    defaultStateOptions,
+    defaultCityOptions,
+    defaultClassOptions,
+    defaultTrainerOptions,
+    defaultTimeSlotOptions,
+    defaultExperienceOptions,
+    defaultPaymentOptions,
+    defaultPlanOptions,
+    defaultGatewayOptions,
+} from "../../data/bookClass";
+import BookClassPersonalInfo from "./BookClassPersonalInfo.astro";
+import BookClassDetails from "./BookClassDetails.astro";
+import BookClassPayment from "./BookClassPayment.astro";
+import BookClassSuccessModal from "./BookClassSuccessModal.astro";
+import "../../styles/bookClass.css";
+
+interface Props {
+    genderOptions?: DropdownOption[];
+    countryOptions?: DropdownOption[];
+    stateOptions?: DropdownOption[];
+    cityOptions?: DropdownOption[];
+    classOptions?: DropdownOption[];
+    trainerOptions?: DropdownOption[];
+    timeSlotOptions?: DropdownOption[];
+    experienceOptions?: DropdownOption[];
+    paymentOptions?: DropdownOption[];
+    planOptions?: DropdownOption[];
+    gatewayOptions?: DropdownOption[];
+}
+
+const {
+    genderOptions = defaultGenderOptions,
+    countryOptions = defaultCountryOptions,
+    stateOptions = defaultStateOptions,
+    cityOptions = defaultCityOptions,
+    classOptions = defaultClassOptions,
+    trainerOptions = defaultTrainerOptions,
+    timeSlotOptions = defaultTimeSlotOptions,
+    experienceOptions = defaultExperienceOptions,
+    paymentOptions = defaultPaymentOptions,
+    planOptions = defaultPlanOptions,
+    gatewayOptions = defaultGatewayOptions,
+} = Astro.props;
+---
+
+<section class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+        <div class="flex justify-between md:flex-row flex-col 2xl:gap-16 1xl:gap-14 lg:gap-10 md:gap-8 sm:gap-7.5 gap-5 items-start">
+
+            <!-- Right: Content -->
+            <div class="md:sticky relative lg:top-24 md:top-20 top-0 w-full lt:max-w-[46.5%] rounded-sm overflow-hidden 2xl:max-h-[824px] 1xl:max-h-[630px] lg:max-h-[680px] md:max-h-[600px]">
+                <img loading="lazy" src="/book-a-class.webp" alt="book-class" class="w-full h-full object-cover">
+
+                <div class="absolute top-0 left-0 bg-linear-to-t from-primary to-transparent w-full h-full flex items-start justify-end flex-col 2xl:px-20 1xl:px-13 xl:px-9 lt:px-8 px-5 2xl:pb-31 1xl:pb-28 xl:pb-22 lt:pb-17 pb-10 1xl:gap-5 sm:gap-4 gap-2.5">
+                    <h2 class="text-white uppercase">Schedule a Session</h2>
+
+                    <p class="text-white">
+                        Choose a time that works best for you and secure your spot in our upcoming class.
+                        Whether you’re looking for relaxation, skill-building, or personal growth, scheduling is
+                        quick and easy — just select your preferred date and time to get started.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Left: Form -->
+            <div class="w-full lt:max-w-[53.5%] xl:pb-10 lt:pb-7">
+
+                <form
+                    id="book-class-form"
+                    class="book-class-form validate-form 1xl:space-y-12.5 sm:space-y-9 space-y-8"
+                    novalidate
+                >
+                    <BookClassPersonalInfo
+                        genderOptions={genderOptions}
+                        countryOptions={countryOptions}
+                        stateOptions={stateOptions}
+                        cityOptions={cityOptions}
+                    />
+
+                    <BookClassDetails
+                        classOptions={classOptions}
+                        trainerOptions={trainerOptions}
+                        timeSlotOptions={timeSlotOptions}
+                        experienceOptions={experienceOptions}
+                        planOptions={planOptions}
+                    />
+
+                    <BookClassPayment
+                        paymentOptions={paymentOptions}
+                        gatewayOptions={gatewayOptions}
+                        planOptions={planOptions}
+                    />
+                </form>
+
+                <BookClassSuccessModal />
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import "./bookClassScript";
+</script>

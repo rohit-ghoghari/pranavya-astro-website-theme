@@ -1,0 +1,193 @@
+---
+const pastEvents = [
+  {
+    image: "/events_2-1.webp",
+    title: "The 84 Asana Series with Tara Johnson",
+    description:
+      "An in-depth exploration of classical postures led by a seasoned champion.",
+    date: "01 August",
+    href: "/events/the-84-asana-series-with-tara-johnson",
+  },
+  {
+    image: "/events_2-2.webp",
+    title: "Mindful Leadership Through Yoga",
+    description:
+      "A retreat-style workshop blending yoga with mindful leadership strategies.",
+    date: "01 August",
+    href: "/events/mindful-leadership-through-yoga",
+  },
+  {
+    image: "/events_2-3.webp",
+    title: "Balance & Core Workshop",
+    description:
+      "Focused movement sessions to build strength, stability, and body awareness.",
+    date: "01 August",
+    href: "/events/balance-core-workshop",
+  },
+  {
+    image: "/events_2-4.webp",
+    title: "Hip Opening Intensive with Ravi Das",
+    description:
+      "A dynamic flow designed to unlock tight hips and increase lower body mobility.",
+    date: "01 August",
+    href: "/events/hip-opening-intensive-with-ravi-das",
+  },
+  {
+    image: "/events_2-5.webp",
+    title: "Sunset Yoga & Mantra Chanting",
+    description:
+      "An uplifting community practice ending with collective chanting and intention setting.",
+    date: "01 August",
+    href: "/events/sunset-yoga-and-mantra-chanting",
+  },
+  {
+    image: "/events_2-6.webp",
+    title: "Yoga Philosophy & Practice Retreat",
+    description:
+      "A multi-day journey into the roots of yoga—combining theory, breath, and movement.",
+    date: "01 August",
+    href: "/events/yoga-philosophy-and-practice-retreat",
+  },
+  {
+    image: "/events_2-7.webp",
+    title: "RESTORATIVE YOGA & SOUND BATH",
+    description:
+      "A deeply relaxing session combining restorative poses and crystal bowl healing.",
+    date: "01 August",
+    href: "/events/restorative-yoga-and-sound-bath",
+  },
+  {
+    image: "/events_2-8.webp",
+    title: "Yoga for Mental Clarity",
+    description:
+      "A calming practice combining gentle asanas and mindfulness techniques to focus and balance.",
+    date: "01 August",
+    href: "/events/yoga-for-mental-clarity",
+  },
+  {
+    image: "/events_2-9.webp",
+    title: "SUNSET YIN & EVENING MEDITATION FLOW",
+    description:
+      "A gentle evening flow with deep stretches and calming breathwork.",
+    date: "01 August",
+    href: "/events/sunset-yin-and-evening-meditation-flow",
+  },
+];
+---
+
+<section
+  class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-10 bg-whitesmoke-200"
+>
+  <div class="container">
+
+    <!-- Section Heading -->
+    <div
+      class="flex flex-col items-center justify-center 1xl:mb-[50px] sm:mb-11 mb-10"
+      data-aos="fade-up"
+    >
+      <h3
+        class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center"
+      >
+        Past Events Highlights
+      </h3>
+
+      <h2 class="text-primary uppercase 1xl:mb-5 mb-3 text-center">
+        Moments That Inspired Us
+      </h2>
+
+      <p class="2xl:w-[74%] xl:w-[80%] lt:w-[85%] w-full text-center">
+        Take a look back at some of our most memorable yoga events—where
+        community, movement, and mindfulness came together. These experiences
+        continue to shape and energize our yoga journey.
+      </p>
+    </div>
+
+    <!-- Events -->
+    <div
+      id="past-events-grid"
+      class="grid lt:grid-cols-2 grid-cols-1 1xl:gap-x-17.5 xl:gap-x-14 lg:gap-x-11 gap-x-9 1xl:gap-y-7.5 xl:gap-y-6 sm:gap-y-5.5 gap-y-5"
+    >
+      {
+        pastEvents.map((event, index) => (
+          <div
+            class={`flex sm:flex-row flex-col xl:gap-5 lt:gap-4 sm:gap-5 gap-4 items-stretch relative xl:py-5 py-4 xl:pr-5 border-y border-primary/15 group ${
+              index >= 6 ? "hidden past-event-hidden" : ""
+            }`}
+            data-aos="fade-up"
+          >
+            <div class="sm:w-[30%] w-full rounded-sm overflow-hidden relative lg:h-auto md:h-[210px] sm:h-[180px] h-[300px]">
+              <a href={event.href}>
+                <img
+                  loading="lazy"
+                  src={event.image}
+                  alt="video-1"
+                  class="w-full h-full object-cover"
+                />
+              </a>
+            </div>
+
+            <div class="sm:w-[70%] w-full my-auto sm:py-2">
+              <a href={event.href}>
+                <h5 class="uppercase 1xl:mb-5 lg:mb-2.5 md:mb-4 sm:mb-3 mb-1.5 text-primary group-hover:text-black xl:max-w-[80%] lg:max-w-[90%] max-w-full w-full">
+                  {event.title}
+                </h5>
+              </a>
+
+              <p>{event.description}</p>
+
+              <div class="flex items-center gap-4.5 justify-between 1xl:mt-11 xl:mt-8 md:mt-5.5 mt-4.5">
+                <div class="flex items-center 1xl:gap-4.5 gap-2">
+                  <!-- Keep your original calendar SVG here -->
+
+                  <p class="font-medium">{event.date}</p>
+                </div>
+
+                <a
+                  href={event.href}
+                  class="btn-link uppercase bg-transparent decoration-1 p font-medium text-primary hover:text-black"
+                >
+                  View now
+
+                  <!-- Keep your original arrow SVG here -->
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Read More -->
+    {
+      pastEvents.length > 6 && (
+        <div class="flex justify-center mt-10 sm:mt-11 1xl:mt-[50px]">
+          
+            <button class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4" data-aos="fade-up" id="past-events-read-more"
+            type="button">
+                    Reveal More
+                    <img loading="lazy" src="/loading.svg" alt="load" class="hidden 1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto ">
+                </button>
+          
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  const readMoreButton = document.querySelector(
+    "#past-events-read-more"
+  ) as HTMLButtonElement | null;
+
+  const hiddenEvents = document.querySelectorAll(
+    ".past-event-hidden"
+  );
+
+  readMoreButton?.addEventListener("click", () => {
+    hiddenEvents.forEach((event) => {
+      event.classList.remove("hidden");
+    });
+
+    readMoreButton.remove();
+  });
+</script>

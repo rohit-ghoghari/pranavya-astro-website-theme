@@ -1,0 +1,192 @@
+---
+import { accountClasses } from "../../data/account";
+---
+
+<div id="classes" class="schedule-panel overflow-visible! hidden">
+    <div class="dashboard class-book">
+        <h5 class="text-primary uppercase font-normal 1xl:mb-10 xl:mb-8 md:mb-7 mb-5">Recent Orders</h5>
+        <table class="w-full border-collapse block md:table md:border-2 border-[#673E2C33]">
+            <thead class="hidden md:table-header-group bg-whitesmoke-100">
+                <tr>
+                    <th class="w-[13%]">Time</th>
+                    <th class="w-[26%]">Class Name</th>
+                    <th class="w-[16%]">Instructor</th>
+                    <th class="w-[12%]">Duration</th>
+                    <th class="w-[15.5%]">Status</th>
+                    <th class="w-[18.5%]">Action</th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group space-y-5">
+                {accountClasses.map((cls) => (
+                    <tr>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Time</h5>
+                            <p class="md:text-center text-right">{cls.time}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Class Name</h5>
+                            <p class="md:text-center text-right">{cls.className}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Instructor</h5>
+                            <p class="md:text-center text-right">{cls.instructor}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Duration</h5>
+                            <p class="md:text-center text-right">{cls.duration}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Status</h5>
+                            <div class={cls.statusClass}>{cls.status}</div>
+                        </td>
+                        <td>
+                            <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Action</h5>
+                            <a href="javascript:void(0)" data-image={cls.image} data-className={cls.className} data-date={cls.date} data-status={cls.classStatus} data-instructor={cls.instructor} data-programDuration={cls.programDuration} data-sessionDuration={cls.sessionDuration} data-format={cls.format} data-detail={cls.detail} class="view-details p text-thunder-100 hover:text-primary underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">
+                                {cls.action}
+                            </a>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+    <!-- ORDER DETAILS POPUP -->
+    <div id="orderPopup" class="popup hidden absolute inset-0 min-h-screen z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="sm:max-w-[76.2%] max-w-[90%] w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 md:mb-6 sm:mb-5 mb-3" aria-label="Close modal">✕</button>
+            <div class="bg-white overflow-hidden w-full relative">
+                <div class="flex items-stretch lt:flex-row flex-col 1xl:gap-15 xl:gap-12 md:gap-9 sm:gap-7 gap-6">
+                    <div class="lt:w-[43%] w-full lt:h-auto sm:h-[600px]">
+                        <img id="pImage" class="w-full h-full object-cover" alt="Class" />
+                    </div>
+                    <div class="xl:w-[46.5%] lt:w-[48%] w-full xl:py-12.5 lt:py-10.5 lt:px-0! md:px-10.5 sm:px-6.5 px-4 pb-10.5">
+                        <h3 id="pMainTitle" class="uppercase text-primary 1xl:mb-7.5 md:mb-5 mb-4 font-normal text-center"></h3>
+                        <table class="w-full border border-[#EBEBEB] 1xl:mb-10 sm:mb-7 mb-5">
+                            <tbody>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Class Name</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pClassName"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Date</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pDate"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Status</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pStatus"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Instructor</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pInstructor"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Program Duration</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pProgramDuration"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Session Duration</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pSessionDuration"></td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Class Format</td>
+                                    <td class="py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p" id="pFormat"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5 class="text-primary uppercase 1xl:mb-5 mb-3">About This Class</h5>
+                        <p id="pDetail"></p>
+                        <div class="flex xl:gap-7.5 lg:gap-5 gap-3 flex-wrap justify-start items-center 1xl:mt-11 lg:mt-9 mt-6">
+                            <button id="openCancelPopup" class="btn btn-secondary">Cancel Booking</button>
+                            <a href="/classes/classOne/" class="btn btn-secondary">Explore more class</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CANCEL BOOKING POPUP (Dashboard Classes) -->
+    <div id="cancelClassPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-y-auto">
+        <div class="xl:max-w-[43%] lg:max-w-1/2 sm:max-w-[60%] max-w-[94%] w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 md:mb-6 sm:mb-5 mb-3" aria-label="Close modal">✕</button>
+            <div class="bg-white rounded-lg overflow-hidden 1xl:p-12.5 md:p-10.5 lt:p-6.5 p-4 1xl:space-y-7.5 sm:space-y-6 space-y-5 w-full">
+                <div>
+                    <h3 class="mb-2.5 uppercase text-primary text-center">Cancel Booking</h3>
+                    <p class="text-black text-center">Please let us know why you wish to cancel this class:</p>
+                </div>
+                <div class="2xl:space-y-5 lt:space-y-3 space-y-2.5">
+                    <div class="flex items-center gap-2.5">
+                        <input id="reason1" type="checkbox" class="peer sr-only" />
+                        <label for="reason1" class="p-[3px] group 2xl:size-7 lg:size-6 size-5 rounded-sm border border-primary/30 peer-checked:border-[#5b3a29] flex items-center justify-center cursor-pointer peer-checked:bg-[#5b3a29] peer-disabled:cursor-default">
+                            <svg class="hidden group-[.peer:checked+label]:block" xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                <path d="M1 5.5L6.14286 10L15.7857 1" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </label>
+                        <span class="p2">Saccule conflict</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <input id="reason2" type="checkbox" class="peer sr-only" />
+                        <label for="reason2" class="p-[3px] group 2xl:size-7 lg:size-6 size-5 rounded-sm border border-primary/30 peer-checked:border-[#5b3a29] flex items-center justify-center cursor-pointer peer-checked:bg-[#5b3a29] peer-disabled:cursor-default">
+                            <svg class="hidden group-[.peer:checked+label]:block" xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                <path d="M1 5.5L6.14286 10L15.7857 1" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </label>
+                        <span class="p2">Traveling on the day of the class</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <input id="reason3" type="checkbox" class="peer sr-only" />
+                        <label for="reason3" class="p-[3px] group 2xl:size-7 lg:size-6 size-5 rounded-sm border border-primary/30 peer-checked:border-[#5b3a29] flex items-center justify-center cursor-pointer peer-checked:bg-[#5b3a29] peer-disabled:cursor-default">
+                            <svg class="hidden group-[.peer:checked+label]:block" xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                <path d="M1 5.5L6.14286 10L15.7857 1" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </label>
+                        <span class="p2">Session time was changed</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <input id="reason4" type="checkbox" class="peer sr-only" />
+                        <label for="reason4" class="p-[3px] group 2xl:size-7 lg:size-6 size-5 rounded-sm border border-primary/30 peer-checked:border-[#5b3a29] flex items-center justify-center cursor-pointer peer-checked:bg-[#5b3a29] peer-disabled:cursor-default">
+                            <svg class="hidden group-[.peer:checked+label]:block" xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                <path d="M1 5.5L6.14286 10L15.7857 1" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </label>
+                        <span class="p2">Not interested in this class</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <input id="reason5" type="checkbox" class="peer sr-only" />
+                        <label for="reason5" class="p-[3px] group 2xl:size-7 lg:size-6 size-5 rounded-sm border border-primary/30 peer-checked:border-[#5b3a29] flex items-center justify-center cursor-pointer peer-checked:bg-[#5b3a29] peer-disabled:cursor-default">
+                            <svg class="hidden group-[.peer:checked+label]:block" xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none">
+                                <path d="M1 5.5L6.14286 10L15.7857 1" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </label>
+                        <span class="p2">Other</span>
+                    </div>
+                </div>
+                <div class="relative dropdown pointer-events-auto">
+                    <label class="block p lg:mb-2.5 mb-2 text-left">Comment</label>
+                    <textarea placeholder="Comment" class="block p placeholder:font-normal sm:rounded-[20px] rounded-lg border border-primary/20 w-full 1xl:px-7.5 xl:px-5 px-4 xl:py-3 md:py-2.5 py-2 min-h-[130px]"></textarea>
+                </div>
+                <div class="flex justify-end 1xl:gap-8 gap-6">
+                    <button id="submitCancel" class="btn btn-secondary">Submit</button>
+                    <button class="closePopup btn btn-secondary">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- SUCCESS POPUP (Dashboard Classes) -->
+    <div id="successClassPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative text-center 1xl:max-w-[850px] xl:max-w-[670px] md:max-w-[600px] max-w-[490px] mx-3 w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="bg-white rounded-sm 1xl:px-10 px-4 1xl:py-25 sm:px-8 xl:py-21 md:py-16 sm:py-12 py-6 relative text-center flex items-center flex-col">
+                <div class="sm:mb-4 mb-3 1xl:size-[193px] xl:size-[150px] md:size-[135px] sm:size-[110px] size-[90px]">
+                    <img src="/booking-success-icon.svg" class="w-full h-full" alt="Success" />
+                </div>
+                <h2 class="uppercase text-black 1xl:mb-5 mb-3">Booking Canceled</h2>
+                <p class="1xl:max-w-4/5 xl:max-w-[85%]">Your class booking has been successfully canceled. We hope to see you in another session soon.</p>
+                <a href="/bookClass/" class="btn btn-secondary 2xl:mt-12.5 1xl:mt-10.5 lg:mt-9 lt:mt-7">Back to Class Bookings</a>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

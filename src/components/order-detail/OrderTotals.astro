@@ -1,0 +1,53 @@
+---
+interface Props {
+    totals: string[][];
+    cartSubtotal: string;
+    discountLabel: string;
+    discount: string;
+    grandTotal: string;
+}
+
+const {
+    totals,
+    cartSubtotal,
+    discountLabel,
+    discount,
+    grandTotal,
+} = Astro.props;
+---
+
+<div class="lt:w-1/2 w-full bg-whitesmoke-100 rounded-sm overflow-hidden sm:p-5 p-4 divide-y divide-primary/20">
+    <p class="text-[#1A1A1A] font-medium pb-2.5 1xl:px-6 xl:px-5 px-4">
+        Cart Total
+    </p>
+
+    <div class="xl:py-5.5 sm:py-4 py-3.5 xl:space-y-4 sm:space-y-2.5 space-y-2">
+        {totals.map(([label, value]) => (
+            <div class="flex items-center justify-between w-full gap-3 1xl:px-6 xl:px-5 sm:px-4 px-3">
+                <p class="text-[#1A1A1A]">{label}</p>
+                <p class="p2">{value}</p>
+            </div>
+        ))}
+    </div>
+
+    <div class="xl:py-3 py-2.5">
+        <div class="flex items-center justify-between w-full gap-3 1xl:px-6 xl:px-5 sm:px-4 px-3">
+            <p class="text-[#1A1A1A] font-medium">Sub Total</p>
+            <p class="p2 text-[#1A1A1A] font-medium">{cartSubtotal}</p>
+        </div>
+    </div>
+
+    <div class="xl:py-4.5 py-3.5">
+        <div class="flex items-center justify-between w-full gap-3 1xl:px-6 xl:px-5 sm:px-4 px-3">
+            <p class="text-[#1A1A1A]">{discountLabel}</p>
+            <p class="p2">{discount}</p>
+        </div>
+    </div>
+
+    <div class="xl:py-3 py-2 bg-white border-b border-primary/20">
+        <div class="flex items-center justify-between w-full gap-3 1xl:px-6 xl:px-5 sm:px-4 px-3">
+            <p class="text-[#1A1A1A] font-medium">Total</p>
+            <p class="p2 text-[#1A1A1A] font-medium">{grandTotal}</p>
+        </div>
+    </div>
+</div>

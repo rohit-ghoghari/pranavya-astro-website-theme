@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageHeading from "../../components/common/PageHeading.astro"
+import TeamSection from "../../components/common/TeamSection.astro"
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Our Instructors & Guides — Pranavya Yoga"
+  description="Meet our team of dedicated yoga teachers, meditation guides, and wellness mentors at Pranavya Yoga."
+  canonical="/team/teamOne/"
+>
+
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Meet Our Team"
+      description="From gentle guidance to advanced expertise, our diverse team of instructors is here to support your practice. Each teacher brings unique skills, experience, and a shared passion for helping you find balance, strength, and peace—on your own terms."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <TeamSection />
+</main>
+</Layout>

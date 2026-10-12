@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeading from "../../components/common/PageHeading.astro";
+import BlogGrid from "../../components/blogs/BlogGrid.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Yoga Articles & Living Well — Pranavya Yoga"
+  description="Read in-depth guides on yoga poses, meditation techniques, healthy nutrition, and mindful living by Pranavya Yoga."
+  canonical="/blogs/blogThree/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Blogs for Every Reader"
+      description="From simple mindfulness tips to in-depth yoga philosophy, our blog is designed to meet you where you are. Find your inspiration, your knowledge, and your balance—one post at a time."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <BlogGrid/>
+  </main>
+</Layout>

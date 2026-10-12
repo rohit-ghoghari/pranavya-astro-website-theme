@@ -1,0 +1,217 @@
+---
+interface ClassTwoItem {
+    title: string;
+    tagline: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    href: string;
+    filterCategories: string[];
+}
+
+const categories = [
+    "All Category",
+    "Balance",
+    "Strength & Power",
+    "Flexibility",
+    "Breath",
+    "Mindfulness",
+    "Breathwork Yoga",
+    "Therapeutic Yoga",
+    "Specialty Yoga",
+];
+
+const classes: ClassTwoItem[] = [
+    {
+        title: "Power Yoga",
+        tagline: "Strong Body, Clear Mind.",
+        description:
+            "High-energy, fitness-based yoga that boosts stamina and builds full-body strength.",
+        image: "/class_2-1.webp",
+        imageAlt: "Power Yoga practice",
+        href: "/classes/power-yoga/",
+        filterCategories: ["Strength & Power", "Flexibility"],
+    },
+    {
+        title: "Restore & Recharge",
+        tagline: "Deep rest meets gentle stretch.",
+        description:
+            "Perfect for stress relief and healing: slow-paced practice with props, guided stillness, and mindful recovery.",
+        image: "/class_2-2.webp",
+        imageAlt: "Restorative yoga practice",
+        href: "/classes/restorative-yoga/",
+        filterCategories: ["Mindfulness", "Therapeutic Yoga"],
+    },
+    {
+        title: "Core Balance",
+        tagline: "Stability. Focus. Functional strength.",
+        description:
+            "A core-focused class that fuses yoga alignment, mobility, and body awareness for real-life support.",
+        image: "/class_2-3.webp",
+        imageAlt: "Core balance yoga practice",
+        href: "/classes/core-balance/",
+        filterCategories: ["Balance", "Strength & Power"],
+    },
+    {
+        title: "Yin Yoga",
+        tagline: "Stillness That Goes Deep.",
+        description:
+            "Long-held stretches nourish connective tissues and invite calm—a grounding practice to release tension.",
+        image: "/class_2-4.webp",
+        imageAlt: "Yin yoga practice",
+        href: "/classes/yin-restore/",
+        filterCategories: ["Flexibility", "Mindfulness"],
+    },
+    {
+        title: "Iyengar Yoga",
+        tagline: "Precision in Every Pose.",
+        description:
+            "Focuses on alignment and detail using props for safe exploration. Great for all levels, especially injury recovery.",
+        image: "/class_2-5.webp",
+        imageAlt: "Iyengar yoga practice",
+        href: "/classes/iyengar-yoga/",
+        filterCategories: ["Balance", "Therapeutic Yoga", "Specialty Yoga"],
+    },
+    {
+        title: "Kundalini Yoga",
+        tagline: "Awaken Energy Within.",
+        description:
+            "A transformative blend of breathwork, chanting, and movement, designed to activate your energy centers.",
+        image: "/class_2-6.webp",
+        imageAlt: "Kundalini yoga practice",
+        href: "/classes/kundalini-yoga/",
+        filterCategories: ["Breath", "Breathwork Yoga", "Mindfulness"],
+    },
+    {
+        title: "Chair Yoga",
+        tagline: "Accessible & Supportive Practice.",
+        description:
+            "A modified practice using a chair for seated or supported poses. Perfect for seniors and beginners.",
+        image: "/class_2-7.webp",
+        imageAlt: "Chair yoga practice",
+        href: "/classes/chair-yoga/",
+        filterCategories: ["Therapeutic Yoga", "Specialty Yoga"],
+    },
+];
+---
+
+<section
+    class="class-two-listing 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+    data-class-two-listing
+>
+    <div class="container">
+        <div class="flex items-center sm:flex-row flex-col justify-between w-full sm:gap-4 gap-3 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5">
+            <div class="rounded-full border border-[#673E2C80] flex items-center 1xl:gap-4 md:gap-3.5 sm:gap-2.5 gap-2 1xl:px-7.5 md:px-5 px-4 xl:py-3 md:py-2.5 py-2 sm:max-w-1/2 max-w-full w-full">
+                <img
+                    loading="lazy"
+                    src="/search.svg"
+                    alt="Search"
+                    class="1xl:w-6 md:w-5 sm:w-4.5 w-4 h-auto"
+                >
+                <input
+                    type="search"
+                    name="class-search"
+                    placeholder="Search here"
+                    class="outline-none w-full text-primary opacity-100 placeholder:text-current placeholder:opacity-100 font-medium p"
+                    data-class-two-search
+                >
+            </div>
+
+            <div class="xl:max-w-[24.2%] lt:max-w-[30%] sm:max-w-[35%] max-w-full w-full relative pointer-events-auto">
+                <div class="relative dropdown pointer-events-auto">
+                    <button
+                        type="button"
+                        class="dropdown-btn"
+                        data-class-two-category-button
+                        aria-expanded="false"
+                    >
+                        <p class="dropdown-text" data-class-two-category-text>All Category</p>
+                        <svg
+                            class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="m7 10l5 5 5-5"
+                            ></path>
+                        </svg>
+                    </button>
+                    <div
+                        class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out"
+                        data-class-two-category-menu
+                    >
+                        <ul class="dropdown-list">
+                            {categories.map((category) => (
+                                <li
+                                    class="dropdown-item"
+                                    data-class-two-category={category}
+                                >
+                                    <p>{category}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col 1xl:gap-[30px] md:gap-[26px] sm:gap-5.5 gap-4">
+            {classes.map((item, index) => (
+                <article
+                    class="class-two-card flex md:flex-row flex-col justify-between border-y border-primary/40 bg-whitesmoke-100 group/blog lg:gap-6 lt:gap-4 md:gap-2 gap-1"
+                    data-class-two-card
+                    data-title={item.title}
+                    data-tagline={item.tagline}
+                    data-description={item.description}
+                    data-categories={item.filterCategories.join("|")}
+                    style={index >= 6 ? "display: none" : undefined}
+                >
+                    <div class="w-full 1xl:p-[30px] lt:p-[26px] sm:p-5 p-4">
+                        <div class="flex flex-col justify-center h-full">
+                            <h3 class="text-primary hover:text-thunder-100 uppercase sm:max-w-[80%] mb-2.5">
+                                <a href={item.href} class="text-current">
+                                    {item.title}
+                                </a>
+                            </h3>
+                            <p class="font-medium 1xl:mb-4 mb-2.5">
+                                {item.tagline}
+                            </p>
+                            <p class="1xl:mb-[26px] lt:mb-5.5 mb-4.5">
+                                {item.description}
+                            </p>
+                            <a href={item.href} class="btn btn-secondary">
+                                view more
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="overflow-hidden block w-full md:h-auto h-full relative before:content-[''] before:block md:before:pt-[48%] before:pt-[44%] lg:max-w-[32.5%] md:max-w-[38%] max-w-full">
+                        <img
+                            loading="lazy"
+                            decoding="async"
+                            src={item.image}
+                            alt={item.imageAlt}
+                            class="w-full h-full object-cover absolute top-0 left-0 right-0 bottom-0"
+                        >
+                    </div>
+                </article>
+            ))}
+        </div>
+
+        <button
+            type="button"
+            class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+            data-class-two-reveal
+        >
+            Reveal More
+        </button>
+    </div>
+</section>
+
+<script src="./classListingScript.ts"></script>
+

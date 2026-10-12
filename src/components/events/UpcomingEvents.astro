@@ -1,0 +1,221 @@
+---
+import { upcomingEventList, type EventItem } from '../../data/upcomingEvents';
+
+export type { EventItem };
+
+interface Props {
+    events?: EventItem[];
+}
+
+const { events = upcomingEventList } = Astro.props;
+---
+
+<section
+    class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+    <div class="container">
+
+        <h3
+            class="text-primary font-normal uppercase 2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4"
+            data-aos="fade-right"
+        >
+            Upcoming Event
+        </h3>
+
+        <div
+            class="grid lt:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-6 gap-4.5"
+        >
+
+            {events.map((event) => (
+                <div
+                    class="event-card rounded-sm overflow-hidden bg-whitesmoke-100 group"
+                    data-aos="fade-up"
+                >
+
+                    
+                    <div class="relative">
+
+                        <a href={event.href}>
+                            <div
+                                class="w-full 2xl:h-[346px] 1xl:h-[300px] xl:h-[250px] md:h-[220px] h-[180px] overflow-hidden"
+                            >
+                                <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src={event.image}
+                                    alt={event.alt}
+                                    class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-all duration-500 ease-in-out"
+                                />
+                            </div>
+                        </a>
+
+                        
+                        <div
+                            class="absolute 1xl:top-6 1xl:right-6 xl:top-4 xl:right-4 lg:top-3 lg:right-3 top-2 right-2 bg-white shadow-md rounded-full xl:px-5.5 lg:px-5 sm:px-4 px-3 lg:py-2 py-1.5 leading-[15px] flex items-center lg:gap-[9px] gap-1.5"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                class="text-primary *:1xl:w-[21px] sm:w-4.5 w-4 h-full"
+                            >
+                                <path
+                                    d="M19 4H5C3.895 4 3 4.895 3 6V20C3 21.105 3.895 22 5 22H19C20.105 22 21 21.105 21 20V6C21 4.895 20.105 4 19 4Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M16 2V6M8 2V6M3 10H21"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+
+                            <span class="text-14 font-medium uppercase">
+                                {event.date}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="2xl:p-6.5 xl:p-6 md:p-4.5 p-4">
+
+                        <a href={event.href}>
+                            <h5
+                                class="text-primary group-hover:text-black 2xl:mb-6.5 1xl:mb-5 lg:mb-4 mb-3 uppercase"
+                            >
+                                {event.title}
+                            </h5>
+                        </a>
+
+                        <p
+                            class="2xl:mb-7.5 1xl:mb-6.5 lg:mb-5.5 md:mb-4.5 mb-3"
+                        >
+                            {event.description}
+                        </p>
+
+                        <div
+                            class="flex flex-col items-start 2xl:gap-6 1xl:gap-5 xl:gap-4 lg:gap-3 gap-2 xl:mb-6 lg:mb-4.5 mb-3.5"
+                        >
+
+                            <div class="flex items-center xl:gap-2 gap-1.5">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="30"
+                                    height="30"
+                                    viewBox="0 0 16 16"
+                                    class="text-primary 2xl:w-7.5 1xl:w-7 xl:w-6 lg:w-5.5 md:w-5 sm:w-4.5 w-4 h-full"
+                                >
+                                    <path
+                                        fill="currentColor"
+                                        fill-rule="evenodd"
+                                        d="M8 1a5 5 0 0 0-5 5c0 1.14.56 2.488 1.377 3.934c.827 1.463 1.967 3.107 3.216 4.857l.407.57l.407-.57c1.25-1.75 2.389-3.394 3.216-4.857C12.44 8.488 13 7.14 13 6a5 5 0 0 0-5-5m0 2.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+
+                                <p class="font-medium uppercase">
+                                    {event.location}
+                                </p>
+
+                            </div>
+
+                            <div class="flex items-center xl:gap-2 gap-1.5">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="34"
+                                    height="34"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    class="2xl:w-7.5 1xl:w-7 xl:w-6 lg:w-5.5 md:w-5 sm:w-4.5 w-4 h-full"
+                                >
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="9"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                    />
+                                    <path
+                                        d="M12 7V12L15 14"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+
+                                <p class="font-medium uppercase">
+                                    {event.time}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between border-t border-primary/15 xl:pt-6 lg:pt-4.5 pt-3.5"
+                        >
+
+                            <a
+                                href={event.href}
+                                class="btn-link uppercase bg-transparent decoration-1 p font-medium text-primary hover:text-black"
+                            >
+                                book now
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 10 10"
+                                    fill="none"
+                                    class="mt-1 1xl:w-[15px] 1xl:h-[15px] w-3 h-3"
+                                >
+                                    <path
+                                        d="M0.701687 8.86162C0.701687 8.86162 6.30093 3.26231 8.63309 0.93009M8.63309 0.93009L8.86101 6.90189M8.63309 0.93009L2.66089 0.702578"
+                                        stroke="currentColor"
+                                        stroke-width="1.40518"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+
+                            <div class="flex items-center gap-1 text-gray-700">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="29"
+                                    height="34"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    class="text-primary xl:w-8 xl:h-8 md:w-7 md:h-7 w-6 h-6"
+                                >
+                                    <path
+                                        d="M12 2L14.9 8.2L21.5 9L16.7 13.5L18 20L12 16.8L6 20L7.3 13.5L2.5 9L9.1 8.2L12 2Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+
+                                <p class="font-medium uppercase">
+                                    {event.price}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            ))}
+
+        </div>
+    </div>
+</section>

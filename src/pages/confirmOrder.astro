@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+const orderConfirmationContent = {
+    image: "/confirm-order.webp",
+    imageAlt: "Order confirmation",
+    title: "Order Confirmed",
+    description:
+        "Thank you for your purchase. Your order has been placed successfully — a confirmation email with the details is on its way. Explore classes, memberships, or gift cards to continue your wellness journey.",
+    buttons: [
+        {
+            text: "Return Shop",
+            href: "/shop/",
+        },
+        {
+            text: "View order",
+            href: "/Cart/",
+        },
+    ],
+};
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Confirm Order — Pranavya Yoga"
+  description="Review and confirm your order details and delivery information at Pranavya Yoga."
+  canonical="/confirmOrder/"
+>
+  
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+   
+
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+    <div class="container">
+        <div class="relative 2xl:my-[100px] 1xl:my-20 xl:my-17 lg:my-14 md:my-12 sm:my-11 my-10 w-full flex items-center justify-center flex-col">
+
+            <!-- Decorative Flower -->
+            <div class="pointer-events-none absolute top-0 left-0 right-auto w-[22%] opacity-30 hidden md:block">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/flower-shape.svg"
+                    alt="decor"
+                    class="w-full h-full object-contain"
+                >
+            </div>
+
+            <!-- Decorative Flower -->
+            <div class="pointer-events-none absolute top-0 left-auto right-0 lt:w-[10%] w-[17%] opacity-30 hidden md:block">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/flower-shape.svg"
+                    alt="decor"
+                    class="w-full h-full object-contain"
+                >
+            </div>
+
+            <!-- Decorative Flower -->
+            <div class="pointer-events-none absolute top-auto bottom-20 left-auto right-0 w-[17%] opacity-30 hidden md:block">
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    src="/flower-shape.svg"
+                    alt="decor"
+                    class="w-full h-full object-contain"
+                >
+            </div>
+
+            <img
+                loading="lazy"
+                src={orderConfirmationContent.image}
+                alt={orderConfirmationContent.imageAlt}
+                class="1xl:w-[24.5%] lt:w-[26%] sm:w-[35%] w-[78%] h-auto mx-auto 2xl:mb-12.5 1xl:mb-10 xl:mb-8 lg:mb-6 md:mb-5 sm:mb-4 mb-3.5"
+            >
+
+            <h3 class="font-medium italic font-primary 2xl:mb-6 1xl:mb-5 mb-4 text-center">
+                {orderConfirmationContent.title}
+            </h3>
+
+            <p class="1xl:mb-10 sm:mb-7 mb-6 text-center md:max-w-[66%] wfull">
+                {orderConfirmationContent.description}
+            </p>
+
+            <div class="flex items-center justify-center sm:gap-8 gap-3">
+                {orderConfirmationContent.buttons.map((button) => (
+                    <a href={button.href} class="btn btn-secondary">
+                        {button.text}
+                    </a>
+                ))}
+            </div>
+
+        </div>
+    </div>
+</section>
+    </main>
+
+</Layout>

@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ShopProductCard from "../../components/shop/ShopProductCard.astro";
+import ShopFilterSidebar from "../../components/shop/ShopFilterSidebar.astro";
+import { shopCatalog } from "../../data/shopCatalog";
+import { sortOptions } from "../../data/shopFilters";
+import "../../styles/shopCatalog.css";
+
+const listProducts = shopCatalog;
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="Our Yoga Shop — Pranavya Yoga"
+    description="Explore our curated collection of sustainable yoga mats, organic calming teas, cork blocks, and mindfulness essentials designed to support your yoga practice."
+    canonical="/shop/"
+>
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+        <section
+            class="relative 1xl:pt-20 xl:pt-17 lg:pt-14 md:pt-12 sm:pt-11 pt-10 xl:mb-20 lg:mb-16 md:mb-12 sm:mb-11 mb-10"
+        >
+            <div class="container">
+                <h1 class="h2 text-primary uppercase text-center">Our Yoga Shop</h1>
+            </div>
+        </section>
+
+        <section class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+            <div class="container">
+                <div class="flex lt:flex-row flex-col 2xl:gap-17.5 1xl:gap-15 xl:gap-12 md:gap-8 sm:gap-6 gap-4">
+                    <ShopFilterSidebar />
+
+                    <section class="lg:w-[79%] lt:w-[73%] w-full">
+                        <div class="flex justify-between sm:flex-row flex-col sm:items-center items-start gap-4 lg:mb-4.5 mb-3.5">
+                            <div class="flex items-center gap-3">
+                                <p class="font-medium" id="shop-results">Showing 1-15 of 33 results</p>
+                            </div>
+                            <div class="flex items-center sm:justify-end justify-between sm:w-auto w-full 1xl:gap-4 gap-2">
+                                <div class="flex items-center 1xl:gap-4 gap-2">
+                                    <button
+                                        id="grid-btn"
+                                        type="button"
+                                        data-view="grid"
+                                        class="lt:p-2 p-1.5 rounded view-toggle-btn active"
+                                        aria-label="Grid view"
+                                        aria-pressed="true"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M9 13a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm10 0a2 2 0 0 1 1.995 1.85L21 15v4a2 2 0 0 1-1.85 1.995L19 21h-4a2 2 0 0 1-1.995-1.85L13 19v-4a2 2 0 0 1 1.85-1.995L15 13zM9 15H5v4h4zm10 0h-4v4h4zm0-12a2 2 0 0 1 1.995 1.85L21 5v4a2 2 0 0 1-1.85 1.995L19 11h-4a2 2 0 0 1-1.995-1.85L13 9V5a2 2 0 0 1 1.85-1.995L15 3zM9 3a2 2 0 0 1 1.995 1.85L11 5v4a2 2 0 0 1-1.85 1.995L9 11H5a2 2 0 0 1-1.995-1.85L3 9V5a2 2 0 0 1 1.85-1.995L5 3zm10 2h-4v4h4zM9 5H5v4h4z" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        id="list-btn"
+                                        type="button"
+                                        data-view="list"
+                                        class="lt:p-2 p-1.5 view-toggle-btn"
+                                        aria-label="List view"
+                                        aria-pressed="false"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20">
+                                            <path fill="currentColor" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1A1.5 1.5 0 0 1 6 3.5v1A1.5 1.5 0 0 1 4.5 6h-1A1.5 1.5 0 0 1 2 4.5zM3.5 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM2 9.5A1.5 1.5 0 0 1 3.5 8h1A1.5 1.5 0 0 1 6 9.5v1A1.5 1.5 0 0 1 4.5 12h-1A1.5 1.5 0 0 1 2 10.5zM3.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM2 15.5A1.5 1.5 0 0 1 3.5 14h1A1.5 1.5 0 0 1 6 15.5v1A1.5 1.5 0 0 1 4.5 18h-1A1.5 1.5 0 0 1 2 16.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM8 4.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="relative dropdown pointer-events-auto shop-dropdown" id="shop-sort">
+                                    <button type="button" class="dropdown-btn" aria-expanded="false">
+                                        <span class="dropdown-text">Sort by</span>
+                                        <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu pointer-events-all max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                        <div class="filter-box bg-whitesmoke-100 1xl:p-5.5 lg:p-4.5 sm:p-4 p-3">
+                                            <div class="filter-content 1xl:space-y-1.5 space-y-1">
+                                                {sortOptions.map((option, index) => (
+                                                    <label class="price-checkbox flex justify-start! 1xl:gap-5 sm:gap-4 gap-2.5 items-center cursor-pointer group">
+                                                        <input
+                                                            type="checkbox"
+                                                            class="price-checkbox-input peer sort-option"
+                                                            value={option.value}
+                                                            id={`shop-sort-${index}`}
+                                                        />
+                                                        <span class="price-checkbox-box">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none" class="price-checkbox-icon">
+                                                                <path d="M12.7091 0.209133L12.962 0.46199C13.0959 0.595939 13.1711 0.777587 13.1711 0.96699C13.1711 1.15639 13.0959 1.33804 12.962 1.47199L4.76913 9.66485C4.63518 9.79876 4.45354 9.87398 4.26413 9.87398C4.07473 9.874 3.89308 9.79876 3.75913 9.66485L0.209133 6.11485C0.075225 5.9809 0 5.79925 0 5.60985C0 5.42044 0.075225 5.2388 0.209133 5.10485L0.46199 4.85199C0.595939 4.71808 0.777587 4.64286 0.96699 4.64286C1.15639 4.64286 1.33804 4.71808 1.47199 4.85199L3.75913 7.13913C3.89308 7.27304 4.07473 7.34827 4.26413 7.34827L11.6991 0.209133C11.8331 0.075225 12.0147 0 12.2041 0C12.3935 0 12.5752 0.075225 12.7091 0.209133Z" fill="#673E2C" />
+                                                            </svg>
+                                                        </span>
+                                                        <span class="group-hover:text-primary">{option.label}</span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="grid-view" class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 2xl:gap-7.5 1xl:gap-6 md:gap-5 gap-4.5">
+                            {shopCatalog.map((product) => <ShopProductCard product={product} view="grid" />)}
+                        </div>
+                        <div id="list-view" class="hidden space-y-7.5">
+                            {listProducts.map((product) => <ShopProductCard product={product} view="list" />)}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+            <div class="container">
+                <nav aria-label="Pagination">
+                    <ul class="flex items-center justify-center 1xl:gap-4 lg:gap-3 gap-2.5" id="pagination"></ul>
+                </nav>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<script src="../../components/shop/shopCatalogFilter.ts"></script>
+<script src="../../components/shop/shopCartWishlist.ts"></script>

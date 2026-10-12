@@ -1,0 +1,213 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+
+const blogs = [
+  {
+    image: "/blog-1.webp",
+    tags: ["Yoga Tips", "Mindful Movement"],
+    title: "5 Morning Yoga Poses to Start Your Day",
+    description:
+      "Start your day with clarity and energy. These five gentle yoga poses—Child’s Pose, Cat-Cow, Downward Dog, Warrior I, and Mountain Pose will help you wake up the body, ease stiffness, and set a peaceful tone for the day ahead",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-2.webp",
+    tags: ["Morning Yoga", "Yoga Poses"],
+    title: "Why Consistency Matters More Than Flexibility",
+    description:
+      "You don’t need to be flexible to begin yoga—you just need to begin. Small, regular practices create lasting change. Even 10 minutes a day of mindful movement can build strength, stability, and self-awareness over time.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-3.webp",
+    tags: ["Evening Flow", "Yoga Poses"],
+    title: "Gentle Stretches for Better Sleep",
+    description:
+      "Wind down your day with calming poses that relax your body and mind. Just a few minutes of intentional movement before bed can improve sleep quality, reduce stress, and release tension from the day.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-4.webp",
+    tags: ["Midday Energy Boost", "Yoga Poses"],
+    title: "Quick Yoga Poses for Busy Schedules",
+    description:
+      "When your energy dips, a short yoga break can refresh your body and focus your mind. Simple standing stretches or mindful breathing can recharge you in just five minutes.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-5.webp",
+    tags: ["Weekend Reset", "Yoga Poses"],
+    title: "Yoga for Mind and Body Renewal",
+    description:
+      "Use your weekend to slow down and reconnect with yourself. Gentle flows and mindful poses help restore balance, reduce fatigue, and set a positive tone for the week ahead.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-6.webp",
+    tags: ["Morning Yoga", "Yoga Poses"],
+    title: "Why Mindful Breathing Changes Your Practice",
+    description:
+      "Breath connects the body and mind, transforming physical movement into a meditative experience. Learning to control your breath can improve focus, balance, and relaxation.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-7.webp",
+    tags: ["Yoga Tips", "Morning Stretch Ritual"],
+    title: "Yoga Poses to Start Your Day Right",
+    description:
+      "Start your day with clarity and energy. These five gentle yoga poses—Child’s Pose, Cat-Cow, Downward Dog, Warrior I, and Mountain Pose will help you wake up the body, ease stiffness, and set a peaceful tone for the day ahead",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-8.webp",
+    tags: ["Morning Yoga", "Yoga Essentials"],
+    title: "Relieve Tension While You Work",
+    description:
+      "Spending hours at a desk can leave your body tight and your mind foggy. Desk Yoga offers an easy way to stay mobile, alert, and focused—right at your workstation. This blog shares simple yet effective stretches for the neck, shoulders, spine, and wrists.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-9.webp",
+    tags: ["Evening Flow", "Wind-Down Flow"],
+    title: "Poses to Help You Sleep Better",
+    description:
+      "Unwind from the day’s stress with a relaxing yoga sequence designed to ease you into a peaceful night’s sleep. This blog explores soothing postures like legs-up-the-wall, child’s pose, and reclined twists that activate the parasympathetic.",
+    imageAlt: "Blog Images",
+  },
+  {
+    image: "/blog-10.webp",
+    tags: ["Midday Energy Boost", "Yoga Poses"],
+    title: "Quick Poses to Beat Afternoon Slumps",
+    description:
+      "When your focus fades and fatigue sets in, a short burst of movement can recharge your body and brain. This post offers a quick 5-minute yoga flow that includes dynamic standing poses, gentle backbends, and energizing breathwork.",
+    imageAlt: "Blog Images",
+  },
+];
+
+const initialVisible = 4;
+---
+
+<section class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+
+        <!-- Featured Post Row -->
+        <div class="grid lt:grid-cols-1 sm:grid-cols-2 grid-cols-1 2xl:gap-12.5 1xl:gap-10 xl:gap-9 lt:gap-8 md:gap-6 gap-5" id="blog-grid">
+
+            {blogs.map((blog, index) => (
+                <div
+                    class={`flex lt:flex-row flex-col-reverse lt:justify-normal justify-end border border-primary/40 bg-white rounded group/blog ${
+                        index >= initialVisible ? "hidden" : ""
+                    }`}
+                    data-aos="fade-up"
+                    data-blog-index={index}
+                >
+
+                    <div class="w-full lt:max-w-[68.5%] 2xl:px-13.5 1xl:px-11 xl:px-9 lg:px-7 md:px-5 sm:px-4 px-3.5 2xl:py-12.5 1xl:py-10 xl:py-9 lg:py-8 md:py-7 sm:py-6 py-5">
+                        <div class="max-w-[886px] flex flex-col justify-center h-full">
+
+                            <div class="flex flex-wrap 2xl:gap-7.5 1xl:gap-7 xl:gap-6 lg:gap-5 md:gap-4.5 gap-2.5 2xl:mb-10.5 1xl:mb-9 xl:mb-8 lg:mb-7 md:mb-6 sm:mb-5 mb-4">
+
+                                {blog.tags.map((tag) => (
+                                    <p class="md:px-4.5 px-2.5 md:py-1 py-0.5 inline-block border border-primary/30 rounded-4xl text-primary">
+                                        {tag}
+                                    </p>
+                                ))}
+
+                            </div>
+
+                            <h3 class="text-primary hover:text-thunder-100 uppercase max-w-[80%] 2xl:mb-12.5 1xl:mb-10 xl:mb-8 lg:mb-6 md:mb-5 sm:mb-4 mb-3.5">
+                                <a href={blogHref(blog.title)} class="text-current">
+                                    {blog.title}
+                                </a>
+                            </h3>
+
+                            <p class="text-thunder-100 max-w-[98%] 2xl:mb-12 1xl:mb-11 xl:mb-10 lg:mb-9 md:mb-8 sm:mb-7 mb-6">
+                                {blog.description}
+                            </p>
+
+                            <a href={blogHref(blog.title)} class="text-primary hover:text-thunder-100 hover:underline decoration-1 flex items-center gap-1 uppercase">
+                                Read
+                                more
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                                    <g clip-path="url(#clip0_3130_6904)">
+                                        <path d="M8.37896 18.7836L19.207 7.95556M19.207 7.95556C19.4636 8.21217 19.62 8.56903 19.616 8.96328L19.5384 16.6458M19.207 7.95556C18.9504 7.69895 18.5935 7.54257 18.1993 7.54655L10.5168 7.62418" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="overflow-hidden block lt:max-w-[41.5%] relative shrink-0 before:content-[''] md:before:pt-[72%] before:pt-[100%] before:block w-full h-auto group">
+                        <img
+                            loading="lazy"
+                            decoding="async"
+                            src={blog.image}
+                            alt={blog.imageAlt}
+                            class="w-full transition-all duration-1000 h-full object-cover absolute top-0 left-0 bottom-0 right-0"
+                        >
+                    </div>
+
+                </div>
+            ))}
+
+        </div>
+
+        <button
+            id="reveal-more"
+            class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+            type="button"
+        >
+            <span>Reveal More</span>
+
+            <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+            >
+        </button>
+
+    </div>
+</section>
+
+<script>
+    const blogGrid = document.querySelector<HTMLElement>("#blog-grid");
+    const revealMoreButton =
+        document.querySelector<HTMLButtonElement>("#reveal-more");
+
+    if (blogGrid && revealMoreButton) {
+        const blogCards = Array.from(
+            blogGrid.querySelectorAll<HTMLElement>("[data-blog-index]")
+        );
+
+        let visibleCount = 4;
+        const loadMoreCount = 4;
+
+        revealMoreButton.addEventListener("click", () => {
+            const nextVisibleCount = Math.min(
+                visibleCount + loadMoreCount,
+                blogCards.length
+            );
+
+            blogCards.forEach((card, index) => {
+                if (index < nextVisibleCount) {
+                    card.classList.remove("hidden");
+                }
+            });
+
+            visibleCount = nextVisibleCount;
+
+            // Hide button once every blog is visible
+            if (visibleCount >= blogCards.length) {
+                revealMoreButton.classList.add("hidden");
+            }
+        });
+
+        // Hide button immediately if there are 4 or fewer blogs
+        if (blogCards.length <= visibleCount) {
+            revealMoreButton.classList.add("hidden");
+        }
+    }
+</script>

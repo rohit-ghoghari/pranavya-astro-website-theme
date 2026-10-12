@@ -1,0 +1,180 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+
+interface BlogPost {
+  image: string;
+  imageAlt?: string;
+  categories: string[];
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  moreText?: string;
+  moreHref?: string;
+  posts?: BlogPost[];
+}
+
+const {
+  eyebrow = "Blog & Insights",
+  title = "Elevate Your Practice with Pranavya Yoga",
+  description = `Dive into our Blog & Insights to explore wellness tips, yoga
+techniques, and mindfulness practices designed to inspire and
+empower your journey.`,
+  moreText = "See More",
+  moreHref = "/blogs/blogOne/",
+  posts = [
+    {
+      image: "/blog-1.webp",
+      imageAlt: "Blog Images",
+      categories: ["Yoga Tips", "Mindful Movement"],
+      title: "5 Morning Yoga Poses to Start Your Day",
+      description: `Start your day with clarity and energy. These five gentle yoga poses—Child’s Pose,
+Cat-Cow, Downward Dog, Warrior I, and Mountain Pose will help you wake up the body,
+ease stiffness, and set a peaceful tone for the day ahead`,
+      href: blogHref("5 Morning Yoga Poses to Start Your Day"),
+    },
+    {
+      image: "/blog-2.webp",
+      imageAlt: "Blog Images",
+      categories: ["Morning Yoga", "Yoga Poses"],
+      title: "Why Consistency Matters More Than Flexibility",
+      description: `You don’t need to be flexible to begin yoga—you just need to
+begin. Small, regular practices create lasting change. Even
+10 minutes a day of mindful movement can build strength,
+stability, and self-awareness over time.`,
+      href: blogHref("Why Consistency Matters More Than Flexibility"),
+    },
+  ],
+} = Astro.props;
+---
+
+<section
+  class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-white"
+>
+  <div class="container">
+
+    <!-- Section Header -->
+    <div
+      class="grid items-center lt:grid-cols-2 grid-cols-1 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-7 lt:gap-6 gap-4 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5"
+    >
+      <div class="max-w-[780px]">
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5"
+        >
+          {eyebrow}
+        </h3>
+
+        <h2 class="text-primary font-normal uppercase">
+          {title}
+        </h2>
+      </div>
+
+      <div class="max-w-[842px]">
+        <p
+          class="text-thunder-100 max-w-[890px] 2xl:mb-10 1xl:mb-9 xl:mb-8 lg:mb-7.5 md:mb-7 sm:mb-6.5 mb-6"
+        >
+          {description}
+        </p>
+
+        <a href={moreHref} class="btn btn-secondary">
+          {moreText}
+        </a>
+      </div>
+    </div>
+
+    <!-- Featured Post Row -->
+    <div
+      class="grid lt:grid-cols-1 sm:grid-cols-2 grid-cols-1 2xl:gap-12.5 1xl:gap-10 xl:gap-9 lt:gap-8 md:gap-6 gap-5"
+    >
+
+      {posts.map((post) => (
+        <div
+          class="flex lt:flex-row flex-col-reverse lt:justify-normal justify-end border border-primary/40 bg-white rounded group/blog"
+          data-aos="fade-up"
+        >
+
+          <div
+            class="w-full lt:max-w-[68.5%] 2xl:px-13.5 1xl:px-11 xl:px-9 lg:px-7 md:px-5 sm:px-4 px-3.5 2xl:py-12.5 1xl:py-10 xl:py-9 lg:py-8 md:py-7 sm:py-6 py-5"
+          >
+            <div
+              class="max-w-[886px] flex flex-col justify-center h-full"
+            >
+
+              <div
+                class="flex flex-wrap 2xl:gap-7.5 1xl:gap-7 xl:gap-6 lg:gap-5 md:gap-4.5 gap-2.5 2xl:mb-10.5 1xl:mb-9 xl:mb-8 lg:mb-7 md:mb-6 sm:mb-5 mb-4"
+              >
+                {post.categories.map((category) => (
+                  <p
+                    class="md:px-4.5 px-2.5 md:py-1 py-0.5 inline-block border border-primary/30 rounded-4xl text-primary"
+                  >
+                    {category}
+                  </p>
+                ))}
+              </div>
+
+              <h3
+                class="text-primary hover:text-thunder-100 uppercase max-w-[80%] 2xl:mb-12.5 1xl:mb-10 xl:mb-8 lg:mb-6 md:mb-5 sm:mb-4 mb-3.5"
+              >
+                <a href={post.href} class="text-current">
+                  {post.title}
+                </a>
+              </h3>
+
+              <p
+                class="text-thunder-100 max-w-[98%] 2xl:mb-12 1xl:mb-11 xl:mb-10 lg:mb-9 md:mb-8 sm:mb-7 mb-6"
+              >
+                {post.description}
+              </p>
+
+              <a
+                href={post.href}
+                class="text-primary hover:text-thunder-100 hover:underline decoration-1 flex items-center gap-1 uppercase"
+              >
+                Read more
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="27"
+                  height="27"
+                  viewBox="0 0 27 27"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_3130_6904)">
+                    <path
+                      d="M8.37896 18.7836L19.207 7.95556M19.207 7.95556C19.4636 8.21217 19.62 8.56903 19.616 8.96328L19.5384 16.6458M19.207 7.95556C18.9504 7.69895 18.5935 7.54257 18.1993 7.54655L10.5168 7.62418"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+          
+          <div
+            class="overflow-hidden block lt:max-w-[41.5%] relative shrink-0 before:content-[''] md:before:pt-[72%] before:pt-[100%] before:block w-full h-auto group"
+          >
+            <img
+              loading="lazy"
+              decoding="async"
+              src={post.image}
+              alt={post.imageAlt ?? "Blog Images"}
+              class="w-full transition-all duration-1000 h-full object-cover absolute top-0 left-0 bottom-0 right-0"
+            />
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>

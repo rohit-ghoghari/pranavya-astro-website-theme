@@ -1,0 +1,252 @@
+---
+import { accountPlans, planBenefits, billingRows } from "../../data/account";
+---
+
+<div id="plans" class="schedule-panel overflow-visible! hidden">
+    <div class="dashboard plans">
+        <h5 class="text-primary uppercase font-normal 1xl:mb-10 xl:mb-8 md:mb-7 mb-5">Recent Orders</h5>
+        <table class="w-full border-collapse block md:table md:border-2 border-[#673E2C33]">
+            <thead class="hidden md:table-header-group bg-whitesmoke-100">
+                <tr>
+                    <th class="w-[22%]">Plan Name</th>
+                    <th class="w-[6%]">Status</th>
+                    <th class="w-[14%]">Start Date</th>
+                    <th class="w-[15%]">Renewal Date</th>
+                    <th class="w-[13%]">Duration</th>
+                    <th class="w-[16%]">Next Payment</th>
+                    <th class="w-[16%]">Action</th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group space-y-5">
+                {accountPlans.map((plan) => (
+                    <tr>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Plan Name</h5>
+                            <p class="md:text-center text-right">{plan.name}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Status</h5>
+                            <div class={plan.statusClasses}>{plan.status}</div>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Start Date</h5>
+                            <p class="md:text-center text-right">{plan.startDate}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Renewal Date</h5>
+                            <p class="md:text-center text-right">{plan.renewalDate}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Duration</h5>
+                            <p class="md:text-center text-right">{plan.duration}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Next Payment</h5>
+                            <p class="md:text-center text-right">{plan.nextPayment}</p>
+                        </td>
+                        <td>
+                            <h5 class="w-1/2 md:hidden text-start font-medium font-primary text-sm">Action</h5>
+                            <a href="javascript:void(0)" class="plan-detail p text-thunder-100 hover:text-primary underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <div class="flex items-center justify-end gap-3 flex-wrap 2xl:mt-21 lt:mt-16 sm:mt-12 mt-9">
+            <button class="open-billing-history btn btn-secondary">Billing History</button>
+            <button class="open-auto-payment btn btn-secondary">Cancel Auto Payment</button>
+            <button class="confirm-cancel btn btn-secondary">Cancel Auto Payment</button>
+        </div>
+    </div>
+    <!-- Membership Popup -->
+    <div id="membershipPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative lt:max-w-[76.2%] max-w-[90%] mx-3 w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-10 lg:p-9 md:p-7 sm:p-5 p-4 2xl:space-y-10 1xl:space-y-8.5 xl:space-y-8 sm:space-y-6 space-y-5">
+                    <div>
+                        <h3 class="uppercase text-primary font-normal text-center">Membership Plans</h3>
+                    </div>
+                    <div class="2xl:max-w-1/2 lg:max-w-[58%] md:max-w-[73%] max-w-full w-full 1xl:mb-7.5 md:mb-5 mb-4">
+                        <table class="w-full border border-[#EBEBEB]">
+                            <tbody>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Current Plan</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">Essence Plan</td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Start Date</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">September 15, 2026</td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">End Date</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">December 15, 2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-full">
+                        <p class="lt:mb-4 mb-3 font-medium">Benefits :</p>
+                        <ul class="list-disc p text-primary font-medium 1xl:space-y-3 xl:space-y-2 space-y-1.5 pl-5">
+                            {planBenefits.map((benefit) => (<li>{benefit}</li>))}
+                        </ul>
+                    </div>
+                    <div class="flex sm:items-center sm:justify-end sm:flex-row flex-col 1xl:gap-7.5 lt:gap-6 sm:gap-4.5 gap-3 w-full">
+                        <a href="/bookClass/" class="btn btn-secondary">book Again</a>
+                        <a href="/classes/classOne/" class="btn btn-secondary">Explore more class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Billing History -->
+    <div id="billingHistoryPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative lt:max-w-[76.2%] max-w-[90%] mx-3 w-full my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-10 lg:p-9 md:p-7 sm:p-5 p-4 2xl:space-y-10 1xl:space-y-8.5 xl:space-y-8 sm:space-y-6 space-y-5">
+                    <div>
+                        <h3 class="uppercase text-primary font-normal text-center">Membership Plans</h3>
+                    </div>
+                    <div class="order-detail">
+                        <table class="border-collapse md:border-2 border border-[#EBEBEB]! w-full">
+                            <thead>
+                                <tr>
+                                    <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Date</th>
+                                    <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Amount</th>
+                                    <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Status</th>
+                                    <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Billing Cycle</th>
+                                    <th class="p font-medium text-thunder-100 md:border-2 border border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">Invoice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {billingRows.map((row) => (
+                                    <tr>
+                                        <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                            <p class="text-left font-medium md:hidden block">Date</p>
+                                            <p class="md:text-center text-right">{row.date}</p>
+                                        </td>
+                                        <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                            <p class="text-left font-medium md:hidden block">Amount</p>
+                                            <p class="md:text-center text-right">{row.amount}</p>
+                                        </td>
+                                        <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                            <p class="text-left font-medium md:hidden block">Status</p>
+                                            <p class="md:text-center text-right">{row.status}</p>
+                                        </td>
+                                        <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                            <p class="text-left font-medium md:hidden block">Billing Cycle</p>
+                                            <p class="md:text-center text-right">{row.cycle}</p>
+                                        </td>
+                                        <td class="p text-center md:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                                            <p class="text-left font-medium md:hidden block">Invoice</p>
+                                            {row.invoice === "details" && (
+                                                <a href="javascript:void(0)" class="open-auto-payment p text-thunder-100 hover:text-primary underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">View Details</a>
+                                            )}
+                                            {row.invoice === "retry" && (
+                                                <p class="text-thunder-100 underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">Retry</p>
+                                            )}
+                                            {row.invoice === "download" && (
+                                                <p class="text-thunder-100 underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">Download</p>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-full">
+                        <button class="open-auto-payment btn btn-secondary ml-auto mr-0">Cancel Auto Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Auto Payment Details -->
+    <div id="autoPaymentPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative xl:max-w-[43%] lg:max-w-1/2 sm:max-w-[60%] max-w-[94%] w-full mx-3 my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-10 lg:p-9 md:p-7 sm:p-5 p-4 2xl:space-y-10 1xl:space-y-8.5 xl:space-y-8 sm:space-y-6 space-y-5">
+                    <div>
+                        <h3 class="uppercase text-primary font-normal text-center">Membership Plans</h3>
+                    </div>
+                    <div class="w-full 1xl:mb-7.5 md:mb-5 mb-4">
+                        <table class="w-full border border-[#EBEBEB]">
+                            <tbody>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Auto Payment</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">Enable</td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Next Payment</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">December 15, 2025</td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Amount</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">$369</td>
+                                </tr>
+                                <tr class="border-b border-[#EBEBEB]">
+                                    <td class="sm:w-1/2 w-[48%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 text-primary p font-medium border-r border-[#EBEBEB]">Duration</td>
+                                    <td class="sm:w-1/2 w-[52%] py-2 1xl:px-10 xl:px-8 lg:px-6 sm:px-5 px-2.5 p">Every 3 Months</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-full">
+                        <h5 class="text-primary uppercase mb-4">Payment Method</h5>
+                        <div class="flex items-center justify-between w-full gap-2">
+                            <h3 class="font-semibold text-primary font-primary"><span class="font-fourth font-normal">Visa</span> **** 4871</h3>
+                            <p class="text-primary font-medium">Expiry:8/2027</p>
+                        </div>
+                    </div>
+                    <div class="flex sm:items-center justify-start sm:flex-row flex-col 1xl:gap-7.5 lt:gap-6 sm:gap-4.5 gap-3 w-full">
+                        <button class="btn btn-secondary">Auto Payment</button>
+                        <button class="confirm-cancel btn btn-secondary">Cancel Auto Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cancel Confirmation -->
+    <div id="cancelConfirmPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative xl:max-w-[43%] lg:max-w-1/2 sm:max-w-[60%] max-w-[94%] w-full mx-3 my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-10 lg:p-9 md:p-7 sm:p-5 p-4">
+                    <div class="2xl:mb-12.5 1xl:mb-10 mb-7">
+                        <h3 class="uppercase text-primary font-normal text-center">Cancel Auto payment</h3>
+                    </div>
+                    <div class="2xl:space-y-4 1xl:space-y-3.5 space-y-3 2xl:mb-9 1xl:mb-8 mb-7 text-center">
+                        <p class="text-primary font-medium">Are you sure you want to disable auto payment?</p>
+                        <p class="text-primary font-medium">Your current access stays active until 15 Dec 2025.</p>
+                    </div>
+                    <div class="flex sm:items-center sm:justify-end sm:flex-row flex-col 1xl:gap-7.5 lt:gap-6 sm:gap-4.5 gap-3 w-full">
+                        <button class="btn btn-secondary">Auto Payment</button>
+                        <button class="confirm-final-cancel btn btn-secondary">Cancel Auto Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Success Popup -->
+    <div id="successAutoPopup" class="popup hidden fixed inset-0 z-50 py-4 justify-center bg-black/50 backdrop-blur-sm overflow-auto">
+        <div class="relative xl:max-w-[43%] lt:max-w-1/2 sm:max-w-[57%] max-w-[94%] w-full mx-3 my-auto">
+            <button class="popup-close relative flex items-center justify-center 1xl:size-10 md:size-9 sm:size-8 size-7 bg-white rounded-full ml-auto mr-0 1xl:mb-7.5 lt:mb-4.5 mb-2.5" aria-label="Close modal">✕</button>
+            <div class="rounded-lg 2xl:p-7.5 lg:p-6.5 md:p-5.5 sm:p-5 w-full bg-white">
+                <div class="border border-[#EBEBEB] rounded-sm 2xl:p-8.5 lg:p-9 md:p-7 sm:p-5 p-4 flex flex-col items-center justify-center 1xl:gap-7 xl:gap-6 gap-4">
+                    <div class="1xl:size-32 xl:size-28 lg:size-25 lt:size-22 md:size-20 size-18">
+                        <img src="/booking-success-icon.svg" class="w-full h-full" alt="Success" />
+                    </div>
+                    <h3 class="text-primary uppercase text-center">Successful Cancel Auto payment</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

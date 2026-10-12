@@ -1,0 +1,138 @@
+---
+const whyChooseUsCards = [
+    {
+        image: "/home-3_why-choose-1.webp",
+        icon: "/class-icon-1.png",
+        alt: "Personalized Yoga",
+        title: "Personalized Yoga",
+        description:
+            "Custom-crafted sessions that align with your pace and posture. Feel supported, seen, and safely guided every step of the way.",
+        href: "/classes/hatha-yoga/",
+        iconClass:
+            "absolute top-0 right-0 1xl:w-[60px] 1xl:h-[60px] sm:w-[52px] sm:h-[52px] h-[45px] w-[45px] sm:pl-4 sm:pb-4 sm:pr-1.5 sm:pt-1.5 pl-2.5 pb-2.5 pt-1 pr-1 1xl:rounded-bl-[45px] sm:rounded-bl-[40px] rounded-bl-[32px] full bg-[#6B3E2E] flex items-center justify-center",
+    },
+    {
+        image: "/home-3_why-choose-2.webp",
+        icon: "/class-icon-2.png",
+        alt: "Personalized Yoga",
+        title: "Yoga Workshops",
+        description:
+            "Focused learning experiences for curious and committed yogis. Dive deeper into breath, form, and spiritual understanding.",
+        href: "/classes/hatha-yoga/",
+        iconClass:
+            "absolute top-0 right-0 1xl:w-[60px] 1xl:h-[60px] sm:w-[52px] sm:h-[52px] h-[45px] w-[45px] sm:pl-4 sm:pb-4 sm:pr-1.5 sm:pt-1.5 pl-2.5 pb-2.5 pt-1 pr-1 1xl:rounded-bl-[45px] sm:rounded-bl-[40px] rounded-bl-[32px] full bg-[#6B3E2E] flex items-center justify-center",
+    },
+    {
+        image: "/home-3_why-choose-3.webp",
+        icon: "/class-icon-3.png",
+        alt: "Personalized Yoga",
+        title: "Yoga Retreats",
+        description:
+            "Journey beyond the studio to reconnect with nature and self. Mindful escapes designed to reset, restore, and inspire.",
+        href: "/classes/hatha-yoga/",
+        iconClass:
+            "absolute top-0 right-0 1xl:w-[60px] 1xl:h-[60px] sm:w-[52px] sm:h-[52px] h-[45px] w-[45px] sm:pl-4.5 sm:pb-5 sm:pr-2 sm:pt-2 pl-3.5 pb-4 pr-2 pt-2 1xl:rounded-bl-[45px] sm:rounded-bl-[40px] rounded-bl-[32px] full bg-[#6B3E2E] flex items-center justify-center",
+        titleClass:
+            "uppercase text-primary 1xl:mb-5 mb-3 hover:text-thunder-100",
+    },
+    {
+        image: "/home-3_why-choose-4.webp",
+        icon: "/class-icon-4.png",
+        alt: "Personalized Yoga",
+        title: "Flexible Classes",
+        description:
+            "A schedule that adjusts to your rhythm not the other way around. Choose from a range of styles, times, and teaching levels.",
+        href: "/classes/hatha-yoga/",
+        iconClass:
+            "absolute top-0 right-0 1xl:w-[60px] 1xl:h-[60px] sm:w-[52px] sm:h-[52px] h-[45px] w-[45px] sm:pl-5 sm:pb-4.5 sm:pr-2.5 sm:pt-2.5 pl-4 pb-3.5 pr-2 pt-2 1xl:rounded-bl-[45px] sm:rounded-bl-[40px] rounded-bl-[32px] full bg-[#6B3E2E] flex items-center justify-center",
+        titleClass:
+            "uppercase text-primary 1xl:mb-5 mb-3 hover:text-thunder-100",
+    },
+];
+---
+
+<section
+    class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 2xl:py-2 relative"
+>
+    <div class="container">
+        <div
+            class="grid items-center md:grid-cols-2 grid-cols-1 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-5 gap-4 2xl:mb-[50px] 1xl:mb-11 xl:mb-[38px] sm:mb-8 mb-5"
+        >
+            <div>
+                <h3
+                    class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5"
+                >
+                    Why Choose Us
+                </h3>
+
+                <h2 class="text-primary font-normal uppercase">
+                    Built for Your Body and Breath
+                </h2>
+            </div>
+
+            <div class="max-w-[842px]">
+                <p
+                    class="text-thunder-100 max-w-[890px] 2xl:mb-10 1xl:mb-9 xl:mb-8 lg:mb-7.5 md:mb-7 sm:mb-6.5 mb-6"
+                >
+                    Each session adapts to your needs, offering mindful movement and
+                    support. Feel aligned, present, and fully connected to your
+                    inner rhythm. Because your practice should feel as unique as you
+                    are.
+                </p>
+
+                <a href="/classes/classOne/" class="btn btn-secondary">
+                    Browse Class Schedule
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="grid lt:grid-cols-4 sm:grid-cols-2 grid-cols-1 1xl:gap-6 xl:gap-5 lt:gap-4 md:gap-6 gap-5"
+        >
+            {
+                whyChooseUsCards.map((card) => (
+                    <div
+                        class="bg-whitesmoke-100 rounded-sm overflow-hidden"
+                        data-aos="fade-up"
+                    >
+                        <div class="relative overflow-hidden 2xl:h-[256px] 1xl:h-[235px] xl:h-[185px] lt:h-[170px] md:h-[200px] h-[176px] rounded-sm">
+                            <img
+                                loading="lazy"
+                                src={card.image}
+                                alt={card.alt}
+                                class="w-full h-full object-cover"
+                                decoding="async"
+                            />
+
+                            <div class={card.iconClass}>
+                                <img
+                                    loading="lazy"
+                                    src={card.icon}
+                                    alt="class"
+                                    class="w-full h-full object-cover"
+                                    decoding="async"
+                                />
+                            </div>
+                        </div>
+
+                        
+                        <div class="1xl:p-[25px] xl:p-5 p-4 text-left">
+                            <h5
+                                class={
+                                    card.titleClass ??
+                                    "uppercase text-primary 1xl:mb-5 mb-3"
+                                }
+                            >
+                                {card.title}
+                            </h5>
+
+                            <p>
+                                {card.description}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

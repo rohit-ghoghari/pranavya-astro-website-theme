@@ -1,0 +1,118 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IndexThreeHero from "../components/index-3/IndexThreeHero.astro";
+import Journery from "../components/index-3/Journery.astro";
+import ChooseUs from "../components/index-3/ChooseUs.astro";
+import Weekly from "../components/index-3/Weekly.astro";
+import TestimonialThree from "../components/index-3/TestimonialThree.astro";
+import Insights from "../components/index-3/Insights.astro";
+import InstagramSlider from "../components/index-3/InstagramSlider.astro";
+---
+
+<Layout
+    headerVariant="index-3"
+    footerVariant="index-3"
+    title="Pranavya Yoga — Home 3 (Serene Retreats & Meditations)"
+    description="Discover Pranavya Yoga Home Variant 3. Designed for retreat centers and mindfulness studios, featuring Instagram feeds and immersive class carousels."
+    canonical="/index-3/"
+>
+    <!-- index-3 page sections will be built here -->
+
+    <!-- Section 1 -->
+     <IndexThreeHero />
+    
+    <!-- Section 2 -->
+    <section class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 relative">
+            <div class="container relative">
+                <div class="flex md:flex-row flex-col items-stretch justify-between w-full 1xl:gap-[70px] xl:gap-[55px] lg:gap-11 lt:gap-10 md:gap-6 sm:gap-4 gap-2">
+                    <div class="1xl:w-[48.6%] md:w-1/2 w-full h-full">
+                        <div class="w-full">
+                            <h3 class="text-thunder-100 font-primary italic font-medium 2xl:mb-7 1xl:mb-6 sm:mb-3 mb-2.5">
+                                Welcome to Pranavya Yoga
+                            </h3>
+                            <h2 class="text-primary font-normal uppercase">
+                                Ancient Roots. Modern Harmony.
+                            </h2>
+                        </div>
+                        <div class="block overflow-hidden rounded-sm relative shrink-0 before:content-[''] 1xl:before:pt-[72%] xl:before:pt-[80%] lg:before:pt-[85%] lt:before:pt-[95%] before:pt-[100%] before:block w-full h-full 1xl:mt-[50px] xl:mt-[42px] lg:mt-9 lt:mt-7 sm:mt-6 mt-4">
+                            <img loading="lazy" src="/home-3_about-1.webp" alt="about us" class="w-full h-full object-cover rounded-sm overflow-hidden absolute top-0 left-0" decoding="async" data-aos="fade-up">
+                        </div>
+                    </div>
+                    <div class="1xl:w-[51.4%] md:w-1/2 w-full">
+                        <div class="flex items-center justify-between xl:gap-6 lg:gap-5 sm:gap-4 gap-2 1xl:mb-[60px] xl:mb-[45px] lg:mb-9 lt:mb-7 sm:mb-6 mb-5">
+                            <div class="block overflow-hidden relative before:content-[''] sm:before:pt-[101%] before:pt-[105%] before:block w-full h-full rounded-sm">
+                                <img loading="lazy" src="/home-3_about-2.webp" alt="about us" class="w-full h-full object-cover rounded-sm overflow-hidden absolute top-0 left-0" decoding="async" data-aos="fade-up">
+                            </div>
+                            <div class="block overflow-hidden relative before:content-[''] sm:before:pt-[101%] before:pt-[105%] before:block w-full h-full rounded-sm">
+                                <img loading="lazy" src="/home-3_about-3.webp" alt="about us" class="w-full h-full object-cover rounded-sm overflow-hidden absolute top-0 left-0" decoding="async" data-aos="fade-up">
+                            </div>
+                        </div>
+                        <div>
+                            <p class="1xl:mb-5 lg:mb-4 sm:mb-3 mb-[10px]">
+                                At Pranavya Yoga, we offer more than just classes—we offer a sanctuary. Blending
+                                time-honored yogic traditions with a modern, heart-centered approach, our space invites
+                                you to reconnect with your body, breath, and spirit.
+                            </p>
+                            <p class="1xl:mb-11 lg:mb-9 mb-6">
+                                Designed to nurture clarity and calm, our studio combines peaceful interiors with
+                                thoughtful teaching, guiding every student—beginner or advanced—toward greater
+                                self-awareness and inner peace. Whether you're here to move, meditate, or simply be,
+                                Pranavya is your place to return home to yourself.
+                            </p>
+                            <a href="/classes/classOne/" class="btn btn-secondary">Begin Your Journey</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative Flower -->
+                <div class="pointer-events-none absolute top-auto -bottom-[33px] left-auto right-0 lg:w-[12.5%] w-[15%] hidden md:block opacity-30">
+                    <img loading="lazy" decoding="async" src="/flower-shape.svg" alt="decor" class="w-full h-full object-contain">
+                </div>
+            </div>
+    </section>
+
+    <!-- Section 3 -->
+    <Journery/>
+
+    <!-- Section 4 -->
+    <ChooseUs/>
+
+    <!-- Section 5 -->
+    <section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full h-full">
+            <div class="2xl:h-[700px] 1xl:h-[590px] xl:h-[550px] lg:h-[510px] md:h-[410px] sm:h-[350px] h-[272px]">
+                <div class="md:block hidden relative w-full bg-cover md:bg-center bg-right bg-no-repeat h-full" style="background-image: url('/find-your-flow-3.webp')"></div>
+                <img loading="lazy" src="/find-your-flow-3-mobile.webp" alt="mobile" class="w-full h-full object-cover md:hidden block" decoding="async">
+            </div>
+
+            <div class="md:absolute md:inset-0 relative top-0 left-0 w-full h-full max-[769px]:bg-[linear-gradient(to_right,#E0E0E0_0%,#D0D0D0_50%,#BEBEBE_75%,#B1B1AF_100%)] md:p-0 py-7">
+                <div class="container h-full">
+                    <div class="flex flex-col h-full items-start sm:justify-center justify-end text-black 1xl:max-w-[688px] xl:max-w-[570px] lg:max-w-[510px] md:max-w-[415px] w-full">
+                        <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-start text-thunder-100">
+                            Up to 40% Off
+                        </h3>
+                        <h2 class="uppercase 1xl:mb-5 mb-3 text-start">
+                            Flow Into Calm &amp; Power
+                        </h2>
+                        <p class="text-start text-thunder-100">
+                            At Pranavya, experience a holistic practice that nurtures your body, quiets the mind, and
+                            reawakens your spirit. Inclusive classes blending ancient yoga with modern life—for all
+                            ages, bodies, and levels.
+                        </p>
+                        <a href="/classes/classOne/" class="btn btn-dark xl:mt-[45px] lg:mt-10 sm:mt-8 mt-6">
+                            Reserve Your Spot</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Section 6 -->
+    <Weekly/>
+
+    <!-- Section 7 -->
+    <TestimonialThree/>
+
+    <!-- Section 8 -->
+    <Insights/>
+
+    <!-- Section 9 -->
+     <InstagramSlider/>
+</Layout>

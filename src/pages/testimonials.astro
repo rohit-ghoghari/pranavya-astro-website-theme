@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import TestimonialsGrid from "../components/common/TestimonialsGrid.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Student Testimonials & Reviews — Pranavya Yoga"
+  description="From first-time students to advanced practitioners, hear how our classes have inspired balance, growth, and peace."
+  canonical="/testimonials/"
+>
+    
+<main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+     <PageHeading
+      title="Voices from Every Level"
+      description="From first-time students to advanced practitioners, hear how our classes have inspired balance, growth, and peace."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <TestimonialsGrid/>
+
+</main>
+
+</Layout>

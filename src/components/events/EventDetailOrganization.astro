@@ -1,0 +1,218 @@
+---
+interface Props {
+    organization: any;
+    participants: string;
+}
+
+const { organization, participants } = Astro.props;
+
+const participantText = organization.participantExperience.description;
+const participantMarker = `${participants},`;
+const participantMarkerIndex = participantText.indexOf(participantMarker);
+
+const participantBefore =
+    participantMarkerIndex >= 0
+        ? participantText.slice(0, participantMarkerIndex)
+        : participantText;
+
+const participantAfter =
+    participantMarkerIndex >= 0
+        ? participantText.slice(
+              participantMarkerIndex + participantMarker.length
+          )
+        : "";
+
+const supportTeam = organization.supportTeam.members;
+const keyTakeaways = organization.keyTakeaways.items;
+const [host, coordinator] = organization.team;
+---
+
+<!-- ====== Start Event Organizing Section ====== -->
+<section
+    class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+    <div class="container">
+        <!-- IMPORTANT: this wrapper exists in the original HTML -->
+        <div
+            class="2xl:space-y-12.5 1xl:space-y-11 md:space-y-7 space-y-4"
+        >
+            <h2
+                class="font-normal uppercase"
+                data-aos="fade-up"
+            >
+                {organization.title}
+            </h2>
+
+            <!-- Host + Coordinator wrapper -->
+            <div
+                class="1xl:space-y-11 xl:space-y-8 lg:space-y-7 sm:space-y-6 space-y-5"
+            >
+                <!-- Host -->
+                <div
+                    class="1xl:p-10 lg:p-8 md:p-6 sm:p-5 p-4 bg-whitesmoke-100"
+                    data-aos="fade-up"
+                >
+                    <h3
+                        class="text-primary uppercase 1xl:mb-6 mb-3"
+                    >
+                        {host.role}
+                    </h3>
+
+                    <h3
+                        class="uppercase 1xl:mb-4.5 mb-3"
+                    >
+                        {host.name}
+                    </h3>
+
+                    <p
+                        class="font-medium 1xl:mb-5 mb-3"
+                    >
+                        {host.designation}
+                    </p>
+
+                    <p
+                        class="1xl:max-w-[85%] xl:max-w-[93%] max-w-full w-full"
+                    >
+                        {host.description}
+                    </p>
+                </div>
+
+                <!-- Coordinator -->
+                <div
+                    class="1xl:p-10 lg:p-8 md:p-6 sm:p-5 p-4 bg-whitesmoke-100"
+                    data-aos="fade-up"
+                >
+                    <h3
+                        class="text-primary uppercase 1xl:mb-6 mb-3"
+                    >
+                        {coordinator.role}
+                    </h3>
+
+                    <h3
+                        class="uppercase 1xl:mb-4.5 mb-3"
+                    >
+                        {coordinator.name}
+                    </h3>
+
+                    <p
+                        class="font-medium 1xl:mb-5 mb-3"
+                    >
+                        {coordinator.designation}
+                    </p>
+
+                    <p
+                        class="1xl:max-w-[85%] xl:max-w-[93%] max-w-full w-full"
+                    >
+                        {coordinator.description}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Support Team -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {organization.supportTeam.title}
+                </h3>
+
+                <ul
+                    class="list-disc text-primary 1xl:space-y-4 lt:space-y-3 space-y-2.5 1xl:mb-6 lt:mb-4 mb-3 pl-4.5"
+                >
+                    {
+                        supportTeam.map(
+                            (
+                                member: {
+                                    name: string;
+                                    responsibility: string;
+                                }
+                            ) => (
+                                <li>
+                                    <p class="text-primary">
+                                        {member.name}
+                                        <span class="text-thunder-100">
+                                            - {member.responsibility}
+                                        </span>
+                                    </p>
+                                </li>
+                            )
+                        )
+                    }
+                </ul>
+
+                <p>
+                    {organization.supportTeam.description}
+                </p>
+            </div>
+
+            <!-- Participant Experience -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {organization.participantExperience.title}
+                </h3>
+
+                <p>
+                    {participantMarkerIndex >= 0 ? (
+                        <>
+                            {participantBefore}
+                            <span class="text-primary font-medium">
+                                {participantMarker}
+                            </span>
+                            {participantAfter}
+                        </>
+                    ) : (
+                        participantText
+                    )}
+                </p>
+            </div>
+
+            <!-- Key Takeaways -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {organization.keyTakeaways.title}
+                </h3>
+
+                <ul
+                    class="list-disc 1xl:space-y-5 space-y-3.5 sm:pl-4.5 pl-4"
+                >
+                    {
+                        keyTakeaways.map(
+                            (takeaway: string) => (
+                                <li>
+                                    <p class="font-medium">
+                                        {takeaway}
+                                    </p>
+                                </li>
+                            )
+                        )
+                    }
+                </ul>
+            </div>
+
+            <!-- Completion Notice -->
+            <div data-aos="fade-up">
+                <div
+                    class="1xl:p-7.5 lg:p-5 md:p-4 p-3.5 bg-whitesmoke-100 font-medium border-l-2 border-primary flex sm:items-center items-start 1xl:gap-7.5 lg:gap-6 lt:gap-5 sm:gap-4 gap-2.5"
+                >
+                    <img
+                        loading="lazy"
+                        src="/events-detail-true.svg"
+                        alt="true"
+                        class="1xl:size-12.5 lg:size-11 sm:size-10 size-7.5 object-contain"
+                    />
+
+                    <p
+                        class="xl:max-w-4/5 lt:max-w-[85%] max-w-full w-full"
+                    >
+                        {organization.conclusion.text}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ====== End Event Organizing Section ====== -->

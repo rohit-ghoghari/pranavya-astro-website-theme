@@ -1,0 +1,82 @@
+---
+import PodcastAudioPlayer from "./PodcastAudioPlayer.astro";
+import { INITIAL_VISIBLE_COUNT, type Podcast } from "./featuredPodcastData";
+
+interface Props { podcast: Podcast; index: number; }
+
+const { podcast, index } = Astro.props;
+---
+
+        <div
+          class="podcast-card"
+          data-aos="fade-up"
+          data-extra={index >= INITIAL_VISIBLE_COUNT ? "true" : undefined}
+        >
+          <!-- Image -->
+          <div class="podcast-image">
+            <img loading="lazy" src={podcast.image} alt={podcast.imageAlt} />
+          </div>
+
+          <!-- Content -->
+          <div class="podcast-content">
+            <h5 class="podcast-title">{podcast.title}</h5>
+
+            <p class="podcast-desc">{podcast.description}</p>
+
+            <div class="podcast-footer">
+              <div class="podcast-time">
+                <div class="time-img">
+                  <!-- Clock icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#673E2C"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                </div>
+
+                <p class="uppercase 2xl:text-18 1xl:text-16 xl:text-15 text-14">
+                  {podcast.metaDuration}
+                </p>
+              </div>
+
+              <div class="podcast-artist">
+                <div class="person-name">
+                  <!-- Person icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#673E2C"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                  </svg>
+                </div>
+
+                <p
+                  class="uppercase font-medium 2xl:text-18 1xl:text-16 xl:text-15 sm:text-14 text-xs"
+                >
+                  {podcast.artist}
+                </p>
+              </div>
+            </div>
+
+            <PodcastAudioPlayer podcast={podcast} />
+          </div>
+        </div>

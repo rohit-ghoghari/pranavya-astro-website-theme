@@ -1,0 +1,102 @@
+---
+import { dashboardOrders, planBenefits } from "../../data/account";
+import AccountProgress from "./AccountProgress.astro";
+---
+
+<div id="dashboard" class="schedule-panel overflow-visible!">
+    <div class="dashboard 2xl:space-y-10 1xl:space-y-9 md:space-y-8 sm:space-y-6 space-y-5">
+        <div>
+            <h3 class="uppercase text-primary 2xl:mb-6 1xl:mb-5 sm:mb-4 mb-2.5">Welcome Back, Anita S. !</h3>
+            <p class="font-medium 2xl:mb-8 1xl:mb-5 mb-3">Hello Anita S.
+                <span class="text-primary hover:text-black-100">
+                    (<a href="#logout" class="underline decoration-1" data-goto-tab="#logout">Log out</a>)
+                </span>
+            </p>
+            <p class="font-medium 1xl:mb-4.5 sm:mb-3.5 mb-2.5">
+                Welcome back, Anita S. Manage your orders, classes, plan, and personal information from here.
+            </p>
+            <p class="font-medium">Last Active:<span class="font-normal"> 2 hours ago</span></p>
+        </div>
+        <div>
+            <h5 class="text-primary uppercase font-normal 1xl:mb-10 xl:mb-8 md:mb-7 mb-5">Recent Orders</h5>
+            <table class="w-full border-collapse block md:table md:border-2 border-[#673E2C33]">
+                <thead class="hidden md:table-header-group bg-whitesmoke-100">
+                    <tr>
+                        <th class="w-[12.5%]">Order ID</th>
+                        <th class="w-[28%]">Product</th>
+                        <th class="w-[12%]">Date</th>
+                        <th class="w-[16%]">Amount</th>
+                        <th class="w-[16%]">Status</th>
+                        <th class="w-[16%]">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="block md:table-row-group space-y-5">
+                    {dashboardOrders.map((order) => (
+                        <tr>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Order ID</h5>
+                                <p class="md:text-center text-right">{order.id}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Product</h5>
+                                <p class="md:text-center text-right">{order.product}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Date</h5>
+                                <p class="md:text-center text-right">{order.date}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Amount</h5>
+                                <p class="md:text-center text-right">{order.amount}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Status</h5>
+                                <p class="md:text-center text-right">{order.status}</p>
+                            </td>
+                            <td>
+                                <h5 class="w-1/3 md:hidden text-start font-medium font-primary text-sm">Action</h5>
+                                <a href={order.href} class="p text-thunder-100 hover:text-primary underline decoration-1 underline-offset-2 flex items-center flex-wrap sm:gap-1 gap-0.5 w-full md:justify-center justify-end">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+        <div class="border border-primary/20">
+            <h3 class="uppercase text-primary 1xl:p-6 sm:p-4 p-2.5">Active plan</h3>
+            <div class="border-t border-primary/20 bg-whitesmoke-100 2xl:p-7.5 1xl:p-6 lg:p-5 sm:p-4 p-2.5 flex flex-col justify-between">
+                <div>
+                    <div class="pt-2">
+                        <div class="flex sm:items-center items-start justify-between w-full sm:mb-4 mb-2.5 gap-2">
+                            <div>
+                                <h3 class="uppercase 1xl:mb-3.5 mb-2.5">Elevate Plan</h3>
+                                <p class="font-medium">Renewal Date: <span class="font-normal">10 Dec 2025</span></p>
+                            </div>
+                            <h3 class="font-primary capitalize font-medium italic 1xl:mb-2 mb-1 text-center">
+                                <span class="h2">$119</span>
+                                / month
+                            </h3>
+                        </div>
+                        <p class="1xl:mb-6 mb-3.5 font-medium">What&apos;s Included:</p>
+                        <ul class="list-disc p text-primary font-medium 1xl:space-y-3 xl:space-y-2 space-y-1.5 pl-5 1xl:mb-5 mb-4">
+                            {planBenefits.map((benefit) => (<li>{benefit}</li>))}
+                        </ul>
+                        <p class="flex items-center gap-3 font-medium">
+                            <span class="shrink-0 whitespace-nowrap lg:size-6 sm:size-5 size-4">
+                                <img src="/bullets-point.svg" alt="point" />
+                            </span>
+                            Includes 14-Day Trial
+                        </p>
+                    </div>
+                </div>
+                <div class="flex sm:items-center items-start sm:flex-row flex-col sm:justify-end justify-start 1xl:gap-8 lt:gap-6 sm:gap-4.5 gap-3 1xl:mt-11 lg:mt-9 sm:mt-7 mt-6">
+                    <a href="/bookClass/" class="btn btn-secondary">View Plan</a>
+                    <a href="/bookClass/" class="btn btn-secondary">Upgrade Plan</a>
+                </div>
+            </div>
+        </div>
+        <AccountProgress />
+    </div>
+</div>

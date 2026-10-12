@@ -1,0 +1,30 @@
+.shop-filter-panel[hidden],
+.filter-content[hidden] {
+    display: none;
+}
+
+.price-checkbox-icon path {
+    d: path("M1 5L4.5 8.5L13 1");
+    fill: none;
+    stroke: #673e2c;
+    stroke-width: 1.5;
+}
+
+.filter-tag-remove {
+    font-size: 0;
+}
+
+.filter-tag-remove::after {
+    content: "×";
+    font-size: 10px;
+}
+
+.shop-dropdown .dropdown-menu.open {
+    max-height: 400px;
+    opacity: 1;
+    z-index: 20;
+}
+
+.shop-product-card[hidden] {
+    display: none;
+}

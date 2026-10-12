@@ -1,0 +1,245 @@
+---
+import type { DropdownOption } from '../../data/bookClass';
+import { createDropdownValue } from '../../data/bookClass';
+
+interface Props {
+    genderOptions: DropdownOption[];
+    countryOptions: DropdownOption[];
+    stateOptions: DropdownOption[];
+    cityOptions: DropdownOption[];
+}
+
+const { genderOptions, countryOptions, stateOptions, cityOptions } = Astro.props;
+---
+                    <!-- Personal Information -->
+                    <div>
+                        <h3 class="uppercase text-primary mb-5 1xl:pb-7.5 pb-5.5 border-b border-whitesmoke-100">
+                            PERSONAL INFORMATION
+                        </h3>
+
+                        <div class="1xl:space-y-10.5 lt:space-y-7 sm:space-y-5 space-y-6">
+
+                            <!-- full name -->
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">Full Name *</label>
+
+                                <input
+                                    type="text"
+                                    name="full_name"
+                                    placeholder="Enter Your Name"
+                                    class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary"
+                                    required
+                                >
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- email -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Email *</label>
+
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter Your Email"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                    >
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Phone Number *</label>
+
+                                    <input
+                                        type="tel"
+                                        name="phone Number"
+                                        placeholder="Enter Your Phone Number"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary phone-input"
+                                        maxlength="10"
+                                        pattern="[0-9]{10}"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- Gender (Optional dropdown): -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">
+                                        Gender
+                                        <span class="text-thunder-100/50 text-base">
+                                            (optional dropdown)
+                                        </span>
+                                    </label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="gender">
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Enter Your Gender
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {genderOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Date of Birth * -->
+                                <div class="relative">
+                                    <label class="block p lg:mb-2.5 mb-2">Date of Birth *</label>
+
+                                    <input
+                                        type="date"
+                                        placeholder="Enter Your Date of Birth"
+                                        name="Date Of Birth"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- Street Address * -->
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">Street Address *</label>
+
+                                <input
+                                    type="text"
+                                    name="address"
+                                    placeholder="Enter Your Address"
+                                    class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                    required
+                                >
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- Country * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Country *</label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="country" required>
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Select Your Country
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 pt-5 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out bg-transparent">
+                                            <ul class="dropdown-list">
+                                                {countryOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- State * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">State *</label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="state" required>
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Select Your State
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {stateOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- City * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">City *</label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="city" required>
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Selct Your City
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {cityOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pin Code * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Pin Code *</label>
+
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Your Pin Code "
+                                        name="pincode"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+

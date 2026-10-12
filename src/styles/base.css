@@ -1,0 +1,197 @@
+@layer base {
+  body {
+    @apply font-primary font-normal m-0;
+  }
+  .container {
+    @apply w-full mx-auto px-4;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-secondary m-0 text-thunder-100;
+  }
+  h1,
+  .h1 {
+    @apply 2xl:text-100 1xl:text-80 xl:text-77 lg:text-64 md:text-48 sm:text-36 text-28 2xl:leading-[110px] 1xl:leading-[100px] xl:leading-[90px] lg:leading-[74px] md:leading-[58px] sm:leading-[46px] leading-[38px];
+  }
+  h2,
+  .h2 {
+    @apply 2xl:text-58 1xl:text-52 xl:text-45 lg:text-40 md:text-32 sm:text-26 text-20 2xl:leading-[80px] 1xl:leading-[72px] xl:leading-[66px] lg:leading-[56px] md:leading-[46px] sm:leading-[38px] leading-[30px];
+  }
+  h3,
+  .h3 {
+    @apply 2xl:text-35 1xl:text-28 lg:text-23 md:text-19 text-18 2xl:leading-[45px] 1xl:leading-[42px] xl:leading-[35px] lg:leading-[36px] lt:leading-[30px] sm:leading-[28px] leading-[24px];
+  }
+  h4,
+  .h4 {
+    @apply 2xl:text-30 1xl:text-25 lt:text-21 md:text-18 text-17 2xl:leading-[47px] 1xl:leading-[27px] lg:leading-[24px] leading-[21px];
+  }
+  h5,
+  .h5 {
+    @apply 2xl:text-25 1xl:text-22 md:text-20 text-16 2xl:leading-[35px] 1xl:leading-[30px] lg:leading-[28px] leading-[26px];
+  }
+  h6,
+  .h6 {
+    @apply 2xl:text-22 1xl:text-20 text-18 2xl:leading-[35px] 1xl:leading-[30px] lg:leading-[28px] leading-[26px];
+  }
+  p,
+  .p {
+    @apply text-thunder-100 2xl:text-20 1xl:text-19 md:text-16 sm:text-15 text-14 2xl:leading-[34px] 1xl:leading-[30px] lg:leading-[28px] lt:leading-[26px] sm:leading-[24px] leading-[20px] font-primary m-0;
+  }
+  .p2 {
+    @apply text-thunder-100 2xl:text-18 md:text-15 text-14 1xl:leading-[28px] xl:leading-[25px] leading-6 m-0;
+  }
+  .page-main-title {
+    @apply 2xl:text-80 1xl:text-70 xl:text-60 lg:text-52 lt:text-40 md:text-34 text-28;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  .btn {
+    @apply 2xl:py-2.5 lt:py-2 py-1.5 2xl:px-10 1xl:px-8 lg:px-7 md:px-6 px-5 rounded-full 2xl:text-20 xl:text-17 lg:text-16 text-14 leading-normal block text-center w-max;
+  }
+  .btn-round-arrow {
+    @apply 2xl:py-[15px] 2xl:px-[13px] px-[10px] py-3 rounded-full 2xl:text-20 xl:text-18 lg:text-16 text-14 leading-normal uppercase font-medium border inline-block;
+  }
+  .btn-primary {
+    @apply border border-primary bg-primary text-white hover:bg-white focus:bg-white active:bg-white hover:text-primary active:text-primary focus:text-primary uppercase font-medium;
+  }
+  .btn-secondary-second {
+    @apply uppercase border font-medium text-primary border-bronco-100 bg-[#FBFAF9] hover:text-white focus:text-white active:text-white hover:bg-primary! active:bg-primary focus:bg-primary;
+  }
+  .btn-secondary {
+    @apply uppercase border font-medium text-primary border-primary bg-[#FBFAF9] hover:text-white focus:text-white active:text-white hover:bg-primary! active:bg-primary focus:bg-primary;
+  }
+  .btn-secondary span {
+    @apply underline decoration-1 hover:no-underline;
+  }
+  .btn-dark {
+    @apply uppercase border font-medium text-black border-thunder-100 bg-white hover:text-white focus:text-white active:text-white hover:bg-black active:bg-black focus:bg-black;
+  }
+  .btn-link {
+    @apply flex items-center justify-center 2xl:gap-3 bg-transparent gap-[10px] text-black hover:text-primary active:text-primary focus:text-primary underline underline-offset-3;
+  }
+  .btn-available {
+    @apply border border-[#008000] text-[#008000] bg-[#E0FFE0];
+  }
+  .btn-complete {
+    @apply border border-[#808080] text-[#808080] bg-[#F2F2F2];
+  }
+  .btn-cancel {
+    @apply border border-[#FF0000] text-[#FF0000] bg-[#FFB2B2];
+  }
+  .reveal-more {
+    @apply uppercase border font-medium text-primary border-primary bg-[#FBFAF9];
+  }
+  .shop-btn {
+    @apply border font-medium text-thunder-100 border-thunder-100 bg-white hover:text-white focus:text-white active:text-white hover:bg-primary! active:bg-primary focus:bg-primary transition-all ease-in-out;
+  }
+  .nav-class-arrow {
+    @apply border-white text-white! bg-transparent! hover:bg-white! focus:bg-white! active:bg-white! hover:text-black! focus:text-black! active:text-black!;
+  }
+  .slider-custom-arrow {
+    @apply static! m-0! after:hidden lt:p-3 md:p-2 p-1.5 2xl:size-12.5! lt:size-10.5! size-9! rounded-full! bg-white! hover:bg-primary! text-primary! hover:text-white! border border-primary! cursor-pointer flex items-center justify-center;
+  }
+  .testimonial-custom-arrow.swiper-button-next,
+  .testimonial-custom-arrow.swiper-button-prev {
+    @apply static! m-0! after:hidden p-3 2xl:size-12.5! size-10.5! rounded-full! border border-primary bg-primary text-white! hover:bg-white focus:bg-white active:bg-white hover:text-primary! active:text-primary! focus:text-primary! cursor-pointer flex items-center justify-center;
+  }
+  .testimonial-custom-arrow.swiper-button-disabled {
+    @apply static! m-0! after:hidden p-3 2xl:size-12.5! size-10.5! rounded-full! uppercase border text-primary! border-primary bg-white hover:text-white! focus:text-white! active:text-white! hover:bg-primary active:bg-primary focus:bg-primary cursor-pointer flex items-center justify-center;
+  }
+  .swiper-navigation-icon {
+    @apply rotate-180 w-5! h-4!;
+  }
+  .form-success-msg {
+    @apply text-green-600 flex items-center gap-2 mt-1 text-sm;
+  }
+  .newsletter .error-msg,
+  .newsletter .form-success-msg {
+    @apply absolute lt:top-12 top-10;
+  }
+  /* 1273 */
+
+  .error-msg {
+    @apply flex items-center gap-2 sm:mt-2 mt-1 text-red-600 text-sm 1xl:ml-6 xl:ml-5 ml-4.5;
+  }
+  /* ===== KEYFRAME START =========== */
+  /* Animation */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  /* ===== KEYFRAME END =========== */
+
+  .testimonial-custom-arrow.swiper-button-prev::after,
+  .testimonial-custom-arrow.swiper-button-next::after {
+    @apply hidden;
+  }
+  .shop .slider-custom-arrow.swiper-button-prev::after,
+  .shop .slider-custom-arrow.swiper-button-next::after {
+    @apply hidden;
+  }
+
+  /* Scroll container */
+  /* 1st scroll */
+  .scrollbar-custom {
+    @apply overflow-y-auto;
+  }
+
+  /* TOTAL scrollbar width (track width) */
+  .scrollbar-custom::-webkit-scrollbar {
+    @apply 1xl:w-5 sm:w-4.5 w-3.5;
+  }
+
+  /* TRACK */
+  .scrollbar-custom::-webkit-scrollbar-track {
+    @apply bg-[#f2f1f0];
+  }
+
+  /* THUMB */
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply bg-white rounded-full border-[4.5px] border-transparent bg-clip-content;
+    /* border: 4.5px solid transparent;
+    background-clip: content-box; */
+
+    /* grip lines */
+    background-image: linear-gradient(
+        to bottom,
+        #b9a9a2 0 2px,
+        transparent 2px 6px
+      ),
+      linear-gradient(to bottom, #b9a9a2 0 2px, transparent 2px 6px),
+      linear-gradient(to bottom, #b9a9a2 0 2px, transparent 2px 6px),
+      linear-gradient(to bottom, #b9a9a2 0 2px, transparent 2px 6px);
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    background-position: center 38%, center 48%, center 58%, center 68%;
+  }
+
+  /* 2nd scroll */
+  /* Scroll container */
+  .custom-scroll {
+    @apply w-full overflow-x-auto;
+  }
+
+  /* native CSS — REQUIRED */
+  .custom-scroll-2::-webkit-scrollbar {
+    @apply h-2.5;
+  }
+
+  .custom-scroll-2::-webkit-scrollbar-thumb {
+    @apply bg-white rounded-full border-2 border-primary;
+  }
+
+  .custom-scroll-2::-webkit-scrollbar-track {
+    @apply bg-primary rounded-full;
+  }
+  /* scroll end */
+
+}

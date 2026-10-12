@@ -1,0 +1,162 @@
+---
+const genders = ["Male", "Female"];
+const countries = ["India", "USA", "Canada", "Germany"];
+const states = ["Gujarat", "Haryana", "Punjab", "Uttar Pradesh", "Rajasthan"];
+const cities = ["Surat", "Pune", "Bengaluru", "Ahmedabad"];
+---
+
+<div id="account" class="schedule-panel overflow-visible! hidden">
+    <div class="w-full">
+        <div class="flex items-start justify-between sm:mb-8 mb-5 sm:gap-5 gap-2.5">
+            <div class="flex items-start justify-between">
+                <div>
+                    <h3 class="uppercase text-primary 1xl:mb-6 xl:mb-4.5 mb-3.5">My Account Details</h3>
+                    <p class="font-medium">Manage your personal information, membership, and yoga preferences in one place.</p>
+                </div>
+            </div>
+            <div class="relative inline-block">
+                <div class="2xl:size-37.5 1xl:size-34 xl:size-32 lg:size-30 md:size-28 sm:size-25 size-20 rounded-full overflow-hidden border border-primary p-1 flex items-center justify-center">
+                    <img id="profilePreview" src="/profile.webp" alt="Profile" class="w-full h-full object-cover rounded-full cursor-pointer" />
+                </div>
+                <button type="button" id="editProfileImg" class="absolute bottom-0.5 right-0.5 2xl:size-10 md:size-9 size-7.5 md:p-2 p-1.5 bg-primary text-white rounded-full flex items-center justify-center" aria-label="Edit profile picture">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 21V16.75L16.2 3.575C16.4 3.39167 16.621 3.25 16.863 3.15C17.105 3.05 17.359 3 17.625 3C17.891 3 18.1493 3.05 18.4 3.15C18.6507 3.25 18.8673 3.4 19.05 3.6L20.425 5C20.625 5.18333 20.771 5.4 20.863 5.65C20.955 5.9 21.0007 6.15 21 6.4C21 6.66667 20.9543 6.921 20.863 7.163C20.7717 7.405 20.6257 7.62567 20.425 7.825L7.25 21H3ZM17.6 7.8L19 6.4L17.6 5L16.2 6.4L17.6 7.8Z" fill="currentColor" />
+                    </svg>
+                </button>
+                <input type="file" id="profileImageInput" accept="image/*" class="hidden" />
+            </div>
+        </div>
+        <div class="sm:max-w-[80%] max-w-full w-full">
+            <div class="border-b border-primary/15 1xl:pb-5 1xl:mb-10 sm:pb-4 pb-3 lt:mb-8 md:mb-6 sm:mb-5 mb-4">
+                <div class="flex items-center justify-between w-full 2xl:mt-12.5 xl:mt-11 sm:mt-8 mt-5">
+                    <h5 class="text-primary uppercase">My Account Details</h5>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="2xl:size-6 1xl:size-5.5 size-5">
+                        <path d="M3 21V16.75L16.2 3.575C16.4 3.39167 16.621 3.25 16.863 3.15C17.105 3.05 17.359 3 17.625 3C17.891 3 18.1493 3.05 18.4 3.15C18.6507 3.25 18.8673 3.4 19.05 3.6L20.425 5C20.625 5.18333 20.771 5.4 20.863 5.65C20.955 5.9 21.0007 6.15 21 6.4C21 6.66667 20.9543 6.921 20.863 7.163C20.7717 7.405 20.6257 7.62567 20.425 7.825L7.25 21H3ZM17.6 7.8L19 6.4L17.6 5L16.2 6.4L17.6 7.8Z" fill="black" />
+                    </svg>
+                </div>
+            </div>
+            <form id="book-class-form" class="book-class-form validate-form" novalidate>
+                <div class="grid grid-cols-1 lt:grid-cols-2 2xl:gap-10 1xl:gap-8.5 xl:gap-7 lg:gap-6 gap-5">
+                    <div>
+                        <label class="block p lg:mb-2.5 mb-2">First Name *</label>
+                        <input type="text" name="first_name" placeholder="Enter Your Name" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary" required />
+                    </div>
+                    <div>
+                        <label class="block p lg:mb-2.5 mb-2">Last Name *</label>
+                        <input type="text" name="last_name" placeholder="Enter Your Name" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary" required />
+                    </div>
+                    <div>
+                        <label class="block p lg:mb-2.5 mb-2">Phone Number *</label>
+                        <input type="tel" name="phone Number" placeholder="Enter Your Phone Number" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary phone-input" maxlength="10" pattern="[0-9]{10}" required />
+                    </div>
+                    <div>
+                        <label class="block p lg:mb-2.5 mb-2">Email *</label>
+                        <input type="email" name="email" placeholder="Enter Your Email" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                    </div>
+                    <div class="relative">
+                        <label class="block p lg:mb-2.5 mb-2">Date of Birth *</label>
+                        <input type="date" placeholder="Enter Your Date of Birth" name="Date Of Birth" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                    </div>
+                    <div>
+                        <label class="block p lg:mb-2.5 mb-2">Gender <span class="text-thunder-100/50 text-base">(optional dropdown)</span></label>
+                        <div class="relative dropdown pointer-events-auto">
+                            <input type="hidden" name="gender" required />
+                            <button type="button" class="dropdown-btn border-primary/20!">
+                                <p class="dropdown-text p2 font-normal text-thunder-100/50">Enter Your Gender</p>
+                                <svg class="dropdown-arrow size-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                <ul class="dropdown-list">
+                                    {genders.map((gender) => (<li class="dropdown-item"><p>{gender}</p></li>))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="addressWrapper" class="2xl:space-y-12.5 1xl:space-y-10 space-y-8">
+                    <div class="address-block 2xl:space-y-10 1xl:space-y-8.5 xl:space-y-7 lg:space-y-6 space-y-5">
+                        <div class="flex items-center justify-between 2xl:mt-12.5 1xl:mt-10 md:mt-8 mt-6 address-header">
+                            <h5 class="text-primary uppercase address-title">Address Details (Primary Address)</h5>
+                            <button type="button" id="addAddress" class="1xl:text-34 md:text-32 text-30 leading-none font-light text-primary" aria-label="Add new address">+</button>
+                        </div>
+                        <div class="2xl:space-y-10 1xl:space-y-8.5 xl:space-y-7 lg:space-y-6 space-y-5">
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">Street Address *</label>
+                                <input type="text" name="address" placeholder="Enter Your Address" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                            </div>
+                            <div class="grid grid-cols-1 lt:grid-cols-2 2xl:gap-10 1xl:gap-8.5 xl:gap-7 lg:gap-6 gap-5">
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Country *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="country" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your Country</p>
+                                            <svg class="dropdown-arrow size-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 pt-5 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out bg-transparent">
+                                            <ul class="dropdown-list">
+                                                {countries.map((country) => (<li class="dropdown-item"><p>{country}</p></li>))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">State *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="state" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your State </p>
+                                            <svg class="dropdown-arrow size-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {states.map((state) => (<li class="dropdown-item"><p>{state}</p></li>))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 lt:grid-cols-2 2xl:gap-10 1xl:gap-8.5 xl:gap-7 lg:gap-6 gap-5">
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">City *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="city" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Selct Your City </p>
+                                            <svg class="dropdown-arrow size-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" />
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {cities.map((city) => (<li class="dropdown-item"><p>{city}</p></li>))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Pin Code *</label>
+                                    <input type="text" placeholder="Enter Your Pin Code " name="pincode" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center sm:justify-end justify-start 1xl:gap-7.5 sm:gap-5 gap-3 2xl:mt-20 lg:mt-16 sm:mt-12 mt-8">
+                    <button type="submit" class="btn btn-secondary">Save Change</button>
+                    <button type="button" class="btn btn-secondary">Delete Account</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

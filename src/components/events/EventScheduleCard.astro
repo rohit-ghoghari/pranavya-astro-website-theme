@@ -1,0 +1,75 @@
+---
+import { eventHref, type EventItem } from '../../data/eventsSchedule';
+
+interface Props {
+  event: EventItem;
+  hiddenClass?: string;
+}
+
+const { event, hiddenClass = "" } = Astro.props;
+---
+
+<div
+  class={`event-card flex sm:flex-row flex-col xl:gap-5 lt:gap-4 sm:gap-5 gap-4 items-stretch relative xl:py-5 py-4 xl:pr-5 border-y border-primary/15 group ${hiddenClass}`}
+  data-aos="fade-up"
+>
+  <div class="sm:w-[30%] w-full rounded-sm overflow-hidden relative lg:h-auto md:h-[210px] sm:h-[180px] h-full">
+    <a href={eventHref(event)}>
+      <img
+        loading="lazy"
+        src={event.image}
+        alt="video-1"
+        class="w-full h-full object-cover"
+      />
+    </a>
+  </div>
+
+  <div class="sm:w-[70%] w-full my-auto sm:py-2">
+    <a href={eventHref(event)}>
+      <h5 class="uppercase 1xl:mb-5 lg:mb-2.5 md:mb-4 sm:mb-3 mb-1.5 text-primary group-hover:text-black xl:max-w-[80%] lg:max-w-[90%] max-w-full w-full">
+        {event.title}
+      </h5>
+    </a>
+
+    <p>{event.description}</p>
+
+    <div class="flex items-center gap-4.5 justify-between 1xl:mt-11 xl:mt-8 md:mt-5.5 mt-4.5">
+      <div class="flex items-center 1xl:gap-4.5 gap-2">
+        <img
+          loading="lazy"
+          src="/calendar.svg"
+          alt=""
+          class="1xl:size-7.5 xl:size-5.5 size-4.5 object-contain"
+        />
+
+        <p class="font-medium">
+          {event.date}
+        </p>
+      </div>
+
+      <a
+        href={eventHref(event)}
+        class="btn-link uppercase bg-transparent decoration-1 p font-medium text-primary hover:text-black"
+      >
+        View now
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="15"
+          viewBox="0 0 10 10"
+          fill="none"
+          class="mt-1 1xl:w-[15px] 1xl:h-[15px] w-3 h-3"
+        >
+          <path
+            d="M0.701687 8.86162C0.701687 8.86162 6.30093 3.26231 8.63309 0.93009M8.63309 0.93009L8.86101 6.90189M8.63309 0.93009L2.66089 0.702578"
+            stroke="currentColor"
+            stroke-width="1.40518"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

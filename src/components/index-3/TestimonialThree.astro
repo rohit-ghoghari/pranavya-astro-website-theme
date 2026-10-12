@@ -1,0 +1,208 @@
+---
+const testimonials = [
+    {
+        quoteTitle: "“I found balance I didn’t know I needed.”",
+        quote:
+            "“The atmosphere at Pranavya is so grounding. After just a few weeks, I felt more centered in both body and mind. It's become a sacred part of my weekly routine.”",
+        image: "/home-3-client-1.webp",
+        name: "Jessica M.",
+        designation: "- Graphic Designer",
+        imagePosition: "right",
+    },
+    {
+        quoteTitle: "“A space that truly welcomes everyone.”",
+        quote:
+            "“As a beginner, I was nervous. But the instructors were incredibly supportive and attentive. I never felt out of place. Now I can’t imagine my week without it.”",
+        image: "/home-3-client-2.webp",
+        name: "Michael R.",
+        designation: "- School Teacher",
+        imagePosition: "left",
+    },
+    {
+        quoteTitle: "“Peaceful, powerful, transformative.”",
+        quote:
+            "“Pranavya helped me slow down and reconnect with myself. The meditation and breathwork have changed how I move through the world—calmer, lighter, stronger.”",
+        image: "/home-3-client-3.webp",
+        name: "Samantha L.",
+        designation: "- Yoga Student",
+        imagePosition: "right",
+    },
+];
+
+const starPath =
+    "M9.52387 0.639583C9.80099 -0.213301 11.0076 -0.213299 11.2847 0.639585L13.1062 6.24554C13.2301 6.62696 13.5856 6.88521 13.9866 6.88521H19.8811C20.7778 6.88521 21.1507 8.03275 20.4252 8.55986L15.6565 12.0245C15.332 12.2603 15.1963 12.6781 15.3202 13.0595L17.1417 18.6655C17.4188 19.5184 16.4426 20.2276 15.7171 19.7005L10.9484 16.2358C10.624 16.0001 10.1846 16.0001 9.86016 16.2358L5.09144 19.7005C4.36594 20.2276 3.38978 19.5184 3.66689 18.6655L5.48838 13.0595C5.61231 12.6781 5.47655 12.2603 5.15209 12.0245L0.383377 8.55986C-0.342129 8.03275 0.0307329 6.88521 0.927507 6.88521H6.82196C7.22301 6.88521 7.57845 6.62696 7.70238 6.24554L9.52387 0.639583Z";
+
+const quoteMarkPath =
+    "M57.6782 75.1364C60.1464 74.1982 63.9982 72.1372 66.7855 70.2636C70.1203 68.0219 74.7021 63.7466 76.9838 60.7473C81.0821 55.3604 83.2261 49.8813 84.4581 41.6453C85.2867 36.1071 85.3456 34.701 85.4221 18.6263C85.5033 1.53041 85.5774 2.6035 84.2228 1.249C82.9157 -0.0582659 83.689 0.000488126 67.7678 0.000486735C52.3906 0.00048539 52.9289 -0.0308866 51.6585 0.938207C51.3341 1.18557 50.8659 1.73304 50.6178 2.15467L50.1672 2.92147L50.1219 17.4871L50.0765 32.0528L50.4372 32.8912C50.8607 33.8755 52.0229 34.9724 52.9007 35.2163C53.2606 35.3161 56.2593 35.3846 60.3071 35.3851L67.1088 35.3861L67.1088 36.4356C67.1088 38.8253 66.4275 42.8808 65.5746 45.5678C64.4407 49.14 62.7107 52.0203 60.2046 54.5078C58.1601 56.5373 55.7926 58.149 52.4646 59.7774C50.031 60.968 49.6659 61.2634 48.9973 62.5839C48.8202 62.9336 48.7022 63.5568 48.6963 64.1729C48.688 65.0647 48.7991 65.4269 49.6212 67.1863C52.7495 73.8814 53.0053 74.3062 54.3121 74.9728C55.2704 75.4617 56.6464 75.5285 57.6782 75.1364ZM8.32004 75.2588C9.24506 75.088 13.5947 72.9595 15.95 71.5251C23.0955 67.1732 28.6733 61.3427 31.9372 54.8136C34.3239 50.0394 35.5062 45.2166 36.3387 36.8566C36.5601 34.6349 36.6235 31.3132 36.6833 18.7946C36.7659 1.51105 36.8407 2.6055 35.4842 1.249C34.1771 -0.0581023 34.9494 0.000483865 19.0379 0.000482474C3.5288 0.000481119 4.07243 -0.0332331 2.81124 1.0063C2.48042 1.27904 2.01523 1.89261 1.77738 2.36981L1.34508 3.23743L1.34874 17.6843C1.35241 31.8575 1.35893 32.1454 1.69242 32.8824C2.08316 33.7458 2.67921 34.4183 3.51494 34.9387C4.08562 35.2943 4.26488 35.3046 11.2741 35.3861L18.449 35.4695L18.3981 36.8048C18.2664 40.2537 17.4338 44.3583 16.2775 47.2579C15.0885 50.2393 13.6646 52.414 11.5037 54.5485C9.53717 56.491 7.52937 57.8753 4.37772 59.4609C1.35642 60.981 0.512002 61.6815 0.169999 62.9514C-0.234763 64.4545 -0.0216056 65.2118 1.9705 69.3529C3.08231 71.6639 4.06892 73.4836 4.44949 73.925C5.41624 75.0461 6.831 75.5337 8.32004 75.2588Z";
+
+const stars = [1, 2, 3, 4, 5];
+---
+
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-whitesmoke-100 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-10">
+    <div class="container">
+
+        <div class="grid items-center md:grid-cols-2 grid-cols-1 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-5 gap-4 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5">
+            <div>
+                <h3 class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5">
+                    What Our Community Says
+                </h3>
+
+                <h2 class="text-primary font-normal uppercase">
+                    Authentic Words, Lasting Impact
+                </h2>
+            </div>
+
+            <div class="max-w-[842px]">
+                <p class="text-thunder-100 max-w-[890px] 2xl:mb-10 1xl:mb-9 xl:mb-8 lg:mb-7.5 md:mb-7 sm:mb-6.5 mb-6">
+                    Every journey on the mat is unique. At Pranavya Yoga, our members share how consistent
+                    practice has helped them grow stronger, calmer, and more connected—from the inside out.
+                </p>
+
+                <a href="/testimonials/" class="btn btn-secondary">
+                    See More Testimonials
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lt:grid-cols-3 sm:gap-0 gap-5">
+
+            {testimonials.map((testimonial, index) => (
+                index === 1 ? (
+                    
+                    <div class="bg-white flex lt:items-start items-center lt:flex-col sm:flex-row flex-col-reverse lt:gap-0 gap-1">
+
+                        <div class="relative h-full lt:w-full sm:w-[260px] w-full lt:flex-auto sm:shrink-0 overflow-hidden">
+                            <div class="block overflow-hidden relative shrink-0 before:content-[''] 2xl:before:pt-[75.5%] 1xl:before:pt-[78.5%] xl:before:pt-[83%] lg:before:pt-[95.3%] sm:before:pt-[96%] before:pt-[79%] before:block w-full h-full group">
+                                <img
+                                    loading="lazy"
+                                    src={testimonial.image}
+                                    alt="testimonial"
+                                    class="w-full h-full object-cover absolute top-0 left-0"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <div class="absolute inset-0 bg-linear-to-t from-black to-transparent flex flex-col justify-end gap-[6px] 1xl:p-10 xl:p-8 lt:p-7 p-5 sm:h-full h-1/2 mt-auto">
+                                <h5 class="uppercase text-white">{testimonial.name}</h5>
+                                <p class="text-white">{testimonial.designation}</p>
+                            </div>
+                        </div>
+
+                        <div class="2xl:p-[50px] 1xl:p-[43px] xl:p-[34px] lg:p-[30px] lt:p-6 md:p-7.5 sm:p-5 p-4 flex flex-col relative">
+                            <div>
+                                <h3 class="italic 2xl:mb-7 1xl:mb-5 sm:mb-3.5 mb-2.5 font-medium text-primary font-primary capitalize">
+                                    {testimonial.quoteTitle}
+                                </h3>
+
+                                <p class="lt:mb-2 md:mb-5 mb-2.5">
+                                    {testimonial.quote}
+                                </p>
+
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-1">
+                                        {stars.map(() => (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="21"
+                                                height="20"
+                                                viewBox="0 0 21 20"
+                                                fill="none"
+                                                class="md:w-5 md:h-5 w-4.5 h-4.5"
+                                            >
+                                                <path d={starPath} fill="#FFC107"></path>
+                                            </svg>
+                                        ))}
+                                    </div>
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="86"
+                                        height="76"
+                                        viewBox="0 0 86 76"
+                                        fill="none"
+                                        class="opacity-10 2xl:w-[85px] xl:w-[75px] lg:w-[62px] md:w-12 w-10 h-full"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d={quoteMarkPath}
+                                            fill="#2D2D2D"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    
+                    <div class="bg-white flex lt:items-start items-center lt:flex-col sm:flex-row flex-col lt:gap-0 gap-1">
+
+                        <div class="2xl:p-[50px] 1xl:p-[43px] xl:p-[34px] lg:p-[30px] lt:p-6 md:p-7.5 sm:p-5 p-4 flex flex-col relative">
+                            <div>
+                                <h3 class="italic 2xl:mb-7 1xl:mb-5 sm:mb-3.5 mb-2.5 font-medium text-primary font-primary capitalize">
+                                    {testimonial.quoteTitle}
+                                </h3>
+
+                                <p class="lt:mb-2 md:mb-5 mb-2.5">
+                                    {testimonial.quote}
+                                </p>
+
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-1">
+                                        {stars.map(() => (
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="21"
+                                                height="20"
+                                                viewBox="0 0 21 20"
+                                                fill="none"
+                                                class="md:w-5 md:h-5 w-4.5 h-4.5"
+                                            >
+                                                <path d={starPath} fill="#FFC107"></path>
+                                            </svg>
+                                        ))}
+                                    </div>
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="86"
+                                        height="76"
+                                        viewBox="0 0 86 76"
+                                        fill="none"
+                                        class="opacity-10 2xl:w-[85px] xl:w-[75px] lg:w-[62px] md:w-12 w-10 h-full"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d={quoteMarkPath}
+                                            fill="#2D2D2D"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative h-full lt:w-full sm:w-[260px] w-full lt:flex-auto sm:shrink-0 overflow-hidden">
+                            <div class="block overflow-hidden relative shrink-0 before:content-[''] 2xl:before:pt-[75.5%] 1xl:before:pt-[78.5%] xl:before:pt-[83%] lg:before:pt-[95.3%] sm:before:pt-[96%] before:pt-[79%] before:block w-full h-full group">
+                                <img
+                                    loading="lazy"
+                                    src={testimonial.image}
+                                    alt="testimonial"
+                                    class="w-full h-full object-cover absolute top-0 left-0"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <div class="absolute inset-0 bg-linear-to-t from-black to-transparent flex flex-col justify-end gap-[6px] 1xl:p-10 xl:p-8 lt:p-7 p-5 sm:h-full h-1/2 mt-auto">
+                                <h5 class="uppercase text-white">{testimonial.name}</h5>
+                                <p class="text-white">{testimonial.designation}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                )
+            ))}
+
+        </div>
+    </div>
+</section>

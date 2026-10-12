@@ -1,0 +1,272 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+  iconAlt: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  image?: string;
+  imageAlt?: string;
+  services?: Service[];
+}
+
+const {
+  eyebrow = "WHY CHOOSE",
+  title = "Holistic Wellness, Designed Around You",
+  description = "At Pranavya Yoga, we offer more than just classes — we offer a space to grow, heal, and thrive. Explore our full range of services, crafted to meet every body, lifestyle, and intention.",
+  buttonText = "Explore Class Schedule",
+  buttonLink = "/schedule",
+  image = "/home-4_whyChoose.webp",
+  imageAlt = "About Image",
+
+  services = [
+    {
+      title: "Group Yoga Classes",
+      description:
+        "Flow, restore, energize — choose from a variety of yoga styles for all levels, both in-studio and online.",
+      icon: "/group-yoga.svg",
+      iconAlt: "group yoga",
+    },
+    {
+      title: "Online Membership",
+      description:
+        "Practice anytime, anywhere. Get unlimited access to live-streamed and on-demand yoga classes.",
+      icon: "/membership.svg",
+      iconAlt: "online membership",
+    },
+    {
+      title: "Group Yoga Classes",
+      description:
+        "Flow, restore, energize — choose from a variety of yoga styles for all levels, both in-studio and online.",
+      icon: "/group-yoga.svg",
+      iconAlt: "group yoga",
+    },
+    {
+      title: "Online Membership",
+      description:
+        "Practice anytime, anywhere. Get unlimited access to live-streamed and on-demand yoga classes.",
+      icon: "/membership.svg",
+      iconAlt: "online membership",
+    },
+  ],
+} = Astro.props;
+---
+
+<section
+  class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+  <div class="container">
+    <div
+      class="flex lt:flex-row flex-col 2xl:gap-20 1xl:gap-14 xl:gap-12 lg:gap-11 md:gap-9 sm:gap-7 gap-5"
+    >
+      <!-- Right: Content -->
+      <div class="lt:w-[52%] w-full">
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 1xl:mb-7 xl:mb-6 md:mb-5 sm:mb-4 mb-2.5"
+        >
+          {eyebrow}
+        </h3>
+
+        <h2 class="text-primary font-normal uppercase 1xl:mb-5 mb-3">
+          {title}
+        </h2>
+
+        <p class="text-thunder-100 max-w-[890px]">
+          {description}
+        </p>
+
+        <div class="2xl:mt-11.5 1xl:mt-10 xl:mt-8 mt-6">
+          <a href={buttonLink} class="btn btn-secondary">
+            {buttonText}
+          </a>
+        </div>
+
+        <!-- Mobile image (below md) -->
+        <div class="lt:w-[48%] w-full md:hidden block mt-7.5">
+          <div
+            class="rounded overflow-hidden relative before:content-[''] before:block 1xl:before:pt-[98%] xl:before:pt-[106%] lt:before:pt-[122%] before:pt-[82%] w-full h-full"
+          >
+            <img
+              loading="lazy"
+              src={image}
+              alt={imageAlt}
+              class="absolute top-0 left-0 w-full h-full object-cover"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div
+          class="relative 2xl:mt-[50px] 1xl:mt-11 xl:mt-9 mt-7.5 why-choose-home-4"
+        >
+          <div class="1xl:px-6 sm:px-5 sm:m-0 mb-6">
+            <div class="swiper why-choose">
+              <div class="swiper-wrapper">
+                {
+                  services.map((service) => (
+                    <div class="swiper-slide h-auto! bg-whitesmoke-100">
+                      <div class="bg-[#F7F5F4] 2xl:p-[33px] 1xl:p-[30px] p-6 rounded-sm h-full">
+                        <div class="bg-white rounded-[10px] 2xl:w-[84px] 2xl:h-[84px] 1xl:w-[80px] 1xl:h-[80px] sm:h-[65px] sm:w-[65px] w-[60px] h-[60px] 1xl:mb-10 md:mb-8 sm:mb-6 mb-4 p-2">
+                          <img
+                            loading="lazy"
+                            src={service.icon}
+                            alt={service.iconAlt}
+                            class="w-full h-full object-contain"
+                            decoding="async"
+                          />
+                        </div>
+
+                        <h5 class="uppercase text-primary 1xl:mb-5 mb-3">
+                          {service.title}
+                        </h5>
+
+                        <p>{service.description}</p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation: wrapper is click-through, only the buttons catch clicks -->
+          <div
+            class="relative sm:absolute sm:top-1/2 top-0 sm:-translate-y-1/2 sm:w-full w-[84px] flex items-center justify-between mx-auto z-10 pointer-events-none"
+          >
+            <!-- Previous -->
+            <button
+              type="button"
+              class="slider-custom-arrow why-choose-prev pointer-events-auto"
+              aria-label="Previous services"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="18"
+                viewBox="0 0 22 18"
+                fill="none"
+                class="custom-navigation-icon"
+              >
+                <path
+                  d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </button>
+
+            <!-- Next -->
+            <button
+              type="button"
+              class="slider-custom-arrow why-choose-next pointer-events-auto"
+              aria-label="Next services"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="18"
+                viewBox="0 0 22 18"
+                fill="none"
+                class="custom-navigation-icon rotate-180"
+              >
+                <path
+                  d="M20.9741 8.80684C20.9741 8.80684 6.87288 8.80675 0.999486 8.80669M0.999486 8.80669L8.23218 16.6134M0.999486 8.80669L8.23321 1"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left: Image (md and up) -->
+      <div class="lt:w-[48%] w-full md:block hidden rounded-sm overflow-hidden">
+        <div
+          class="rounded overflow-hidden relative before:content-[''] before:block 1xl:before:pt-[98%] xl:before:pt-[106%] lt:before:pt-[122%] before:pt-[82%] w-full h-full"
+        >
+          <img
+            loading="lazy"
+            src={image}
+            alt={imageAlt}
+            class="absolute top-0 left-0 w-full h-full object-cover"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .why-choose-home-4 .slider-custom-arrow.is-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .why-choose-home-4 .slider-custom-arrow.is-locked {
+    display: none;
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation } from "swiper/modules";
+
+  import "swiper/css";
+  // Removed "swiper/css/navigation": it styles .swiper-button-prev/next and
+  // was fighting with the custom arrow buttons.
+
+  const initWhyChooseSlider = () => {
+    const sliders = document.querySelectorAll<HTMLElement>(
+      ".why-choose-home-4 .swiper.why-choose",
+    );
+
+    sliders.forEach((slider) => {
+      if (slider.classList.contains("swiper-initialized")) return;
+
+      const parent = slider.closest<HTMLElement>(".why-choose-home-4");
+      if (!parent) return;
+
+      const prevButton =
+        parent.querySelector<HTMLButtonElement>(".why-choose-prev");
+      const nextButton =
+        parent.querySelector<HTMLButtonElement>(".why-choose-next");
+      if (!prevButton || !nextButton) return;
+
+      new Swiper(slider, {
+        modules: [Navigation],
+
+        slidesPerView: 1,
+        spaceBetween: 40,
+
+        navigation: {
+          prevEl: prevButton,
+          nextEl: nextButton,
+          disabledClass: "is-disabled",
+          lockClass: "is-locked",
+        },
+
+        breakpoints: {
+          0: { slidesPerView: 1, spaceBetween: 16 },
+          530: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 1, spaceBetween: 26 },
+          1024: { slidesPerView: 1, spaceBetween: 40 },
+        },
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", initWhyChooseSlider);
+  initWhyChooseSlider();
+</script>

@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import BookClassForm from "../components/bookClass/BookClassForm.astro";
+import ContactDetails from "../components/bookClass/ContactDetails.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Book a Class — Pranavya Yoga"
+  description="Whether you're new to yoga or looking to deepen your practice, our flexible class schedule is designed to fit your lifestyle. Choose the style, time, and level that suits your needs and experience the benefits of mindful movement in a welcoming space."
+  canonical="/bookClass/"
+>
+    
+  <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+    <PageHeading
+      title="Book a Class"
+      description="Whether you're new to yoga or looking to deepen your practice, our flexible class schedule is designed to fit your lifestyle. Choose the style, time, and level that suits your needs and experience the benefits of mindful movement in a welcoming space."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <BookClassForm/>
+
+     <!-- Section 2 -->
+      <ContactDetails/>
+  </main>
+</Layout>

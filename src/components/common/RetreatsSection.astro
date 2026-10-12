@@ -1,0 +1,85 @@
+---
+import { defaultRetreats, type RetreatItem } from "../../data/retreats";
+import RetreatCard from "./RetreatCard.astro";
+
+interface Props {
+  retreats?: RetreatItem[];
+  visibleCount?: number;
+}
+
+const {
+  retreats = defaultRetreats,
+  visibleCount = 4,
+} = Astro.props;
+---
+
+<section
+  class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+  data-retreat-section
+>
+  <div class="container">
+    <div
+      class="lg:gap-7.5 md:gap-6 gap-5 grid lt:grid-cols-1 sm:grid-cols-2 grid-cols-1"
+    >
+      {
+        retreats.map((retreat, index) => (
+          <RetreatCard
+            retreat={retreat}
+            index={index}
+            visibleCount={visibleCount}
+          />
+        ))
+      }
+    </div>
+
+    {
+      retreats.length > visibleCount && (
+        <button
+          type="button"
+          class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+          data-retreat-reveal
+        >
+          Reveal More
+          <img
+            loading="lazy"
+            src="/loading.svg"
+            alt="load"
+            class="hidden 1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+          />
+        </button>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  const initRetreatReveal = () => {
+    const sections = document.querySelectorAll<HTMLElement>(
+      "[data-retreat-section]",
+    );
+
+    sections.forEach((section) => {
+      const revealButton = section.querySelector<HTMLButtonElement>(
+        "[data-retreat-reveal]",
+      );
+
+      const hiddenRetreats =
+        section.querySelectorAll<HTMLElement>(".retreat-hidden");
+
+      if (!revealButton) return;
+
+      revealButton.addEventListener("click", () => {
+        hiddenRetreats.forEach((retreat) => {
+          retreat.classList.remove("hidden");
+          retreat.classList.remove("retreat-hidden");
+        });
+
+        revealButton.remove();
+      });
+    });
+  };
+
+  initRetreatReveal();
+
+  document.addEventListener("astro:page-load", initRetreatReveal);
+</script>

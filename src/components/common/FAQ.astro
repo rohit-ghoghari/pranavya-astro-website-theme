@@ -1,0 +1,257 @@
+---
+interface FAQItem {
+    question: string;
+    answer?: string;
+    content?: "text" | "list";
+    intro?: string;
+    list?: string[];
+    outro?: string;
+}
+
+interface Props {
+    faqs?: FAQItem[];
+}
+
+const { faqs = [
+    {
+        question: "What styles of yoga do you offer?",
+        answer:
+            "We offer a variety of yoga styles including Hatha, Vinyasa, Yin, Restorative, and Prenatal Yoga. Each class is designed to support different needs, from gentle stretching to energetic flows.",
+    },
+    {
+        question: "Do I need to be flexible to start yoga?",
+        answer:
+            "Not at all. Yoga is for every body and every level. Flexibility comes with practice, and our instructors provide modifications to help you feel comfortable and supported throughout the class.",
+    },
+    {
+        question: "How do I book a class?",
+        answer:
+            "You can book a class easily through our website. Simply visit the Classes or Schedule page, choose your preferred class, and complete the booking using your account.",
+    },
+    {
+        question: "Can I change or cancel my booking?",
+        answer:
+            "Yes. You can change or cancel your booking through your account dashboard. Please note that cancellations should be made within the allowed time window to avoid any charges.",
+    },
+    {
+        question: "Are your instructors certified?",
+        answer:
+            "Absolutely. All our instructors are fully certified and experienced, with training from recognized yoga institutions. They are dedicated to providing safe, effective, and mindful instruction.",
+    },
+    {
+        question: "What should I bring to class?",
+        content: "list",
+        intro: "We recommend bringing:",
+        list: [
+            "A yoga mat",
+            "Comfortable clothing",
+            "A water bottle",
+        ],
+        outro:
+            "Props like blocks and straps are available at the studio, but you’re welcome to bring your own if you prefer.",
+    },
+    {
+        question: "Can I try a class before committing to a membership?",
+        answer:
+            "Yes! We offer trial classes and drop-in options so you can experience our sessions before choosing a membership that fits your lifestyle.",
+    },
+    {
+        question: "What should I bring to class?",
+        answer:
+            "Just bring yourself, comfortable activewear, and a yoga mat. We provide a calm, welcoming space along with essential props to support your practice.",
+    },
+    {
+        question: "Do you offer virtual classes?",
+        answer:
+            "Yes, we offer live and on-demand virtual classes so you can practice yoga from the comfort of your home, anytime and anywhere.",
+    },
+    {
+        question: "How do I cancel or reschedule a booking?",
+        answer:
+            "You can cancel or reschedule your class directly from your account under My Bookings. Be sure to make changes within the specified time frame to avoid penalties.",
+    },
+] } = Astro.props;
+---
+
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+    <div class="container">
+        <h2 class="uppercase text-primary 1xl:mb-12.5 xl:mb-10 mb-7.5">FAQ's</h2>
+
+        <div class="faqs">
+
+            {faqs.map((faq, index) => {
+                const number = index + 1;
+                const numberText = number < 10 ? `o${number}` : `${number}`;
+                const isFirst = index === 0;
+
+                return (
+                    <div class={`faq-item${isFirst ? " active" : ""}`}>
+
+                        <button
+                            class="faq-question"
+                            aria-expanded={isFirst ? "true" : "false"}
+                        >
+                            <div class="flex sm:items-center items-start sm:gap-1.5 gap-1">
+
+                                <h5
+                                    class={
+                                        isFirst
+                                            ? "uppercase transition-colors duration-300 text-primary"
+                                            : "uppercase text-thunder-100 transition-colors duration-300"
+                                    }
+                                >
+                                    {numberText}.
+                                </h5>
+
+                                <h5
+                                    class={
+                                        isFirst
+                                            ? "uppercase transition-colors duration-300 text-primary"
+                                            : "uppercase text-thunder-100 transition-colors duration-300"
+                                    }
+                                >
+                                    {faq.question}
+                                </h5>
+
+                            </div>
+
+                            <span class="faq-icon">
+                                {isFirst ? "−" : "+"}
+                            </span>
+                        </button>
+
+
+                        {faq.content === "list" ? (
+
+                            <div
+                                class="faq-answer hidden"
+                                style={isFirst ? "display: block;" : undefined}
+                            >
+                                <div>
+
+                                    {faq.intro && (
+                                        <p class="1xl:mb-4 xl:mb-3 mb-2.5">
+                                            {faq.intro}
+                                        </p>
+                                    )}
+
+                                    {faq.list && (
+                                        <ul class="1xl:mb-4 xl:mb-3 mb-2.5 pl-4 lt:ml-5 ml-3 1xl:space-y-2.5 xl:space-y-2 sm:space-y-1.5 space-y-1 font-medium p list-disc">
+                                            {faq.list.map((item) => (
+                                                <li>{item}</li>
+                                            ))}
+                                        </ul>
+                                    )}
+
+                                    {faq.outro && (
+                                        <p>
+                                            {faq.outro}
+                                        </p>
+                                    )}
+
+                                </div>
+                            </div>
+
+                        ) : (
+
+                            <div
+                                class="faq-answer hidden"
+                                style={isFirst ? "display: block;" : undefined}
+                            >
+                                <p class="text-black">
+                                    {faq.answer}
+                                </p>
+                            </div>
+
+                        )}
+
+                    </div>
+                );
+            })}
+
+        </div>
+    </div>
+</section>
+
+
+<script>
+    const initFAQAccordion = () => {
+        const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+        if (!faqItems.length) return;
+
+        faqItems.forEach((item) => {
+            const question = item.querySelector<HTMLButtonElement>(".faq-question");
+            const answer = item.querySelector<HTMLElement>(".faq-answer");
+            const icon = item.querySelector<HTMLElement>(".faq-icon");
+
+            if (!question || !answer || !icon) return;
+
+            // Prevent duplicate event listeners
+            if (question.dataset.faqInitialized === "true") return;
+
+            question.dataset.faqInitialized = "true";
+
+            question.addEventListener("click", () => {
+                const isActive = item.classList.contains("active");
+
+                // Close every FAQ
+                faqItems.forEach((faqItem) => {
+                    const faqQuestion =
+                        faqItem.querySelector<HTMLButtonElement>(".faq-question");
+
+                    const faqAnswer =
+                        faqItem.querySelector<HTMLElement>(".faq-answer");
+
+                    const faqIcon =
+                        faqItem.querySelector<HTMLElement>(".faq-icon");
+
+                    const headings =
+                        faqItem.querySelectorAll<HTMLHeadingElement>("h5");
+
+                    faqItem.classList.remove("active");
+
+                    faqQuestion?.setAttribute("aria-expanded", "false");
+
+                    if (faqAnswer) {
+                        faqAnswer.style.display = "none";
+                    }
+
+                    if (faqIcon) {
+                        faqIcon.textContent = "+";
+                    }
+
+                    headings.forEach((heading) => {
+                        heading.classList.remove("text-primary");
+                        heading.classList.add("text-thunder-100");
+                    });
+                });
+
+                // If the clicked item wasn't already open,
+                // open it.
+                if (!isActive) {
+                    item.classList.add("active");
+
+                    question.setAttribute("aria-expanded", "true");
+
+                    answer.style.display = "block";
+
+                    icon.textContent = "−";
+
+                    const headings = item.querySelectorAll<HTMLHeadingElement>("h5");
+
+                    headings.forEach((heading) => {
+                        heading.classList.remove("text-thunder-100");
+                        heading.classList.add("text-primary");
+                    });
+                }
+            });
+        });
+    };
+
+    // Normal page load
+    initFAQAccordion();
+
+    // Astro client-side navigation
+    document.addEventListener("astro:page-load", initFAQAccordion);
+</script>

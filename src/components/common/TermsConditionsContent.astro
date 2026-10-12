@@ -1,0 +1,71 @@
+---
+import type { ContentBlock } from "../../data/termsConditions";
+import { defaultTermsContent } from "../../data/termsConditions";
+
+interface Props {
+    effectiveDate?: string;
+    lastUpdated?: string;
+    content?: ContentBlock[];
+}
+
+const {
+    effectiveDate = "[Insert Date]",
+    lastUpdated = "[Insert Date]",
+    content = defaultTermsContent,
+} = Astro.props;
+---
+
+<section class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+        <div class="cms-content">
+
+            <h5 class="pb-0!">
+                Effective Date: {effectiveDate}
+            </h5>
+
+            <h5>
+                Last Updated: {lastUpdated}
+            </h5>
+
+            {
+                content.map((block) => {
+                    if (block.type === "heading") {
+                        return (
+                            <h3>
+                                {block.content}
+                            </h3>
+                        );
+                    }
+
+                    if (block.type === "list") {
+                        return (
+                            <ul>
+                                {block.items?.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        );
+                    }
+
+                    return (
+                        <p class={block.class}>
+                            {block.content}
+
+                            {block.link && (
+                                <>
+                                    <a
+                                        href={block.link.href}
+                                        target={block.link.target}
+                                    >
+                                        {block.link.text}
+                                    </a>
+                                </>
+                            )}
+                        </p>
+                    );
+                })
+            }
+
+        </div>
+    </div>
+</section>

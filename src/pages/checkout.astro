@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CheckoutSummary from "../components/checkout/CheckoutSummary.astro";
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="Secure Checkout — Pranavya Yoga"
+    description="Complete your order securely for yoga gear, props, and wellness essentials at Pranavya Yoga."
+    canonical="/checkout/"
+>
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+        <!-- ====== Start Page Heading ====== -->
+        <section class="relative 1xl:mt-20 xl:mt-17 lg:mt-14 lt:mt-12 sm:mt-9 mt-6 1xl:mb-11 xl:mb-8 sm:mb-7 mb-6">
+            <div class="container">
+                <h1 class="h3 text-primary uppercase">Customer Information</h1>
+            </div>
+        </section>
+        <!-- ====== End Page Heading ====== -->
+        <!-- ====== Start Checkout ====== -->
+        <section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+            <div class="container">
+                <div class="flex items-start lt:flex-row flex-col 2xl:gap-20 1xl:gap-15 xl:gap-12 lt:gap-6 md:gap-10 sm:gap-8 gap-5">
+                    <div class="1xl:w-[73%] lt:w-[70%] w-full 2xl:space-y-12.5 1xl:space-y-11 md:space-y-7 space-y-4">
+                        <div class="bill-detail 1xl:space-y-7.5 xl:space-y-6 space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">First Name *</label>
+                                    <input type="text" name="first_name" placeholder="Enter Your First Name" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary" required />
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Last Name *</label>
+                                    <input type="text" name="last_name" placeholder="Enter Your Last Name" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary" required />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Phone Number *</label>
+                                    <input type="tel" name="phone" placeholder="Enter Your Phone Number" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary phone-input" maxlength="10" pattern="[0-9]{10}" required />
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Email *</label>
+                                    <input type="email" name="email" placeholder="Enter Your Email" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block p md:mb-2.5 mb-2">Street Address *</label>
+                                <input type="text" name="address" placeholder="Enter Your Address" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Country *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="country" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your Country</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 pt-5 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out bg-transparent">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>India</p></li>
+                                                <li class="dropdown-item"><p>USA</p></li>
+                                                <li class="dropdown-item"><p>Canada</p></li>
+                                                <li class="dropdown-item"><p>Germany</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">State *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="state" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your State</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>Gujarat</p></li>
+                                                <li class="dropdown-item"><p>Haryana</p></li>
+                                                <li class="dropdown-item"><p>Punjab</p></li>
+                                                <li class="dropdown-item"><p>Uttar Pradesh</p></li>
+                                                <li class="dropdown-item"><p>Rajasthan</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">City *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="city" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Selct Your City</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>Surat</p></li>
+                                                <li class="dropdown-item"><p>Pune</p></li>
+                                                <li class="dropdown-item"><p>Bengaluru</p></li>
+                                                <li class="dropdown-item"><p>Ahmedabad</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Pin Code *</label>
+                                    <input type="text" placeholder="Enter Your Pin Code " name="pincode" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <input type="checkbox" id="different-address" name="different-address" class="accent-primary cursor-pointer 1xl:size-7 xl:size-6.5 lg:size-6 size-5 shrink-0" />
+                            <label for="different-address" class="p2 cursor-pointer"> Billing different address shipping</label>
+                        </div>
+                        <div class="shipping-detail overflow-visible 1xl:space-y-7.5 xl:space-y-6 space-y-5 hidden">
+                            <div>
+                                <label class="block p md:mb-2.5 mb-2">Street Address *</label>
+                                <input type="text" name="address" placeholder="Enter Your Address" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Country *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="country" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your Country</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 pt-5 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out bg-transparent">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>India</p></li>
+                                                <li class="dropdown-item"><p>USA</p></li>
+                                                <li class="dropdown-item"><p>Canada</p></li>
+                                                <li class="dropdown-item"><p>Germany</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">State *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="state" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Select Your State</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>Gujarat</p></li>
+                                                <li class="dropdown-item"><p>Haryana</p></li>
+                                                <li class="dropdown-item"><p>Punjab</p></li>
+                                                <li class="dropdown-item"><p>Uttar Pradesh</p></li>
+                                                <li class="dropdown-item"><p>Rajasthan</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 1xl:gap-6 gap-4">
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">City *</label>
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="city" required />
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">Selct Your City</p>
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5" /></svg>
+                                        </button>
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                <li class="dropdown-item"><p>Surat</p></li>
+                                                <li class="dropdown-item"><p>Pune</p></li>
+                                                <li class="dropdown-item"><p>Bengaluru</p></li>
+                                                <li class="dropdown-item"><p>Ahmedabad</p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block p md:mb-2.5 mb-2">Pin Code *</label>
+                                    <input type="text" placeholder="Enter Your Pin Code " name="pincode" class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <CheckoutSummary />
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<script src="../components/checkout/checkoutClient.ts"></script>

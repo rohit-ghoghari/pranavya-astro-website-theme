@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AboutIntro from "../components/about/AboutIntro.astro";
+import CoreValues from "../components/about/CoreValues.astro";
+import BusinessModel from "../components/about/BusinessModel.astro";
+import InstructorsSection from "../components/about/InstructorsSection.astro";
+import JourneySection from "../components/about/JourneySection.astro";
+import InstagramSection from "../components/index/InstagramSection.astro";
+import PageHeading from "../components/common/PageHeading.astro";
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="About Us — Pranavya Yoga"
+    description="Experience yoga that nurtures your body, calms your mind, and uplifts your spirit. Our mission is to make authentic, accessible yoga available to everyone."
+    canonical="/about/"
+>
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+
+        <PageHeading
+        title="About Us"
+        description="Experience yoga that nurtures your body, calms your mind, and uplifts your spirit. Our mission is to make authentic, accessible yoga available to everyone."
+        backgroundClass=""
+        descriptionClass="1xl:max-w-4/5 xl:max-w-[85%] max-w-full"
+        />
+
+        <!-- Section 1  -->
+         <AboutIntro/>
+
+        <!-- Section 2 -->
+        <CoreValues/>
+
+        <!-- Section 3 -->
+        <BusinessModel/>
+
+        <!-- Section 4 -->
+        <InstructorsSection/>
+
+        <!-- Section 5 -->
+        <JourneySection/>
+
+        <!-- Section 6 -->
+         <InstagramSection/>
+    </main>
+</Layout>

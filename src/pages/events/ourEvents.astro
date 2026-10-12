@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageHeading from "../../components/common/PageHeading.astro"
+import UpcomingEvents from "../../components/events/UpcomingEvents.astro"
+import PasteEvents from "../../components/events/PasteEvents.astro"
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Upcoming Workshops & Events — Pranavya Yoga"
+  description="Join upcoming wellness workshops, sound bath meditations, guest intensives, and community gatherings hosted by Pranavya Yoga."
+  canonical="/events/ourEvents/"
+>
+
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Our Events"
+      description="Join us for a special Hatha Yoga session crafted to support your personal journey wherever you are. Rooted in mindfulness and breath, this practice is ideal for grounding the body, calming the mind, and strengthening your inner foundation."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <UpcomingEvents />
+
+    <PasteEvents />
+</main>
+</Layout>

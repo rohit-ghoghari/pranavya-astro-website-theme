@@ -1,0 +1,32 @@
+---
+interface Props {
+    billing: string[][];
+    shipping: string[][];
+}
+
+const { billing, shipping } = Astro.props;
+
+const addresses = [
+    { title: "BILLING ADDRESS", lines: billing },
+    { title: "SHIPPING ADDRESS", lines: shipping },
+];
+---
+
+<div class="border border-primary/20 grid md:grid-cols-2 grid-cols-1 md:divide-x divide-y divide-primary/20 overflow-hidden">
+    {addresses.map((address) => (
+        <div class="divide-y divide-primary/20">
+            <h3 class="text-primary uppercase 1xl:py-6 1xl:px-7.5 lg:py-4 lg:px-6 sm:py-3.5 py-3 sm:px-4.5 px-3.5">
+                {address.title}
+            </h3>
+
+            <div class="bg-whitesmoke-100 1xl:p-7.5 lg:p-6 sm:p-4.5 p-4 md:h-full">
+                {address.lines.map(([label, value]) => (
+                    <p class="text-black">
+                        <span class="font-medium">{label}: </span>
+                        {value}
+                    </p>
+                ))}
+            </div>
+        </div>
+    ))}
+</div>

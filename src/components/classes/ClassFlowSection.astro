@@ -1,0 +1,66 @@
+---
+interface Props {
+    mainImage: string;
+    mainImageAlt?: string;
+    expectTitle: string;
+    expectSubtitle: string;
+    expectDescription: string;
+    classFlowHeading: string;
+    classFlowItems: Array<{ title: string; description: string }>;
+}
+
+const {
+    mainImage,
+    mainImageAlt = "Yoga Class",
+    expectTitle,
+    expectSubtitle,
+    expectDescription,
+    classFlowHeading,
+    classFlowItems,
+} = Astro.props;
+---
+
+<div
+    class="rounded-sm block overflow-hidden relative shrink-0 before:content-[''] 2xl:before:pt-[57%] before:pt-[54%] before:block w-full h-full">
+    <img loading="lazy" src={mainImage} alt={mainImageAlt}
+        class="w-full h-full object-cover absolute top-0 left-0 right-0 bottom-0" />
+</div>
+<div class="">
+    <h3 class="text-thunder-100 font-primary italic font-medium 1xl:mb-[25px] mb-3">
+        {expectTitle}
+    </h3>
+    <h3 class="text-primary font-normal uppercase 1xl:mb-[25px] mb-3">
+        {expectSubtitle}
+    </h3>
+    <p>
+        {expectDescription}
+    </p>
+</div>
+
+<div class="">
+    <div>
+        <h3 class="text-primary font-normal uppercase 1xl:mb-6 xl:mb-5 lg:mb-4 mb-3">
+            {classFlowHeading}
+        </h3>
+        <div>
+            {classFlowItems.map((item: any) => (
+                <div class="flex items-start flex-col 2xl:mb-10 1xl:mb-9 lg:mb-7 sm:mb-5.5 mb-4"
+                    data-aos="fade-up">
+                    <div class="flex items-center sm:gap-2.5 gap-2 md:mb-3 mb-2">
+                        <span
+                            class="shrink-0 whitespace-nowrap 1xl:w-7.5 xl:w-7 lg:w-6 sm:w-5 w-4 h-full">
+                            <img loading="lazy" decoding="async" src="/bullets-point.svg"
+                                alt="Bullets Point" />
+                        </span>
+                        <h5 class="uppercase">{item.title}</h5>
+                    </div>
+                    <div class="xl:pl-10 lg:pl-9 sm:pl-7.5 pl-6.5">
+                        <p>
+                            {item.description}
+                        </p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</div>

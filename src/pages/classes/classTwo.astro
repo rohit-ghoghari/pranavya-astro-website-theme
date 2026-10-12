@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeading from "../../components/common/PageHeading.astro";
+import TestimonialsSection from "../../components/classOne/TestimonialsSection.astro";
+import ClassListing from "../../components/classTwo/ClassListing.astro";
+
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Our Studio Yoga Classes — Pranavya Yoga"
+  description="Browse mindful yoga sessions, beginner workshops, and private coaching offered at Pranavya Yoga studio."
+  canonical="/classes/classTwo/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Classes for Every Level"
+      description="From gentle stretches to dynamic flows, our diverse classes are designed to match your needs. Find your pace, your practice, and your peace-on your terms."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <ClassListing />
+
+    <TestimonialsSection/>
+  </main>
+</Layout>

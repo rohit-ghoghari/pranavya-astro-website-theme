@@ -1,0 +1,207 @@
+---
+import type { DropdownOption } from '../../data/bookClass';
+import { createDropdownValue } from '../../data/bookClass';
+
+interface Props {
+    classOptions: DropdownOption[];
+    trainerOptions: DropdownOption[];
+    timeSlotOptions: DropdownOption[];
+    experienceOptions: DropdownOption[];
+    planOptions?: DropdownOption[];
+}
+
+const { classOptions, trainerOptions, timeSlotOptions, experienceOptions } = Astro.props;
+---
+                    <!-- Class Selection -->
+                    <div>
+                        <h3 class="uppercase text-primary mb-5 1xl:pb-7.5 lg:pb-5 pb-3 border-b border-whitesmoke-100">
+                            CLASS SELECTION
+                        </h3>
+
+                        <div class="1xl:space-y-10.5 lt:space-y-7 sm:space-y-5 space-y-6">
+
+                            <!-- Select Class Type* -->
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">Select Class Type *</label>
+
+                                <div class="relative dropdown pointer-events-auto">
+                                    <input type="hidden" name="class" required>
+
+                                    <!-- Button -->
+                                    <button type="button" class="dropdown-btn border-primary/20!">
+                                        <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                            Select Class Type
+                                        </p>
+
+                                        <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Dropdown Menu -->
+                                    <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                        <ul class="dropdown-list">
+                                            {classOptions.map((option) => (
+                                                <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                    <p>{option.label}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- Preferred Trainer * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Preferred Trainer *</label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="trainer" required>
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Choose Trainer
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {trainerOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Select Date * -->
+                                <div class="relative">
+                                    <label class="block p lg:mb-2.5 mb-2">Select Date *</label>
+
+                                    <input
+                                        type="date"
+                                        name="class_date"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                                <!-- Time Slot * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Time Slot *</label>
+
+                                    <div class="relative dropdown pointer-events-auto">
+                                        <input type="hidden" name="time slot" required>
+
+                                        <!-- Button -->
+                                        <button type="button" class="dropdown-btn border-primary/20!">
+                                            <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                                Select Time Slot
+                                            </p>
+
+                                            <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                            <ul class="dropdown-list">
+                                                {timeSlotOptions.map((option) => (
+                                                    <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                        <p>{option.label}</p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Class Intensity * -->
+                                <div>
+                                    <label class="block p lg:mb-2.5 mb-2">Class Intensity *</label>
+
+                                    <input
+                                        type="text"
+                                        name="intensity"
+                                        placeholder="Class Intensity"
+                                        class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Additional Information -->
+                    <div>
+                        <h3 class="uppercase text-primary mb-5 1xl:pb-7.5 lg:pb-5 pb-3 border-b border-whitesmoke-100">
+                            ADDITIONAL INFORMATION
+                        </h3>
+
+                        <div class="1xl:space-y-10.5 lt:space-y-7 sm:space-y-5 space-y-6">
+
+                            <!-- Experience Level * -->
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">Experience Level *</label>
+
+                                <div class="relative dropdown pointer-events-auto">
+                                    <input type="hidden" name="experience" required>
+
+                                    <!-- Button -->
+                                    <button type="button" class="dropdown-btn border-primary/20!">
+                                        <p class="dropdown-text p2 font-normal text-thunder-100/50">
+                                            Select Level
+                                        </p>
+
+                                        <svg class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5 5-5"></path>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Dropdown Menu -->
+                                    <div class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out">
+                                        <ul class="dropdown-list">
+                                            {experienceOptions.map((option) => (
+                                                <li class="dropdown-item" data-value={createDropdownValue(option)}>
+                                                    <p>{option.label}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Special Requirements or Notes * -->
+                            <div>
+                                <label class="block p lg:mb-2.5 mb-2">
+                                    Special Requirements or Notes
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="notes"
+                                    placeholder="Any special requirements or notes"
+                                    class="w-full type-filed p2 placeholder:text-thunder-100/35 bg-white border-primary/20! focus:border-primary active:border-primary"
+                                        required
+                                >
+                            </div>
+
+                        </div>
+                    </div>
+

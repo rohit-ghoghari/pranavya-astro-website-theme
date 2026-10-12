@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import RetreatDetailLayout from "../../components/retreats/RetreatDetailLayout.astro";
+
+export async function getStaticPaths() {
+    const retreats = await getCollection("retreats");
+
+    return retreats.map((retreat) => ({
+        params: {
+            slug: retreat.data.slug,
+        },
+        props: {
+            retreat,
+        },
+    }));
+}
+
+const { retreat } = Astro.props;
+const { data } = retreat;
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title={data.title.includes("Pranavya Yoga") ? data.title : `${data.title} — Pranavya Yoga`}
+    description={data.metaDescription}
+    canonical={`/retreat/${data.slug}/`}
+    image={data.image.src}
+>
+    <main
+        class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+    >
+        <RetreatDetailLayout data={data} />
+    </main>
+</Layout>

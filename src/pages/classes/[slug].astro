@@ -1,0 +1,37 @@
+---
+// Dynamic route for class detail pages
+// Loads markdown content and passes data to ClassDetailLayout
+
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ClassDetailLayout from "../../components/classes/ClassDetailLayout.astro";
+
+// Generate static paths for all classes
+export async function getStaticPaths() {
+    const classEntries = await getCollection("classes");
+    
+    return classEntries.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
+}
+
+// Get the current entry from props
+const { entry } = Astro.props;
+const { data } = entry;
+
+// Use title from frontmatter for SEO
+const pageTitle = data.title || "Class Details — Pranavya Yoga";
+const metaDescription = data.metaDescription || data.pageDescription || "";
+---
+
+<Layout 
+    headerVariant="inner" 
+    footerVariant="inner" 
+    title={pageTitle.includes("Pranavya Yoga") ? pageTitle : `${pageTitle} — Pranavya Yoga`}
+    description={metaDescription}
+    canonical={`/classes/${entry.id}/`}
+    image={data.mainImage}
+>
+    <ClassDetailLayout data={data} />
+</Layout>

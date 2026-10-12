@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Reference
+Sitemap: https://demo.pranavyayoga.com/sitemap.xml

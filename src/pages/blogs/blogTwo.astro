@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeading from "../../components/common/PageHeading.astro";
+import BlogStoriesGrid from "../../components/blogs/BlogStoriesGrid.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Wellness Stories & Practices — Pranavya Yoga"
+  description="Discover uplifting yoga stories, mindful movement practices, and mental wellness guides from our community."
+  canonical="/blogs/blogTwo/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Blogs for Every Reader"
+      description="From simple mindfulness tips to in-depth yoga philosophy, our blog is designed to meet you where you are. Find your inspiration, your knowledge, and your balance—one post at a time."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <BlogStoriesGrid/>
+  </main>
+</Layout>

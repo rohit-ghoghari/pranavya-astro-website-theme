@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import EmptyCartSection from "../components/cart/EmptyCartSection.astro";
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="Your Cart is Empty — Pranavya Yoga"
+    description="Your shopping cart is currently empty. Explore our yoga catalog and wellness gear."
+    canonical="/emptyCart/"
+>
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+        <EmptyCartSection shopHref="/shop" />
+    </main>
+</Layout>

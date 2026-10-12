@@ -1,0 +1,150 @@
+---
+// Comments and Reply Form Section for ClassDetailLayout
+---
+
+<!-- ====== Start Comments Section ====== -->
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+    <div class="container">
+        <h5 class="uppercase text-primary mb-6">Comments</h5>
+        <div class="sm:space-y-7.5 space-y-6">
+            <!-- Static Comment 1 -->
+            <div data-comment-id="static-1">
+                <div class="flex items-center sm:gap-3.5 gap-2.5 lg:mb-5 mb-4">
+                    <div
+                        class="1xl:size-15 xl:size-14 sm:size-13.5 size-10 rounded-full overflow-hidden shrink-0">
+                        <img loading="lazy" src="/client-1.webp" alt="client" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                        <p class="font-medium">‍Mily R.</p>
+                        <p class="text-thunder-100/50 text-16">July 25, 2025 at 8:42 AM</p>
+                    </div>
+                </div>
+                <div class="1xl:pl-18.5 lg:pl-18 sm:pl-17 pl-0">
+                    <div
+                        class="bg-whitesmoke-100 border-l-3 border-primary 1xl:p-8.5 xl:p-7.5 lg:p-6 sm:p-5.5 p-4">
+                        <p>
+                            This evening flow routine has completely changed my sleep quality. I now look
+                            forward to this calming practice every night. Thank you for sharing this!
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center lg:gap-8 sm:gap-6 gap-3 xl:mt-6 lg:mt-4.5 mt-3.5 1xl:pl-6 sm:pl-5 pl-0">
+                        <button class="like-btn flex items-center xl:gap-2.5 sm:gap-2 gap-1 cursor-pointer transition-colors hover:text-primary" data-comment-id="static-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                class="like-icon text-[#575757] lg:size-6 size-5 object-contain transition-colors">
+                                <path fill="currentColor"
+                                    d="M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138S16.5.825 12 5.501C7.5.825 2 4.274 2 9.137" />
+                            </svg>
+                            <p class="p2 text-thunder-100/80"><span class="like-text">Like</span> <span class="like-count"></span></p>
+                        </button>
+                        <button class="reply-btn flex items-center xl:gap-2.5 sm:gap-2 gap-1 cursor-pointer transition-colors hover:text-primary" data-comment-id="static-1" data-reply-to="Mily R.">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="text-[#575757] lg:size-7 size-6 object-contain">
+                                <path d="M14 9V5L21 12L14 19V14.9C9 14.9 5.5 16.5 3 20C4 15 7 10 14 9Z"
+                                    fill="currentColor" />
+                            </svg>
+                            <p class="p2 text-thunder-100/80">Reply</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Replies container for static-1 -->
+                <div id="replies-static-1" class="mt-6"></div>
+            </div>
+
+            <!-- Static Comment 2 -->
+            <div data-comment-id="static-2">
+                <div class="flex items-center sm:gap-3.5 gap-2.5 lg:mb-5 mb-4">
+                    <div
+                        class="1xl:size-15 xl:size-14 sm:size-13.5 size-10 rounded-full overflow-hidden shrink-0">
+                        <img loading="lazy" src="/client-2.webp" alt="client" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                        <p class="font-medium">‍James K.</p>
+                        <p class="text-thunder-100/50 text-16">July 27, 2025 at 3:15 PM</p>
+                    </div>
+                </div>
+                <div class="1xl:pl-18.5 lg:pl-18 sm:pl-17 pl-0">
+                    <div
+                        class="bg-whitesmoke-100 border-l-3 border-primary 1xl:p-8.5 xl:p-7.5 lg:p-6 sm:p-5.5 p-4">
+                        <p>
+                            Great tips! I especially liked the focus on breathwork before bedtime. Helped me
+                            slow down after a long day.
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center lg:gap-8 sm:gap-6 gap-3 xl:mt-6 lg:mt-4.5 mt-3.5 1xl:pl-6 sm:pl-5 pl-0">
+                        <button class="like-btn flex items-center xl:gap-2.5 sm:gap-2 gap-1 cursor-pointer transition-colors hover:text-primary" data-comment-id="static-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                class="like-icon text-[#575757] lg:size-6 size-5 object-contain transition-colors">
+                                <path fill="currentColor"
+                                    d="M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138S16.5.825 12 5.501C7.5.825 2 4.274 2 9.137" />
+                            </svg>
+                            <p class="p2 text-thunder-100/80"><span class="like-text">Like</span> <span class="like-count"></span></p>
+                        </button>
+                        <button class="reply-btn flex items-center xl:gap-2.5 sm:gap-2 gap-1 cursor-pointer transition-colors hover:text-primary" data-comment-id="static-2" data-reply-to="James K.">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="text-[#575757] lg:size-7 size-6 object-contain">
+                                <path d="M14 9V5L21 12L14 19V14.9C9 14.9 5.5 16.5 3 20C4 15 7 10 14 9Z"
+                                    fill="currentColor" />
+                            </svg>
+                            <p class="p2 text-thunder-100/80">Reply</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Replies container for static-2 -->
+                <div id="replies-static-2" class="mt-6"></div>
+            </div>
+
+            <!-- Dynamic comments will be rendered here -->
+            <div id="dynamic-comments-container"></div>
+        </div>
+    </div>
+</section>
+<!-- ====== End Comments Section ====== -->
+
+<!-- ====== Start Reply Form Section ====== -->
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+    <div class="container border-t border-primary/30 2xl:pt-12.5 1xl:pt-11 xl:pt-9 lg:pt-7 sm:pt-6 pt-4">
+        <h5 class="uppercase text-primary lg:mb-6 sm:mb-5 mb-4">Leave a Comment</h5>
+        <form id="comment-form" class="validate-form" novalidate>
+            <input type="hidden" id="parent-comment-id" value="">
+            <input type="hidden" id="reply-to-name" value="">
+            
+            <div class="validate-form grid sm:grid-cols-2 grid-cols-1 1xl:gap-7.5 md:gap-6 gap-4.5">
+                <!-- Name -->
+                <div class="flex flex-col items-start col-span-1">
+                    <label class="p xl:mb-2.5 mb-1.5">Name *</label>
+                    <input type="text" name="name" id="comment-name" placeholder="Enter Your Name" required
+                        class="p placeholder:text-thunder-100/35 text-thunder-100 w-full rounded-full border border-primary/20 md:px-6 px-4 lg:py-3 md:py-2.5 py-2 outline-none focus:border-primary bg-white" />
+                </div>
+                <div class="flex flex-col items-start col-span-1">
+                    <label class="p xl:mb-2.5 mb-1.5">Email *</label>
+                    <input type="email" name="email" id="comment-email" placeholder="Enter Your Email" required
+                        class="p placeholder:text-thunder-100/35 text-thunder-100 w-full rounded-full border border-primary/20 md:px-6 px-4 lg:py-3 md:py-2.5 py-2 outline-none focus:border-primary bg-white" />
+                </div>
+                <div class="flex flex-col items-start sm:col-span-2 col-span-1">
+                    <label class="p xl:mb-2.5 mb-1.5">
+                        <span id="comment-label">Comment *</span>
+                        <span id="reply-indicator" class="hidden text-primary font-medium"></span>
+                    </label>
+                    <textarea name="comment" id="comment-text" placeholder="Write your comment..." rows="4"
+                        class="p placeholder:text-thunder-100/35 text-thunder-100 w-full rounded-2xl border border-primary/20 md:px-6 px-4 lg:py-3 py-2 outline-none focus:border-primary bg-white resize-none"
+                        required></textarea>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 2xl:mt-8 1xl:mt-7 xl:mt-6 lg:mt-5 sm:mt-4 mt-3">
+                <button type="submit" class="w-fit btn btn-secondary">
+                    <span id="submit-btn-text">Post Comment</span>
+                </button>
+                <button type="button" id="cancel-reply-btn" class="hidden w-fit btn bg-transparent border border-primary text-primary hover:bg-primary hover:text-white transition-all">
+                    Cancel Reply
+                </button>
+            </div>
+            <p id="form-success-msg" class="hidden text-green-600 mt-4" aria-live="polite"></p>
+            <p id="form-error-msg" class="hidden text-red-600 mt-4" aria-live="polite"></p>
+        </form>
+    </div>
+</section>
+<!-- ====== End Reply Form Section ====== -->

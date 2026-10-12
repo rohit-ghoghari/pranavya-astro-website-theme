@@ -1,0 +1,121 @@
+---
+interface Props {
+  image?: string;
+  imageAlt?: string;
+  eyebrow?: string;
+  title?: string;
+  paragraphs?: string[];
+  highlightIcon?: string;
+  highlightIconAlt?: string;
+  highlightTitle?: string;
+  highlightText?: string;
+}
+
+const {
+  image = "/about_model.webp",
+  imageAlt = "Yoga",
+
+  eyebrow = "A Purpose-Driven Business Model",
+
+  title = "Supporting Free Yoga for All",
+
+  paragraphs = [
+    "Our business model blends sustainability with social impact. Your monthly or yearly membership supports our ability to stream hundreds of free classes to those who can't afford a subscription. We are grateful for every member who helps keep this mission alive.",
+    "We’re independent by choice—run by our founding teachers and a small, dedicated team—so we can stay true to our values and serve our community without outside pressure or investor demands.",
+  ],
+
+  highlightIcon = "/leaf.svg",
+  highlightIconAlt = "leaf",
+
+  highlightTitle = "Conscious Choices, Global Impact",
+
+  highlightText =
+    "We support only locally-owned, eco-conscious businesses with transparent supply chains and sustainable practices. Whether it's the products we recommend or the retreats we host, we choose partners who care about the planet and local communities as much as we do.",
+} = Astro.props;
+---
+
+<section
+  class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+  <div class="container">
+    <div
+      class="flex justify-between md:flex-row flex-col 2xl:gap-13 1xl:gap-11.5 xl:gap-10 lt:gap-8 md:gap-7 sm:gap-6 gap-5 items-stretch"
+    >
+      <!-- Left: Image -->
+      <div class="relative w-full md:max-w-[48.3%]">
+        <div
+          class="overflow-hidden relative before:block before:content-[''] xl:before:pt-[65%] lt:before:pt-[70%] md:before:pt-[100%] before:pt-[60%] h-full"
+        >
+          <img
+            loading="lazy"
+            decoding="async"
+            src={image}
+            alt={imageAlt}
+            class="w-full h-full object-cover object-center absolute top-0 left-0"
+          />
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="w-full md:max-w-[51.7%] my-auto">
+        <h3
+          class="text-thunder-100 font-primary italic font-medium 2xl:mb-7.5 1xl:mb-6 md:mb-4 sm:mb-3 mb-2.5"
+        >
+          {eyebrow}
+        </h3>
+
+        <h3
+          class="text-primary font-normal uppercase 1xl:mb-5 mb-3"
+        >
+          {title}
+        </h3>
+
+        {
+          paragraphs.map((paragraph, index) => (
+            <p
+              class={
+                index < paragraphs.length - 1
+                  ? "1xl:mb-5 xl:mb-4 md:mb-3 mb-2.5"
+                  : ""
+              }
+            >
+              {paragraph}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="1xl:mt-12.5 lg:mt-10.5 md:mt-8 sm:mt-6.5 mt-5 bg-whitesmoke-100 1xl:p-7.5 lg:p-6 sm:p-5 p-3.5 sm:border-l-3 border-l-2 border-primary"
+    >
+      <div
+        class="flex items-start justify-center lg:gap-6 sm:gap-4.5 gap-3"
+      >
+        <div
+          class="2xl:w-20 2xl:h-20 xl:w-16 xl:h-16 lg:w-14 lg:h-14 lt:w-12 lt:h-12 w-11 h-11 shrink-0"
+        >
+          <img
+            loading="lazy"
+            src={highlightIcon}
+            alt={highlightIconAlt}
+            class="w-full h-full"
+            decoding="async"
+          />
+        </div>
+
+        <div
+          class="flex flex-col items-start 1xl:gap-5 sm:gap-4 gap-3"
+        >
+          <h5 class="text-primary uppercase">
+            {highlightTitle}
+          </h5>
+
+          <p class="font-medium">
+            {highlightText}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

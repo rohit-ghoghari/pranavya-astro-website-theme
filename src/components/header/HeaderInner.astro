@@ -1,0 +1,50 @@
+---
+import WishlistSidebar from './WishlistSidebar.astro';
+import CartSidebar from './CartSidebar.astro';
+import HeaderLogoInner from './HeaderLogoInner.astro';
+import MobileMenuInner from './MobileMenuInner.astro';
+import HeaderActionsInner from './HeaderActionsInner.astro';
+
+interface Props {
+    accountMenu?: boolean;
+}
+
+const { accountMenu = false } = Astro.props;
+---
+
+<!-- Backdrop overlay (same as home — shared JS hooks) -->
+<div class="bg_body_box fixed inset-0 w-full h-full backdrop-blur-xl bg-primary/35 z-50"></div>
+
+<!--
+    INNER PAGE HEADER
+-->
+<header class="header fixed top-0 left-0 right-0 z-50 bg-whitesmoke-100 no-toggle-color">
+
+    <!-- WISHLIST SIDEBAR — identical to home, reused -->
+    <WishlistSidebar />
+
+    <!-- CART SIDEBAR — identical to home, reused -->
+    <CartSidebar />
+
+    <div class="all-header">
+        <div class="container">
+            <div class="flex items-center xl:gap-4 gap-[9px] justify-between nav">
+
+                <!-- Logo -->
+                <HeaderLogoInner />
+
+                <!-- Mobile / Desktop Navigation -->
+                <MobileMenuInner />
+
+                <!-- Right icons -->
+                <HeaderActionsInner accountMenu={accountMenu} />
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<script>
+    import "./headerInnerNav";
+</script>

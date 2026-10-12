@@ -1,0 +1,46 @@
+---
+const { order } = Astro.props;
+
+const fields = [
+    ["Order Number", order.number],
+    ["Order Date", order.date],
+    ["Payment Method", order.paymentMethod],
+    ["Total Amount", order.totalAmount],
+    ["Order Status", order.status],
+];
+---
+
+<div>
+    <h3 class="uppercase text-primary 1xl:mb-10 md:mb-5.5 mb-4">
+        Order Details
+    </h3>
+
+    <div class="order-detail">
+        <table class="border-collapse border border-[#EBEBEB] w-full">
+            <thead>
+                <tr>
+                    {fields.map(([label]) => (
+                        <th class="p font-medium text-thunder-100 border-2 border-[#EBEBEB] w-1/5 px-1 1xl:py-3 py-2.5">
+                            {label}
+                        </th>
+                    ))}
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    {fields.map(([label, value]) => (
+                        <td class="p text-center lt:border-2 border border-[#EBEBEB] lt:px-1 sm:px-4 px-3 1xl:py-6 xl:py-5 lt:py-4 py-3">
+                            <p class="text-left font-medium md:hidden block">
+                                {label}
+                            </p>
+                            <p class="md:text-center text-right">
+                                {value}
+                            </p>
+                        </td>
+                    ))}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+---
+import HeroOfferCards, { type OfferCard } from "./HeroOfferCards.astro";
+
+interface Props {
+    offer?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+
+    backgroundImage?: string;
+    backgroundAlt?: string;
+
+    offers?: OfferCard[];
+}
+
+const {
+    offer = "get to 40% Off",
+    title = "Find Stillness in Motion",
+    description = "Pause the rush of life with yoga designed to ground, heal, and energize. All bodies and levels welcome.",
+    buttonText = "View Plans",
+    buttonLink = "/membership",
+
+    backgroundImage = "/home-4-hero-banner.webp",
+    backgroundAlt = "Hero Images",
+
+    offers = [
+        {
+            type: "friend",
+            title: "Bring a Friend, Get a Class Free",
+            description:
+                "Enjoy 15% off your next membership or class pack. Whether you're dropping in or signing up long-term, save you stretch.",
+            discount: "40%",
+            discountImage: "/percentage-back-1.png",
+            discountImageAlt: "precentage",
+            validFor: "All users (one time)",
+            expires: "7 years",
+            buttonText: "BOOK NOW",
+            buttonLink: "/bookClass",
+            couponCode: "LOYALTY50",
+        },
+        {
+            type: "trainer",
+            title: "Personal Yoga Trainer",
+            discount: "50%",
+            discountImage: "/percentage-back-banner-2.png",
+            discountImageAlt: "percentage",
+            trainerImage: "/bag.png",
+            trainerName: "ANAYA R.",
+            validFor: "7 years",
+            expires: "7 years",
+            terms: "One-time use per user.",
+            features: [
+                "Certified Yoga Therapist | 10+ Years of Experience",
+            ],
+            buttonText: "BOOK NOW",
+            buttonLink: "/bookClass",
+            couponCode: "LOYALTY50",
+        },
+    ],
+} = Astro.props;
+---
+
+<section class="relative lg:min-h-screen lt:min-h-[90vh] sm:min-h-[78vh] min-[340px]:min-h-[80vh] min-h-screen flex items-center 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+
+    <!-- Container -->
+    <div class="container mx-auto z-1 relative w-full px-4">
+        <div class="flex lt:flex-row flex-col lt:items-center items-start justify-between w-full z-1 relative xl:pt-18 lt:pt-14 sm:pt-19 pt-15 pb-5 lt:gap-10 gap-7">
+
+            <!-- Left Content -->
+            <div class="w-full 2xl:max-w-[840px] 1xl:max-w-[750px] max-w-full">
+
+                <!-- Offer Badge -->
+                <h3 class="text-white font-primary italic font-medium xl:mb-7.5 lg:mb-6 md:mb-5 sm:mb-4 mb-2.5">
+                    {offer}
+                </h3>
+
+                <!-- Main Heading -->
+                <h1 class="text-white font-normal uppercase md:mb-5 mb-3.5">
+                    {title}
+                </h1>
+
+                <!-- Description -->
+                <p class="font-primary font-normal text-white 1xl:max-w-[65%] lg:max-w-[80%] sm:max-w-[90%] max-w-[380px] w-full 2xl:mb-12 1xl:mb-10 xl:mb-8 lg:mb-7 mb-6">
+                    {description}
+                </p>
+
+                <!-- CTA Button -->
+                <a href={buttonLink} class="btn btn-secondary">
+                    {buttonText}
+                </a>
+
+            </div>
+
+            <HeroOfferCards offers={offers} />
+
+        </div>
+    </div>
+
+    <!-- center Image -->
+    <div class="absolute right-0 top-0 w-full h-full flex flex-col">
+
+        <!-- Image -->
+        <img
+            loading="lazy"
+            src={backgroundImage}
+            alt={backgroundAlt}
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-linear-to-br from-[#532D1C] to-black/0 backdrop-blur-[19px] pointer-events-none">
+        </div>
+
+    </div>
+
+</section>

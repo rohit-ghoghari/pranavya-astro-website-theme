@@ -1,0 +1,192 @@
+---
+interface Testimonial {
+    quoteTitle: string;
+    quote: string;
+    image: string;
+    imageAlt?: string;
+    name: string;
+}
+
+interface Props {
+    testimonials?: Testimonial[];
+}
+
+const {
+    testimonials = [
+        {
+            quoteTitle: "“A life-changing space.”",
+            quote: "Pranavya Yoga has been my sanctuary. The instructors are incredibly nurturing, and each class feels like a reset button.",
+            image: "/testimonial-1.webp",
+            imageAlt: "client",
+            name: "– Sarah L.",
+        },
+        {
+            quoteTitle: "“Exactly what I needed.”",
+            quote: "“I joined just looking to stretch and move more, but I found so much more—peace, strength, and a beautiful community.”",
+            image: "/testimonial-2.webp",
+            imageAlt: "client",
+            name: "– Lauren T.",
+        },
+        {
+            quoteTitle: "“My weekly reset.”",
+            quote: "“No matter how stressful the week gets, I always look forward to my time at Pranavya. It’s the highlight of my schedule.”",
+            image: "/testimonial-3.webp",
+            imageAlt: "client",
+            name: "– Chris D.",
+        },
+        {
+            quoteTitle: "“Everyone feels personal.”",
+            quote: "Even in a group, the instructors make you feel seen and supported. I always leave feeling lighter and more centered.",
+            image: "/testimonial-4.webp",
+            imageAlt: "client",
+            name: "– Anita S.",
+        },
+        {
+            quoteTitle: "“A community that cares.”",
+            quote: "“I joined just looking to stretch and move more, but I found so much more—peace, strength, and a beautiful community.”",
+            image: "/testimonial-5.webp",
+            imageAlt: "client",
+            name: "– David P.",
+        },
+        {
+            quoteTitle: "“Beginners are welcome.”",
+            quote: "When I first walked into Pranavya, I was nervous and unsure of what to expect. But from the first moment, I felt welcomed and accepted.",
+            image: "/testimonial-6.webp",
+            imageAlt: "client",
+            name: "– Emily T.",
+        },
+        {
+            quoteTitle: "“A safe space to grow.”",
+            quote: "No matter where I am in my journey, Pranavya Yoga gives me a safe and supportive space to explore my limits and evolve my practice.",
+            image: "/testimonial-7.webp",
+            imageAlt: "client",
+            name: "– James W.",
+        },
+        {
+            quoteTitle: "“The best part of my week.”",
+            quote: "Life can get overwhelming, but stepping into a Pranavya class is like pressing pause on the chaos.",
+            image: "/testimonial-8.webp",
+            imageAlt: "client",
+            name: "– Lena M.",
+        },
+        {
+            quoteTitle: "“Yoga, redefined.”",
+            quote: "Before Pranavya, I saw yoga as just a form of exercise. Now, I understand it’s a complete lifestyle and a mindset.",
+            image: "/testimonial-9.webp",
+            imageAlt: "client",
+            name: "– Ravi S.",
+        },
+        {
+            quoteTitle: "“Transformed my routine.”",
+            quote: "I started with one class a week, and now yoga is part of my everyday life. The instructors are truly inspiring.",
+            image: "/testimonial-10.webp",
+            imageAlt: "client",
+            name: "– Maya R.",
+        },
+        {
+            quoteTitle: "“Exactly what body need.”",
+            quote: "After years of tension and tightness, these classes helped me reconnect with my body and breathe with ease.",
+            image: "/testimonial-11.webp",
+            imageAlt: "client",
+            name: "– Elena D.",
+        },
+        {
+            quoteTitle: "“Calm, clarity, confidence.”",
+            quote: "What began as a physical journey became something deeper.I’ve found mental peace, inner strength, and a steady mind.",
+            image: "/testimonial-12.webp",
+            imageAlt: "client",
+            name: "– Tanya V.",
+        },
+        {
+            quoteTitle: "“Supportive from day one.”",
+            quote: "I was nervous as a beginner, but every instructor made me feel welcomed and guided me with care.",
+            image: "/testimonial-13.webp",
+            imageAlt: "client",
+            name: "– Priya K.",
+        },
+        {
+            quoteTitle: "“My sanctuary in a world.”",
+            quote: "Pranavya has become my sacred space for healing, growth, and stillness in the middle of life’s chaos.",
+            image: "/testimonial-14.webp",
+            imageAlt: "client",
+            name: "– Devika L.",
+        },
+        {
+            quoteTitle: "“Yoga that meets you .”",
+            quote: "No pressure, just encouragement. Whether I’m feeling strong or need to slow down, there’s always a class that fits.",
+            image: "/testimonial-15.webp",
+            imageAlt: "client",
+            name: "– RHEA M.",
+        },
+    ],
+} = Astro.props;
+---
+
+<section
+    class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+>
+    <div class="container">
+        <div class="grid lt:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-6 gap-4">
+            {testimonials.map((testimonial, index) => (
+                <div
+                    class:list={[
+                        "swiper-slide h-auto! bg-whitesmoke-100",
+                        index < 3 ? "aos-animate" : "",
+                    ]}
+                    data-aos="fade-up"
+                >
+                    <div class="2xl:p-10 1xl:p-8 xl:p-7 lg:p-6 p-5">
+                        <div class="1xl:mb-10 sm:mb-6 mb-5">
+                            <h3 class="italic font-medium 1xl:mb-11.5 xl:mb-8.5 sm:mb-5.5 mb-4 font-primary text-primary">
+                                {testimonial.quoteTitle}
+                            </h3>
+
+                            <p class="1xl:mb-3 sm:mb-2 mb-1 font-medium">
+                                {testimonial.quote}
+                            </p>
+
+                            <svg
+                                width="39"
+                                height="31"
+                                viewBox="0 0 39 31"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="ml-auto mr-0 1xl:w-10 lt:w-9 lt:h-7.5 md:w-9 md:h-6.5 sm:w-7 sm:h-5.5 w-5 h-4"
+                            >
+                                <path
+                                    d="M14.8967 0C16.2954 0.349687 17.2046 1.46868 17.6242 3.35699C15.596 4.47599 13.5329 6.15449 11.4348 8.39249C9.33665 10.6305 7.86796 13.0783 7.02871 15.7359H7.34343C10.0011 15.7359 12.0642 16.4353 13.5329 17.834C15.0715 19.1628 15.8408 20.9113 15.8408 23.0793C15.8408 25.1075 15.0715 26.821 13.5329 28.2198C12.0642 29.6185 10.2808 30.3179 8.18268 30.3179C5.66493 30.3179 3.67171 29.4437 2.20303 27.6952C0.734343 25.8768 0 23.7088 0 21.191C0 16.9249 1.36378 13.1133 4.09134 9.75627C6.8189 6.39927 10.4207 3.14718 14.8967 0ZM35.8779 0C37.2766 0.349687 38.1858 1.46868 38.6055 3.35699C36.5773 4.47599 34.5141 6.15449 32.416 8.39249C30.3179 10.6305 28.8492 13.0783 28.0099 15.7359H28.3247C30.9823 15.7359 33.0454 16.4353 34.5141 17.834C36.0527 19.1628 36.8221 20.9113 36.8221 23.0793C36.8221 25.1075 36.0527 26.821 34.5141 28.2198C33.0454 29.6185 31.262 30.3179 29.1639 30.3179C26.6462 30.3179 24.6529 29.4437 23.1843 27.6952C21.7156 25.8768 20.9812 23.7088 20.9812 21.191C20.9812 16.9249 22.345 13.1133 25.0726 9.75627C27.8001 6.39927 31.4019 3.14718 35.8779 0Z"
+                                    fill="#673E2C"
+                                />
+                            </svg>
+                        </div>
+
+                        <div class="border-t-2 border-[#673e2c2b] 1xl:pt-7.5 xl:pt-6 sm:pt-5 pt-4 flex items-center justify-between w-full flex-wrap xl:gap-3 gap-2.5">
+                            <div class="flex items-center 1xl:gap-4 md:gap-2.5 sm:gap-2 gap-1.5">
+                                <div class="1xl:w-12.5 1xl:h-12.5 xl:w-11 xl:h-11 md:w-10 md:h-10 sm:w-[35px] sm:h-[35px] w-7 h-7 rounded-full overflow-hidden">
+                                    <img
+                                        loading="lazy"
+                                        src={testimonial.image}
+                                        alt={testimonial.imageAlt}
+                                        class="w-full h-full object-cover"
+                                    />
+                                </div>
+
+                                <p class="p2 text-black uppercase">
+                                    {testimonial.name}
+                                </p>
+                            </div>
+
+                            <div class="flex items-center 1xl:gap-2.5 md:gap-1.5 gap-1">
+                                <img loading="lazy" src="/yellow-star.svg" alt="star" class="1xl:w-5.5 xl:w-5 sm:w-4 w-3.5 h-full object-contain" />
+                                <img loading="lazy" src="/yellow-star.svg" alt="star" class="1xl:w-5.5 xl:w-5 sm:w-4 w-3.5 h-full object-contain" />
+                                <img loading="lazy" src="/yellow-star.svg" alt="star" class="1xl:w-5.5 xl:w-5 sm:w-4 w-3.5 h-full object-contain" />
+                                <img loading="lazy" src="/yellow-star.svg" alt="star" class="1xl:w-5.5 xl:w-5 sm:w-4 w-3.5 h-full object-contain" />
+                                <img loading="lazy" src="/yellow-star.svg" alt="star" class="1xl:w-5.5 xl:w-5 sm:w-4 w-3.5 h-full object-contain" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

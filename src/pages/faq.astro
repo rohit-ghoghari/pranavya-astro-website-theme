@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import FAQ from "../components/common/FAQ.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Frequently Asked Questions — Pranavya Yoga"
+  description="Find answers to frequently asked questions about Pranavya Yoga studio memberships, class schedules, booking policies, beginner tips, and amenities."
+  canonical="/faq/"
+>
+
+<main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+    <PageHeading
+      title="frequently Asked Questions"
+      description="Whether you're just getting started or upgrading your plan, here’s everything you need to know."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <FAQ/>
+</main>
+    
+</Layout>

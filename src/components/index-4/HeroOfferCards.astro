@@ -1,0 +1,265 @@
+---
+export interface OfferCard {
+    title: string;
+    description?: string;
+    image?: string;
+    imageAlt?: string;
+
+    discount?: string;
+    discountImage?: string;
+    discountImageAlt?: string;
+
+    trainerName?: string;
+    trainerImage?: string;
+
+    features?: string[];
+    validFor?: string;
+    expires?: string;
+    terms?: string;
+
+    buttonText: string;
+    buttonLink: string;
+    couponCode?: string;
+
+    type: "friend" | "trainer";
+}
+
+interface Props {
+    offers: OfferCard[];
+}
+
+const { offers } = Astro.props;
+---
+
+<div class="2xl:max-w-[690px] 1xl:max-w-[636px] xl:max-w-[535px] lt:max-w-[518px] w-full ml-auto mr-0 lg:space-y-6 space-y-4">
+    {
+        offers.map((card) => (
+            <>
+                {card.type === "friend" && (
+                    <div class="bg-white rounded-[10px] shadow-xl 1xl:p-[30px] xl:p-7 lg:p-5.5 p-4 relative overflow-hidden lt:w-full md:w-[70%] sm:w-[81%] w-full">
+                        <img
+                            loading="lazy"
+                            src="/card-back-banner-1.webp"
+                            alt="banner"
+                            class="w-full h-full object-cover opacity-10 absolute top-0 left-0 pointer-events-none"
+                            fetchpriority="high"
+                        />
+
+                        <div class="absolute 1xl:top-0 1xl:right-0 lg:-top-2 lg:-right-2 lt:-top-3 lt:-right-3 -top-4 -right-4">
+                            <div class="relative">
+                                <img
+                                    loading="lazy"
+                                    src={card.discountImage}
+                                    alt={card.discountImageAlt}
+                                    class="w-full h-full object-cover"
+                                />
+
+                                <div class="absolute 1xl:left-5 1xl:bottom-5 lt:left-4 lt:bottom-4 left-2 bottom-2 inset-0 flex flex-col items-center justify-center">
+                                    <p class="text-center text-white">
+                                        {card.discount}
+                                        <br />
+                                        off
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="uppercase text-primary sm:max-w-[80%] max-w-[75%] 1xl:mb-[17px] sm:mb-3 mb-2 max-[530px]:text-sm">
+                                {card.title}
+                            </h3>
+
+                            <p class="1xl:mb-[21px] lg:mb-[18px] max-[530px]:mb-2 mb-[15px] 1xl:max-w-[95%] lt:max-w-full sm:max-w-[90%] max-w-[85%] w-full max-[530px]:text-[11px]">
+                                {card.description}
+                            </p>
+
+                            <ul class="flex flex-wrap max-[530px]:flex-col min-[530px]:items-center w-full min-[530px]:gap-3 gap-0 list-disc 1xl:mb-7 lg:mb-5 max-[530px]:mb-3.5 mb-2">
+                                <li class="font-medium text-thunder-100 uppercase ml-4">
+                                    <p class="max-[530px]:text-[11px]">
+                                        Valid For:
+                                        <span class="text-primary normal-case">
+                                            {card.validFor}
+                                        </span>
+                                    </p>
+                                </li>
+
+                                <li class="font-medium text-thunder-100 uppercase ml-4">
+                                    <p class="max-[530px]:text-[11px]">
+                                        Expires:
+                                        <span class="text-primary normal-case">
+                                            {card.expires}
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+
+                            <div class="flex flex-col min-[530px]:flex-row min-[530px]:items-end items-start justify-between min-[530px]:gap-4 gap-2">
+                                <a
+                                    href={card.buttonLink}
+                                    class="btn btn-secondary flex items-center justify-between gap-[17px] bg-white"
+                                >
+                                    {card.buttonText}
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 14 14"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M1.00003 12.6234C1.00003 12.6234 8.97683 4.64654 12.2993 1.32401M12.2993 1.32401L12.624 9.83157M12.2993 1.32401L3.79115 0.999894"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </a>
+
+                                <div class="bg-primary text-white px-4 py-2 rounded-full text-[11px] uppercase">
+                                    Coupon Code: {card.couponCode}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {card.type === "trainer" && (
+                    <div class="bg-white rounded-[10px] 1xl:p-[30px] xl:p-7 lg:p-5.5 p-4 relative overflow-hidden lt:w-full md:w-[70%] sm:w-[81%] w-full">
+                        <img
+                            loading="lazy"
+                            src="/card-back-banner-1.webp"
+                            alt="banner"
+                            class="w-full h-full object-cover opacity-10 absolute top-0 left-0 pointer-events-none"
+                        />
+
+                        <div class="absolute top-0 left-auto 1xl:right-0 -right-7 h-full pointer-events-none">
+                            <div class="relative h-full pointer-events-none">
+                                <img
+                                    loading="lazy"
+                                    src={card.discountImage}
+                                    alt={card.discountImageAlt}
+                                    class="w-full h-full ml-auto mr-0 opacity-10 pointer-events-none"
+                                />
+
+                                <div class="absolute inset-0 1xl:right-3 right-9 left-auto flex flex-row items-center gap-2 justify-center">
+                                    <div class="flex flex-col items-end gap-[10px]">
+                                        <h3 class="font-medium italic text-primary font-primary 2xl:text-37">
+                                            {card.discount}
+                                        </h3>
+
+                                        <h5 class="text-thunder-100 vertical-text">
+                                            Discount
+                                        </h5>
+                                    </div>
+
+                                    <p class="p2 2xl:text-16 text-thunder-100 vertical-text pb-20">
+                                        First 100 Student
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <h3 class="text-primary uppercase 1xl:mb-5 lg:mb-4 min-[530px]:mb-2 mb-1 max-[530px]:text-sm">
+                                {card.title}
+                            </h3>
+
+                            <div class="flex max-[530px]:items-center items-start justify-start gap-2 min-[530px]:mb-2.5 mb-1.5">
+                                <img
+                                    loading="lazy"
+                                    src={card.trainerImage}
+                                    alt="bag"
+                                    class="1xl:w-auto lg:w-5.5 max-[530px]:w-4 w-5 h-auto 1xl:mt-[2px]"
+                                />
+
+                                <h5 class="text-primary uppercase max-[530px]:text-sm">
+                                    TRAINER NAME:
+                                    <span class="text-thunder-100">
+                                        {card.trainerName}
+                                    </span>
+                                </h5>
+                            </div>
+
+                            <div>
+                                {
+                                    card.features?.map((feature) => (
+                                        <div class="flex items-start 1xl:mb-5 lg:mb-3 min-[530px]:mb-2 mb-1 gap-2.5 lg:w-full lt:w-1/2 w-full max-[530px]:w-[58%]">
+                                            <div class="size-[5px] 2xl:mt-4 1xl:mt-3.5 lt:mt-3 mt-2.5 bg-primary rounded-full shrink-0">
+                                            </div>
+
+                                            <p class="text-primary font-medium max-[530px]:text-[11px]">
+                                                {feature}
+                                            </p>
+                                        </div>
+                                    ))
+                                }
+
+                                <ul class="min-[530px]:flex flex-wrap items-center w-full lg:gap-12 min-[530px]:gap-6 gap-0 list-disc min-[530px]:mb-2 max-[530px]:w-[80%]">
+                                    <li class="font-medium text-thunder-100 uppercase ml-4">
+                                        <p class="max-[530px]:text-[11px]">
+                                            Valid For:
+                                            <span class="text-primary normal-case">
+                                                {card.validFor}
+                                            </span>
+                                        </p>
+                                    </li>
+
+                                    <li class="font-medium text-thunder-100 uppercase ml-4">
+                                        <p class="max-[530px]:text-[11px]">
+                                            Expires:
+                                            <span class="text-primary normal-case">
+                                                {card.expires}
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
+
+                                <ul class="w-full list-disc min-[530px]:mb-[18px] mb-4">
+                                    <li class="font-medium text-thunder-100 uppercase ml-4">
+                                        <p class="max-[530px]:text-[11px]">
+                                            Terms:
+                                            <span class="text-primary normal-case">
+                                                {card.terms}
+                                            </span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="flex flex-col min-[530px]:flex-row min-[530px]:items-end items-start justify-between min-[530px]:gap-4 gap-2">
+                                <a
+                                    href={card.buttonLink}
+                                    class="btn btn-secondary flex items-center justify-between gap-[17px] bg-white"
+                                >
+                                    {card.buttonText}
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 14 14"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M1.00003 12.6234C1.00003 12.6234 8.97683 4.64654 12.2993 1.32401M12.2993 1.32401L12.624 9.83157M12.2993 1.32401L3.79115 0.999894"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </a>
+
+                                <div class="bg-primary text-white px-4 py-2 rounded-full text-[11px] uppercase">
+                                    Coupon Code: {card.couponCode}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </>
+        ))
+    }
+</div>

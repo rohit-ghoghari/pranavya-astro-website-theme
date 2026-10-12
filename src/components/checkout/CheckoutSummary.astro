@@ -1,0 +1,123 @@
+---
+// CheckoutSummary.astro
+---
+
+<div class="1xl:w-[27%] lt:w-[30%] w-full sticky xl:top-25 top-22 1xl:space-y-12 xl:space-y-9 space-y-7">
+    <div
+        class=" bg-whitesmoke-100 rounded-sm overflow-hidden sm:p-5 p-4 divide-y divide-primary/20">
+        <p class="text-[#1A1A1A] font-medium pb-2.5">Cart Total</p>
+        <div class="xl:py-5.5 sm:py-4 py-3.5 xl:space-y-4 sm:space-y-2.5 space-y-2">
+            <div class="flex items-center justify-between w-full gap-3">
+                <p class="text-[#1A1A1A]">Subtotal:</p>
+                <p class="p2" id="checkoutSubtotal">$474.85</p>
+            </div>
+            <div class="flex items-center justify-between w-full gap-3">
+                <p class="text-[#1A1A1A]">Shipping:</p>
+                <p class="p2">Free</p>
+            </div>
+            <div class="flex items-center justify-between w-full gap-3">
+                <p class="text-[#1A1A1A]">Tax (5%):</p>
+                <p class="p2" id="checkoutTax">$23.74</p>
+            </div>
+        </div>
+
+        <div class="xl:py-3 py-2.5">
+            <div class="flex items-center justify-between w-full gap-4">
+                <p class="text-[#1A1A1A] font-medium">Sub Total</p>
+                <p class="p2 text-[#1A1A1A] font-medium" id="checkoutSubTotal2">$498.59</p>
+            </div>
+        </div>
+
+        <div class="xl:py-4.5 py-3.5">
+            <div class="flex flex-col justify-between w-full sm:gap-4 gap-3">
+                <div
+                    class="xl:p-2 p-1.5 border border-primary/20 rounded-full w-full flex items-center flex-wrap gap-1">
+                    <div id="checkoutCouponChip"
+                        class="bg-primary/20 px-3 divide-x divide-[#C3B3AC] flex items-center rounded-full space-x-2.5 w-fit">
+                        <p class="text-15 pr-2.5" id="checkoutCouponCode">YOGA20</p>
+                        <svg id="checkoutCouponRemove" xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                            viewBox="0 0 11 11" fill="none" class="shrink-0 cursor-pointer"><path d="M0.599609 9.59961L9.59961 0.599609M9.59961 9.59961L0.599609 0.599609" stroke="black" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" id="checkoutCouponSubmit" class="btn btn-secondary px-7 lt:w-full w-fit">Submit</button>
+                </div>
+            </div>
+            <div class="flex items-center justify-between w-full gap-3 sm:pt-5.5 pt-4" id="checkoutDiscountRow">
+                <p class="text-[#1A1A1A]" id="checkoutDiscountLabel">Code Applied (YOGA20)</p>
+                <p class="p2" id="checkoutDiscount">$22.59</p>
+            </div>
+
+        </div>
+        <div class="xl:py-3 py-2">
+            <div class="flex items-center justify-between w-full gap-4">
+                <p class="text-[#1A1A1A] font-medium">Total</p>
+                <p class="p2 text-[#1A1A1A] font-medium" id="checkoutTotal">$476.00</p>
+            </div>
+        </div>
+        <div class="1xl:pt-7.5 sm:pt-6 pt-4">
+            <a href="/checkout" class="btn btn-secondary lt:w-full w-fit" id="proceedCheckoutBtn">Proceed to
+                Checkout</a>
+            <a href="/shop"
+                class="xl:mt-5 mt-3.5 lt:mx-auto p w-fit text-[#708090] hover:text-primary underline flex">
+                Continue to shopping
+            </a>
+        </div>
+    </div>
+    <div class=" bg-whitesmoke-100 rounded-sm overflow-hidden sm:p-5 p-4">
+        <p class="text-[#1A1A1A] font-medium pb-2.5 border-b border-primary/20">Payment Method</p>
+        <div class="1xl:space-y-5 space-y-4 pt-5">
+            <div class="flex items-start 1xl:gap-3 gap-2.5">
+                <img loading="lazy" decoding="async" src="/atm-card.webp" alt="cards" class="1xl:mt-2 lt:mt-1.5 h-auto 1xl:w-7.5 lt:w-6.5 w-5.5" />
+                <p class="text-primary font-medium">Select your preferred payment option:</p>
+            </div>
+            <div>
+                <label class="flex items-start 1xl:gap-4.5 gap-3 cursor-pointer">
+                    <input type="radio" name="payment" value="card" class="custom-radio bg-primary/20 1xl:mt-2.5 xl:mt-1.5 sm:mt-2 mt-1" />
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <p class="text-primary">Credit / Debit Card</p>
+                            <div class="flex items-center gap-1.5">
+                                <img loading="lazy" decoding="async" src="/mastercard.webp" alt="card" class="h-auto 1xl:w-7.5 sm:w-6.5 w-5" />
+                                <img loading="lazy" decoding="async" src="/visa.webp" alt="card" class="h-auto 1xl:w-7.5 sm:w-6.5 w-5" />
+                                <img loading="lazy" decoding="async" src="/orange-card.webp" alt="card" class="h-auto 1xl:w-7.5 sm:w-6.5 w-5" />
+                                <img loading="lazy" decoding="async" src="/american-express.webp" alt="card" class="h-auto 1xl:w-7.5 sm:w-6.5 w-5" />
+                            </div>
+                        </div>
+                        <ul class="xl:mt-3 mt-2 1xl:space-y-2.5 xl:space-y-1.5 space-y-1 pl-7 text-thunder-100 list-disc">
+                            <li class="p">Card Number:</li>
+                            <li class="p">Expiration:</li>
+                            <li class="p">CVV:</li>
+                            <li class="p">Name on Card:</li>
+                        </ul>
+                    </div>
+                </label>
+            </div>
+            <div>
+                <label class="flex items-start 1xl:gap-4.5 gap-3 cursor-pointer">
+                    <input type="radio" name="payment" value="paypal" class="custom-radio bg-primary/20 1xl:mt-2.5 sm:mt-2 mt-1" />
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-primary">Paypal</p>
+                            <img loading="lazy" decoding="async" src="/paypal.webp" alt="paypal" class="xl:w-9 w-7 h-auto" />
+                        </div>
+                        <p class="1xl:mt-3 mt-2.5">You’ll be redirected to PayPal to complete payment.</p>
+                    </div>
+                </label>
+            </div>
+            <div>
+                <label class="flex items-start 1xl:gap-4.5 gap-3 cursor-pointer">
+                    <input type="radio" name="payment" value="googlepay" class="custom-radio bg-primary/20 xl:mt-2.5 sm:mt-2 mt-1" checked />
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-primary">Google Pay</p>
+                            <img loading="lazy" decoding="async" src="/g-pay.webp" alt="paypal" class="sm:w-9 w-7 h-auto" />
+                        </div>
+                        <p class="1xl:mt-3 mt-2.5">Quick checkout with your saved wallet.</p>
+                    </div>
+                </label>
+            </div>
+            <a href="/confirmOrder" id="placeOrderBtn" class="btn btn-secondary lt:w-full w-fit">Place order</a>
+        </div>
+    </div>
+</div>

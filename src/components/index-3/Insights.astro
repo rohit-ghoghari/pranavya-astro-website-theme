@@ -1,0 +1,216 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+
+const featuredBlog = {
+    title: "Releasing Tension Through Movement",
+    description:
+        "Vinyasa Flow isn’t just a workout—it’s a release. Jason opens up about using movement to unwind from daily stress and reconnect with his body.",
+    link: blogHref("Releasing Tension Through Movement"),
+    authorImage: "/home-3_client-4.webp",
+    author: "By Jason M. || July 12, 2025",
+    image: "/nav-blog-6.webp",
+};
+
+const sideBlogs = [
+    {
+        title: "Discovering Strength in Stillness",
+        link: blogHref("Discovering Strength in Stillness"),
+        authorImage: "/home-3_client-5.webp",
+        author: "By Lauren D. || July 15, 2025",
+        image: "/nav-blog-2.webp",
+    },
+    {
+        title: "Morning Stillness: The Power of a 6 AM Practice",
+        link: blogHref("Morning Stillness: The Power of a 6 AM Practice"),
+        authorImage: "/home-3_client-6.webp",
+        author: "By Emma L. || July 8, 2025",
+        image: "/nav-blog-1.webp",
+    },
+];
+
+const arrowSvg = {
+    path: "M0.750055 11.9871L11.5781 1.15908M11.5781 1.15908C11.8347 1.4157 11.9911 1.77255 11.9871 2.1668L11.9095 9.8493M11.5781 1.15908C11.3215 0.902467 10.9646 0.746093 10.5704 0.750076L2.88787 0.827704",
+};
+---
+
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-white">
+    <div class="container relative z-10">
+        <div class="text-center max-w-full w-full mx-auto mb-10">
+            <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center">
+                From the Mat to Life
+            </h3>
+
+            <h2 class="text-primary uppercase 1xl:mb-5 mb-3 text-center">
+                Insights from Our Community
+            </h2>
+
+            <p class="text-thunder-100 1xl:max-w-[40%] lg:max-w-[48%] lt:max-w-[60%] md:max-w-[75%] max-w-full w-full text-center mx-auto">
+                Explore heartfelt reflections and shared experiences from our yoga
+                students and instructors.
+            </p>
+        </div>
+
+        <div class="flex lt:flex-row flex-col items-stretch xl:gap-6 lg:gap-4.5 gap-4 w-full h-auto">
+
+            <!-- Featured Blog Card -->
+            <div class="lt:w-[59%] w-full h-auto">
+                <!-- 1st card -->
+                <div class="rounded-sm bg-whitesmoke-200 overflow-hidden w-full h-full">
+                    <div class="flex sm:flex-row flex-col justify-between 2xl:gap-[50px] 1xl:gap-[30px] xl:gap-6 sm:gap-4 gap-5 1xl:p-[30px] xl:p-6 lg:p-5 lt:p-4 md:p-6 p-4 items-stretch h-full">
+
+                        <!-- Left Content -->
+                        <div class="lt:w-[53%] sm:w-[56%] w-full flex flex-col items-start justify-between h-auto sm:py-4">
+                            <div class="flex flex-col items-start">
+
+                                <!-- Title -->
+                                <a href={featuredBlog.link}>
+                                    <h3 class="uppercase text-primary 1xl:mb-5 xl:mb-4 mb-3 hover:text-thunder-100">
+                                        {featuredBlog.title}
+                                    </h3>
+                                </a>
+
+                                <!-- Description -->
+                                <p class="mb-4">
+                                    {featuredBlog.description}
+                                </p>
+
+                                <!-- Read More -->
+                                <a
+                                    href={featuredBlog.link}
+                                    class="1xl:mt-8 xl:mt-6 lt:mt-4 sm:mt-2 mt-1 p2 font-normal btn-link uppercase hover:text-primary text-black leading-[100%]"
+                                >
+                                    Discover More
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="13"
+                                        height="13"
+                                        viewBox="0 0 13 13"
+                                        class="sm:w-[13px] sm:h-[13px] w-[11px] h-[11px]"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d={arrowSvg.path}
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <div class="flex items-center justify-start lg:gap-4 gap-2.5 mt-6">
+                                <div class="1xl:w-12.5 1xl:h-12.5 lg:w-11.5 lg:h-11.5 md:w-10.5 md:h-10.5 w-[35px] h-[35px] rounded-full overflow-hidden">
+                                    <img
+                                        loading="lazy"
+                                        src={featuredBlog.authorImage}
+                                        alt="client"
+                                        class="w-full h-full obejct-cover"
+                                        decoding="async"
+                                    />
+                                </div>
+
+                                <p class="uppercase p2">
+                                    {featuredBlog.author}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Image -->
+                        <div class="relative lt:w-[47%] sm:w-[44%] w-full h-auto rounded-sm overflow-hidden">
+                            <img
+                                loading="lazy"
+                                src={featuredBlog.image}
+                                alt="Yoga"
+                                class="w-full h-full object-cover"
+                                decoding="async"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smaller Blog Cards -->
+            <div class="flex lt:flex-col sm:flex-row flex-col lt:w-[41%] w-full gap-4">
+
+                {sideBlogs.map((blog) => (
+                    <div class="rounded-sm bg-whitesmoke-200 overflow-hidden w-full h-full">
+
+                        <div class="flex lt:flex-row flex-col justify-between lg:gap-4 lt:gap-3 gap-5 1xl:p-[22px] xl:p-4 lt:p-3.5 md:p-5 p-4 items-stretch h-full">
+
+                            <div class="lt:w-[70%] w-full flex flex-col items-start justify-between h-auto lt:py-[13px] lg:space-y-5 lt:space-y-3 md:space-y-6 space-y-5">
+
+                                <a href={blog.link}>
+                                    <h5 class="uppercase text-primary hover:text-thunder-100">
+                                        {blog.title}
+                                    </h5>
+                                </a>
+
+                                
+                                <a
+                                    href={blog.link}
+                                    class="p2 font-normal btn-link uppercase hover:text-primary text-black leading-[100%]"
+                                >
+                                    Discover More
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="13"
+                                        height="13"
+                                        viewBox="0 0 13 13"
+                                        class="sm:w-[13px] sm:h-[13px] w-[11px] h-[11px]"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d={arrowSvg.path}
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </a>
+
+                                <div class="flex items-center justify-start lg:gap-3 gap-2.5">
+                                    <div class="1xl:w-[35px] 1xl:h-[35px] w-8 h-8 rounded-full overflow-hidden">
+                                        <img
+                                            loading="lazy"
+                                            src={blog.authorImage}
+                                            alt="client"
+                                            class="w-full h-full obejct-cover"
+                                            decoding="async"
+                                        />
+                                    </div>
+
+                                    <p class="uppercase p2">
+                                        {blog.author}
+                                    </p>
+                                </div>
+                            </div>
+
+                            
+                            <div class="relative lt:w-[30%] 1xl:aspect-4/4 lt:aspect-3/4 sm:aspect-3/3 rounded-sm overflow-hidden">
+                                <img
+                                    loading="lazy"
+                                    src={blog.image}
+                                    alt="Yoga"
+                                    class="w-full h-full object-cover"
+                                    decoding="async"
+                                />
+                            </div>
+
+                        </div>
+                    </div>
+                ))}
+
+            </div>
+        </div>
+
+        <a
+            href="/blogs/blogOne/"
+            class="btn btn-secondary 1xl:mt-[50px] lg:mt-[38px] md:mt-8 sm:mt-7 mt-6 mx-auto"
+        >
+            View More blogs
+        </a>
+    </div>
+</section>

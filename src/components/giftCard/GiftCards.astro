@@ -1,0 +1,198 @@
+---
+import GiftCardFeatured from "./GiftCardFeatured.astro";
+import { defaultGiftCards, type GiftCard } from "../../data/giftCards";
+
+interface Props {
+    cards?: GiftCard[];
+}
+
+const {
+    cards = defaultGiftCards,
+} = Astro.props;
+---
+
+<section
+    class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+>
+    <div class="container">
+        <div
+            class="2xl:space-y-20 1xl:space-y-18 xl:space-y-16 lt:space-y-14 md:space-y-13 space-y-11"
+        >
+            {cards.map((card, index) => (
+                <>
+                    <div
+                        data-aos="fade-up"
+                        class:list={[
+                            index === 0 ? "aos-animate" : "",
+                        ]}
+                    >
+                        {card.type === "featured" && (
+                            <GiftCardFeatured card={card} />
+                        )}
+
+                        {card.type === "inner-glow" && (
+                            <div
+                                class="w-full relative bg-[#FFE2B9]"
+                            >
+                                <img
+                                    loading="lazy"
+                                    src={card.banner}
+                                    alt="Find Your Flow"
+                                    class="w-full h-full object-cover absolute top-0 left-0 pointer-events-none opacity-45 bg-blend-multiply md:object-[center_14%] sm:object-[center_center] object-[60%_center]"
+                                />
+
+                                <div class="w-full h-full relative">
+                                    <div class="flex lt:flex-row flex-col items-stretch 2xl:gap-18.5 1xl:gap-16 xl:gap-12.5 lt:gap-8 sm:gap-6 gap-4">
+                                        <div class="w-full lg:pl-17.5 lt:pl-12.5 md:pl-9.5 sm:px-8 px-4">
+                                            <div class="max-w-full w-full flex flex-col md:items-start items-center 1xl:py-30 xl:py-25 lg:py-22 lt:py-19 md:py-16 sm:py-14 pt-52 pb-4">
+                                                <h3 class="font-primary italic font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5 md:text-start text-center">
+                                                    {card.eyebrow}
+                                                </h3>
+
+                                                <h2 class="text-primary uppercase 1xl:mb-4 lg:mb-3 mb-2.5 md:text-start text-center">
+                                                    {card.title}
+                                                </h2>
+
+                                                <p class="1xl:mb-9.5 lt:mb-7.5 md:mb-6.5 sm:mb-5.5 mb-4 text-black md:text-start text-center 1xl:w-1/2 xl:w-3/5 lg:w-[63%] md:w-3/4">
+                                                    {card.description}
+                                                </p>
+
+                                                <a
+                                                    href={card.buttonHref}
+                                                    class="btn btn-secondary mb-2"
+                                                >
+                                                    {card.buttonText}
+                                                </a>
+                                            </div>
+
+                                            <p class="md:ml-auto md:mr-0 md:absolute lg:bottom-6 md:bottom-4 md:right-9 pb-4 md:text-end text-center">
+                                                {card.bottomText}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {card.type === "harmony" && (
+                            <div class="w-full relative bg-[#6B97D9]">
+                                <img
+                                    loading="lazy"
+                                    src={card.banner}
+                                    alt="Find Your Flow"
+                                    class="w-full h-full object-cover absolute top-0 left-0 pointer-events-none opacity-65 bg-blend-multiply 1xl:object-[center_68%] md:object-[center_80%] object-[center_center]"
+                                />
+
+                                <div class="w-full h-full relative">
+                                    <div class="flex lt:flex-row flex-col items-stretch 2xl:gap-18.5 1xl:gap-16 xl:gap-12.5 lt:gap-8 sm:gap-6 gap-4 bg-linear-to-l from-black/55 from-2% to-transparent to-50%">
+                                        <div class="w-full lg:pl-17.5 lt:pl-12.5 md:pl-9.5 sm:px-8 px-4">
+                                            <div class="max-w-full w-full flex flex-col md:items-start items-center 1xl:py-30 xl:py-25 lg:py-22 lt:py-19 md:py-16 sm:py-14 pt-52 pb-4">
+                                                <h3 class="font-primary italic text-white font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5 md:text-start text-center">
+                                                    {card.eyebrow}
+                                                </h3>
+
+                                                <h2 class="text-white uppercase 1xl:mb-4 lg:mb-3 mb-2.5 md:text-start text-center">
+                                                    {card.title}
+                                                </h2>
+
+                                                <p class="1xl:mb-9.5 lt:mb-7.5 md:mb-6.5 sm:mb-5.5 mb-4 text-white md:text-start text-center 1xl:w-[48%] xl:w-[55%] lt:w-[60%] md:w-3/4">
+                                                    {card.description}
+                                                </p>
+
+                                                <a
+                                                    href={card.buttonHref}
+                                                    class="btn btn-secondary mb-2"
+                                                >
+                                                    {card.buttonText}
+                                                </a>
+                                            </div>
+
+                                            <p class="md:ml-auto md:mr-0 md:absolute lg:bottom-6 md:bottom-4 md:right-9 pb-4 md:text-end text-center text-white">
+                                                {card.bottomText}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {card.type === "serenity" && (
+                            <div class="w-full relative bg-[#FFF3EE]">
+                                <img
+                                    loading="lazy"
+                                    src={card.banner}
+                                    alt="Find Your Flow"
+                                    class="w-full h-full object-cover sm:object-bottom absolute top-0 left-0 pointer-events-none opacity-17"
+                                />
+
+                                <div class="w-full h-full relative">
+                                    <div class="flex lt:flex-row flex-col items-center 2xl:gap-18.5 1xl:gap-16 xl:gap-12.5 lt:gap-8 sm:gap-6 gap-4">
+                                        <div class="w-full lg:pl-17.5 lt:pl-12.5 md:pl-9.5 sm:px-8 px-4 flex md:items-start items-center flex-col">
+                                            <div class="lg:max-w-4/5 lt:max-w-3/4 md:max-w-[67%] max-w-full w-full flex flex-col md:items-start items-center 1xl:py-30 xl:py-25 lg:py-22 lt:py-19 md:py-16 sm:pt-14 pt-42 pb-4">
+                                                <h3 class="font-primary italic font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5 md:text-start text-center">
+                                                    {card.eyebrow}
+                                                </h3>
+
+                                                <h2 class="text-primary uppercase 1xl:mb-4 lg:mb-3 mb-2.5 md:text-start text-center">
+                                                    {card.title}
+                                                </h2>
+
+                                                <p class="1xl:mb-9.5 lt:mb-7.5 md:mb-6.5 sm:mb-5.5 mb-4 text-black md:text-start text-center 1xl:w-3/5 xl:w-[70%] lt:w-[90%]">
+                                                    {card.description}
+                                                </p>
+
+                                                <a
+                                                    href={card.buttonHref}
+                                                    class="btn btn-secondary"
+                                                >
+                                                    {card.buttonText}
+                                                </a>
+                                            </div>
+
+                                            <ul class="list-disc pl-5 space-y-1 text-start md:absolute 1xl:top-12.5 1xl:right-12 lg:top-10 lg:right-10 lt:top-7 lt:right-7 md:top-5 md:right-5 mb-5">
+                                                {card.redeemableItems?.map(
+                                                    (item) => (
+                                                        <li>
+                                                            <p>{item}</p>
+                                                        </li>
+                                                    ),
+                                                )}
+                                            </ul>
+
+                                            <p class="md:ml-auto md:mr-0 md:absolute lg:bottom-6 md:bottom-4 md:right-9 pb-4 md:text-end text-center">
+                                                {card.bottomText}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        <div class="w-full flex items-center justify-end 1xl:mt-7.5 lg:mt-6 sm:mt-5 mt-4 1xl:gap-5 lg:gap-4 sm:gap-3 gap-2.5">
+                            <p class="font-medium">
+                                Gift Card Code:
+                                <span class="text-primary">{card.code}</span>
+                            </p>
+
+                            <button
+                                type="button"
+                                class="copy-gift-code inline-flex items-center justify-center rounded-full transition hover:opacity-80"
+                                data-code={card.code}
+                                aria-label={`Copy gift card code ${card.code}`}
+                            >
+                                <img
+                                    loading="lazy"
+                                    src="/copy.svg"
+                                    alt="copy"
+                                    class="lg:w-6 lg:h-6 sm:w-5 sm:h-5 w-4.5 h-4.5 cursor-pointer"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </>
+            ))}
+        </div>
+    </div>
+</section>
+
+<script src="./giftCardsScript.ts"></script>

@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import EventDetailLayout from "../../components/events/EventDetailLayout.astro";
+
+export async function getStaticPaths() {
+    const events = await getCollection("events");
+
+    return events.map((event) => ({
+        params: {
+            slug: event.data.slug,
+        },
+        props: {
+            event,
+        },
+    }));
+}
+
+const { event } = Astro.props;
+const { data } = event;
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title={data.title.includes("Pranavya Yoga") ? data.title : `${data.title} — Pranavya Yoga`}
+    description={data.hero?.description || data.about?.description}
+    canonical={`/events/${data.slug}/`}
+    image={data.video?.poster}
+>
+    <main
+        class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+    >
+        <EventDetailLayout data={data} />
+    </main>
+</Layout>

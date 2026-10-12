@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import TermsConditionsContent from "../components/common/TermsConditionsContent.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Terms & Conditions — Pranavya Yoga"
+  description="Welcome to Pranavya Yoga. By accessing our website, attending our classes, or using any of our online or in-person services, you agree to comply."
+  canonical="/termscondition/"
+>
+  
+   <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+    <PageHeading
+      title="Terms & Conditions"
+      description="Welcome to Pranavya Yoga. By accessing our website, attending our classes, or using any of our online or in-person services, you agree to comply."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+     <TermsConditionsContent/>
+
+   </main>
+    
+</Layout>

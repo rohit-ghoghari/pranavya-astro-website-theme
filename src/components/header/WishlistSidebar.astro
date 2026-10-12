@@ -1,0 +1,121 @@
+<div id="wishlistSidebar"
+    class="fixed top-0 right-0 h-screen w-auto translate-x-full transition-transform duration-300 z-999999 flex flex-col items-end">
+    <div class="bg-white flex flex-col h-screen w-full 2xl:max-w-[440px] sm:max-w-[375px] max-w-[320px]">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between bg-whitesmoke-100 2xl:p-[22px] sm:p-[18px] px-4 py-3">
+            <h5 class="text-[#6F4E37] w-full uppercase">My Wishlist</h5>
+            <button id="closeWishlist" class="p-0 btn text-thunder-100 hover:text-primary" aria-label="Close wishlist">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    class="sm:w-[18px] sm:h-[18px] w-3.5 h-3.5">
+                    <path d="M16.5996 0.599998L0.599609 16.6" stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M0.599609 0.599998L16.5996 16.6" stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Wishlist Items -->
+        <div class="2xl:px-[22px] px-4 overflow-y-auto scrollbar-custom max-h-[calc(100vh-15vh)]">
+
+            <!-- Item 1 -->
+            <div class="flex 2xl:gap-5 gap-4 2xl:py-5 py-4 border-b border-[#673E2C33]">
+                <div
+                    class="bg-[#E0E0E0] rounded-sm p-[10px] border border-[#F4F1EF] relative 2xl:h-[150px] lt:h-[120px] h-[132px] 2xl:w-[120px] w-[110px] flex items-center justify-center group">
+                    <img loading="lazy" src="/nav-product-1.webp" alt="product-1" class="w-auto h-auto" />
+                </div>
+                <div class="flex-1 2xl:space-y-2 space-y-1">
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-primary text-[#2D2D22]">Manduka PRO Yoga Mat 6mm</p>
+                        <button
+                            aria-label="Remove item from wishlist"
+                            class="2xl:w-[30px] 2xl:h-[30px] w-[26px] h-[26px] rounded-full border-thunder-100 border flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 18" fill="none"
+                                class="2xl:w-[18px] 2xl:h-[18px] w-[16px] h-[16px]">
+                                <path d="M12.4955 3.96912L2.96973 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.96973 3.96912L12.4955 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="text-[#2D2D2DCC] p2">$138.00</p>
+                    <button class="btn btn-secondary font-normal text-[10px] 2xl:py-[7px] py-[5px] 2xl:px-6! px-5!">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex 2xl:gap-5 gap-4 2xl:py-5 py-4 border-b border-[#673E2C33]">
+                <div
+                    class="bg-[#E0E0E0] rounded-sm 2xl:p-[10px] p-2 border border-[#F4F1EF] relative 2xl:h-[150px] lt:h-[120px] sm:h-[132px] h-[110px] 2xl:w-[120px] w-[110px] flex items-center justify-center group/shop">
+                    <img loading="lazy" src="/nav-product-2.webp" alt="product-1" class="w-auto h-auto" />
+                </div>
+                <div class="flex-1 2xl:space-y-2 space-y-1">
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-primary text-[#2D2D22]">Buddha Teas Organic Calm Tea</p>
+                        <button
+                            aria-label="Remove item from wishlist"
+                            class="2xl:w-[30px] 2xl:h-[30px] w-[26px] h-[26px] rounded-full border-thunder-100 border flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 18" fill="none"
+                                class="2xl:w-[18px] 2xl:h-[18px] w-[16px] h-[16px]">
+                                <path d="M12.4955 3.96912L2.96973 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.96973 3.96912L12.4955 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="text-[#2D2D2DCC] p2">$49.98</p>
+                    <button class="btn btn-secondary font-normal text-[10px] 2xl:py-[7px] py-[5px] 2xl:px-6! px-5!">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex 2xl:gap-5 gap-4 2xl:py-5 py-4 border-b border-[#673E2C33]">
+                <div
+                    class="bg-[#E0E0E0] rounded-sm 2xl:p-[10px] p-2 border border-[#F4F1EF] relative 2xl:h-[150px] lt:h-[120px] sm:h-[132px] h-[110px] 2xl:w-[120px] w-[110px] flex items-center justify-center group/shop">
+                    <img loading="lazy" src="/nav-product-3.webp" alt="product-1" class="w-auto h-auto" />
+                </div>
+                <div class="flex-1 2xl:space-y-2 space-y-1">
+                    <div class="flex items-start justify-between gap-2">
+                        <p class="font-primary text-[#2D2D22]">Gaiam Yoga Starter Kit</p>
+                        <button
+                            aria-label="Remove item from wishlist"
+                            class="2xl:w-[30px] 2xl:h-[30px] w-[26px] h-[26px] rounded-full border-thunder-100 border flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 18" fill="none"
+                                class="2xl:w-[18px] 2xl:h-[18px] w-[16px] h-[16px]">
+                                <path d="M12.4955 3.96912L2.96973 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.96973 3.96912L12.4955 13.4949" stroke="#2D2D2D" stroke-width="0.952577"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="text-[#2D2D2DCC] p2">$49.98</p>
+                    <button class="btn btn-secondary font-normal text-[10px] 2xl:py-[7px] py-[5px] 2xl:px-6! px-5!">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sticky bottom buttons -->
+        <div class="mt-auto pt-6 sticky bottom-5 bg-white 2xl:px-[22px] px-4">
+            <div class="flex flex-col 2xl:gap-6 gap-4">
+                <button class="btn btn-secondary w-full 2xl:text-18px text-15px font-normal">
+                    Move All to Cart
+                </button>
+                <a href="/wishlist/" class="btn btn-secondary w-full 2xl:text-18px text-15px font-normal">
+                    View Full Wishlist
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

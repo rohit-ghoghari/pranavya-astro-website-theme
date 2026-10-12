@@ -1,0 +1,109 @@
+---
+interface Props {
+    images: {
+        main: string;
+        video?: string;
+        videoPoster?: string;
+        gallery?: string[];
+    };
+    title: string;
+}
+
+const { images, title } = Astro.props;
+const galleryImages = images.gallery && images.gallery.length > 0 ? images.gallery : [images.main];
+---
+
+<!-- Product Gallery -->
+<div class="1xl:w-[41.5%] lg:w-[43%] lt:w-[45%] w-full">
+    <div
+        class="border border-primary/10 rounded-sm sm:p-2.5 p-1.5 1xl:mb-7.5 xl:mb-6 sm:mb-4.5 mb-2.5 1xl:h-[646px] xl:h-[550px] lg:h-[515px] lt:h-[490px] h-fit">
+        <div class="swiper product h-full">
+            <div class="swiper-wrapper">
+                {images.video && (
+                    <div class="swiper-slide h-auto!">
+                        <div class="w-full lt:h-full relative sm:aspect-5/3 aspect-2/2">
+                            <video id="eventVideo"
+                                class="w-full rounded-sm overflow-hidden h-full object-cover"
+                                preload="metadata" poster={images.videoPoster || images.main}>
+                                <source src={images.video} type="video/mp4" />
+                            </video>
+
+                            <div
+                                class="video-play flex justify-center absolute top-0 m-auto w-full h-full items-center cursor-pointer">
+                                <div
+                                    class="pointer-events-all relative inline-flex items-center justify-center 2xl:w-25 2xl:h-25 1xl:w-24 1xl:h-24 xl:w-22 xl:h-22 lg:w-20 lg:h-20 md:w-18 md:h-18 sm:w-16 sm:h-16 w-13.5 h-13.5 rounded-full bg-white/50 md:p-[7px] p-1">
+                                    <div
+                                        class="absolute inset-0 animate-ping w-full h-full rounded-full bg-white/50">
+                                    </div>
+                                    <span
+                                        class="relative w-full h-full rounded-full bg-white flex items-center justify-center md:p-[5px] p-[3px]">
+                                        <span
+                                            class="w-full h-full rounded-full bg-white flex items-center justify-center md:border-2 border border-primary transition-all decoration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 24 24"
+                                                class="2xl:size-9 1xl:size-8 xl:size-7.5 lg:size-6.5 sm:size-5.5 size-5 text-primary transition-all decoration-300">
+                                                <path fill="currentColor"
+                                                    d="M21.409 9.353a2.998 2.998 0 0 1 0 5.294L8.597 21.614C6.534 22.737 4 21.277 4 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"
+                                                    stroke-width="0.5" stroke="currentColor" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {galleryImages.map((img: string, index: number) => (
+                    <div class="swiper-slide h-auto!">
+                        <div class="flex items-center justify-center w-full h-full bg-[#E0E0E0] p-5">
+                            <img loading="lazy" decoding="async" src={img} alt={`${title} view ${index + 1}`} />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+    <div data-thumbs-slider="" class="swiper product-thumb">
+        <div class="swiper-wrapper">
+            {images.video && (
+                <div class="swiper-slide cursor-pointer">
+                    <div
+                        class="w-full h-full relative product-slider-wrapper rounded-sm overflow-hidden">
+                        <img loading="lazy" decoding="async" src={images.videoPoster || images.main}
+                            class="w-full h-full" alt="Video thumbnail" />
+                        <div
+                            class="md:flex hidden justify-center absolute top-0 m-auto w-full h-full items-center">
+                            <div
+                                class="pointer-events-all relative inline-flex items-center justify-center 1xl:size-14 size-12 rounded-full bg-white/50 md:p-[7px] p-1">
+                                <div
+                                    class="absolute inset-0 animate-ping w-full h-full rounded-full bg-white/50">
+                                </div>
+                                <span
+                                    class="relative w-full h-full rounded-full bg-white flex items-center justify-center md:p-[5px] p-[3px]">
+                                    <span
+                                        class="w-full h-full rounded-full bg-white flex items-center justify-center md:border-2 border border-primary transition-all decoration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24"
+                                            class="1xl:size-4 size-3 text-primary transition-all decoration-300">
+                                            <path fill="currentColor"
+                                                d="M21.409 9.353a2.998 2.998 0 0 1 0 5.294L8.597 21.614C6.534 22.737 4 21.277 4 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z"
+                                                stroke-width="0.5" stroke="currentColor" />
+                                        </svg>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {galleryImages.map((img: string, index: number) => (
+                <div class="swiper-slide cursor-pointer">
+                    <div
+                        class="bg-[#E0E0E0] h-full rounded-sm overflow-hidden flex items-center justify-center lg:p-4 p-3 product-slider-wrapper">
+                        <img loading="lazy" decoding="async" src={img} class="w-full h-full" alt={`${title} thumbnail ${index + 1}`} />
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+---
+interface Practice {
+    title: string;
+    link: string;
+    tagline: string;
+    description: string;
+    image: string;
+    imageAlt: string;
+    buttonText: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    practices?: Practice[];
+    viewMoreText?: string;
+    viewMoreLink?: string;
+}
+
+const {
+    eyebrow = "Practice Tailored to Your Path",
+    title = "Move with Purpose and Ease",
+    description = "Join classes that honor your pace—whether you’re building strength, restoring balance, or deepening awareness.",
+
+    practices = [
+        {
+            title: "Power Yoga",
+            link: "/classes/power-yoga/",
+            tagline: "Strong Body, Clear Mind.",
+            description:
+                "High-energy, fitness-based yoga that boosts stamina and builds full-body strength.",
+            image: "/class_2-1.webp",
+            imageAlt: "Blog Images",
+            buttonText: "Join class",
+        },
+        {
+            title: "Restore & Recharge",
+            link: "/classes/restorative-yoga/",
+            tagline: "Deep rest meets gentle stretch.",
+            description:
+                "Perfect for stress relief and healing slow-paced with props, guided stillness, and mindful recovery.",
+            image: "/class_2-2.webp",
+            imageAlt: "Blog Images",
+            buttonText: "Join class",
+        },
+        {
+            title: "Core Balance",
+            link: "/classes/hatha-yoga/",
+            tagline: "Stability. Focus. Functional strength.",
+            description:
+                "A core-focused class that fuses yoga alignment, mobility, and body awareness for real-life support.",
+            image: "/class_2-3.webp",
+            imageAlt: "Blog Images",
+            buttonText: "Join class",
+        },
+    ],
+
+    viewMoreText = "view more classes",
+    viewMoreLink = "/classes/classTwo/",
+} = Astro.props;
+---
+
+<section class="relative bg-whitesmoke-100 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-9 overflow-hidden">
+    <div class="container">
+
+        <div class="text-start max-w-full w-full 2xl:mb-[50px] 1xl:mb-11 md:mb-9 mb-7">
+
+            <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5">
+                {eyebrow}
+            </h3>
+
+            <h2 class="text-primary uppercase 1xl:mb-5 mb-3">
+                {title}
+            </h2>
+
+            <p class="text-thunder-100 2xl:max-w-[45%] xl:max-w-[50%] lg:max-w-[60%] lt:max-w-[65%] md:max-w-[85%] max-w-full w-full">
+                {description}
+            </p>
+
+        </div>
+
+        <!-- Featured Post Row -->
+        <div class="flex flex-col 1xl:gap-[30px] md:gap-[26px] sm:gap-5.5 gap-4">
+
+            {
+                practices.map((practice) => (
+                    <div
+                        class="flex md:flex-row flex-col justify-between border-y border-primary/40 bg-white group/blog lg:gap-6 lt:gap-4 md:gap-2 gap-1"
+                        data-aos="fade-up"
+                    >
+
+                        
+                        <div class="w-full 1xl:p-[30px] lt:p-[26px] sm:p-5 p-4">
+                            <div class="flex flex-col justify-center h-full">
+
+                                <h3 class="text-primary hover:text-thunder-100 uppercase sm:max-w-[80%] mb-2.5">
+                                    <a href={practice.link} class="text-current">
+                                        {practice.title}
+                                    </a>
+                                </h3>
+
+                                <p class="font-medium 1xl:mb-[14px] mb-2.5">
+                                    {practice.tagline}
+                                </p>
+
+                                <p class="1xl:mb-[26px] lt:mb-5.5 mb-4.5">
+                                    {practice.description}
+                                </p>
+
+                                <a href={practice.link} class="btn btn-secondary">
+                                    {practice.buttonText}
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <div class="overflow-hidden block w-full md:h-auto h-full relative before:content-[''] before:block md:before:pt-[48%] before:pt-[44%] lg:max-w-[32.5%] md:max-w-[38%] max-w-full">
+                            <img
+                                loading="lazy"
+                                src={practice.image}
+                                alt={practice.imageAlt}
+                                class="w-full h-full object-cover absolute top-0 left-0 right-0 bottom-0"
+                                decoding="async"
+                            />
+                        </div>
+
+                    </div>
+                ))
+            }
+
+        </div>
+
+        <a
+            href={viewMoreLink}
+            class="btn btn-secondary 2xl:mt-[50px] 1xl:mt-11 md:mt-9 mt-7 mx-auto"
+        >
+            {viewMoreText}
+        </a>
+
+    </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeading from "../components/common/PageHeading.astro";
+import PodcastIntro from "../components/ourPodcast/PodcastIntro.astro";
+import FeaturedPodcasts from "../components/ourPodcast/FeaturedPodcasts.astro";
+import PastPodcastEpisodes from "../components/ourPodcast/PastPodcastEpisodes.astro";
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="Our Podcast — Pranavya Yoga"
+    description="Experience yoga and mindfulness wherever you are—listen at your pace, on your time. Our thoughtfully curated podcast episodes inspire your body, calm your mind, and uplift your spirit—one conversation at a time."
+    canonical="/ourPodcast/"
+>
+      <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10">
+
+        <PageHeading
+            title="Tune Into Your Practice"
+            description="Experience yoga and mindfulness wherever you are—listen at your pace, on your time. Our thoughtfully curated podcast episodes inspire your body, calm your mind, and uplift your spirit—one conversation at a time."
+            backgroundClass="bg-whitesmoke-100"
+        />
+
+        <!-- Section 1 -->
+        <PodcastIntro/>
+
+        <!-- Section 2 -->
+         <FeaturedPodcasts/>
+
+         <!-- Section 3 -->
+          <PastPodcastEpisodes/>
+      </main>
+</Layout>

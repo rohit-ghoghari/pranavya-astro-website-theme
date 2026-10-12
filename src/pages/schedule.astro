@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/common/PageHeading.astro";
+import ClassSchedule from "../components/schedule/ClassSchedule.astro";
+import KeyHighlights from "../components/schedule/KeyHighlights.astro";
+import MembershipFaqs from "../components/membership/MembershipFaqs.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Schedule — Pranavya Yoga"
+  description="Experience yoga that fits your life-flow at your pace, at your time. Our thoughtfully curated class schedule nurtures your body, calms your mind, and uplifts your spirit -every single day."
+  canonical="/schedule/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Plan Your Practice"
+      description="Experience yoga that fits your life-flow at your pace, at your time. Our thoughtfully curated class schedule nurtures your body, calms your mind, and uplifts your spirit -every single day."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1 -->
+    <ClassSchedule />
+
+    <!-- Section 2 -->
+    <KeyHighlights />
+
+    <!-- Section 3 -->
+    <MembershipFaqs
+      variant="schedule"
+      eyebrow="Class Schedule FAQs"
+      title="Answers to Common Scheduling Questions"
+      description="Whether you’re booking your first session or managing weekly routines, here’s everything you need to know. Class timings, cancellations, and reschedules explained simply."
+      buttonText="Check Schedule Info"
+      buttonHref="/schedule/"
+      showButton={true}
+      faqs={[
+        {
+          question: "How do I book a class?",
+          answer:
+            "You can book directly through our online schedule or mobile app. Simply select a class, choose your time, and confirm your spot.",
+        },
+        {
+          question: "Can I reschedule or cancel a booking?",
+          answer:
+            "Yes, you can reschedule or cancel your class through your account up to the specified cancellation window before class time.",
+        },
+        {
+          question: "When should I arrive for class?",
+          answer:
+            "We recommend arriving 10–15 minutes early to settle in, especially if it’s your first visit.",
+        },
+        {
+          question: "Do I need to bring my own mat or props?",
+          answer:
+            "You’re welcome to bring your own mat, but mats and basic props are also available at the studio for your convenience.",
+        },
+        {
+          question: "Is online booking required or can I drop in?",
+          answer:
+            "Online booking is recommended to secure your spot, but drop-ins are welcome if space is available.",
+        },
+        {
+          question: "Can I view the schedule on my phone?",
+          answer:
+            "Absolutely. Our schedule is fully mobile-friendly and can be accessed anytime via our website or app.",
+        },
+      ]}
+    />
+  </main>
+</Layout>

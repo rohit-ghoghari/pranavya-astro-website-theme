@@ -1,0 +1,138 @@
+---
+const whyChooseUs = {
+    eyebrow: "Why Choose Us",
+    title: "Nurturing Every Step of Your Journey",
+    description:
+        "At Pranavya Yoga, your wellness journey is honored and supported with intentional offerings. Whether you're seeking solitude, strength, or stillness, our sessions are crafted to help you move in alignment with your body and spirit.",
+    buttonText: "Browse Class Schedule",
+    buttonHref: "/schedule/",
+    decorativeImage: "/flower-shape.svg",
+    decorativeAlt: "decor",
+};
+
+const features = [
+    {
+        title: "PERSONALIZED YOGA",
+        description:
+            "One-on-one sessions tailored to your goals, abilities, and schedule Ideal for deeper alignment and personalized growth.",
+        image: "/personalized-yoge.svg",
+        alt: "Personalized Yoga",
+        imageClass:
+            "2xl:w-[55px] 2xl:h-[55px] 1xl:w-12 1xl:h-12 xl:w-[42px] xl:h-[42px] w-9 h-9 object-contain",
+        paragraphClass: "",
+    },
+    {
+        title: "YOGA WORKSHOPS",
+        description:
+            "Explore themes like breath, balance, and mindfulness in depth. Perfect for learning, growing, and refining your practice.",
+        image: "/yoga-workshop.svg",
+        alt: "Yoga Workshops",
+        imageClass:
+            "2xl:w-[55px] 2xl:h-[55px] 1xl:w-12 1xl:h-12 w-11 h-11 object-contain",
+        paragraphClass: "",
+    },
+    {
+        title: "YOGA RETREATS",
+        description:
+            "Step away from routine and immerse in soulful, scenic healing. Recharge your mind, body, and spirit in tranquil settings.",
+        image: "/yoga-retreat.svg",
+        alt: "Yoga Retreats",
+        imageClass:
+            "2xl:w-[55px] 2xl:h-[55px] 1xl:w-12 1xl:h-12 w-11 h-11 object-contain",
+        paragraphClass: "",
+    },
+    {
+        title: "FLEXIBLE CLASSES",
+        description:
+            "Morning to evening sessions that match your daily flow. Practice on your time, with styles suited to every level.",
+        image: "/flexible-classes.svg",
+        alt: "Flexible Classes",
+        imageClass:
+            "2xl:w-[55px] 2xl:h-[55px] 1xl:w-12 1xl:h-12 w-11 h-11 object-contain",
+        paragraphClass: "text-[#704a3a] leading-relaxed",
+    },
+];
+---
+
+<section
+    class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+>
+    <div class="container">
+        <div
+            class="grid lg:grid-cols-2 1xl:gap-[70px] xl:gap-[55px] lg:gap-[50px] sm:gap-10 gap-[30px] items-start"
+        >
+            <!-- Left Column -->
+            <div
+                class="flex flex-col items-start 1xl:mb-[50px] lg:mb-11 relative lg:h-full"
+            >
+                <h3
+                    class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5"
+                >
+                    {whyChooseUs.eyebrow}
+                </h3>
+
+                <h2 class="text-primary uppercase 1xl:mb-5 mb-3">
+                    {whyChooseUs.title}
+                </h2>
+
+                <p>
+                    {whyChooseUs.description}
+                </p>
+
+                <a
+                    href={whyChooseUs.buttonHref}
+                    class="btn btn-secondary xl:mt-[50px] lg:mt-10 sm:mt-8 mt-6"
+                >
+                    {whyChooseUs.buttonText}
+                </a>
+
+                <!-- Decorative Flower -->
+                <div
+                    class="pointer-events-none absolute top-auto bottom-0 right-auto left-0 2xl:w-[69%] w-[60%] opacity-15 hidden lg:block"
+                >
+                    <img
+                        loading="lazy"
+                        src={whyChooseUs.decorativeImage}
+                        alt={whyChooseUs.decorativeAlt}
+                        class="w-full h-full object-contain"
+                    />
+                </div>
+            </div>
+
+            <!-- Right Column - Features -->
+            <div
+                class="2xl:space-y-10 1xl:space-y-8 xl:space-y-5 space-y-4"
+            >
+                {
+                    features.map((feature) => (
+                        <div
+                            class="border-b border-[#d4c5b9] hover:bg-[#F7F5F4]"
+                            data-aos="fade-up"
+                        >
+                            <div class="flex sm:flex-row flex-col 2xl:gap-6 gap-5 2xl:p-10 1xl:p-8 xl:p-6 p-5">
+                                <div class="shrink-0">
+                                    <img
+                                        loading="lazy"
+                                        src={feature.image}
+                                        alt={feature.alt}
+                                        class={feature.imageClass}
+                                    />
+                                </div>
+
+                                <div>
+                                    <h3 class="text-[#704a3a] 2xl:mb-7 xl:mb-5 sm:mb-4 mb-[10px]">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p class={feature.paragraphClass}>
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

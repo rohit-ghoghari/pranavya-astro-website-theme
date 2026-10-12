@@ -1,0 +1,207 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IndexTwoHero from "../components/index-2/IndexTwoHero.astro";
+import FindFlow from "../components/index-2/FindFlow.astro";
+import WhyChooseUs from "../components/index-2/WhyChooseUs.astro";
+import ScheduleIndex2 from "../components/index-2/ScheduleIndex2.astro";
+import ClassStories from "../components/index-2/ClassStories.astro";
+import Testimonials from "../components/index-2/Testimonials.astro";
+
+const galleryItems = [
+    {
+        image: "/inside-studio-1.webp",
+        alt: "instagram_style_1_images_1",
+        link: "https://www.instagram.com/",
+    },
+    {
+        image: "/inside-studio-2.webp",
+        alt: "instagram_style_1_images_2",
+        link: "https://www.instagram.com/",
+    },
+    {
+        image: "/inside-studio-3.webp",
+        alt: "instagram_style_1_images_3",
+        link: "https://www.instagram.com/",
+    },
+    {
+        image: "/inside-studio-4.webp",
+        alt: "instagram_style_1_images_4",
+        link: "https://www.instagram.com/",
+    },
+    {
+        image: "/inside-studio-5.webp",
+        alt: "instagram_style_1_images_5",
+        link: "https://www.instagram.com/",
+    },
+    {
+        image: "/inside-studio-6.webp",
+        alt: "instagram_style_1_images_6",
+        link: "https://www.instagram.com/",
+    },
+];
+---
+
+<Layout
+    headerVariant="index-2"
+    footerVariant="index-2"
+    title="Pranavya Yoga — Home 2 (Modern Studio & Flows)"
+    description="Discover Pranavya Yoga Home Variant 2. Full-width modern layout highlighting daily studio schedules, featured classes, and certified yoga mentors."
+    canonical="/index-2/"
+>
+    <!-- index-2 page sections will be built here -->
+
+        <!-- Section 1 -->
+        <IndexTwoHero/>
+
+        <!-- Section 2 -->
+        <section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+            <!-- Decorative Flower -->
+            <div class="pointer-events-none absolute 2xl:-top-[80px] 1xl:-top-[60px] xl:-top-14 lg:-top-12 -top-10 left-auto right-0 lt:w-[10%] w-[17%] opacity-30 hidden md:block">
+                <img loading="lazy" src="/flower-shape.svg" alt="decor" class="w-full h-full object-contain">
+            </div>
+            <div class="container space-y-5">
+                <div class="flex lt:flex-row flex-col lt:gap-[30px] gap-5">
+                    <div class="lg:w-[28%] lt:w-[32%] md:w-[60%] sm:w-[70%] w-full rounded-sm overflow-hidden">
+                        <img loading="lazy" decoding="async" src="/home-2_about-us-1.webp" alt="about us" class="w-full h-full object-cover">
+                    </div>
+                    <div class="lt:w-[72%] w-full 1xl:py-[30px] lt:py-5">
+                        <h3 class="text-thunder-100 font-primary italic font-medium 2xl:mb-7 1xl:mb-6 sm:mb-3 mb-2.5">
+                            About Us
+                        </h3>
+                        <h2 class="text-primary font-normal uppercase 1xl:mb-6 mb-4">
+                            Where Stillness Meets Strength
+                        </h2>
+                        <p class="text-thunder-100 1xl:max-w-[96%]">
+                            We believe real strength begins with clarity. In a world that moves fast, we choose to work
+                            with intention, blending calm focus with confident ambition. Our approach brings together
+                            timeless values and modern thinking — discipline, honesty, creativity, and progress. Every
+                            idea is shaped with patience, every decision is thoughtful, and every result is built to
+                            last. We move steady, not noisy; strong, not rushed. This balance is our identity — the
+                            place where stillness creates power, clarity fuels growth, and strength becomes our way
+                            forward. We are driven by a simple belief:
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex lt:flex-row flex-col-reverse items-start 2xl:gap-[70px] xl:gap-[55px] sm:gap-[30px] gap-5">
+                    <div class="lt:w-[68%] w-full 1xl:pt-[30px] lt:pt-5">
+                        <p class="text-thunder-100 1xl:mb-9 xl:mb-7 mb-6">
+                            true strength comes from a calm, focused mind. In a world where everything moves fast and
+                            loud, we choose a path of intention — blending quiet clarity with powerful execution. Our
+                            work reflects a balance of tradition and innovation, honoring timeless values like
+                            discipline, honesty, and consistency, while embracing forward-thinking ideas that keep us
+                            evolving. We approach every project with patience and purpose, ensuring each decision is
+                            thoughtful, each detail is refined, and each outcome is built to last.
+                        </p>
+                        <div class="border-l-3 border-primary bg-whitesmoke-100 lg:px-[26px] md:px-5 1xl:py-7 lg:py-6 md:py-5 p-4 1xl:mb-[50px] xl:mb-10 mb-8.5">
+                            <p class="font-medium text-primary">
+                                “In every breath, a moment. In every moment, an opportunity to return to yourself.”
+                            </p>
+                        </div>
+                        <a href="/about/" class="btn btn-secondary-second">Explore the Studio</a>
+                    </div>
+                    <div class="lt:w-[32%] md:w-[60%] sm:w-[70%] w-full rounded-sm overflow-hidden">
+                        <img loading="lazy" decoding="async" src="/home-2_about-us-2.webp" alt="about us" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <FindFlow/>
+
+        <!-- Section 4 -->
+        <WhyChooseUs/>
+
+        <!-- Section 5 -->
+        <section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+            <div class="w-full 2xl:h-[730px] 1xl:h-[670px] xl:h-[600px] lg:h-[540px] sm:h-[440px] h-[600px]">
+                <img loading="lazy" decoding="async" src="/find-your-flow-2.webp" alt="Find Your Flow" class="w-full h-full object-cover max-[640px]:object-[right_-350px_bottom_0px]">
+                <div class="absolute inset-0 top-0 left-0 w-full h-full bg-linear-to-r from-black/99 via-black/54 to-black/50">
+                    <div class="container h-full">
+                        <div class="flex flex-col h-full sm:items-start items-center sm:justify-center justify-end sm:pb-0 pb-9 text-white 1xl:max-w-[680px] xl:max-w-[570px] lg:max-w-[510px] sm:max-w-[415px] w-full">
+                            <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 sm:text-start text-center text-white">
+                                Yoga, Simplified
+                            </h3>
+                            <h2 class="uppercase 1xl:mb-5 mb-3 sm:text-start text-center text-white">
+                                Balance Your Body. Calm Your Mind.
+                            </h2>
+                            <p class="sm:text-start text-center text-white">
+                                Real yoga for real life no pressure, no perfection. Just space
+                                to breathe, stretch, and be present.
+                            </p>
+                            <a href="/classes/classOne/" class="btn btn-secondary xl:mt-[45px] lg:mt-10 sm:mt-8 mt-6">Find
+                                Your Flow</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6 -->
+        <ScheduleIndex2/>
+
+        <!-- Section 7 -->
+        <ClassStories/>
+
+        <!-- Section 8 -->
+        <Testimonials/>
+
+        <!-- Section 9 -->
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-whitesmoke-100 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-10">
+    <div class="container">
+
+        <div class="flex flex-col items-center justify-center 1xl:mb-[50px] sm:mb-11 mb-5">
+            <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center">
+                Gallery
+            </h3>
+
+            <h2 class="text-primary uppercase text-center">
+                Inside the Studio
+            </h2>
+        </div>
+
+        <div class="grid lt:grid-cols-6 min-[376px]:grid-cols-3 grid-cols-2 sm:gap-[18px] gap-[10px]">
+            {
+                galleryItems.map((item) => (
+                    <div data-aos="fade-up">
+                        <a
+                            href={item.link}
+                            target="_blank"
+                            class="relative group cursor-pointer"
+                        >
+                            <div class="relative before:content-[''] before:block 1xl:before:pt-[98%] xl:before:pt-[100%] lt:before:pt-[110%] before:pt-[100%] overflow-hidden">
+                                <img
+                                    loading="lazy"
+                                    decoding="async"
+                                    src={item.image}
+                                    alt={item.alt}
+                                    class="absolute left-0 top-0 w-full h-full object-cover object-center scale-101 group-hover:scale-110 origin-center transition-all duration-1000"
+                                />
+                            </div>
+
+                            <div class="absolute inset-0 bg-linear-to-b from-black-200/0 to-black-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="bg-white rounded-full overflow-hidden sm:size-12 size-10 flex items-center justify-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        class="sm:w-6 sm:h-6 w-5 h-5"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M6.76667 0H16.5667C20.3 0 23.3333 3.03333 23.3333 6.76667V16.5667C23.3333 18.3613 22.6204 20.0824 21.3514 21.3514C20.0824 22.6204 18.3613 23.3333 16.5667 23.3333H6.76667C3.03333 23.3333 0 20.3 0 16.5667V6.76667C0 4.97203 0.712915 3.25091 1.98191 1.98191C3.25091 0.712915 4.97203 0 6.76667 0ZM6.53333 2.33333C5.41942 2.33333 4.35114 2.77583 3.56348 3.56348C2.77583 4.35114 2.33333 5.41942 2.33333 6.53333V16.8C2.33333 19.1217 4.21167 21 6.53333 21H16.8C17.9139 21 18.9822 20.5575 19.7698 19.7698C20.5575 18.9822 21 17.9139 21 16.8V6.53333C21 4.21167 19.1217 2.33333 16.8 2.33333H6.53333ZM17.7917 4.08333C18.1784 4.08333 18.5494 4.23698 18.8229 4.51047C19.0964 4.78396 19.25 5.15489 19.25 5.54167C19.25 5.92844 19.0964 6.29937 18.8229 6.57286C18.5494 6.84635 18.1784 7 17.7917 7C17.4049 7 17.034 6.84635 16.7605 6.57286C16.487 6.29937 16.3333 5.92844 16.3333 5.54167C16.3333 5.15489 16.487 4.78396 16.7605 4.51047C16.487 4.78396 16.3333 5.15489 16.3333 5.54167C16.3333 5.15489 16.487 4.78396 16.7605 4.51047C17.034 4.23698 17.4049 4.08333 17.7917 4.08333ZM11.6667 5.83333C13.2138 5.83333 14.6975 6.44791 15.7915 7.54188C16.8854 8.63584 17.5 10.1196 17.5 11.6667C17.5 13.2138 16.8854 14.6975 15.7915 15.7915C14.6975 16.8854 13.2138 17.5 11.6667 17.5C10.1196 17.5 8.63541 16.8854 7.54188 15.7915C6.44791 15.1667 5.83333 13.2138 5.83333 11.6667C5.83333 10.1196 6.44791 8.63584 7.54188 7.54188C8.63584 6.44791 10.1196 5.83333 11.6667 5.83333ZM11.6667 8.16667C10.7384 8.16667 9.84817 8.53541 9.19179 9.19179C8.53541 9.84817 8.16667 10.7384 8.16667 11.6667C8.16667 12.5949 8.53541 13.4852 9.19179 14.1415C9.84817 14.7979 10.7384 15.1667 11.6667 15.1667C12.5949 15.1667 13.4852 14.7979 14.1415 14.1415C14.7979 13.4852 15.1667 12.5949 15.1667 11.6667Z"
+                                            fill="#673e2c"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+</Layout>

@@ -1,0 +1,307 @@
+---
+interface ScheduleItem {
+    type: "class" | "rest";
+    title?: string;
+    level?: string;
+    time?: string;
+}
+
+interface ScheduleRow {
+    items: ScheduleItem[];
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+    days?: string[];
+    schedule?: ScheduleRow[];
+}
+
+const {
+    eyebrow = "Weekly Practice Calendar",
+    title = "Balance Every Day",
+    description = "Stay consistent without pressure. Our flexible schedule offers a mix of dynamic, restorative, and mindful practices to match your energy throughout the week.",
+    buttonText = "Book a Class",
+    buttonLink = "/bookClass/",
+
+    days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ],
+
+    schedule = [
+        {
+            items: [
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "6:00 AM to 7:00 AM",
+                },
+            ],
+        },
+
+        {
+            items: [
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "7:00 AM to 8:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "7:00 AM to 8:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "7:00 AM to 8:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+            ],
+        },
+
+        {
+            items: [
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "8:00 AM to 9:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "8:00 AM to 9:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "8:00 AM to 9:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "8:00 AM to 9:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+            ],
+        },
+
+        {
+            items: [
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "9:00 AM to 10:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "9:00 AM to 10:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "9:00 AM to 10:00 AM",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "9:00 AM to 10:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+                {
+                    type: "class",
+                    title: "Meditation",
+                    level: "Beginner",
+                    time: "9:00 AM to 10:00 AM",
+                },
+                {
+                    type: "rest",
+                },
+            ],
+        },
+    ],
+} = Astro.props;
+---
+
+<section
+    class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-white"
+>
+    <div id="schedule" class="schedule-4">
+        <div class="container relative z-10">
+
+            <div
+                class="flex md:flex-row flex-col md:items-center items-start md:justify-between 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-5 gap-4 2xl:mb-[50px] 1xl:mb-11 xl:mb-[38px] sm:mb-8 mb-5"
+            >
+                <div>
+                    <h3
+                        class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5"
+                    >
+                        {eyebrow}
+                    </h3>
+
+                    <h2
+                        class="text-primary font-normal uppercase 1xl:mb-5 sm:mb-3 mb-2.5"
+                    >
+                        {title}
+                    </h2>
+
+                    <p class="text-thunder-100 max-w-[890px]">
+                        {description}
+                    </p>
+                </div>
+
+                <div class="md:max-w-[842px] md:mr-0 md:ml-auto">
+                    <a href={buttonLink} class="btn btn-secondary">
+                        {buttonText}
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tables by Day -->
+            <div class="xl:mt-[11px] mt-[9px] lt:-mx-3">
+
+                <!-- Schedule Table -->
+                <div class="custom-scroll-2 overflow-auto">
+                    <table class="w-full table">
+
+                        <thead>
+                            <tr
+                                class="1xl:mb-[11px] xl:mb-[9px] mb-1.5 1xl:h-[88px] xl:h-[75px] lg:h-[64px] sm:h-[58px] h-[53px]"
+                            >
+                                {
+                                    days.map((day) => (
+                                        <td class="w-1/7 pb-[9px]">
+                                            <p class="text-primary text-center uppercase">
+                                                {day}
+                                            </p>
+                                        </td>
+                                    ))
+                                }
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-row-group">
+
+                            {
+                                schedule.map((row) => (
+                                    <tr>
+                                        {
+                                            row.items.map((item) => (
+                                                <td
+                                                    class:list={{
+                                                        "group-hover:text-primary":
+                                                            item.type === "rest",
+                                                    }}
+                                                >
+                                                    {
+                                                        item.type === "class" ? (
+                                                            <div class="1xl:p-[14px] xl:p-2 p-1.5 bg-[#673E2C0D] 2xl:space-y-4 1xl:space-y-3.5 xl:space-y-2 space-y-1.5 text-center w-full">
+                                                                <p class="text-primary font-medium">
+                                                                    {item.title}
+                                                                </p>
+
+                                                                <p>
+                                                                    {item.level}
+                                                                </p>
+
+                                                                <p>
+                                                                    {item.time}
+                                                                </p>
+                                                            </div>
+                                                        ) : (
+                                                            <p class="text-primary text-center">
+                                                                Rest
+                                                            </p>
+                                                        )
+                                                    }
+                                                </td>
+                                            ))
+                                        }
+                                    </tr>
+                                ))
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

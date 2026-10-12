@@ -1,0 +1,42 @@
+---
+interface Props {
+  copyright: string;
+  privacyHref: string;
+  termsHref: string;
+  helpHref: string;
+}
+
+const { copyright, privacyHref, termsHref, helpHref } = Astro.props;
+---
+
+<div class="border-t border-primary/20 2xl:py-6.5 1xl:py-6 xl:py-5.5 lg:py-5 md:py-4.5 sm:py-4 py-4">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+
+    <!-- Left: Copyright -->
+    <div>
+      <p class="text-thunder-100 p2">
+        {copyright}
+      </p>
+    </div>
+
+    <!-- Right: Legal Links -->
+    <div class="flex flex-wrap items-center gap-2">
+      <p class="text-thunder-100 hover:text-primary p2">
+        <a href={privacyHref} class="text-current">Privacy Policy</a>
+      </p>
+
+      <p>||</p>
+
+      <p class="text-thunder-100 hover:text-primary p2">
+        <a href={termsHref} class="text-current">Term’s &amp; Condition</a>
+      </p>
+
+      <p>||</p>
+
+      <p class="text-thunder-100 hover:text-primary p2">
+        <a href={helpHref} class="text-current">Help</a>
+      </p>
+    </div>
+
+  </div>
+</div>

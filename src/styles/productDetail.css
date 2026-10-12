@@ -1,0 +1,10 @@
+.product-detail-tabs #schedule .schedule-tab {
+    background-color: #fff;
+    color: #673e2c;
+}
+
+.product-detail-tabs #schedule .schedule-tab.active,
+.product-detail-tabs #schedule .schedule-tab.is-active {
+    background-color: #673e2c;
+    color: #fff;
+}

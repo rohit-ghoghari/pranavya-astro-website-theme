@@ -1,0 +1,233 @@
+---
+import {
+    shopBrands,
+    shopCategories,
+    shopFilterColors,
+    shopPriceRanges,
+} from "../../data/shopCatalog";
+import {
+    useFilters,
+    ratingFilters,
+    checkboxPath,
+} from "../../data/shopFilters";
+---
+
+<aside class="lg:w-[21%] lt:w-[27%] w-full shrink-0">
+    <button
+        type="button"
+        class="shop-filter-mobile-toggle lt:hidden w-full flex items-center justify-between border-b border-primary/30 bg-white sm:pb-3 pb-2"
+        aria-expanded="false"
+        aria-controls="shop-filter-panel"
+    >
+        <span class="flex items-center sm:gap-4 gap-2.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M0 3H20V5H0V3ZM0 9H20V11H0V9ZM0 15H20V17H0V15Z" fill="#6A4C3D" />
+            </svg>
+            <span class="text-black uppercase lg:hidden block">FILTER</span>
+        </span>
+        <span class="shop-filter-mobile-icon text-black font-medium leading-none lg:block hidden">+</span>
+    </button>
+
+    <div
+        id="shop-filter-panel"
+        class="shop-filter-panel bg-whitesmoke-100 1xl:p-8 lt:p-5.5 sm:px-5.5 px-4 sm:py-3 divide-y divide-primary/30"
+    >
+        <h5 class="text-black pb-2.5 uppercase border-b border-primary/30 hidden lt:block">FILTER</h5>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Shop by Category</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <ul class="filter-content mt-2 space-y-1.5">
+                {shopCategories.map((category, index) => (
+                    <li>
+                        <input
+                            id={`shop-category-${index}`}
+                            type="checkbox"
+                            class="hidden peer filter-option"
+                            data-filter-type="category"
+                            value={category.name}
+                        />
+                        <label
+                            for={`shop-category-${index}`}
+                            class="cursor-pointer w-full inline-flex items-center justify-between peer-checked:**:text-primary peer-checked:**:font-medium transition-all ease-in-out"
+                        >
+                            <span class="flex items-center justify-between w-full">
+                                <span class="group-hover:text-primary">{category.name}</span>
+                                <span class="group-hover:text-primary">({category.count})</span>
+                            </span>
+                        </label>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Filter by Price</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="filter-content mt-2 space-y-1.5">
+                {shopPriceRanges.map((range) => (
+                    <label class="price-checkbox flex justify-between items-center cursor-pointer group">
+                        <span class="group-hover:text-primary">{range.label}</span>
+                        <input
+                            type="checkbox"
+                            class="price-checkbox-input peer filter-option"
+                            data-filter-type="price"
+                            data-min={range.min}
+                            data-max={range.max}
+                        />
+                        <span class="price-checkbox-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none" class="price-checkbox-icon">
+                                <path d="M12.7091 0.209133L12.962 0.46199C13.0959 0.595939 13.1711 0.777587 13.1711 0.96699C13.1711 1.15639 13.0959 1.33804 12.962 1.47199L4.76913 9.66485C4.63518 9.79876 4.45354 9.87398 4.26413 9.87398C4.07473 9.87398 3.89308 9.79876 3.75913 9.66485L0.209133 6.11485C0.075225 5.9809 0 5.79925 0 5.60985C0 5.42044 0.075225 5.2388 0.209133 5.10485L0.46199 4.85199C0.595939 4.71808 0.777587 4.64286 0.96699 4.64286C1.15639 4.64286 1.33804 4.71808 1.47199 4.85199L3.75913 7.13913C3.89308 7.27304 4.07473 7.34827 4.26413 7.34827C4.45354 7.34827 4.63518 7.27304 4.76913 7.13913L11.6991 0.209133C11.8331 0.075225 12.0147 0 12.2041 0C12.3935 0 12.5752 0.075225 12.7091 0.209133Z" fill="#673E2C" />
+                            </svg>
+                        </span>
+                    </label>
+                ))}
+            </div>
+        </div>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Filter by Brand</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <ul class="filter-content mt-2 space-y-1.5">
+                {shopBrands.map((brand, index) => (
+                    <li>
+                        <label class="price-checkbox flex justify-between items-center cursor-pointer group">
+                            <span class="group-hover:text-primary">{brand}</span>
+                            <input
+                                type="checkbox"
+                                class="price-checkbox-input peer filter-option"
+                                data-filter-type="brand"
+                                value={brand}
+                                id={`shop-brand-${index}`}
+                            />
+                            <span class="price-checkbox-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none" class="price-checkbox-icon">
+                                    <path d="M12.7091 0.209133L12.962 0.46199C13.0959 0.595939 13.1711 0.777587 13.1711 0.96699C13.1711 1.15639 13.0959 1.33804 12.962 1.47199L4.76913 9.66485C4.63518 9.79876 4.45354 9.87398 4.26413 9.87398C4.07473 9.87398 3.89308 9.79876 3.75913 9.66485L0.209133 6.11485C0.075225 5.9809 0 5.79925 0 5.60985C0 5.42044 0.075225 5.2388 0.209133 5.10485L0.46199 4.85199C0.595939 4.71808 0.777587 4.64286 0.96699 4.64286C1.15639 4.64286 1.33804 4.71808 1.47199 4.85199L3.75913 7.13913C3.89308 7.27304 4.07473 7.34827 4.26413 7.34827C4.45354 7.34827 4.63518 7.27304 4.76913 7.13913L11.6991 0.209133C11.8331 0.075225 12.0147 0 12.2041 0C12.3935 0 12.5752 0.075225 12.7091 0.209133Z" fill="#673E2C" />
+                                </svg>
+                            </span>
+                        </label>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Filter by Color</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="filter-content mt-2 flex flex-wrap 1xl:gap-3.5 xl:gap-[11px] gap-2">
+                {shopFilterColors.map((color, index) => (
+                    <div>
+                        <input
+                            type="checkbox"
+                            class="hidden peer filter-option"
+                            data-filter-type="color"
+                            value={color.toLowerCase()}
+                            id={`shop-color-${index}`}
+                        />
+                        <label
+                            for={`shop-color-${index}`}
+                            class="cursor-pointer 1xl:size-7.5 xl:size-6.5 size-6 rounded-sm overflow-hidden border border-primary/30 p-0 flex peer-checked:border peer-checked:border-primary transition-all ease-in-out"
+                            aria-label={`Filter by color ${color}`}
+                        >
+                            <span class="w-full h-full peer-checked:rounded-sm" style={`background-color: ${color}`}></span>
+                        </label>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Filter by Brand</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="filter-content mt-2 space-y-1.5">
+                {useFilters.map((filter, index) => (
+                    <label class="price-checkbox flex justify-between items-center cursor-pointer group">
+                        <span class="group-hover:text-primary">{filter}</span>
+                        <input
+                            type="checkbox"
+                            class="price-checkbox-input peer filter-option"
+                            data-filter-type="use"
+                            value={filter}
+                            id={`shop-use-${index}`}
+                        />
+                        <span class="price-checkbox-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none" class="price-checkbox-icon">
+                                <path d="M12.7091 0.209133L12.962 0.46199C13.0959 0.595939 13.1711 0.777587 13.1711 0.96699C13.1711 1.15639 13.0959 1.33804 12.962 1.47199L4.76913 9.66485C4.63518 9.79876 4.45354 9.87398 4.26413 9.87398C4.07473 9.87398 3.89308 9.79876 3.75913 9.66485L0.209133 6.11485C0.075225 5.9809 0 5.79925 0 5.60985C0 5.42044 0.075225 5.2388 0.209133 5.10485L0.46199 4.85199C0.595939 4.71808 0.777587 4.64286 0.96699 4.64286C1.15639 4.64286 1.33804 4.71808 1.47199 4.85199L3.75913 7.13913C3.89308 7.27304 4.07473 7.34827 4.26413 7.34827C4.45354 7.34827 4.63518 7.27304 4.76913 7.13913L11.6991 0.209133C11.8331 0.075225 12.0147 0 12.2041 0C12.3935 0 12.5752 0.075225 12.7091 0.209133Z" fill="#673E2C" />
+                            </svg>
+                        </span>
+                    </label>
+                ))}
+            </div>
+        </div>
+
+        <div class="filter-box 1xl:pt-6 lg:pt-4 pt-3 1xl:pb-8.5 lg:pb-6.5 pb-5">
+            <button type="button" class="filter-toggle w-full flex justify-between items-center" aria-expanded="true">
+                <span class="font-medium">Filter by Brand</span>
+                <span class="toggle-icon">−</span>
+            </button>
+            <div class="filter-content mt-2 1xl:space-y-4 space-y-3">
+                {ratingFilters.map((rating) => (
+                    <label
+                        class="price-checkbox flex justify-between items-center cursor-pointer group"
+                        aria-label={`${rating} star rating`}
+                    >
+                        <span class="flex gap-2 items-center" aria-hidden="true">
+                            {Array.from({ length: 5 }, (_, index) => (
+                                <img
+                                    loading="lazy"
+                                    src={index < rating ? "/full-star.svg" : "/empty-star.svg"}
+                                    alt=""
+                                    class="size-5.5"
+                                />
+                            ))}
+                        </span>
+                        <input
+                            type="checkbox"
+                            class="price-checkbox-input peer"
+                            aria-label={`${rating} stars`}
+                        />
+                        <span class="price-checkbox-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none" class="price-checkbox-icon">
+                                <path d={checkboxPath} fill="#673E2C" />
+                            </svg>
+                        </span>
+                    </label>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="shop-filter-tags"
+        class="flex items-center lg:gap-3 gap-2.5 1xl:mb-11 sm:mb-8 mb-5 flex-wrap"
+        hidden
+    >
+        <p class="font-medium" data-filter-count>1 Items in</p>
+        <div class="flex items-center 1xl:gap-5.5 gap-4.5 1xl:px-4.5 xl:px-4 sm:px-3 px-2.5 sm:py-0 py-0.5 rounded-full border border-bronco-100">
+            <p>Yoga Mats</p>
+            <button type="button" class="filter-tag-remove hover:text-red-500 transition-colors text-thunder-100" aria-label="Remove Yoga Mats filter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                    <path d="M8.80065 0.206172C8.7375 0.142889 8.66249 0.0926821 8.5799 0.0584261C8.49732 0.02417 8.40879 0.00653721 8.31939 0.00653721C8.22999 0.00653721 8.14146 0.02417 8.05888 0.0584261C7.97629 0.0926821 7.90128 0.142889 7.83813 0.206172L4.5 3.53747L1.16187 0.199346C1.09867 0.136145 1.02364 0.0860121 0.941068 0.0518081C0.858492 0.0176043 0.769989 0 0.68061 0C0.591231 0 0.502727 0.0176043 0.420151 0.0518081C0.337576 0.0860121 0.262546 0.136145 0.199346 0.199346C0.136145 0.262546 0.086012 0.337576 0.051808 0.420151C0.017604 0.502727 0 0.591231 0 0.68061C0 0.769989 0.017604 0.858492 0.051808 0.941068C0.086012 1.02364 0.136145 1.09867 0.199346 1.16187L3.53747 4.5L0.199346 7.83813C0.136145 7.90133 0.086012 7.97636 0.051808 8.05893C0.017604 8.14151 0 8.23001 0 8.31939C0 8.40877 0.017604 8.49727 0.051808 8.57985C0.086012 8.66242 0.136145 8.73745 0.199346 8.80065C0.262546 8.86385 0.337576 8.91399 0.420151 8.94819C0.502727 8.9824 0.591231 9 0.68061 9C0.769989 9 0.858492 8.9824 0.941068 8.94819C1.02364 9.02365 1.09867 9.08601 1.16187 9.14921L4.5 5.46253L7.83813 8.80065C7.90133 8.86385 7.97636 8.91399 8.05893 8.94819C8.14151 8.9824 8.23001 9 8.31939 9C8.40877 9 8.49727 8.9824 8.57985 8.94819C8.66242 8.91399 8.73745 8.86385 8.80065 8.80065C9.06006 0.902469 9.06006 0.465577 8.80065 0.206172Z" fill="currentColor" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex items-center 1xl:gap-5.5 gap-4.5 1xl:px-4.5 xl:px-4 sm:px-3 px-2.5 sm:py-0 py-0.5 rounded-full border border-bronco-100">
+            <p>Travel-Friendly</p>
+            <button type="button" class="filter-tag-remove hover:text-red-500 transition-colors text-thunder-100" aria-label="Remove Travel-Friendly filter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                    <path d="M8.80065 0.206172C8.7375 0.142889 8.66249 0.0926821 8.5799 0.0584261C8.49732 0.02417 8.40879 0.00653721 8.31939 0.00653721C8.22999 0.00653721 8.14146 0.02417 8.05888 0.0584261C7.97629 0.0926821 7.90128 0.142889 7.83813 0.206172L4.5 3.53747L1.16187 0.199346C1.09867 0.136145 1.02364 0.086012 0.941068 0.0518081C0.858492 0.0176043 0.769989 0 0.68061 0C0.591231 0 0.502727 0.0176043 0.420151 0.0518081C0.337576 0.0860121 0.262546 0.136145 0.199346 0.199346C0.136145 0.262546 0.086012 0.337576 0.051808 0.420151C0.017604 0.502727 0 0.591231 0 0.68061C0 0.769989 0.017604 0.858492 0.051808 0.941068C0.086012 1.02364 0.136145 1.09867 0.199346 1.16187L3.53747 4.5L0.199346 7.83813C0.136145 7.90133 0.086012 7.97636 0.051808 8.05893C0.017604 8.14151 0 8.23001 0 8.31939C0 8.40877 0.017604 8.49727 0.051808 8.57985C0.086012 8.66242 0.136145 8.73745 0.199346 8.80065C0.262546 0.86385 0.337576 0.91399 0.420151 0.94819C0.502727 0.9824 0.591231 1 0.68061 1C0.769989 1 0.858492 0.9824 0.941068 0.94819C1.02364 0.91399 1.09867 0.86385 1.16187 0.80065L4.5 5.46253L7.83813 0.80065C7.90133 0.86385 7.97636 0.91399 8.05893 0.94819C8.14151 0.9824 8.23001 1 8.31939 1C8.40877 1 8.49727 0.9824 8.57985 0.94819C8.66242 0.91399 8.73745 0.86385 8.80065 0.80065C9.06006 0.902469 9.06006 0.465577 8.80065 0.206172Z" fill="currentColor" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</aside>

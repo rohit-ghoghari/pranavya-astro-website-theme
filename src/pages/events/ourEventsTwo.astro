@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PageHeading from "../../components/common/PageHeading.astro"
+import EventsSchedule from "../../components/events/EventsSchedule.astro"
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Wellness Events Schedule — Pranavya Yoga"
+  description="Explore the complete calendar of yoga workshops, sound meditations, and masterclasses at Pranavya Yoga."
+  canonical="/events/ourEventsTwo/"
+>
+
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Upcoming Events & Workshops"
+      description="From seasonal workshops and community classes to multi-day retreats—explore our full schedule of events. Find the practice that suits your pace, reserve your spot, and grow alongside our community."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <EventsSchedule />  
+   
+</main>
+</Layout>

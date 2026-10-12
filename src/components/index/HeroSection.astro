@@ -1,0 +1,79 @@
+---
+interface Props {
+    badge?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonHref?: string;
+    backgroundImage?: string;
+    backgroundAlt?: string;
+    heroImage?: string;
+    heroImageAlt?: string;
+}
+
+const {
+    badge = "Get To 40% Off",
+    title = "Move With Grace & Strength.",
+    description = `At Pranavya, we guide you through a journey of mindful movement,
+deep breathwork, and inner balance. Our modern approach blends
+ancient yoga traditions with today’s lifestyle welcoming all
+bodies, all levels, and all paths.`,
+    buttonText = "join a class",
+    buttonHref = "/classes/classOne/",
+    backgroundImage = "/hero-section-bg-img.webp",
+    backgroundAlt = "hero",
+    heroImage = "/hero-section-img.webp",
+    heroImageAlt = "Hero Images",
+} = Astro.props;
+---
+
+<section class="relative overflow-x-hidden lg:min-h-screen min-h-[60vh] flex items-center 2xl:pt-[277px] xl:pt-[210px] lg:pt-[200px] md:pt-[160px] sm:pt-[120px] pt-[100px] 2xl:pb-[197px] 1xl:pb-[196px] xl:pb-[195px] lg:pb-[130px] md:pb-[100px] sm:pb-[90px] pb-0">
+    <!-- Background Pattern -->
+    <div class="absolute top-0 left-0 w-full h-full z-0">
+        <img
+            loading="lazy"
+            class="absolute top-0 left-0 z-3 w-full h-full mix-blend-overlay opacity-50 object-center"
+            src={backgroundImage}
+            alt={backgroundAlt}
+            fetchpriority="high"
+        >
+        <div class="absolute top-0 left-0 z-2 bg-[linear-gradient(283.36deg,#F3F3F3_11.49%,#673E2C_100.18%)] w-full h-full">
+        </div>
+        <div class="absolute top-0 left-0 z-1 bg-[#DBDCDE] w-full h-full"></div>
+    </div>
+
+    <!-- Container -->
+    <div class="container mx-auto z-1">
+        <!-- Left Content -->
+        <div class="w-full 2xl:max-w-[1040px] 1xl:max-w-[880px] xl:max-w-[787px] max-w-[660px] z-1 relative" data-aos="fade-right">
+            <!-- Offer Badge -->
+            <h3 class="text-white font-primary italic font-medium xl:mb-7.5 lg:mb-6 md:mb-5 sm:mb-4 mb-2.5">
+                {badge}
+            </h3>
+
+            <!-- Main Heading -->
+            <h1 class="text-white font-normal uppercase md:mb-5 mb-3.5">
+                {title}
+            </h1>
+
+            <!-- Description -->
+            <p class="font-primary font-normal text-white 2xl:max-w-[913px] max-w-[765px] 2xl:mb-12 1xl:mb-10 xl:mb-8 lg:mb-7 mb-6">
+                {description}
+            </p>
+
+            <!-- CTA Button -->
+            <a href={buttonHref} class="btn btn-secondary">{buttonText}</a>
+        </div>
+
+        <!-- Right Image -->
+        <div class="sm:absolute relative sm:bottom-5 sm:right-5 right-4 w-screen sm:w-3/4 2xl:max-w-[calc(100%-26%)] sm:max-w-[calc(100%-31%)] sm:mt-0 -mt-10 sm:mb-0 mb-4">
+            <img
+                loading="lazy"
+                src={heroImage}
+                alt={heroImageAlt}
+                fetchpriority="high"
+                decoding="async"
+            >
+        </div>
+    </div>
+</section>

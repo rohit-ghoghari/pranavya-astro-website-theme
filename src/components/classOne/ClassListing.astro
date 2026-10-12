@@ -1,0 +1,204 @@
+---
+import { defaultClassList, defaultCategories, type ClassItem } from '../../data/classListingOne';
+
+export type { ClassItem };
+
+interface Props {
+    classes?: ClassItem[];
+    categories?: string[];
+}
+
+const {
+    classes = defaultClassList,
+    categories = defaultCategories,
+} = Astro.props;
+---
+
+<section class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+
+        <div class="flex items-center sm:flex-row flex-col justify-between w-full sm:gap-4 gap-3 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5">
+
+            <!-- Search -->
+            <div class="rounded-full border border-[#673E2C80] flex items-center 1xl:gap-4 md:gap-3.5 sm:gap-2.5 gap-2 1xl:px-7.5 md:px-5 px-4 xl:py-3 md:py-2.5 py-2 sm:max-w-1/2 max-w-full w-full">
+                <img
+                    loading="lazy"
+                    src="/search.svg"
+                    alt="search"
+                    class="1xl:w-6 md:w-5 sm:w-4.5 w-4 h-auto"
+                >
+
+                <input
+                    type="search"
+                    name="serch"
+                    placeholder="Search here"
+                    class="outline-none w-full text-primary opacity-100 placeholder:text-current placeholder:opacity-100 font-medium p"
+                    data-class-search
+                >
+            </div>
+
+            <!-- Category -->
+            <div class="xl:max-w-[24.2%] lt:max-w-[30%] sm:max-w-[35%] max-w-full w-full relative pointer-events-auto">
+                <div class="relative dropdown pointer-events-auto">
+
+                    <button
+                        type="button"
+                        class="dropdown-btn"
+                        data-category-button
+                    >
+                        <p class="dropdown-text">All Category</p>
+
+                        <svg
+                            class="dropdown-arrow w-5.5 h-5.5 transition-transform duration-300"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="m7 10l5 5 5-5"
+                            ></path>
+                        </svg>
+                    </button>
+
+                    <div
+                        class="dropdown-menu max-h-0 opacity-0 absolute transition-[max-height,opacity] duration-300 ease-in-out"
+                        data-category-menu
+                    >
+                        <ul class="dropdown-list">
+                            {categories.map((category) => (
+                                <li
+                                    class="dropdown-item"
+                                    data-category={category}
+                                >
+                                    <p>{category}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Cards -->
+        <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 1xl:gap-6 gap-5">
+
+            {classes.map((item, index) => (
+                <div
+                    class="yoga-card group"
+                    data-aos="fade-up"
+                    data-class-card
+                    data-index={index}
+                    data-title={item.title}
+                    data-description={item.description}
+                    data-category={item.category}
+                    data-filter-categories={item.filterCategories?.join("|") ?? ""}
+                >
+
+                    
+                    <a
+                        href={`/classes/${item.slug}/`}
+                        class="yoga-card-image"
+                    >
+                        <img
+                            loading="lazy"
+                            src={item.image}
+                            alt={item.imageAlt ?? "Yoga Class"}
+                        >
+
+                        <div class="yoga-card-badge">
+                            <span class={`badge-dot ${item.intensityClass}`}></span>
+                            <span>Intensity : {item.intensity}</span>
+                        </div>
+                    </a>
+
+                    
+                    <div class="yoga-card-content">
+
+                        <p class="yoga-card-category">
+                            {item.category}
+                        </p>
+
+                        <a href={`/classes/${item.slug}/`}>
+                            <h3 class="yoga-card-title group-hover:text-black">
+                                {item.title}
+                            </h3>
+                        </a>
+
+                        <p class="yoga-card-desc">
+                            {item.description}
+                        </p>
+
+                        <div class="yoga-card-footer">
+
+                            <div class="yoga-card-instructor">
+                                <div class="instructor-img">
+                                    <img
+                                        loading="lazy"
+                                        src={item.instructorImage}
+                                        alt="Instructor"
+                                    >
+                                </div>
+
+                                <p class="p2">
+                                    {item.instructorName}
+                                </p>
+                            </div>
+
+                            <a
+                                href={`/classes/${item.slug}/`}
+                                class="btn-link btn"
+                            >
+                                view now
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="10"
+                                    height="10"
+                                    viewBox="0 0 10 10"
+                                    fill="none"
+                                    class="mt-1 2xl:w-4 sm:w-3.5 w-3 h-full"
+                                >
+                                    <path
+                                        d="M0.701687 8.86162C0.701687 8.86162 6.30093 3.26231 8.63309 0.93009M8.63309 0.93009L8.86101 6.90189M8.63309 0.93009L2.66089 0.702578"
+                                        stroke="currentColor"
+                                        stroke-width="1.2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </svg>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            ))}
+
+        </div>
+
+        
+        <button
+            type="button"
+            class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+            data-reveal-more
+        >
+            Reveal More
+
+            <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="hidden 1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+            >
+        </button>
+
+    </div>
+</section>
+
+<script src="./classListingScript.ts"></script>

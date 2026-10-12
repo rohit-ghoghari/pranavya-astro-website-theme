@@ -1,0 +1,44 @@
+---
+/**
+ * HeaderIndex2.astro — Header variant for index-2 page.
+ */
+import WishlistSidebar from './WishlistSidebar.astro';
+import CartSidebar from './CartSidebar.astro';
+import HeaderLogoIndex2 from './HeaderLogoIndex2.astro';
+import MobileMenu from './MobileMenu.astro';
+import HeaderActions from './HeaderActions.astro';
+---
+
+<!-- Backdrop overlay (shared JS hooks) -->
+<div class="bg_body_box fixed inset-0 w-full h-full backdrop-blur-xl bg-primary/35 z-50"></div>
+
+<header class="header-2 fixed top-0 left-0 right-0 z-50">
+
+    <!-- WISHLIST SIDEBAR — reused from home -->
+    <WishlistSidebar />
+
+    <!-- CART SIDEBAR — reused from home -->
+    <CartSidebar />
+
+    <div class="all-header">
+        <div class="container">
+            <div class="flex items-center xl:gap-4 gap-[9px] justify-between nav">
+
+                <!-- Logo (index-2 specific href) -->
+                <HeaderLogoIndex2 />
+
+                <!-- Mobile / Desktop Navigation — reused from home -->
+                <MobileMenu />
+
+                <!-- Right icons — reused from home -->
+                <HeaderActions />
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<script>
+    import "./headerIndex2Nav";
+</script>

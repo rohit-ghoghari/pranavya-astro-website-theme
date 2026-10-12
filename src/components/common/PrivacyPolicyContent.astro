@@ -1,0 +1,72 @@
+---
+import type { PolicySection } from "../../data/privacyPolicy";
+import { defaultPolicySections } from "../../data/privacyPolicy";
+
+interface Props {
+    sections?: PolicySection[];
+}
+
+const {
+    sections = defaultPolicySections,
+} = Astro.props;
+---
+
+<section class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+
+        <div class="cms-content">
+
+            {
+                sections.map((section) => (
+                    <>
+                        <h3>
+                            {section.number}. {section.title}
+                        </h3>
+
+                        {
+                            section.content.map((block) => {
+                                if (block.type === "subheading") {
+                                    return (
+                                        <h5>
+                                            {block.content}
+                                        </h5>
+                                    );
+                                }
+
+                                if (block.type === "list") {
+                                    return (
+                                        <ul>
+                                            {block.items?.map((item) => (
+                                                <li>{item}</li>
+                                            ))}
+                                        </ul>
+                                    );
+                                }
+
+                                return (
+                                    <p class={block.class}>
+                                        {block.content}
+
+                                        {block.link && (
+                                            <>
+                                                {block.content?.endsWith("at") ? " " : ""}
+                                                <a
+                                                    href={block.link.href}
+                                                    class={block.link.class}
+                                                >
+                                                    {block.link.text}
+                                                </a>
+                                            </>
+                                        )}
+                                    </p>
+                                );
+                            })
+                        }
+                    </>
+                ))
+            }
+
+        </div>
+
+    </div>
+</section>

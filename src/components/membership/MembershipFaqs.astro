@@ -1,0 +1,231 @@
+---
+interface FaqItem {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonHref?: string;
+    showButton?: boolean;
+    faqs?: FaqItem[];
+    variant?: "default" | "schedule";
+}
+
+const {
+    eyebrow = "Membership FAQs",
+    title = "Answers to Common Questions",
+    description = "Whether you're just getting started or upgrading your plan, here’s everything you need to know.",
+    buttonText = "Check Schedule Info",
+    buttonHref = "/schedule/",
+    showButton = false,
+    variant = "default",
+
+    faqs = [
+        {
+            question: "Which membership should I choose ?",
+            answer: `If you're just starting, the Essence Plan is a great fit. For more frequent practice,
+Balance or Elevate offer more flexibility and perks.`,
+        },
+        {
+            question: "Do unused classes roll over?",
+            answer: `Yes, unused classes can roll over to the next billing cycle, depending on your
+membership plan. Please check plan details for rollover limits.`,
+        },
+        {
+            question: "Do you offer student or senior discounts?",
+            answer: `Yes, we offer special discounts for students and seniors. Valid ID is required at the
+time of purchase.`,
+        },
+        {
+            question: "What’s included in a membership?",
+            answer: `Your membership includes access to scheduled classes, experienced instructors, and
+select workshops or online sessions—based on your chosen plan.`,
+        },
+        {
+            question: "Can I cancel anytime?",
+            answer: `Absolutely. Memberships can be canceled at any time with prior notice, as outlined in
+our cancellation policy.`,
+        },
+    ],
+} = Astro.props;
+---
+
+{variant === "schedule" ? (
+    
+    <section
+        class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+        data-aos="fade-up"
+    >
+        <div class="container">
+            <div
+                class="flex lt:items-center items-start lt:flex-row flex-col 2xl:gap-35 1xl:gap-23 xl:gap-15 lg:gap-7 gap-2.5 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5"
+            >
+                <div class="lt:w-[52%]">
+                    <h3
+                        class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5"
+                    >
+                        {eyebrow}
+                    </h3>
+
+                    <h2 class="text-primary font-normal uppercase">
+                        {title}
+                    </h2>
+                </div>
+
+                <div class="lt:w-[48%]">
+                    <p
+                        class="text-thunder-100 max-w-[890px] 2xl:mb-10 1xl:mb-9 xl:mb-8 lg:mb-7.5 md:mb-7 sm:mb-6.5 mb-6"
+                    >
+                        {description}
+                    </p>
+
+                    {showButton && (
+                        <a href={buttonHref} class="btn btn-secondary">
+                            {buttonText}
+                        </a>
+                    )}
+                </div>
+            </div>
+
+            <div class="faqs">
+                {faqs.map((faq, index) => (
+                    <div class="faq-item">
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+                            <div class="flex sm:items-center items-start sm:gap-1.5 gap-1">
+                                <h5 class="uppercase transition-colors duration-300 text-thunder-100">
+                                    o{String(index + 1).padStart(1, "0")}.
+                                </h5>
+
+                                <h5 class="uppercase transition-colors duration-300 text-thunder-100">
+                                    {faq.question}
+                                </h5>
+                            </div>
+
+                            <span class="faq-icon">+</span>
+                        </button>
+
+                        <div class="faq-answer hidden">
+                            <p class="text-black">
+                                {faq.answer}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+) : (
+    
+    <section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+        <div class="container">
+            <div class="text-center 2xl:max-w-[75%] lg:max-w-[80%] lt:max-w-[90% ] max-w-full w-full mx-auto 1xl:mb-10 lt:mb-8 md:mb-7 mb-6.5">
+                <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5 text-center">
+                    {eyebrow}
+                </h3>
+
+                <h2 class="text-primary uppercase 1xl:mb-5 mb-3 text-center">
+                    {title}
+                </h2>
+
+                <p>
+                    {description}
+                </p>
+            </div>
+
+            <div class="faqs">
+                {faqs.map((faq, index) => (
+                    <div class="faq-item">
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+                            <div class="flex sm:items-center items-start sm:gap-1.5 gap-1">
+                                <h5 class="uppercase">
+                                    o{String(index + 1).padStart(1, "0")}.
+                                </h5>
+
+                                <h5 class="uppercase">
+                                    {faq.question}
+                                </h5>
+                            </div>
+
+                            <span class="faq-icon">+</span>
+                        </button>
+
+                        <div class="faq-answer hidden">
+                            <p class="text-black">
+                                {faq.answer}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+)}
+
+<script>
+    const initFaqs = () => {
+        const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+        faqItems.forEach((faqItem) => {
+            const question =
+                faqItem.querySelector<HTMLButtonElement>(".faq-question");
+
+            const answer =
+                faqItem.querySelector<HTMLElement>(".faq-answer");
+
+            const icon =
+                faqItem.querySelector<HTMLElement>(".faq-icon");
+
+            if (!question || !answer || !icon) return;
+
+            if (question.dataset.faqInitialized === "true") {
+                return;
+            }
+
+            question.dataset.faqInitialized = "true";
+
+            question.addEventListener("click", () => {
+                const isOpen =
+                    question.getAttribute("aria-expanded") === "true";
+
+                faqItems.forEach((item) => {
+                    const otherQuestion =
+                        item.querySelector<HTMLButtonElement>(".faq-question");
+
+                    const otherAnswer =
+                        item.querySelector<HTMLElement>(".faq-answer");
+
+                    const otherIcon =
+                        item.querySelector<HTMLElement>(".faq-icon");
+
+                    if (!otherQuestion || !otherAnswer || !otherIcon) return;
+
+                    otherQuestion.setAttribute("aria-expanded", "false");
+                    otherAnswer.classList.add("hidden");
+                    otherIcon.textContent = "+";
+                });
+
+                if (!isOpen) {
+                    question.setAttribute("aria-expanded", "true");
+                    answer.classList.remove("hidden");
+                    icon.textContent = "−";
+                }
+            });
+        });
+    };
+
+    document.addEventListener("astro:page-load", initFaqs);
+
+    initFaqs();
+</script>

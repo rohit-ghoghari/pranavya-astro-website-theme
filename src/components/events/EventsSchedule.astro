@@ -1,0 +1,182 @@
+---
+import { events } from '../../data/eventsSchedule';
+import EventScheduleCard from './EventScheduleCard.astro';
+
+const allEvents = events;
+const upcomingEvents = events.filter((event) => event.type === "upcoming");
+const pastEvents = events.filter((event) => event.type === "past");
+---
+
+<section
+  class="events-2 relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-white"
+>
+  <div id="schedule" class="schedule-1">
+    <div class="container relative z-10">
+
+      <!-- Tabs -->
+      <div class="overflow-x-auto">
+        <div
+          class="inline-flex border border-primary overflow-hidden divide-x divide-primary min-w-[440px]"
+        >
+          <button
+            type="button"
+            class="schedule-tab rounded-none text-primary font-Work w-auto uppercase is-active"
+            data-target="#all"
+          >
+            All events
+          </button>
+
+          <button
+            type="button"
+            class="schedule-tab rounded-none text-primary font-Work w-auto uppercase"
+            data-target="#upcoming"
+          >
+            upcoming events
+          </button>
+
+          <button
+            type="button"
+            class="schedule-tab rounded-none text-primary font-Work w-auto uppercase"
+            data-target="#past"
+          >
+            past events
+          </button>
+        </div>
+      </div>
+
+      <!-- Tables -->
+      <div
+        class="1xl:mt-17.5 xl:mt-12 lt:mt-9 md:mt-7 mt-5"
+      >
+
+        <!-- ================================= -->
+        <!-- ALL EVENTS -->
+        <!-- ================================= -->
+        <div
+          id="all"
+          class="schedule-panel overflow-visible!"
+        >
+          <div
+            class="grid lt:grid-cols-2 grid-cols-1 1xl:gap-x-17.5 xl:gap-x-14 lg:gap-x-11 gap-x-9 1xl:gap-y-7.5 xl:gap-y-6 sm:gap-y-5.5 gap-y-5"
+          >
+            {
+              allEvents.map((event, index) => (
+                <EventScheduleCard
+                  event={event}
+                  hiddenClass={index >= 8 ? "hidden! event-hidden" : ""}
+                />
+              ))
+            }
+          </div>
+
+          <div
+            id="all-read-more-wrapper"
+            class={allEvents.length > 8 ? "flex justify-center" : "hidden"}
+          >
+            <button
+              id="all-read-more"
+              type="button"
+              class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+              data-aos="fade-up"
+            >
+              Reveal More
+              <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+              />
+            </button>
+          </div>
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- UPCOMING EVENTS -->
+        <!-- ================================= -->
+        <div
+          id="upcoming"
+          class="schedule-panel overflow-visible! hidden"
+        >
+          <div
+            class="grid lt:grid-cols-2 grid-cols-1 1xl:gap-x-17.5 xl:gap-x-14 lg:gap-x-11 gap-x-9 1xl:gap-y-7.5 xl:gap-y-6 sm:gap-y-5.5 gap-y-5"
+          >
+            {
+              upcomingEvents.map((event, index) => (
+                <EventScheduleCard
+                  event={event}
+                  hiddenClass={index >= 8 ? "hidden! upcoming-event-hidden" : ""}
+                />
+              ))
+            }
+          </div>
+
+          <div
+            id="upcoming-read-more-wrapper"
+            class={upcomingEvents.length > 8 ? "flex justify-center" : "hidden"}
+          >
+            <button
+              id="upcoming-read-more"
+              type="button"
+              class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+              data-aos="fade-up"
+            >
+              Reveal More
+              <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+              />
+            </button>
+          </div>
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- PAST EVENTS -->
+        <!-- ================================= -->
+        <div
+          id="past"
+          class="schedule-panel overflow-visible! hidden"
+        >
+          <div
+            class="grid lt:grid-cols-2 grid-cols-1 1xl:gap-x-17.5 xl:gap-x-14 lg:gap-x-11 gap-x-9 1xl:gap-y-7.5 xl:gap-y-6 sm:gap-y-5.5 gap-y-5"
+          >
+            {
+              pastEvents.map((event, index) => (
+                <EventScheduleCard
+                  event={event}
+                  hiddenClass={index >= 8 ? "hidden! past-event-hidden" : ""}
+                />
+              ))
+            }
+          </div>
+
+          <div
+            id="past-read-more-wrapper"
+            class={pastEvents.length > 8 ? "flex justify-center" : "hidden"}
+          >
+            <button
+              id="past-read-more"
+              type="button"
+              class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+              data-aos="fade-up"
+            >
+              Reveal More
+              <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+              />
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="./eventsScheduleScript.ts"></script>

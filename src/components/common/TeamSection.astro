@@ -1,0 +1,93 @@
+---
+const {
+  title = "Guidance for Every Journey",
+  eyebrow = "Our Team",
+  description = "From gentle guidance to advanced expertise, our diverse team of instructors is here to support your practice. Each teacher brings unique skills, experience, and a shared passion for helping you find balance, strength, and peace—on your own terms.",
+} = Astro.props;
+
+const teamMembers = [
+  { image: "/trainer-1.webp", name: "Jessica Moore", designation: "Certified Vinyasa & Meditation Instructor", detailUrl: "/team/jessica-moore/" },
+  { image: "/trainer-2.webp", name: "Daniel Brooks", designation: "Hatha Yoga Teacher & Breathwork Coach", detailUrl: "/team/daniel-brooks/" },
+  { image: "/trainer-3.webp", name: "Emily Turner", designation: "Yin Yoga & Restorative Specialist", detailUrl: "/team/emily-turner/" },
+  { image: "/trainer-4.webp", name: "Michael Lee", designation: "Vinyasa Flow & Strength Instructor", detailUrl: "/team/michael-lee/" },
+  { image: "/trainer-5.webp", name: "Daniel Lee", designation: "Hatha Yoga Specialist", detailUrl: "/team/daniel-lee/" },
+  { image: "/trainer-6.webp", name: "David Kim", designation: "Mindfulness & Yoga Nidra Teacher", detailUrl: "/team/david-kim/" },
+  { image: "/trainer-7.webp", name: "Sofia Ramirez", designation: "Restorative & Yin Yoga Instructor", detailUrl: "/team/sofia-ramirez/" },
+  { image: "/trainer-8.webp", name: "Michael Mroe", designation: "Power Yoga & Fitness Instructor", detailUrl: "/team/michael-mroe/" },
+  { image: "/trainer-9.webp", name: "Michael Green", designation: "Sound Healing & Meditation Guide", detailUrl: "/team/michael-green/" },
+  { image: "/trainer-10.webp", name: "Emily Carter", designation: "Kids & Family Yoga Instructor", detailUrl: "/team/emily-carter/" },
+  { image: "/trainer-11.webp", name: "Laura Bennet", designation: "Ashtanga Yoga Instructor", detailUrl: "/team/laura-bennet/" },
+  { image: "/trainer-12.webp", name: "Emma Sullivan", designation: "Wellness Coach & Meditation Mentor", detailUrl: "/team/emma-sullivan/" },
+];
+---
+
+<section class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full">
+    <div class="container">
+        <div class="sm:mb-10 mb-6" data-aos="fade-up">
+            <h3 class="font-primary font-medium italic mb-6">{eyebrow}</h3>
+            <h2 class="text-primary uppercase mb-5">{title}</h2>
+            <p>
+                {description}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lt:grid-cols-3 xl:grid-cols-4 1xl:gap-[30px] xl:gap-6 md:gap-5.5 gap-3.5">
+            {teamMembers.map((member) => (
+<div class="block overflow-hidden relative shrink-0 rounded-sm" data-aos="fade-up">
+                        <div class="group">
+                            <div class="relative before:content-[''] 1xl:before:pt-[119%] lg:before:pt-[135%] lt:before:pt-[125%] before:pt-[115%] before:block w-full h-full">
+                                <img loading="lazy" decoding="async" src={member.image} alt="Hatha Yoga" class="w-full h-full object-cover absolute top-0 left-0 bottom-0 right-0 group-hover/class:scale-105 scale-100 transition-all ease-in-out duration-350">
+                            </div>
+                            <div class="absolute inset-0 bg-linear-to-t from-thunder-100 from-10% via-transparent to-transparent pointer-events-none">
+                            </div>
+
+                            <div class="absolute 1xl:top-6 1xl:right-6 top-4 right-4 z-20 flex flex-col gap-3">
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-7.5 h-7.5 rounded-full border border-white text-white lt:opacity-0 lt:-translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-white hover:text-black transition-all duration-250 ease-in-out delay-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M13.3333 2.5C14.4384 2.5 15.4982 2.93899 16.2796 3.72039C17.061 4.50179 17.5 5.5616 17.5 6.66667V13.3333C17.5 14.4384 17.061 15.4982 16.2796 16.2796C15.4982 17.061 14.4384 17.5 13.3333 17.5H6.66667C5.5616 17.5 4.50179 17.061 3.72039 16.2796C2.93899 15.4982 2.5 14.4384 2.5 13.3333V6.66667C2.5 5.5616 2.93899 4.50179 3.72039 3.72039C4.50179 2.93899 5.5616 2.5 6.66667 2.5H13.3333ZM10 6.66667C9.11594 6.66667 8.2681 7.01786 7.64298 7.64298C7.01786 8.2681 6.66667 9.11594 6.66667 10C6.66667 10.8841 7.01786 11.7319 7.64298 12.357C8.2681 12.9821 9.11594 13.3333 10 13.3333C10.8841 13.3333 11.7319 12.9821 12.357 12.357C12.9821 11.7319 13.3333 10.8841 13.3333 10C13.3333 9.11594 12.9821 8.2681 12.357 7.64298C11.7319 7.01786 10.8841 6.66667 10 6.66667ZM10 8.33333C10.442 8.33333 10.866 8.50893 11.1785 8.82149C11.4911 9.13405 11.6667 9.55797 11.6667 10C11.6667 10.442 11.4911 10.866 11.1785 11.1785C10.866 11.4911 10.442 11.6667 10 11.6667C9.55797 11.6667 9.13405 11.4911 8.82149 11.1785C8.50893 10.866 8.33333 10.442 8.33333 10C8.33333 9.55797 8.50893 9.13405 8.82149 8.82149C9.13405 8.50893 9.55797 8.33333 10 8.33333ZM13.75 5.41667C13.529 5.41667 13.317 5.50446 13.1607 5.66074C13.0045 5.81702 12.9167 6.02899 12.9167 6.25C12.9167 6.47101 13.0045 6.68298 13.1607 6.83926C13.317 6.99554 13.529 7.08333 13.75 7.08333C13.971 7.08333 14.183 6.99554 14.3393 6.83926C14.4955 6.68298 14.5833 6.47101 14.5833 6.25C14.5833 6.02899 14.4955 5.81702 14.3393 5.66074C14.183 5.50446 13.971 5.41667 13.75 5.41667Z" fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://x.com/?lang=en" class="flex items-center justify-center w-7.5 h-7.5 rounded-full border border-white text-white lt:opacity-0 lt:-translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-white hover:text-black transition-all duration-250 ease-in-out delay-100">
+                                    <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.8134 3.5H16.1135L11.0884 9.00667L17 16.5H12.3706L8.74524 11.9553L4.597 16.5H2.29551L7.67028 10.61L2 3.5H6.74551L10.0225 7.654L13.8134 3.5ZM13.0061 15.18H14.2806L6.05368 4.75067H4.686L13.0061 15.18Z" fill="currentColor"></path>
+                                    </svg>
+
+                                </a>
+                                <a href="https://www.facebook.com/" class="flex items-center justify-center w-7.5 h-7.5 rounded-full border border-white text-white lt:opacity-0 lt:-translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-white hover:text-black transition-all duration-250 ease-in-out delay-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M11.1889 11.25H13.2723L14.1056 7.91669H11.1889V6.25002C11.1889 5.39169 11.1889 4.58335 12.8556 4.58335H14.1056V1.78335C13.8339 1.74752 12.8081 1.66669 11.7248 1.66669C9.46226 1.66669 7.85559 3.04752 7.85559 5.58335V7.91669H5.35559V11.25H7.85559V18.3334H11.1889V11.25Z" fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://www.youtube.com/" class="flex items-center justify-center w-7.5 h-7.5 rounded-full border border-white text-white lt:opacity-0 lt:-translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-white hover:text-black transition-all duration-250 ease-in-out delay-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                        <path d="M17.2493 7.28278C17.2864 6.20927 17.0516 5.1438 16.5668 4.18528C16.2378 3.79198 15.7813 3.52657 15.2768 3.43528C13.19 3.24541 11.0944 3.1678 8.99929 3.20278C6.91179 3.16753 4.82387 3.24263 2.74429 3.42778C2.33316 3.50257 1.95268 3.69542 1.64929 3.98278C0.974294 4.60528 0.899294 5.67028 0.824294 6.57029C0.714819 8.18844 0.714819 9.81213 0.824294 11.4303C0.846272 11.9368 0.92169 12.4396 1.04929 12.9303C1.13972 13.3091 1.32269 13.6595 1.58179 13.9503C1.88724 14.2529 2.27658 14.4567 2.69929 14.5353C4.31619 14.7353 5.94545 14.8181 7.57429 14.7828C10.1993 14.8203 12.5018 14.7828 15.2243 14.5728C15.6571 14.4981 16.0571 14.2942 16.3718 13.9878C16.5815 13.7775 16.7383 13.5205 16.8293 13.2378C17.0973 12.4147 17.229 11.5533 17.2193 10.6878C17.2493 10.2678 17.2493 7.73278 17.2493 7.28278ZM7.30429 11.1378V6.49528L11.7443 8.82779C10.4993 9.51779 8.85679 10.2978 7.30429 11.1378Z" fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <a href={member.detailUrl} class="absolute bottom-0 left-0 text-white backdrop-blur-xs w-full">
+                                <div class="2xl:p-5 1xl:p-4 p-3">
+                                    <div class="flex items-center justify-between w-full xl:gap-3 gap-1.5 1xl:mb-[10px] mb-2">
+                                        <h3 class="font-normal font-secondary uppercase hover:underline underline-offset-1 decoration-1 text-white!">
+                                            {member.name}
+                                        </h3>
+                                        <div class="rounded-full border border-white shrink-0 2xl:w-[45px] 2xl:h-[45px] 1xl:w-10 1xl:h-10 lg:w-9 lg:h-9 w-8 h-8 flex items-center justify-center nav-class-arrow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 11 11" fill="none" class="mt-px ml-px stroke-white! group-hover:stroke-primary! lg:w-[18px] lg:h-[14px] w-[16px] h-[12px]">
+                                                <path d="M0.692504 9.68278C0.692504 9.68278 6.5362 3.54949 8.97019 0.994861M8.97019 0.994861L9.59281 7.58973M8.97019 0.994861L2.35248 0.69208" stroke="currentColor" stroke-width="1.38442" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p class="text-white! font-medium w-[90%]">
+                                        {member.designation}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    
+
+            ))}
+        </div>
+    </div>
+</section>

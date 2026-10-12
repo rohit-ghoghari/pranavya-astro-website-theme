@@ -1,0 +1,159 @@
+---
+interface Props {
+    description?: string;
+    descriptionParagraphs?: string[];
+    features?: string[];
+    specifications?: any[];
+    careInstructionsIntro?: string;
+    careInstructions?: string[];
+    shippingInfo?: any;
+    tabDescriptionHeading?: string;
+    tabSpecificationsHeading?: string;
+    tabCareInstructionsHeading?: string;
+    tabShippingHeading?: string;
+}
+
+const {
+    description,
+    descriptionParagraphs,
+    features,
+    specifications,
+    careInstructionsIntro,
+    careInstructions,
+    shippingInfo,
+    tabDescriptionHeading,
+    tabSpecificationsHeading,
+    tabCareInstructionsHeading,
+    tabShippingHeading,
+} = Astro.props;
+
+interface ShippingItem {
+    label: string;
+    value: string;
+}
+
+const normalizedShipping: ShippingItem[] = Array.isArray(shippingInfo)
+    ? shippingInfo
+    : shippingInfo && typeof shippingInfo === "object"
+    ? Object.entries(shippingInfo).map(([key, val]) => {
+          const labelMap: Record<string, string> = {
+              shipping: "Shipping",
+              returns: "Returns:",
+              guarantee: "Lifetime Guarantee:",
+              sustainabilityNote: "Sustainability Note",
+          };
+          return {
+              label: labelMap[key] || (key.charAt(0).toUpperCase() + key.slice(1)),
+              value: String(val),
+          };
+      })
+    : [];
+---
+
+<section class="product-detail-tabs events-2 relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-white">
+    <div id="schedule" class="schedule-1">
+        <div class="container relative z-10">
+            <div class="overflow-x-auto">
+                <div
+                    class="inline-flex border border-primary overflow-hidden divide-x divide-primary min-w-max"
+                    role="tablist">
+                    <button id="product-tab-description" type="button"
+                        class="schedule-tab is-active active rounded-none text-primary font-Work w-auto uppercase"
+                        data-target="#descrition" role="tab" aria-controls="descrition" aria-selected="true">
+                        {tabDescriptionHeading || "Description"}
+                    </button>
+                    <button id="product-tab-specifications" type="button"
+                        class="schedule-tab rounded-none text-primary font-Work w-auto uppercase"
+                        data-target="#specifications" role="tab" aria-controls="specifications" aria-selected="false">
+                        {tabSpecificationsHeading || "Specifications"}
+                    </button>
+                    <button id="product-tab-instructions" type="button"
+                        class="schedule-tab rounded-none text-primary font-Work w-auto uppercase"
+                        data-target="#instructions" role="tab" aria-controls="instructions" aria-selected="false">
+                        {tabCareInstructionsHeading || "Care Instructions"}
+                    </button>
+                    <button id="product-tab-shipping" type="button"
+                        class="schedule-tab rounded-none text-primary font-Work w-auto uppercase"
+                        data-target="#shipping" role="tab" aria-controls="shipping" aria-selected="false">
+                        {tabShippingHeading || "Shipping & Returns"}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="1xl:mt-11 xl:mt-9 mt-7">
+                <!-- Description Tab -->
+                <div id="descrition" class="schedule-panel" role="tabpanel" aria-labelledby="product-tab-description">
+                    <div class="1xl:space-y-5 sm:space-y-4 space-y-3">
+                        {descriptionParagraphs && descriptionParagraphs.length > 0 ? (
+                            descriptionParagraphs.map((paragraph: string) => (
+                                <p>{paragraph}</p>
+                            ))
+                        ) : (
+                            <p>{description}</p>
+                        )}
+                        {features && features.length > 0 && (
+                            <ul
+                                class="list-disc font-medium 1xl:space-y-5 xl:space-y-3.5 lg:space-y-3 sm:space-y-2.5 space-y-1.5 pl-4">
+                                {features.map((feature: string) => (
+                                    <li>
+                                        <p>{feature}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </div>
+
+                <!-- Specifications Tab -->
+                <div id="specifications" class="schedule-panel hidden" role="tabpanel" aria-labelledby="product-tab-specifications">
+                    {specifications && specifications.length > 0 && (
+                        <ul
+                            class="list-disc 1xl:space-y-5 xl:space-y-3.5 lg:space-y-3 sm:space-y-2.5 space-y-1.5 pl-4">
+                            {specifications.map((spec: any) => (
+                                <li>
+                                    <p><span class="font-medium">{spec.label}:</span> {spec.value}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+                <!-- Care Instructions Tab -->
+                <div id="instructions" class="schedule-panel hidden" role="tabpanel" aria-labelledby="product-tab-instructions">
+                    {careInstructionsIntro && (
+                        <p class="xl:mb-5 sm:mb-4 mb-3">
+                            {careInstructionsIntro}
+                        </p>
+                    )}
+                    {careInstructions && careInstructions.length > 0 && (
+                        <ul
+                            class="font-medium list-disc 1xl:space-y-5 xl:space-y-3.5 lg:space-y-3 sm:space-y-2.5 space-y-1.5 pl-4">
+                            {careInstructions.map((instruction: string) => (
+                                <li>
+                                    <p>{instruction}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+                <!-- Shipping Tab -->
+                <div id="shipping" class="schedule-panel hidden" role="tabpanel" aria-labelledby="product-tab-shipping">
+                    {normalizedShipping && normalizedShipping.length > 0 && (
+                        <ul
+                            class="list-disc 1xl:space-y-5 xl:space-y-3.5 lg:space-y-3 sm:space-y-2.5 space-y-1.5 pl-4">
+                            {normalizedShipping.map((item) => (
+                                <li>
+                                    <p>
+                                        <span class="font-medium">{item.label}</span>{" "}{item.value}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

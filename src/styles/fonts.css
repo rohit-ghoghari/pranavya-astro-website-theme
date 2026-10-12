@@ -1,0 +1,80 @@
+/* ============================== CREATO DISPLAY FONT ===================================== */
+/* Creato Display – Thin */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Thin.otf')
+    format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – Light */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Light.otf')
+    format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – Regular */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Regular.otf')
+    format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – Medium */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Medium.otf')
+    format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – Bold */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Bold.otf')
+    format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – ExtraBold */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-ExtraBold.otf')
+    format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Creato Display – Black */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('/fonts/CreatoDisplay-Black.otf')
+    format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================= WORK SANS FONT ============================= */
+@font-face {
+  font-family: 'Agbalumo';
+  src: url('/fonts/Agbalumo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+

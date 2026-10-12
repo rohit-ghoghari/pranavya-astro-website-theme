@@ -1,0 +1,232 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+import { defaultBlogCards, type BlogCard } from "../../data/blogGrid";
+
+interface Props {
+    cards?: BlogCard[];
+    initialCount?: number;
+    loadCount?: number;
+}
+
+const {
+    cards = defaultBlogCards,
+    initialCount = 6,
+    loadCount = 6,
+} = Astro.props;
+---
+
+<section class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+
+        <!-- Cards Grid -->
+        <div
+            id="blog-grid"
+            class="grid lt:grid-cols-3 sm:grid-cols-2 grid-cols-1 1xl:gap-6 xl:gap-5 lt:gap-4 md:gap-6 gap-5"
+        >
+
+            {cards.map((card, index) => (
+                <div
+                    class="blog-grid-card bg-whitesmoke-100 rounded-sm overflow-hidden h-auto"
+                    data-aos="fade-up"
+                    data-card-index={index}
+                    style={index >= initialCount ? "display: none;" : undefined}
+                >
+
+                    
+                    <div class="relative overflow-hidden shrink-0 w-full group" style="aspect-ratio: 100 / 65;">
+
+                        <img
+                            loading="lazy"
+                            src={card.image}
+                            alt={card.title}
+                            class="w-full h-full object-cover absolute top-0 left-0"
+                        />
+
+                    </div>
+
+                    <!-- Content -->
+                    <div class="1xl:py-[30px] xl:py-5 sm:py-4 lg:px-5 p-4 text-left h-auto">
+
+                        <!-- Title -->
+                        <a href={blogHref(card.title)}>
+                            <h5 class="uppercase text-primary hover:text-black 1xl:mb-3.5 mb-2.5 xl:max-w-[87%] lt:max-w-full md:max-w-[97%] w-full">
+                                {card.title}
+                            </h5>
+                        </a>
+
+                        <!-- Description -->
+                        <p class="1xl:mb-6 xl:mb-5 mb-4 xl:max-w-[95%] w-full">
+                            {card.description}
+                        </p>
+
+                        <!-- Bottom -->
+                        <div class="flex md:items-center items-start justify-between w-full gap-3 md:flex-row flex-col flex-wrap">
+
+                            <!-- Date -->
+                            <div class="flex items-center xl:gap-3 lg:gap-2.5 gap-2">
+
+                                <!-- Calendar Icon -->
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="30"
+                                    height="30"
+                                    viewBox="0 0 30 30"
+                                    fill="none"
+                                    class="2xl:w-8 2xl:h-8 1xl:w-7.5 1xl:h-7.5 xl:w-6.5 xl:h-6.5 lg:w-5.5 lg:h-5.5 w-4.5 h-4.5 object-contain"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="3"
+                                        width="26"
+                                        height="24"
+                                        rx="3"
+                                        fill="#673E2C"
+                                    />
+
+                                    <path
+                                        d="M8 1.5V6M22 1.5V6M5 10H25"
+                                        stroke="white"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                    />
+
+                                    <rect
+                                        x="7"
+                                        y="13"
+                                        width="3"
+                                        height="3"
+                                        rx="0.5"
+                                        fill="white"
+                                    />
+
+                                    <rect
+                                        x="13"
+                                        y="13"
+                                        width="3"
+                                        height="3"
+                                        rx="0.5"
+                                        fill="white"
+                                    />
+
+                                    <rect
+                                        x="19"
+                                        y="13"
+                                        width="3"
+                                        height="3"
+                                        rx="0.5"
+                                        fill="white"
+                                    />
+
+                                    <rect
+                                        x="7"
+                                        y="19"
+                                        width="3"
+                                        height="3"
+                                        rx="0.5"
+                                        fill="white"
+                                    />
+
+                                    <rect
+                                        x="13"
+                                        y="19"
+                                        width="3"
+                                        height="3"
+                                        rx="0.5"
+                                        fill="white"
+                                    />
+                                </svg>
+
+                                <p class="uppercase p2">
+                                    {card.date}
+                                </p>
+
+                            </div>
+
+                            <!-- Read More -->
+                            <a
+                                href={blogHref(card.title)}
+                                class="btn btn-secondary md:text-13 text-[10px] xl:py-2 xl:px-5 py-1.5 md:px-4.5 px-4"
+                            >
+                                Read More
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            ))}
+
+        </div>
+
+        <!-- Reveal More -->
+        <button
+            id="reveal-more-grid-btn"
+            type="button"
+            class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more flex items-center justify-center mx-auto gap-4"
+            aria-label="Reveal more blog posts"
+        >
+            <span>Reveal More</span>
+
+            <img
+                loading="lazy"
+                src="/loading.svg"
+                alt="load"
+                class="hidden 1xl:size-7.5 xl:size-6.5 size-5.5 animate-spin mx-auto"
+            />
+        </button>
+
+    </div>
+</section>
+
+<script define:vars={{ initialCount, loadCount }}>
+    const grid = document.querySelector("#blog-grid");
+    const revealButton = document.querySelector("#reveal-more-grid-btn");
+
+    if (grid && revealButton) {
+        const cards = Array.from(
+            grid.querySelectorAll(".blog-grid-card")
+        );
+
+        let visibleCount = initialCount;
+
+        const updateButton = () => {
+            if (visibleCount >= cards.length) {
+                revealButton.style.display = "none";
+            } else {
+                revealButton.style.display = "flex";
+            }
+        };
+
+        revealButton.addEventListener("click", () => {
+
+            const nextVisibleCount = Math.min(
+                visibleCount + loadCount,
+                cards.length
+            );
+
+            for (
+                let index = visibleCount;
+                index < nextVisibleCount;
+                index++
+            ) {
+                cards[index].style.display = "";
+            }
+
+            visibleCount = nextVisibleCount;
+
+            updateButton();
+
+            /*
+             * Refresh AOS if it exists in the project.
+             * This makes newly revealed cards animate
+             * exactly like the initially visible cards.
+             */
+            if (window.AOS) {
+                window.AOS.refreshHard();
+            }
+        });
+
+        updateButton();
+    }
+</script>

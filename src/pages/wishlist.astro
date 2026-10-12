@@ -1,0 +1,207 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Your Saved Wishlist — Pranavya Yoga"
+    description="View and manage your favorite yoga gear, organic teas, and accessories saved to your Pranavya Yoga wishlist."
+    canonical="/wishlist/"
+    headerVariant="inner"
+    footerVariant="inner"
+> 
+    
+
+    <!-- ====== Start Wishlist Section ====== -->
+    <section class="2xl:mt-[100px] 1xl:mt-20 xl:mt-17 lg:mt-14 md:mt-12 sm:mt-11 mt-10 2xl:mb-[120px] 1xl:mb-[100px] xl:mb-20 lg:mb-16 md:mb-12 sm:mb-11 mb-10">
+        <div class="container">
+            <div class="text-center 2xl:mb-[60px] 1xl:mb-12 xl:mb-10 lg:mb-9 md:mb-8 sm:mb-7 mb-6">
+                <h2 class="text-primary uppercase">Wishlist</h2>
+            </div>
+
+            <!-- Empty Wishlist Message -->
+            <div id="emptyWishlistMessage" class="hidden text-center py-12">
+                <p class="text-xl text-thunder-100/70 mb-4">Your wishlist is empty</p>
+                <a href="/shop" class="btn btn-secondary">Continue Shopping</a>
+            </div>
+
+            <!-- Wishlist Grid -->
+            <div id="wishlistGrid" class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-8 lg:gap-6 gap-5">
+                <!-- Wishlist items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== End Wishlist Section ====== -->
+
+    
+</Layout>
+
+<script>
+    // Wishlist management
+    interface WishlistItem {
+        id: string;
+        title: string;
+        price: number;
+        image: string;
+        description?: string;
+        url: string;
+        color?: string;
+    }
+
+    interface CartItem {
+        id: string;
+        title: string;
+        price: number;
+        image: string;
+        quantity: number;
+        color?: string;
+        size?: string;
+        url: string;
+    }
+
+    function getWishlist(): WishlistItem[] {
+        const wishlist = localStorage.getItem('wishlist');
+        return wishlist ? JSON.parse(wishlist) : [];
+    }
+
+    function saveWishlist(wishlist: WishlistItem[]) {
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+
+    function getCart(): CartItem[] {
+        const cart = localStorage.getItem('cart');
+        return cart ? JSON.parse(cart) : [];
+    }
+
+    function saveCart(cart: CartItem[]) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function addToCart(item: WishlistItem) {
+        const cart = getCart();
+        const existingItem = cart.find(cartItem => cartItem.id === item.id);
+
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cart.push({
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                image: item.image,
+                quantity: 1,
+                color: item.color,
+                url: item.url
+            });
+        }
+
+        saveCart(cart);
+        
+        // Show success message
+        const message = document.createElement('div');
+        message.className = 'fixed top-24 right-4 bg-green-600 text-white px-6 py-3 rounded-sm shadow-lg z-50';
+        message.textContent = 'Added to cart successfully!';
+        document.body.appendChild(message);
+        setTimeout(() => message.remove(), 3000);
+    }
+
+    function removeFromWishlist(index: number) {
+        const wishlist = getWishlist();
+        wishlist.splice(index, 1);
+        saveWishlist(wishlist);
+        updateWishlistDisplay();
+    }
+
+    function updateWishlistDisplay() {
+        const wishlist = getWishlist();
+        const wishlistGrid = document.getElementById('wishlistGrid');
+        const emptyWishlistMessage = document.getElementById('emptyWishlistMessage');
+        
+        if (!wishlistGrid || !emptyWishlistMessage) return;
+
+        if (wishlist.length === 0) {
+            wishlistGrid.innerHTML = '';
+            wishlistGrid.classList.add('hidden');
+            emptyWishlistMessage.classList.remove('hidden');
+            return;
+        }
+
+        wishlistGrid.classList.remove('hidden');
+        emptyWishlistMessage.classList.add('hidden');
+
+        // Render wishlist items
+        wishlistGrid.innerHTML = wishlist.map((item, index) => `
+            <div class="group" data-wishlist-index="${index}">
+                <div class="bg-[#E0E0E0] rounded-sm p-6 flex items-center justify-center 2xl:h-[350px] xl:h-[300px] h-[280px] mb-4 relative overflow-hidden">
+                    <a href="${item.url}" class="w-full h-full flex items-center justify-center">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain" />
+                    </a>
+                    
+                    <!-- Remove Button -->
+                    <button class="remove-wishlist absolute top-4 right-4 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50" aria-label="Remove from wishlist">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M12.4955 3.96912L2.96973 13.4949" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.96973 3.96912L12.4955 13.4949" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="space-y-3">
+                    <a href="${item.url}" class="block">
+                        <h5 class="font-primary font-medium group-hover:text-primary transition-colors">${item.title}</h5>
+                    </a>
+                    ${item.description ? `<p class="text-sm text-thunder-100/70">${item.description}</p>` : ''}
+                    <p class="font-medium text-lg">${item.price}</p>
+                    
+                    <button class="add-to-cart-btn btn btn-secondary w-full">
+                        Add to Cart
+                    </button>
+
+                    <div class="flex items-center gap-3">
+                        ${item.color ? `
+                        <button class="flex items-center gap-2 text-sm" aria-label="Selected color">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="inline-block w-4 h-4 rounded-full" style="background-color: ${item.color}"></span>
+                        </button>
+                        ` : ''}
+                        <button class="heart-icon-wishlist text-primary" aria-label="Wishlist item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+                                <path d="M8.25 14.85C4.65 12.45 0.75 9.45 0.75 5.85C0.75 3.45 2.7 1.5 5.1 1.5C6.45 1.5 7.65 2.1 8.25 3.15C8.85 2.1 10.05 1.5 11.4 1.5C13.8 1.5 15.75 3.45 15.75 5.85C15.75 9.45 11.85 12.45 8.25 14.85Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Attach event listeners
+        attachWishlistEventListeners();
+    }
+
+    function attachWishlistEventListeners() {
+        // Remove from wishlist
+        document.querySelectorAll('.remove-wishlist').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = (e.target as HTMLElement).closest('[data-wishlist-index]');
+                const index = parseInt(card?.getAttribute('data-wishlist-index') || '0');
+                removeFromWishlist(index);
+            });
+        });
+
+        // Add to cart
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = (e.target as HTMLElement).closest('[data-wishlist-index]');
+                const index = parseInt(card?.getAttribute('data-wishlist-index') || '0');
+                const wishlist = getWishlist();
+                addToCart(wishlist[index]);
+            });
+        });
+    }
+
+    // Initialize wishlist display
+    document.addEventListener('DOMContentLoaded', () => {
+        updateWishlistDisplay();
+    });
+</script>

@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import TeamDetailLayout from "../../components/team/TeamDetailLayout.astro";
+
+export async function getStaticPaths() {
+    const teams = await getCollection("teams");
+
+    return teams.map((team) => ({
+        params: {
+            slug: team.data.slug,
+        },
+        props: {
+            team,
+        },
+    }));
+}
+
+const { team } = Astro.props;
+const { data } = team;
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title={data.title.includes("Pranavya Yoga") ? data.title : `${data.title} — Pranavya Yoga`}
+    description={data.metaDescription}
+    canonical={`/team/${data.slug}/`}
+    image={data.profile.image}
+>
+    <main
+        class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+    >
+        <TeamDetailLayout data={data} />
+    </main>
+</Layout>

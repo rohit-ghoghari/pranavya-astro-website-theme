@@ -1,0 +1,270 @@
+---
+interface Episode {
+  episode: number;
+  image: string;
+  imageAlt: string;
+  video: string;
+  title: string;
+  description: string;
+  duration: string;
+  artist: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  episodes?: Episode[];
+  initialFeaturedEpisode?: number;
+  initialVisibleCount?: number;
+}
+
+const {
+  eyebrow = "Past Podcast Episodes",
+  title = "Inspiration You Can Revisit Anytime",
+  description = `Our archive of past podcast episodes is a library of wisdom, guidance, and mindful
+conversations. Whether you missed an episode or want to revisit a favorite, you’ll find timeless
+insights to support your yoga practice and wellness journey.`,
+
+  initialFeaturedEpisode = 2,
+  initialVisibleCount = 2,
+
+  episodes = [
+    { episode: 1, image: "/podcast-video-1.webp", imageAlt: "video-1", video: "/video/podcast-video-1.mp4", title: "Chakras & Emotional Balance", description: "An accessible exploration of the chakra system and how it relates to emotional well-being.", duration: "17 minutes", artist: "Naomi Ellis" },
+    { episode: 2, image: "/podcast-video-2.webp", imageAlt: "video-2", video: "/video/podcast-video-2.mp4", title: "Breathwork & Inner Clarity", description: "Use mindful breathing techniques to calm the mind, reduce stress, and enhance mental clarity.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 3, image: "/podcast-video-3.webp", imageAlt: "video-3", video: "/video/podcast-video-3.mp4", title: "Seasons of Self-Care", description: "Adapt your yoga and wellness habits to align with seasonal rhythms for better health and vitality.", duration: "28 minutes", artist: "Naomi Ellis" },
+    { episode: 4, image: "/podcast-video-4.webp", imageAlt: "video-4", video: "/video/podcast-video-4.mp4", title: "Grounding Through the Root Chakra", description: "Practice grounding techniques to feel stable, secure, and deeply connected to your body.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 5, image: "/podcast-video-5.webp", imageAlt: "video-5", video: "/video/podcast-video-5.mp4", title: "Yoga for Better Sleep", description: "Gentle stretches, breathing practices, and relaxation tips to improve sleep quality.", duration: "17 minutes", artist: "Naomi Ellis" },
+    { episode: 6, image: "/podcast-video-6.webp", imageAlt: "video-6", video: "/video/podcast-video-6.mp4", title: "Solar Plexus & Self-Confidence", description: "How this energy center empowers your sense of self and personal power.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 7, image: "/podcast-video-7.webp", imageAlt: "video-7", video: "/video/podcast-video-7.mp4", title: "The Art of Letting Go", description: "A discussion on releasing tension—both physically and emotionally—to create space for growth.", duration: "28 minutes", artist: "Naomi Ellis" },
+    { episode: 8, image: "/podcast-video-8.webp", imageAlt: "video-8", video: "/video/podcast-video-8.mp4", title: "Heart Chakra Healing for Everyday", description: "Simple ways to open to love, compassion, and emotional connection.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 9, image: "/podcast-video-9.webp", imageAlt: "video-9", video: "/video/podcast-video-1.mp4", title: "Mindful Eating & Yoga", description: "How to bring mindfulness into your meals and nourish your body with awareness.", duration: "17 minutes", artist: "Naomi Ellis" },
+    { episode: 10, image: "/podcast-video-10.webp", imageAlt: "video-10", video: "/video/podcast-video-2.mp4", title: "Moving Through Grief with Yoga", description: "Gentle practices and reflections to support emotional release and healing.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 11, image: "/podcast-video-11.webp", imageAlt: "video-11", video: "/video/podcast-video-3.mp4", title: "Energy Hygiene: Protecting Your Peace", description: "Tools for clearing, grounding, and protecting your emotional energy.", duration: "28 minutes", artist: "Naomi Ellis" },
+    { episode: 12, image: "/podcast-video-12.webp", imageAlt: "video-12", video: "/video/podcast-video-4.mp4", title: "Yoga Nidra for Deep Emotional", description: "Discover the restorative power of yogic sleep and subconscious healing.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 13, image: "/podcast-video-13.webp", imageAlt: "video-13", video: "/video/podcast-video-5.mp4", title: "Yoga for Anxiety Relief", description: "Breath, movement, and mindset techniques to ease the nervous system.", duration: "17 minutes", artist: "Naomi Ellis" },
+    { episode: 14, image: "/podcast-video-14.webp", imageAlt: "video-14", video: "/video/podcast-video-6.mp4", title: "Daily Rituals for Emotional Resilience", description: "Small, intentional habits that build inner strength and calm.", duration: "20 minutes", artist: "Priya Sharma" },
+    { episode: 15, image: "/podcast-video-15.webp", imageAlt: "video-15", video: "/video/podcast-video-7.mp4", title: "Sacral Chakra & Creative Flow", description: "Reignite your joy and passion by connecting with this powerful center.", duration: "28 minutes", artist: "Naomi Ellis" },
+    { episode: 16, image: "/podcast-video-16.webp", imageAlt: "video-16", video: "/video/podcast-video-8.mp4", title: "Meditation & Emotional Awareness", description: "Learn how to observe your feelings with compassion and clarity.", duration: "20 minutes", artist: "Priya Sharma" },
+  ],
+} = Astro.props;
+
+const featuredEpisode =
+  episodes.find((episode) => episode.episode === initialFeaturedEpisode) ?? episodes[0];
+
+const visibleEpisodeCount = Math.max(1, Number(initialVisibleCount) || 2);
+const shouldShowRevealMore = episodes.length > visibleEpisodeCount;
+---
+
+<section
+  id="past-podcast-episodes"
+  class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 w-full"
+>
+  <div class="container">
+
+    <!-- SECTION HEADER -->
+    <div class="text-start max-w-full w-full 2xl:mb-[50px] 1xl:mb-11 md:mb-9 mb-7">
+      <h3 class="font-primary italic font-medium 2xl:mb-7 1xl:mb-6 xl:mb-5 sm:mb-3 mb-2.5" data-aos="fade-up">
+        {eyebrow}
+      </h3>
+
+      <h2 class="text-primary uppercase 1xl:mb-5 mb-3" data-aos="fade-up">
+        {title}
+      </h2>
+
+      <p class="text-thunder-100 2xl:max-w-[72%] xl:max-w-[76%] lg:max-w-[80%] lt:max-w-[83%] max-w-full w-full" data-aos="fade-up">
+        {description}
+      </p>
+    </div>
+
+    <!-- FEATURED EPISODE -->
+    <div
+      id="featuredEpisode"
+      class="2xl:mb-12.5 1xl:mb-11 xl:mb-9 lg:mb-7 sm:mb-6 mb-4"
+      data-aos="fade-up"
+    >
+      <div class="flex lt:flex-row flex-col items-center justify-between w-full md:gap-6 gap-4">
+
+        <!-- VIDEO -->
+        <div class="1xl:w-[51.4%] lt:w-1/2 w-full h-full">
+          <div class="2xl:h-[505px] 1xl:h-[465px] xl:h-[390px] lg:h-[325px] lt:h-[300px] md:h-[400px] sm:h-[360px] h-[200px]">
+            <video
+              id="featuredVideo"
+              class="w-full rounded-lg h-full object-cover"
+              controls
+              preload="metadata"
+              src={featuredEpisode?.video}
+              data-episode={featuredEpisode?.episode}
+            >
+              <source src={featuredEpisode?.video} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="1xl:w-[48.6%] lt:w-1/2 w-full">
+          <div>
+            <p id="featuredEpisodeNo" class="font-medium text-primary 1xl:mb-5 xl:mb-4 sm:mb-3 mb-2.5">
+              Episode-{featuredEpisode?.episode}
+            </p>
+
+            <h5 id="featuredTitle" class="uppercase text-primary 1xl:mb-5 xl:mb-4 sm:mb-3 mb-2">
+              {featuredEpisode?.title}
+            </h5>
+
+            <p id="featuredDesc">
+              {featuredEpisode?.description}
+            </p>
+
+            <!-- PODCAST META -->
+            <div class="podcast-footer 2xl:mt-11 1xl:mt-10 xl:mt-9 sm:mt-7.5 mt-5 2xl:mb-12.5 1xl:mb-11 xl:mb-9 mb-4.5">
+
+              <!-- TIME -->
+              <div class="podcast-time">
+                <div class="time-img">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                    <circle cx="17" cy="17" r="14" stroke="#673E2C" stroke-width="2" />
+                    <path d="M17 9V17L22 20" stroke="#673E2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p id="featuredTime" class="uppercase 2xl:text-18 1xl:text-16 xl:text-15 text-14">
+                  {featuredEpisode?.duration}
+                </p>
+              </div>
+
+              <!-- ARTIST -->
+              <div class="podcast-artist">
+                <div class="person-name">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                    <circle cx="17" cy="11" r="5" stroke="#673E2C" stroke-width="2" />
+                    <path d="M7 29C7 22.9249 11.4772 18 17 18C22.5228 18 27 22.9249 27 29" stroke="#673E2C" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <p id="featuredName" class="uppercase font-medium 2xl:text-18 1xl:text-16 xl:text-15 sm:text-14 text-xs">
+                  {featuredEpisode?.artist}
+                </p>
+              </div>
+            </div>
+
+            <!-- PLATFORM BUTTONS -->
+            <div class="flex items-center sm:flex-nowrap flex-wrap 1xl:gap-6 xl:gap-5 lg:gap-4 gap-2.5">
+              {["itunes", "spotify", "google", "stitcher"].map((platform) => (
+                <div class="border border-primary/50 rounded-full bg-whitesmoke-200 flex items-center justify-center xl:py-2.5 lg:py-2 lt:py-1.5 md:py-2.5 sm:py-2 py-1.5 1xl:px-9.5 xl:px-8 lg:px-6.5 lt:px-5.5 md:px-7 sm:px-6 px-3.5">
+                  <img
+                    loading="lazy"
+                    src={`/${platform}.svg`}
+                    alt={`${platform} logo`}
+                    class="w-full 1xl:h-7 md:h-6 sm:h-5 h-4"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EPISODE LIST -->
+    <div class="grid lt:grid-cols-2 grid-cols-1 1xl:gap-9.5 xl:gap-8 sm:gap-5.5 gap-5">
+      {episodes.map((episode, index) => (
+        <div
+          class={
+            index >= visibleEpisodeCount
+              ? "episode-card is-hidden flex sm:flex-row flex-col xl:gap-5 lt:gap-4 sm:gap-5 gap-4 items-center cursor-pointer relative 1xl:pb-7.5 xl:pb-6 sm:pb-5 pb-4 border-b border-primary/50"
+              : "episode-card flex sm:flex-row flex-col xl:gap-5 lt:gap-4 sm:gap-5 gap-4 items-center cursor-pointer relative 1xl:pb-7.5 xl:pb-6 sm:pb-5 pb-4 border-b border-primary/50"
+          }
+          data-aos="fade-up"
+          data-episode={episode.episode}
+          data-extra={index >= visibleEpisodeCount ? "true" : undefined}
+        >
+          <div class="1xl:h-[230px] lt:h-[175px] md:h-[155px] sm:h-[142px] h-[200px] sm:w-[31%] w-full rounded-sm overflow-hidden relative">
+            <img
+              loading="lazy"
+              src={episode.image}
+              alt={episode.imageAlt}
+              class="w-full h-full object-cover"
+            />
+
+            <video class="episode-video-src hidden" preload="none">
+              <source src={episode.video} type="video/mp4" />
+            </video>
+
+            <div class="absolute top-0 left-0 h-full w-full pointer-events-auto">
+              <div class="flex justify-center relative m-auto w-full h-full items-center">
+                <div class="pointer-events-all relative inline-flex items-center justify-center 1xl:size-12.5 size-11.5 rounded-full bg-white/50 p-1">
+                  <div class="absolute inset-0 animate-ping w-full h-full rounded-full bg-white/50"></div>
+                  <span class="relative w-full h-full rounded-full bg-white flex items-center justify-center p-[2.5px]">
+                    <span class="w-full h-full rounded-full bg-white flex items-center justify-center border border-primary transition-all decoration-300 p-2">
+                      <img loading="lazy" src="/play.svg" alt="play" class="w-full h-full sm:ml-1 ml-0.5" />
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sm:w-[69%] w-full">
+            <p class="episode-no font-medium 1xl:mb-5 xl:mb-3 lg:mb-2.5 lt:mb-1.5 mb-2.5 text-primary">
+              Episode-{episode.episode}
+            </p>
+
+            <h5 class="episode-title uppercase 1xl:mb-5 xl:mb-4 lg:mb-2.5 lt:mb-2 mb-2.5 text-primary">
+              {episode.title}
+            </h5>
+
+            <p class="episode-desc">
+              {episode.description}
+            </p>
+
+            <!-- hidden meta used by the script -->
+            <span class="episode-time hidden">{episode.duration}</span>
+            <span class="episode-name hidden">{episode.artist}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- REVEAL MORE -->
+    {shouldShowRevealMore && (
+      <button
+        id="pastPodcastRevealMore"
+        class="2xl:mt-12.5 1xl:mt-12 xl:mt-11 lg:mt-10 md:mt-9 sm:mt-8 mt-7.5 btn reveal-more past-podcast-reveal flex items-center justify-center mx-auto gap-4 cursor-pointer"
+        type="button"
+        aria-label="Reveal more past podcast episodes"
+      >
+        Reveal More
+        <img
+          loading="lazy"
+          src="/loading.svg"
+          alt="load"
+          class="1xl:size-7.5 xl:size-6.5 size-5.5 mx-auto"
+        />
+      </button>
+    )}
+
+  </div>
+</section>
+
+<style>
+  /* Cards beyond the initial count stay hidden until "Reveal More" is clicked */
+  .episode-card.is-hidden,
+  .episode-card[data-extra="true"] {
+    display: none !important;
+  }
+
+  /* Loader is still by default, spins on hover */
+  .reveal-more img {
+    animation: none;
+  }
+
+  .reveal-more:hover img {
+    animation: revealMoreSpin 1s linear infinite;
+  }
+
+  @keyframes revealMoreSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script src="./pastPodcastEpisodesScript.ts"></script>

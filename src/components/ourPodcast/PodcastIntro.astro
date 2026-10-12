@@ -1,0 +1,81 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  micImage?: string;
+  micAlt?: string;
+  firstParagraph?: string;
+  secondParagraph?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  eyebrow = "Our Podcast",
+  title = "Tune Into Your Practice",
+  micImage = "/mic.png",
+  micAlt = "mic",
+  firstParagraph = `Experience yoga, mindfulness, and wellness wherever life takes you—listen at your own pace,
+on your own time. Our thoughtfully curated podcast episodes are designed to inspire your
+body, calm your mind, and uplift your spirit, one conversation at a time.`,
+
+  secondParagraph = `Each episode blends practical teachings with heartfelt stories, offering you tools to bring
+more balance, clarity, and presence into your daily life. From guided meditations and yoga
+philosophy to holistic wellness tips and inspiring guest interviews, our podcast is your
+companion for mindful living—whether you’re commuting, practicing at home, or enjoying a
+quiet moment just for you.`,
+
+  image = "/our-podcast.webp",
+  imageAlt = "Yoga",
+} = Astro.props;
+---
+
+<section class="overflow-hidden relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+    <div class="container">
+        <div class="flex justify-between lt:flex-row flex-col 2xl:gap-15 1xl:gap-13 lg:gap-10 md:gap-8 sm:gap-7.5 gap-5 md:items-stretch items-start">
+
+            <!-- Right: Content -->
+            <div class="w-full lt:max-w-[53.5%] lt:py-4 lt:my-auto" data-aos="fade-right">
+                <div class="flex items-center gap-2 2xl:mb-7.5 1xl:mb-6 xl:mb-4 sm:mb-3 mb-2.5">
+                    <img
+                        loading="lazy"
+                        src={micImage}
+                        alt={micAlt}
+                        class="w-auto h-auto object-cointain"
+                        fetchpriority="high"
+                    >
+
+                    <h3 class="text-thunder-100 font-primary italic font-medium">
+                        {eyebrow}
+                    </h3>
+                </div>
+
+                <h2 class="text-primary font-normal uppercase 1xl:mb-5 mb-3">
+                    {title}
+                </h2>
+
+                <p class="1xl:mb-5 xl:mb-4 md:mb-3 mb-2.5">
+                    {firstParagraph}
+                </p>
+
+                <p>
+                    {secondParagraph}
+                </p>
+            </div>
+
+            <!-- Left: Image -->
+            <div class="lt:sticky relative lt:top-20 top-0 w-full lt:max-w-[46.5%] rounded-sm overflow-hidden" data-aos="fade-left">
+                <div class="overflow-hidden relative before:block before:content-[''] 2xl:before:pt-[83%] xl:before:pt-[98%] lg:before:pt-[110%] lt:before:pt-[115%] sm:before:pt-[56%] before:pt-[80%] h-full">
+                    <img
+                        loading="lazy"
+                        decoding="async"
+                        src={image}
+                        alt={imageAlt}
+                        class="w-full h-full object-cover absolute top-0 left-0"
+                    >
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

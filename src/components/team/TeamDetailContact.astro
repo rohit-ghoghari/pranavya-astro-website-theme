@@ -1,0 +1,62 @@
+---
+interface Props {
+    contact: {
+        privateSessions: {
+            title: string;
+            email: string;
+            emailHref: string;
+            phone: string;
+            phoneHref: string;
+            phoneLabel: string;
+        };
+    };
+}
+
+const { contact } = Astro.props;
+---
+
+<div data-aos="fade-up">
+    <h3 class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3">
+        {contact.privateSessions.title}
+    </h3>
+    <div class="space-y-3">
+        <a
+            href={contact.privateSessions.emailHref}
+            class="p font-medium flex items-center 1xl:gap-4.5 gap-3 w-fit group text-thunder-100 hover:text-primary"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                class="text-primary h-full 1xl:w-7.5 w-6"
+            >
+                <path
+                    d="M24.8984 9.79932L14.8984 16.0493L4.89844 9.79932V7.29932L14.8984 13.5493L24.8984 7.29932M24.8984 4.79932H4.89844C3.51094 4.79932 2.39844 5.91182 2.39844 7.29932V22.2993C2.39844 22.9624 2.66183 23.5982 3.13067 24.0671C3.59951 24.5359 4.2354 24.7993 4.89844 24.7993H24.8984C25.5615 24.7993 26.1974 24.5359 26.6662 24.0671C27.135 23.5982 27.3984 22.9624 27.3984 22.2993V7.29932C27.3984 6.63628 27.135 6.00039 26.6662 5.53155C26.1974 5.06271 25.5615 4.79932 24.8984 4.79932Z"
+                    fill="#673E2C"
+                />
+            </svg>
+            {contact.privateSessions.email}
+        </a>
+        <a
+            href={contact.privateSessions.phoneHref}
+            class="p font-medium flex items-center 1xl:gap-4.5 gap-3 w-fit group text-thunder-100 hover:text-primary"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                class="text-primary h-full 1xl:w-7.5 w-6"
+            >
+                <path
+                    d="M26.3441 20.2526L21.3127 18.0963C21.0978 18.0047 20.8589 17.9854 20.6321 18.0413C20.4052 18.0972 20.2027 18.2253 20.0549 18.4063L17.8267 21.1286C14.3298 19.4799 11.5157 16.6657 9.8669 13.1688L12.5892 10.9406C12.7706 10.7931 12.8989 10.5905 12.9548 10.3636C13.0108 10.1366 12.9912 9.89762 12.8992 9.68276L10.7429 4.65142C10.6419 4.4198 10.4632 4.2307 10.2377 4.11671C10.0121 4.00272 9.75392 3.97099 9.50752 4.027L4.83556 5.10514C4.598 5.16 4.38604 5.29376 4.23429 5.48459C4.08253 5.67543 3.99995 5.91206 4 6.15588C4 17.6785 13.3394 27 24.8441 27C25.088 27.0002 25.3247 26.9176 25.5157 26.7659C25.7066 26.6141 25.8404 26.4021 25.8953 26.1644L26.9734 21.4925C27.0291 21.2449 26.9967 20.9856 26.8818 20.7593C26.767 20.533 26.5768 20.3538 26.3441 20.2526Z"
+                    fill="#673E2C"
+                />
+            </svg>
+            {contact.privateSessions.phoneLabel}: {contact.privateSessions.phone}
+        </a>
+    </div>
+</div>

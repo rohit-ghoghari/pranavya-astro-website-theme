@@ -1,0 +1,64 @@
+---
+// Dynamic route for product detail pages
+// Loads markdown content and passes data to ProductDetailLayout
+
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProductDetailLayout from "../../components/shop/ProductDetailLayout.astro";
+
+// Generate static paths for all products
+export async function getStaticPaths() {
+    const productEntries = await getCollection("products");
+    const productsBySlug = new Map(productEntries.map((entry) => [entry.id, entry]));
+
+    return productEntries.map((entry) => {
+        const relatedProducts = (entry.data.relatedProducts ?? []).flatMap((related, index) => {
+            if (typeof related !== "string") {
+                return [{
+                    ...related,
+                    id: `related-${entry.id}-${index}`,
+                }];
+            }
+
+            const relatedEntry = productsBySlug.get(related);
+            if (!relatedEntry) return [];
+
+            return [{
+                id: relatedEntry.id,
+                title: relatedEntry.data.title,
+                price: relatedEntry.data.price,
+                image: relatedEntry.data.images.main,
+                url: `/shop/${relatedEntry.id}/`,
+                colors: relatedEntry.data.colors?.map((color) => ({
+                    value: color.value,
+                    default: false,
+                })),
+            }];
+        });
+
+        return {
+            params: { slug: entry.id },
+            props: { entry, relatedProducts },
+        };
+    });
+}
+
+// Get the current entry from props
+const { entry, relatedProducts } = Astro.props;
+const { data } = entry;
+
+// Use title from frontmatter for SEO
+const pageTitle = data.title || "Product Details — Pranavya Yoga";
+const metaDescription = data.metaDescription || data.description || "";
+---
+
+<Layout 
+    headerVariant="inner" 
+    footerVariant="inner" 
+    title={pageTitle.includes("Pranavya Yoga") ? pageTitle : `${pageTitle} — Pranavya Yoga`}
+    description={data.shortDescription || metaDescription}
+    canonical={`/shop/${data.slug || entry.id}/`}
+    image={data.images?.main}
+>
+    <ProductDetailLayout data={data} relatedProducts={relatedProducts} />
+</Layout>

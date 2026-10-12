@@ -1,0 +1,99 @@
+/* ==========================================
+       DROPDOWN
+       ========================================== */
+
+    .dropdown {
+        position: relative;
+    }
+
+    /* Keep the opened dropdown above following fields */
+    .dropdown.is-open {
+        z-index: 50;
+    }
+
+    /* ==========================================
+       DROPDOWN MENU
+       ========================================== */
+
+    .dropdown .dropdown-menu {
+        position: absolute;
+
+        /*
+         * IMPORTANT:
+         * Keep the menu below the complete dropdown field.
+         * The 10px gap prevents the menu from touching/
+         * overlapping the input/button.
+         */
+        top: calc(100% + 29px);
+
+        left: 0;
+        width: 100%;
+        z-index: 60;
+
+        max-height: 0 !important;
+        opacity: 0 !important;
+
+        overflow: hidden;
+        visibility: hidden;
+        pointer-events: none;
+
+        padding-top: 0 !important;
+
+        background: #fff !important;
+
+        border: 1px solid rgba(103, 62, 44, 0.2);
+        border-radius: 4px;
+
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+
+        transition:
+            max-height 0.3s ease,
+            opacity 0.3s ease,
+            visibility 0s linear 0.3s;
+    }
+
+    /* ==========================================
+       OPEN DROPDOWN
+       ========================================== */
+
+    .dropdown.is-open .dropdown-menu {
+        max-height: 280px !important;
+        opacity: 1 !important;
+
+        overflow-y: auto;
+
+        visibility: visible;
+        pointer-events: auto;
+
+        transition-delay: 0s;
+    }
+
+    /* ==========================================
+       DROPDOWN CONTENT
+       ========================================== */
+
+    .dropdown.is-open .dropdown-menu ul,
+    .dropdown.is-open .dropdown-menu .dropdown-item,
+    .dropdown.is-open .dropdown-menu .dropdown-item * {
+        pointer-events: auto !important;
+    }
+
+    /* ==========================================
+       ARROW
+       ========================================== */
+
+    .dropdown.is-open .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* ==========================================
+       ITEMS
+       ========================================== */
+
+    .dropdown .dropdown-item {
+        cursor: pointer;
+    }
+
+    .dropdown .dropdown-item.is-selected {
+        background: rgba(103, 62, 44, 0.08);
+    }

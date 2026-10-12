@@ -1,0 +1,158 @@
+---
+import type { GiftCard } from "../../data/giftCards";
+
+interface Props {
+    card: GiftCard;
+}
+
+const { card } = Astro.props;
+---
+
+{card.type === "featured" && (
+    <div class="w-full relative">
+                                <img
+                                    loading="lazy"
+                                    src={card.banner}
+                                    alt="Find Your Flow"
+                                    class="w-full h-full object-cover absolute top-0 left-0 pointer-events-none"
+                                />
+
+                                <div class="w-full h-full relative">
+                                    <div class="flex lt:flex-row flex-col items-stretch 1xl:gap-12 lt:gap-9.5 sm:gap-5.5 gap-4.5">
+                                        <div class="lt:h-auto lt:w-[36%] w-full md:h-[400px] sm:h-[330px] h-full">
+                                            <img
+                                                loading="lazy"
+                                                src={card.sideImage}
+                                                alt="gift card"
+                                                class="w-full h-full object-cover"
+                                                decoding="async"
+                                            />
+                                        </div>
+
+                                        <div class="lt:w-[64%] w-full lt:pb-6 sm:pb-5 pb-4 sm:pr-4 px-4 1xl:pt-12.5 lt:pt-8.5 pt-0 lt:pl-0">
+                                            <div class="text-center 2xl:max-w-[86%] 1xl:max-w-[95%] max-w-full w-full mx-auto">
+                                                <h3 class="font-primary italic font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5 text-center">
+                                                    {card.eyebrow}
+                                                </h3>
+
+                                                <h2 class="text-primary uppercase 1xl:mb-4 mb-3 text-center">
+                                                    {card.title}
+                                                </h2>
+
+                                                <p class="text-center 1xl:mb-10 xl:mb-8 lg:mb-6 mb-5">
+                                                    {card.description}
+                                                </p>
+
+                                                <a
+                                                    href={card.buttonHref}
+                                                    class="btn btn-secondary mx-auto"
+                                                >
+                                                    {card.buttonText}
+                                                </a>
+                                            </div>
+
+                                            <div class="flex sm:flex-row flex-col sm:items-end items-center sm:justify-between w-full sm:mt-0 mt-5 sm:gap-0 gap-3">
+                                                <div>
+                                                    <div class="flex items-center gap-1.5 mb-2">
+                                                        <div class="1xl:size-9 xl:size-8 lg:size-7.5 size-6.5">
+                                                            <img
+                                                                loading="lazy"
+                                                                src="/gift-box.svg"
+                                                                alt="box-open"
+                                                                class="w-full h-full object-contain"
+                                                            />
+                                                        </div>
+
+                                                        <p class="font-medium">
+                                                            Redeemable for:
+                                                        </p>
+                                                    </div>
+
+                                                    <ul class="list-disc pl-5 space-y-1 text-primary">
+                                                        {card.redeemableItems?.map(
+                                                            (item) => (
+                                                                <li>
+                                                                    <p>
+                                                                        {item}
+                                                                    </p>
+                                                                </li>
+                                                            ),
+                                                        )}
+                                                    </ul>
+                                                </div>
+
+                                                <div>
+                                                    <p>
+                                                        {card.sideBottomText}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {card.type === "tranquil" && (
+                            <div class="w-full relative">
+                                <img
+                                    loading="lazy"
+                                    src={card.banner}
+                                    alt="Find Your Flow"
+                                    class="w-full h-full object-cover absolute top-0 left-0 pointer-events-none opacity-29"
+                                />
+
+                                <div class="w-full h-full relative">
+                                    <div class="flex lt:flex-row flex-col items-stretch 2xl:gap-18.5 1xl:gap-16 xl:gap-12.5 lt:gap-8 sm:gap-6 gap-4">
+                                        <div class="lt:h-auto lt:w-[39.5%] w-full md:h-[400px] sm:h-[330px] h-full">
+                                            <img
+                                                loading="lazy"
+                                                src={card.sideImage}
+                                                alt="gift card"
+                                                class="w-full h-full object-cover"
+                                                decoding="async"
+                                            />
+                                        </div>
+
+                                        <div class="lt:w-[60.5%] w-full lg:pb-6 pb-4 sm:pr-4 px-4 1xl:pt-12.5 lt:pt-8.5 pt-0 lt:pl-0">
+                                            <div class="max-w-full w-full flex flex-col items-start">
+                                                <h3 class="font-primary italic font-medium 2xl:mb-6 1xl:mb-4.5 xl:mb-3.5 mb-2.5">
+                                                    {card.eyebrow}
+                                                </h3>
+
+                                                <h2 class="text-primary uppercase 1xl:mb-4 lg:mb-3 mb-2.5">
+                                                    {card.title}
+                                                </h2>
+
+                                                <p class="xl:mb-4 mb-3">
+                                                    {card.description}
+                                                </p>
+
+                                                <ul class="list-disc pl-5 space-y-1 text-primary text-start 1xl:mb-7.5 lg:mb-6 mb-4.5">
+                                                    {card.redeemableItems?.map(
+                                                        (item) => (
+                                                            <li>
+                                                                <p>
+                                                                    {item}
+                                                                </p>
+                                                            </li>
+                                                        ),
+                                                    )}
+                                                </ul>
+
+                                                <a
+                                                    href={card.buttonHref}
+                                                    class="btn btn-secondary sm:mb-2 mb-4"
+                                                >
+                                                    {card.buttonText}
+                                                </a>
+
+                                                <p class="ml-auto mr-0">
+                                                    {card.bottomText}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}

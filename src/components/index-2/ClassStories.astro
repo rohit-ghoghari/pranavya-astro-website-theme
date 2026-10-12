@@ -1,0 +1,218 @@
+---
+import { blogHref } from "../../utils/blogSlug";
+
+interface ClassStory {
+    date: string;
+    title: string;
+    description: string;
+    href: string;
+    image: string;
+    imageAlt?: string;
+    badge: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    moreLink?: string;
+    moreText?: string;
+    stories?: ClassStory[];
+}
+
+const {
+    eyebrow = "Class Stories",
+    title = "Knowledge That Moves With You",
+    description = `Explore simple, powerful ideas for better balance — from
+everyday breathing techniques to deeper yoga philosophy. Grow
+with us, one insight at a time.`,
+    moreLink = "/blogs/blogOne/",
+    moreText = "View More blogs",
+    stories = [
+        {
+            date: "July 10, 2025",
+            title: "Breathwork Basics: The Power of Pranayama",
+            description:
+                "Learn how conscious breathing techniques can reduce stress, improve focus, and enhance vitality.",
+            href: blogHref("Breathwork Basics: The Power of Pranayama"),
+            image: "/class-stories-1.webp",
+            imageAlt: "Yoga",
+            badge: "Yoga Tips",
+        },
+        {
+            date: "July 10, 2025",
+            title: "5 Morning Yoga Poses to Start Fresh",
+            description:
+                "Jumpstart your day with energizing asanas that awaken your body and focus your mind.",
+            href: blogHref("5 Morning Yoga Poses to Start Fresh"),
+            image: "/class-stories-2.webp",
+            imageAlt: "Yoga",
+            badge: "Yoga Tips",
+        },
+    ],
+} = Astro.props;
+---
+
+<section
+    class="relative 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10 bg-whitesmoke-100 2xl:py-20 1xl:py-17 lg:py-14 md:py-12 sm:py-11 py-10"
+>
+    <div class="container">
+        <div
+            class="grid items-center md:grid-cols-2 grid-cols-1 2xl:gap-10 1xl:gap-9 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-5 gap-4 2xl:mb-12.5 1xl:mb-12 xl:mb-11 lg:mb-10 md:mb-9 sm:mb-8 mb-7.5"
+        >
+            <div>
+                <h3
+                    class="text-thunder-100 font-primary italic font-medium 1xl:mb-6 sm:mb-4 mb-2.5"
+                >
+                    {eyebrow}
+                </h3>
+
+                <h2 class="text-primary font-normal uppercase">
+                    {title}
+                </h2>
+            </div>
+
+            <div class="max-w-[842px]">
+                <p
+                    class="text-thunder-100 max-w-[890px] 2xl:mb-10 1xl:mb-9 xl:mb-8 lg:mb-7.5 md:mb-7 sm:mb-6.5 mb-6"
+                >
+                    {description}
+                </p>
+
+                <a href={moreLink} class="btn btn-secondary">
+                    {moreText}
+                </a>
+            </div>
+        </div>
+
+        <!-- Featured Post Row -->
+        <div class="flex lt:flex-row flex-col 1xl:gap-[50px] xl:gap-10 sm:gap-6 gap-4">
+            {
+                stories.map((story) => (
+                    <div
+                        class="rounded-sm bg-white border border-[#673E2C80] overflow-hidden lt:w-1/2 w-full"
+                        data-aos="fade-up"
+                    >
+                        <div class="flex sm:flex-row flex-col justify-between 1xl:gap-[30px] xl:gap-6 sm:gap-4 gap-5 1xl:p-[30px] xl:p-5 lt:p-4 md:p-6 p-4 items-stretch h-full">
+                            <div class="sm:w-[55%] w-full my-auto flex flex-col items-start">
+                                <div class="flex items-center xl:gap-[10px] gap-2 1xl:mb-6 mb-4">
+                                    <div class="1xl:w-[30px] 1xl:h-[30px] xl:w-[28px] xl:h-[28px] w-[26px] h-[26px] p-1 rounded-sm bg-primary flex items-center justify-center">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                        >
+                                            <mask
+                                                id="mask0_3632_4866"
+                                                style="mask-type:alpha"
+                                                maskUnits="userSpaceOnUse"
+                                                x="0"
+                                                y="0"
+                                                width="20"
+                                                height="20"
+                                            >
+                                                <rect
+                                                    width="20"
+                                                    height="20"
+                                                    fill="url(#pattern0_3632_4866)"
+                                                />
+                                            </mask>
+
+                                            <g mask="url(#mask0_3632_4866)">
+                                                <rect
+                                                    width="20"
+                                                    height="20"
+                                                    fill="white"
+                                                />
+                                            </g>
+
+                                            <defs>
+                                                <pattern
+                                                    id="pattern0_3632_4866"
+                                                    patternContentUnits="objectBoundingBox"
+                                                    width="1"
+                                                    height="1"
+                                                >
+                                                    <use
+                                                        xlink:href="#image0_3632_4866"
+                                                        transform="scale(0.00195312)"
+                                                    />
+                                                </pattern>
+
+                                                <image
+                                                    id="image0_3632_4866"
+                                                    width="512"
+                                                    height="512"
+                                                    preserveAspectRatio="none"
+                                                    xlink:href="data:image/png;base64,..."
+                                                />
+                                            </defs>
+                                        </svg>
+                                    </div>
+
+                                    <span class="uppercase p2 text-black">
+                                        {story.date}
+                                    </span>
+                                </div>
+
+                                <a href={story.href}>
+                                    <h3 class="uppercase text-primary 1xl:mb-5 xl:mb-4 mb-3 hover:text-thunder-100">
+                                        {story.title}
+                                    </h3>
+                                </a>
+
+                                <p class="1xl:mb-11 xl:mb-8 mb-6">
+                                    {story.description}
+                                </p>
+
+                                <a
+                                    href={story.href}
+                                    class="p2 font-normal btn-link uppercase hover:text-primary text-black leading-[100%]"
+                                >
+                                    Read more
+
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="13"
+                                        height="13"
+                                        viewBox="0 0 13 13"
+                                        class="sm:w-[13px] sm:h-[13px] w-[11px] h-[11px]"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M0.750055 11.9871L11.5781 1.15908M11.5781 1.15908C11.8347 1.4157 11.9911 1.77255 11.9871 2.1668L11.9095 9.8493M11.5781 1.15908C11.3215 0.902467 10.9646 0.746093 10.5704 0.750076L2.88787 0.827704"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            
+                            <div class="relative lt:w-[45%] sm:w-[38%] block overflow-hidden rounded-sm">
+                                <div class="relative shrink-0 before:content-[''] before:pt-[100%] before:block h-full overflow-hidden">
+                                    <img
+                                        loading="lazy"
+                                        decoding="async"
+                                        src={story.image}
+                                        alt={story.imageAlt ?? story.title}
+                                        class="w-full h-full object-cover absolute top-0 left-0"
+                                    />
+
+                                    <p class="absolute xl:top-4 xl:right-4 top-2.5 right-2.5 bg-white text-[#6b3f2b] 1xl:px-[18px] xl:px-[14px] px-3 xl:py-[3px] py-[2px] rounded-full">
+                                        {story.badge}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

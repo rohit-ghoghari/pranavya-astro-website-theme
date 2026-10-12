@@ -1,0 +1,300 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AccountTabs from "../components/account/AccountTabs.astro";
+import AccountDashboard from "../components/account/AccountDashboard.astro";
+import AccountOrders from "../components/account/AccountOrders.astro";
+import AccountClasses from "../components/account/AccountClasses.astro";
+import AccountPlans from "../components/account/AccountPlans.astro";
+import AccountDetails from "../components/account/AccountDetails.astro";
+import AccountLogout from "../components/account/AccountLogout.astro";
+---
+
+<Layout
+    headerVariant="inner"
+    footerVariant="inner"
+    title="My Account Dashboard — Pranavya Yoga"
+    description="Manage your Pranavya Yoga profile, view registered yoga classes, check active memberships, and track orders."
+    canonical="/account/"
+    accountMenu={true}
+>
+    <main class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10 relative">
+        <!-- ====== Start Page Heading ====== -->
+        <section class="relative 1xl:mt-20 xl:mt-17 lg:mt-14 lt:mt-12 sm:mt-9 mt-6 1xl:mb-11 xl:mb-8 sm:mb-7 mb-6">
+            <div class="container">
+                <h1 class="h3 text-primary uppercase">Customer Information</h1>
+            </div>
+        </section>
+        <!-- ====== End Page Heading ====== -->
+
+        <!-- ====== Start Account ====== -->
+        <section class="2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10">
+            <div id="schedule">
+                <div class="container z-10">
+                    <div class="flex lt:flex-row flex-col items-start gap-1.5">
+                        <!-- Sidebar Tabs -->
+                        <AccountTabs />
+
+                        <!-- Panels -->
+                        <div class="2xl:max-w-[84.5%] xl:max-w-[83%] lt:max-w-4/5 w-full sm:border border-[#EBEBEB] 2xl:p-10 1xl:p-8 xl:p-8 sm:p-6 pt-5">
+                            <AccountDashboard />
+                            <AccountOrders />
+                            <AccountClasses />
+                            <AccountPlans />
+                            <AccountDetails />
+                            <AccountLogout />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== End Account ====== -->
+    </main>
+</Layout>
+
+<script>
+    // ===== My Account page interactions =====
+    function initAccount() {
+        const schedule = document.getElementById("schedule");
+        if (!schedule) return;
+
+        const tabs = schedule.querySelectorAll(".schedule-tab");
+        const panels = schedule.querySelectorAll(".schedule-panel");
+
+        // --- Tab switching ---
+        const activateTab = (target: string) => {
+            tabs.forEach((tab) => {
+                tab.classList.toggle("is-active", tab.getAttribute("data-target") === target);
+            });
+            panels.forEach((panel) => {
+                panel.classList.toggle("hidden", "#" + panel.id !== target);
+            });
+        };
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const target = tab.getAttribute("data-target");
+                if (target) activateTab(target);
+            });
+        });
+
+        // Links that jump to a tab (dashboard "Log out", etc.)
+        document.querySelectorAll("a[href]").forEach((link) => {
+            const href = link.getAttribute("href") || "";
+            if (link.hasAttribute("data-goto-tab")) return;
+            if (!/^#(dashboard|orders|classes|plans|account|logout)$/.test(href)) return;
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                activateTab(href);
+            });
+        });
+        document.querySelectorAll("[data-goto-tab]").forEach((el) => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const target = el.getAttribute("data-goto-tab");
+                if (target) activateTab(target);
+                closeAccountMenu();
+            });
+        });
+
+        // --- Header account dropdown ---
+        const menuToggle = document.getElementById("accountMenuToggle");
+        const menuDropdown = document.getElementById("accountMenuDropdown");
+        function closeAccountMenu() {
+            menuDropdown?.classList.add("hidden");
+        }
+        menuToggle?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            menuDropdown?.classList.toggle("hidden");
+        });
+        document.addEventListener("click", (e) => {
+            if (!menuDropdown || menuDropdown.classList.contains("hidden")) return;
+            if (menuDropdown.contains(e.target as Node) || menuToggle?.contains(e.target as Node)) return;
+            closeAccountMenu();
+        });
+        document.querySelectorAll(".account-menu-item").forEach((item) => {
+            item.addEventListener("click", () => {
+                const target = item.getAttribute("data-target");
+                if (target) activateTab(target);
+                closeAccountMenu();
+            });
+        });
+
+        // --- Overlay (popup) helpers: one at a time, shown as flex ---
+        const closeOverlay = (el: HTMLElement | null) => {
+            if (!el) return;
+            el.classList.add("hidden");
+            el.classList.remove("flex");
+        };
+        const openOverlay = (el: HTMLElement | null) => {
+            if (!el) return;
+            schedule.querySelectorAll('[id$="Popup"]').forEach((o) => {
+                if (o !== el) closeOverlay(o as HTMLElement);
+            });
+            el.classList.remove("hidden");
+            el.classList.add("flex");
+        };
+        document.querySelectorAll(".popup-close").forEach((btn) => {
+            btn.addEventListener("click", () => closeOverlay(btn.closest<HTMLElement>('[id$="Popup"]')));
+        });
+
+        // --- Orders ---
+        const ordersList = document.getElementById("ordersList");
+        const orderDetails = document.getElementById("orderDetails");
+        document.querySelectorAll(".view-order").forEach((link) => {
+            link.addEventListener("click", () => {
+                ordersList?.classList.add("hidden");
+                orderDetails?.classList.remove("hidden");
+            });
+        });
+        document.querySelectorAll(".back-to-orders").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                orderDetails?.classList.add("hidden");
+                ordersList?.classList.remove("hidden");
+            });
+        });
+        const cancelPopup = document.getElementById("cancelPopup");
+        document.getElementById("cancelOrderBtn")?.addEventListener("click", () => openOverlay(cancelPopup));
+        document.getElementById("closePopup")?.addEventListener("click", () => closeOverlay(cancelPopup));
+        document.getElementById("keepOrder")?.addEventListener("click", () => closeOverlay(cancelPopup));
+        document.getElementById("confirmCancel")?.addEventListener("click", () => {
+            openOverlay(document.getElementById("successPopup"));
+        });
+
+        // --- Class bookings ---
+        const orderPopup = document.getElementById("orderPopup");
+        document.querySelectorAll(".view-details").forEach((link) => {
+            link.addEventListener("click", () => {
+                const set = (id: string, attr: string) => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = link.getAttribute(attr) || "";
+                };
+                const img = document.getElementById("pImage") as HTMLImageElement | null;
+                if (img) img.src = link.getAttribute("data-image") || "";
+                set("pMainTitle", "data-className");
+                set("pClassName", "data-className");
+                set("pDate", "data-date");
+                set("pStatus", "data-status");
+                set("pInstructor", "data-instructor");
+                set("pProgramDuration", "data-programDuration");
+                set("pSessionDuration", "data-sessionDuration");
+                set("pFormat", "data-format");
+                set("pDetail", "data-detail");
+                openOverlay(orderPopup);
+            });
+        });
+        const cancelClassPopup = document.getElementById("cancelClassPopup");
+        document.getElementById("openCancelPopup")?.addEventListener("click", () => openOverlay(cancelClassPopup));
+        document.getElementById("submitCancel")?.addEventListener("click", () => {
+            openOverlay(document.getElementById("successClassPopup"));
+        });
+        document.querySelectorAll(".closePopup").forEach((btn) => {
+            btn.addEventListener("click", () => closeOverlay(btn.closest<HTMLElement>('[id$="Popup"]')));
+        });
+
+        // --- Plans ---
+        document.querySelectorAll(".plan-detail").forEach((link) => {
+            link.addEventListener("click", () => openOverlay(document.getElementById("membershipPopup")));
+        });
+        document.querySelectorAll(".open-billing-history").forEach((btn) => {
+            btn.addEventListener("click", () => openOverlay(document.getElementById("billingHistoryPopup")));
+        });
+        document.querySelectorAll(".open-auto-payment").forEach((btn) => {
+            btn.addEventListener("click", () => openOverlay(document.getElementById("autoPaymentPopup")));
+        });
+        document.querySelectorAll(".confirm-cancel").forEach((btn) => {
+            btn.addEventListener("click", () => openOverlay(document.getElementById("cancelConfirmPopup")));
+        });
+        document.querySelectorAll(".confirm-final-cancel").forEach((btn) => {
+            btn.addEventListener("click", () => openOverlay(document.getElementById("successAutoPopup")));
+        });
+
+        // --- Account details ---
+        const profileInput = document.getElementById("profileImageInput") as HTMLInputElement | null;
+        document.getElementById("editProfileImg")?.addEventListener("click", () => profileInput?.click());
+        profileInput?.addEventListener("change", () => {
+            const file = profileInput.files && profileInput.files[0];
+            const preview = document.getElementById("profilePreview") as HTMLImageElement | null;
+            if (file && preview) preview.src = URL.createObjectURL(file);
+        });
+
+        const addressWrapper = document.getElementById("addressWrapper");
+        document.getElementById("addAddress")?.addEventListener("click", () => {
+            const primary = addressWrapper?.querySelector(".address-block");
+            if (!addressWrapper || !primary) return;
+            const clone = primary.cloneNode(true) as HTMLElement;
+            const cloneBtn = clone.querySelector("#addAddress");
+            cloneBtn?.remove();
+            const title = clone.querySelector(".address-title");
+            if (title) {
+                const count = addressWrapper.querySelectorAll(".address-block").length + 1;
+                title.textContent = "Address Details (Address " + count + ")";
+            }
+            clone.querySelectorAll<HTMLInputElement>("input").forEach((input: HTMLInputElement) => { input.value = ""; });
+            addressWrapper.appendChild(clone);
+        });
+
+        // --- Custom dropdowns (same behavior as checkout page) ---
+        document.querySelectorAll(".dropdown-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const dropdown = btn.closest(".dropdown");
+                const menu = dropdown?.querySelector(".dropdown-menu");
+                const arrow = dropdown?.querySelector(".dropdown-arrow");
+                document.querySelectorAll(".dropdown-menu").forEach((m) => { if (m !== menu) m.classList.remove("open"); });
+                document.querySelectorAll(".dropdown-arrow").forEach((a) => { if (a !== arrow) a.classList.remove("rotate-180"); });
+                menu?.classList.toggle("open");
+                arrow?.classList.toggle("rotate-180");
+            });
+        });
+        document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+            menu.addEventListener("click", (e) => e.stopPropagation());
+        });
+        document.querySelectorAll(".dropdown-item").forEach((item) => {
+            item.addEventListener("click", () => {
+                const dropdown = item.closest(".dropdown");
+                const textEl = dropdown?.querySelector(".dropdown-text");
+                const hiddenInput = dropdown?.querySelector<HTMLInputElement>("input[type='hidden']");
+                const value = (item.textContent || "").trim();
+                if (textEl) {
+                    textEl.textContent = value;
+                    textEl.classList.remove("text-thunder-100/50");
+                }
+                if (hiddenInput) {
+                    hiddenInput.value = value;
+                    hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+                dropdown?.querySelector(".dropdown-menu")?.classList.remove("open");
+                dropdown?.querySelector(".dropdown-arrow")?.classList.remove("rotate-180");
+            });
+        });
+        document.addEventListener("click", () => {
+            document.querySelectorAll(".dropdown-menu").forEach((m) => m.classList.remove("open"));
+            document.querySelectorAll(".dropdown-arrow").forEach((a) => a.classList.remove("rotate-180"));
+        });
+
+        // --- Phone inputs: digits only, max 10 ---
+        document.querySelectorAll<HTMLInputElement>(".phone-input").forEach((input) => {
+            input.addEventListener("input", () => {
+                input.value = input.value.replace(/\D/g, "").substring(0, 10);
+            });
+            input.addEventListener("paste", (e) => {
+                const clipboardEvt = e as ClipboardEvent;
+                clipboardEvt.preventDefault();
+                const pasted = ((clipboardEvt.clipboardData && clipboardEvt.clipboardData.getData("text")) || "").replace(/\D/g, "").substring(0, 10);
+                input.value = pasted;
+            });
+            input.addEventListener("keypress", (e) => {
+                const keyEvt = e as any;
+                if (keyEvt.which < 48 || keyEvt.which > 57 || input.value.length >= 10) e.preventDefault();
+            });
+        });
+
+        // --- Profile form: prevent actual submission in this static build ---
+        document.querySelectorAll(".validate-form").forEach((form) => {
+            form.addEventListener("submit", (e) => e.preventDefault());
+        });
+    }
+
+    initAccount();
+    document.addEventListener("astro:page-load", initAccount);
+</script>

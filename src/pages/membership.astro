@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeading from "../components/common/PageHeading.astro";
+import MembershipPlans from "../components/membership/MembershipPlans.astro";
+import JoinMembership from "../components/membership/JoinMembership.astro";
+import GiftCardBanner from "../components/membership/GiftCardBanner.astro";
+import MembershipFaqs from "../components/membership/MembershipFaqs.astro";
+---
+
+<Layout
+  headerVariant="inner"
+  footerVariant="inner"
+  title="Membership — Pranavya Yoga"
+  description="Experience yoga that grows with you-practice at your pace, on your path. Our thoughtfully designed memberships unlock exclusive classes, special events, and mindful perks to support your body."
+  canonical="/membership/"
+>
+  <main
+    class="h-full 2xl:pt-20.5 xl:pt-19.5 lg:pt-16.5 md:pt-14 sm:pt-13 pt-10"
+  >
+    <PageHeading
+      title="Join Your Journey"
+      description="Experience yoga that grows with you-practice at your pace, on your path. Our thoughtfully designed memberships unlock exclusive classes, special events, and mindful perks to support your body."
+      backgroundClass="bg-whitesmoke-100"
+    />
+
+    <!-- Section 1  -->
+    <MembershipPlans />
+
+    <!-- Section 2 -->
+    <JoinMembership />
+
+    <!-- Section 3 -->
+    <GiftCardBanner />
+
+    <!-- Section 4 -->
+    <MembershipFaqs
+      eyebrow="Membership FAQs"
+      title="Answers to Common Questions"
+      description="Whether you're just getting started or upgrading your plan, here’s everything you need to know."
+      faqs={[
+        {
+          question: "Which membership should I choose ?",
+          answer: `If you're just starting, the Essence Plan is a great fit. For more frequent practice,
+Balance or Elevate offer more flexibility and perks.`,
+        },
+        {
+          question: "Do unused classes roll over?",
+          answer: `Yes, unused classes can roll over to the next billing cycle, depending on your
+membership plan. Please check plan details for rollover limits.`,
+        },
+        {
+          question: "Do you offer student or senior discounts?",
+          answer: `Yes, we offer special discounts for students and seniors. Valid ID is required at the
+time of purchase.`,
+        },
+        {
+          question: "What’s included in a membership?",
+          answer: `Your membership includes access to scheduled classes, experienced instructors, and
+select workshops or online sessions—based on your chosen plan.`,
+        },
+        {
+          question: "Can I cancel anytime?",
+          answer: `Absolutely. Memberships can be canceled at any time with prior notice, as outlined in
+our cancellation policy.`,
+        },
+      ]}
+    />
+  </main>
+</Layout>

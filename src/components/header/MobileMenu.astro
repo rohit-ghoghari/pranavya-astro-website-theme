@@ -1,0 +1,55 @@
+---
+import HomeMenu from './HomeMenu.astro';
+import ClassesMenu from './ClassesMenu.astro';
+import ShopMenu from './ShopMenu.astro';
+import BlogMenu from './BlogMenu.astro';
+import PagesMenu from './PagesMenu.astro';
+---
+
+<aside
+    id="mainmenu"
+    class="mainmenu max-[1221px]:fixed max-[1221px]:h-screen max-[1221px]:inset-y-0 max-[1221px]:left-0 max-[1221px]:top-0 max-[1221px]:z-60 max-[1221px]:w-screen max-[1221px]:max-w-screen 
+    max-[1221px]:bg-white max-[1221px]:border-r max-[1221px]:border-primary/20 max-[1221px]:transition-transform max-[1221px]:duration-300 max-[1221px]:ease-in-out min-[1221px]:px-0 px-4">
+
+    <!-- Mobile menu header row -->
+    <div class="min-[1221px]:hidden flex items-center justify-between py-4 border-b border-primary/20">
+        <div class="w-fit h-9">
+            <img
+                loading="lazy"
+                src="/main-logo-black.svg"
+                alt="Pranavya"
+                class="h-full w-auto object-contain"
+                decoding="async" />
+        </div>
+        <button name="close" aria-label="Close menu" class="text-thunder-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M15 5L5 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M5 5L15 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="max:overflow-y-auto max-[1221px]:h-[calc(100vh-21vh)] max-sm:h-[calc(100vh-15vh)] max-lt:pb-6">
+        <ul class="min-[1221px]:flex [1220px]:items-center max-[1221px]:divide-y max-[1221px]:divide-primary/20 h-[calc(100%-7%)]">
+
+            <HomeMenu />
+            <ClassesMenu />
+            <ShopMenu />
+            <BlogMenu />
+            <PagesMenu />
+
+        </ul>
+
+        <!-- Mobile wishlist + login (inside nav, sticky bottom, hidden above sm) -->
+        <div class="sticky bottom-0 top-auto sm:hidden flex items-center justify-between gap-2 bg-white">
+            <a href="javascript:void(0)" id="openWishlistMobile"
+                class="btn btn-primary lg:inline-block w-full">Wishlist</a>
+            <a href="/login" class="btn btn-secondary lg:inline-block w-full">login</a>
+        </div>
+
+    </nav>
+
+</aside>

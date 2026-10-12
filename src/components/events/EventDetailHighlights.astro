@@ -1,0 +1,151 @@
+---
+interface Props {
+    about: {
+        title: string;
+        description: string;
+    };
+    programHighlights: Array<{
+        title: string;
+        description: string;
+    }>;
+    highlightImage: {
+        src: string;
+        alt: string;
+    };
+    feedback: {
+        title: string;
+        items: Array<{
+            quote: string;
+            author: string;
+        }>;
+    };
+}
+
+const { about, programHighlights, highlightImage, feedback } = Astro.props;
+---
+
+<!-- ====== Find Your Flow Section ====== -->
+<section
+    class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+    <div class="container">
+        <!-- About -->
+        <div
+            class="2xl:mb-12.5 1xl:mb-11 md:mb-8 mb-6"
+            data-aos="fade-up"
+        >
+            <h3
+                class="text-primary font-normal uppercase 1xl:mb-5 mb-3"
+            >
+                {about.title}
+            </h3>
+
+            <p class="text-black">
+                {about.description}
+            </p>
+        </div>
+
+        <div
+            class="flex lt:flex-row flex-col-reverse items-end 2xl:gap-19 1xl:gap-16 xl:gap-12 lg:gap-8 gap-5"
+        >
+            <!-- Right: Content -->
+            <div class="lt:w-[56%] w-full">
+                <h3
+                    class="text-primary font-normal uppercase 1xl:mb-[25px] mb-3"
+                    data-aos="fade-up"
+                >
+                    {"Program Highlights"}
+                </h3>
+
+                <!-- Bullets -->
+                <ul
+                    class="flex flex-col items-start justify-center 2xl:gap-10 1xl:gap-9 xl:gap-7 md:gap-6 sm:gap-5 gap-4"
+                >
+                    {
+                        programHighlights.map(
+                            (item) => (
+                                <li
+                                    class="flex items-start md:gap-2.5 gap-2"
+                                    data-aos="fade-up"
+                                >
+                                    <span class="shrink-0 whitespace-nowrap 1xl:w-7.5 xl:w-7 lg:w-6 w-5 h-full mt-1">
+                                        <img
+                                            loading="lazy"
+                                            decoding="async"
+                                            src="/bullets-point.svg"
+                                            alt="Bullets Point"
+                                        />
+                                    </span>
+
+                                    <div class="flex flex-col items-start xl:gap-3 gap-2">
+                                        <h5 class="uppercase">
+                                            {item.title}
+                                        </h5>
+
+                                        <p>
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </li>
+                            )
+                        )
+                    }
+                </ul>
+            </div>
+
+            <!-- Left: Image -->
+            <div class="lt:w-[44%] w-full h-full">
+                <div
+                    class="overflow-hidden rounded-sm relative before:content-[''] before:block 2xl:before:pt-[93%] 1xl:before:pt-[105%] xl:before:pt-[112%] lg:before:pt-[116%] lt:before:pt-[125%] sm:before:pt-[65%] before:pt-[100%] w-full h-full"
+                >
+                    <img
+                        loading="lazy"
+                        decoding="async"
+                        src={highlightImage.src}
+                        alt={highlightImage.alt}
+                        class="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ====== End Find Your Flow Section ====== -->
+
+<!-- ====== Start Feedback Section ====== -->
+<section
+    class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+    <div class="container">
+        <h3
+            class="text-primary font-normal uppercase 1xl:mb-9 lg:mb-7 sm:mb-6 mb-5"
+            data-aos="fade-up"
+        >
+            {feedback.title}
+        </h3>
+
+        <div
+            class="1xl:space-y-7.5 lg:space-y-6.5 sm:space-y-5.5 space-y-4.5"
+        >
+            {
+                feedback.items.map(
+                    (item) => (
+                        <div
+                            class="1xl:p-7 lg:p-6 sm:p-5 p-3.5 bg-whitesmoke-100 border-l-2 border-primary 1xl:space-y-4 space-y-3"
+                            data-aos="fade-up"
+                        >
+                            <p class="font-medium">
+                                {item.quote}
+                            </p>
+
+                            <p class="text-primary">
+                                {item.author}
+                            </p>
+                        </div>
+                    )
+                )
+            }
+        </div>
+    </div>
+</section>
+<!-- ====== End Feedback Section ====== -->

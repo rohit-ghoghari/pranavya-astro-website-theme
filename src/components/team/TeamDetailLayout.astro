@@ -1,0 +1,287 @@
+---
+import TeamDetailContact from "./TeamDetailContact.astro";
+
+interface Props {
+    data: any;
+}
+
+const { data } = Astro.props;
+
+const profile = data.profile;
+const background = data.background;
+const featuredSpecialty = data.featuredSpecialty;
+const specialties = data.specialties;
+const contact = data.contact;
+---
+
+<!-- ====== Start Page Heading ====== -->
+<section
+    class="relative 1xl:pt-20 xl:pt-17 lg:pt-14 md:pt-12 sm:pt-11 pt-10 xl:mb-20 lg:mb-16 md:mb-12 sm:mb-11 mb-10 pb-[60px] bg-whitesmoke-100"
+>
+    <div class="container relative">
+        <div
+            class="flex flex-col items-center justify-center lt:max-w-[73%] md:max-w-[90%] max-w-full w-full text-center mx-auto space-y-2.5"
+        >
+            <h1 class="uppercase text-primary text-center" data-aos="fade-up">
+                {data.hero.title}
+            </h1>
+            <p
+                class="1xl:max-w-3/4 xl:max-w-[85%] w-full"
+                data-aos="fade-up"
+            >
+                {data.hero.description}
+            </p>
+        </div>
+
+        <!-- Decorative Flower -->
+        <div
+            class="pointer-events-none absolute 1xl:-top-20 xl:-top-[65px] lg:-top-[55px] -top-12 left-auto right-0 lg:w-[14.2%] w-[15%] hidden md:block opacity-30"
+        >
+            <img
+                loading="lazy"
+                decoding="async"
+                src={data.hero.flowerImage}
+                alt={data.hero.flowerImageAlt}
+                class="w-full h-full object-contain"
+            />
+        </div>
+    </div>
+</section>
+<!-- ====== End Page Heading ====== -->
+
+<!-- ====== Find Your Flow Section ====== -->
+<section
+    class="relative bg-white 2xl:mb-[100px] 1xl:mb-20 xl:mb-17 lg:mb-14 md:mb-12 sm:mb-11 mb-10"
+>
+    <div class="container">
+        <div
+            class="flex lt:flex-row flex-col-reverse items-stretch 2xl:gap-17.5 1xl:gap-16 xl:gap-12 lg:gap-8 sm:gap-5 gap-3"
+            data-aos="fade-up"
+        >
+            <!-- Right: Content -->
+            <div class="lt:w-[57%] w-full my-auto 1xl:py-22 xl:py-8 py-2">
+                <h2
+                    class="text-primary font-normal uppercase 1xl:mb-5 xl:mb-4 mb-2.5"
+                >
+                    {profile.name}
+                </h2>
+                <h3
+                    class="text-black font-primary font-medium italic 2xl:mb-12.5 1xl:mb-11 md:mb-5 mb-4"
+                >
+                    {profile.designation}
+                </h3>
+                <h3 class="text-primary uppercase 1xl:mb-7.5 xl:mb-5 mb-4">
+                    {profile.aboutTitle}
+                </h3>
+                <div
+                    class="1xl:space-y-5 xl:space-y-4 lg:space-y-3 sm:space-y-2 space-y-1"
+                >
+                    {
+                        profile.aboutParagraphs.map((paragraph: string) => (
+                            <p>{paragraph}</p>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Left: Image -->
+            <div class="lt:w-[43%] w-full h-auto">
+                <div
+                    class="overflow-hidden rounded-sm relative before:content-[''] before:block before:pt-[100%] w-full h-full"
+                >
+                    <img
+                        loading="lazy"
+                        decoding="async"
+                        src={profile.image}
+                        alt={profile.imageAlt}
+                        class="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="1xl:space-y-20 lg:space-y-12 space-y-10 1xl:mt-0 xl:mt-3 lt:mt-8 mt-6"
+        >
+                        <!-- Background & Experience -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {background.title}
+                </h3>
+                <ul
+                    class="list-disc 1xl:space-y-5 sm:space-y-3.5 space-y-2.5 sm:pl-4.5 pl-4"
+                >
+                    {
+                        background.items.map((item: string) => (
+                            <li>
+                                <p class="font-medium">{item}</p>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <!-- Featured Quote / Specialty -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {featuredSpecialty.title}
+                </h3>
+                <div
+                    class="1xl:p-7.5 lg:p-6 md:p-5 p-4 bg-whitesmoke-100 font-medium border-l-2 border-primary flex items-start 1xl:gap-7.5 lg:gap-6 lt:gap-5 sm:gap-4 gap-2.5"
+                >
+                    <div class="shrink-0">
+                        <img
+                            loading="lazy"
+                            src={featuredSpecialty.icon}
+                            alt={featuredSpecialty.iconAlt}
+                            class="1xl:size-12.5 lg:size-11 sm:size-10 size-7.5 object-contain"
+                        />
+                    </div>
+
+                    <div>
+                        <h5 class="text-primary uppercase md:mb-4 mb-2.5">
+                            {featuredSpecialty.quote}
+                        </h5>
+                        <p>
+                            {featuredSpecialty.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialties -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {specialties.title}
+                </h3>
+                <ul
+                    class="list-disc text-primary 1xl:space-y-4 lt:space-y-3 space-y-2.5 pl-4.5"
+                >
+                    {
+                        specialties.items.map((item: { title: string; description: string }) => (
+                            <li>
+                                <p class="text-primary font-medium">{item.title} <span class="text-thunder-100">- {item.description}</span></p>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+                        <!-- Contact -->
+            <div data-aos="fade-up">
+                <h3
+                    class="uppercase text-primary 1xl:mb-6 lt:mb-4 mb-3"
+                >
+                    {contact.title}
+                </h3>
+                <div>
+                    <a
+                        href={contact.booking.url}
+                        class="flex items-center 1xl:gap-4.5 md:gap-3.5 gap-2.5 w-fit group text-primary hover:text-thunder-100"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                            class="2xl:w-7.5 1xl:w-6.5 lt:w-6 w-5.5 h-full text-primary"
+                        >
+                            <mask
+                                id="mask0_3146_20030"
+                                style="mask-type:alpha"
+                                maskUnits="userSpaceOnUse"
+                                x="0"
+                                y="0"
+                                width="30"
+                                height="30"
+                            >
+                                <rect
+                                    width="30"
+                                    height="30"
+                                    fill="url(#pattern0_3146_20030)"
+                                />
+                            </mask>
+                            <g mask="url(#mask0_3146_20030)">
+                                <rect
+                                    width="30"
+                                    height="30"
+                                    fill="currentColor"
+                                />
+                            </g>
+                            <defs>
+                                <pattern
+                                    id="pattern0_3146_20030"
+                                    patternContentUnits="objectBoundingBox"
+                                    width="1"
+                                    height="1"
+                                >
+                                    <use
+                                        xlink:href="#image0_3146_20030"
+                                        transform="scale(0.0078125)"
+                                    />
+                                </pattern>
+                                <image
+                                    id="image0_3146_20030"
+                                    width="128"
+                                    height="128"
+                                    preserveAspectRatio="none"
+                                    xlink:href="data:image/png;base64,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"
+                                />
+                            </defs>
+                        </svg>
+                        <div class="flex items-center 1xl:gap-3 gap-2 w-full">
+                            <p
+                                class="uppercase font-medium text-primary group-hover:text-thunder-100"
+                            >
+                                {contact.booking.label}
+                            </p>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="31"
+                                viewBox="0 0 20 31"
+                                fill="none"
+                                class="1xl:w-5.5 w-4.5 h-full"
+                            >
+                                <g clip-path="url(#clip0_3146_20028)">
+                                    <path
+                                        d="M2.86573 20.6159C2.86573 20.6159 10.8425 12.639 14.165 9.31648M14.165 9.31648L14.4897 17.824M14.165 9.31648L5.65684 8.99236"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_3146_20028">
+                                        <rect
+                                            y="0.0298199"
+                                            width="19.9297"
+                                            height="30.9612"
+                                            rx="5"
+                                            transform="rotate(-0.0857288 0 0.0298199)"
+                                            fill="white"
+                                        >
+                                        </rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact for Private Sessions -->
+            <TeamDetailContact contact={contact} />
+        </div>
+    </div>
+</section>
+<!-- ====== End Find Your Flow Section ====== -->

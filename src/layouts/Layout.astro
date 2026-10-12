@@ -1,23 +1,117 @@
+---
+import "../styles/global.css";
+import Header from "../components/header/header.astro";
+import HeaderInner from "../components/header/HeaderInner.astro";
+import HeaderIndex2 from "../components/header/HeaderIndex2.astro";
+import HeaderIndex3 from "../components/header/HeaderIndex3.astro";
+import Footer from "../components/footer/Footer.astro";
+import FooterInner from "../components/footer/FooterInner.astro";
+import FooterIndex2 from "../components/footer/FooterIndex2.astro";
+import FooterIndex3 from "../components/footer/FooterIndex3.astro";
+
+interface Props {
+    /** 'home'    → floating pill header (default)
+     *  'inner'   → full-width fixed header for About/inner pages
+     *  'index-2' → full-width fixed header for index-2 (transparent→white on scroll)
+     *  'index-3' → full-width fixed header for index-3 (identical to index-2, different logo href) */
+    headerVariant?: 'home' | 'inner' | 'index-2' | 'index-3';
+    /** 'home'    → home/index footer (default)
+     *  'inner'   → about/inner-page footer
+     *  'index-2' → index-2 footer (dark bg-thunder-100 with newsletter) */
+    /** 'home'    → home/index footer (default)
+     *  'inner'   → about/inner-page footer
+     *  'index-2' → index-2 footer (dark bg-thunder-100 with logo+newsletter)
+     *  'index-3' → index-3 footer (dark bg-thunder-100, newsletter heading h3, logo in bottom bar) */
+    footerVariant?: 'home' | 'inner' | 'index-2' | 'index-3';
+    /** Show the "My Account" profile dropdown instead of the login button (account page only). */
+    accountMenu?: boolean;
+    title?: string;
+    description?: string;
+    canonical?: string;
+    image?: string;
+}
+
+const {
+    headerVariant = 'home',
+    footerVariant  = 'home',
+    title          = 'Pranavya Yoga — Mindful Movement & Wellness Studio',
+    description,
+    canonical,
+    image,
+    accountMenu    = false,
+} = Astro.props;
+
+const DEFAULT_DESCRIPTION = "Pranavya Yoga is a holistic sanctuary for mindfulness, restorative flow, meditation, and wellness workshops. Discover class schedules, retreats, and shop mindful gear.";
+const metaDescription = description || DEFAULT_DESCRIPTION;
+
+const siteOrigin = Astro.site ? Astro.site.origin : "https://demo.pranavyayoga.com";
+const canonicalUrl = canonical 
+    ? (canonical.startsWith("http") ? canonical : new URL(canonical, siteOrigin).href)
+    : new URL(Astro.url.pathname, siteOrigin).href;
+
+const ogImage = image 
+    ? (image.startsWith("http") ? image : new URL(image, siteOrigin).href)
+    : new URL("/hero-section-img.webp", siteOrigin).href;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Pranavya Yoga" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={ogImage} />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalUrl} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@100..900&display=swap" rel="stylesheet" />
+        <!-- Swiper CSS -->
+
+        <!-- AOS CSS -->
+        <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        {headerVariant === 'inner' ? <HeaderInner accountMenu={accountMenu} /> : headerVariant === 'index-2' ? <HeaderIndex2 /> : headerVariant === 'index-3' ? <HeaderIndex3 /> : <Header />}
+
+        <slot />
+
+        <!-- jQuery -->
+        <script is:inline src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <!-- AOS JS -->
+        <script is:inline src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+        <script is:inline>
+            AOS.init();
+        </script>
+
+        {footerVariant === 'inner' ? <FooterInner /> : footerVariant === 'index-2' ? <FooterIndex2 /> : footerVariant === 'index-3' ? <FooterIndex3 /> : <Footer />}
+
+    </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+    }
 </style>
